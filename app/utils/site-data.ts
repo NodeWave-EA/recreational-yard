@@ -1,0 +1,230 @@
+import type { NavigationMenuItem } from '@nuxt/ui'
+import type { NuxtLinkProps } from '#app'
+
+// Common Link Interface
+export type Link = NuxtLinkProps | NavigationMenuItem
+
+// Announcement Bar Configuration
+export const ANNOUNCEMENT_BAR = {
+  text: 'Welcome to Kericho\'s Premier Outdoor Recreation Destination! We are officially open daily from 8:00 AM to 7:00 PM.',
+  ctaText: 'Book Your Slot →',
+  ctaLink: '/pricing',
+} as const
+
+// Hero Highlights
+export const HERO_HIGHLIGHTS = [
+  'Safe • Clean • Well Maintained',
+  'Family & Community Focused',
+  'Tea Garden Views',
+] as const
+
+// Location & Business Details
+export const LOCATION_DETAILS = {
+  company: 'RECREATION YARD LIMITED',
+  parentCompany: 'MODERATE LIMITED',
+  tagline: 'Play. Compete. Relax. Kericho\'s top outdoor space for sports, health, and family recreation.',
+  address: 'KOOMA, Kericho - Kisumu Highway, Kericho, Kenya',
+  phone: '+254 726 270046',
+  phoneSecondary: '0726270046',
+  email: 'info@moderatelimited.co.ke',
+  hours: 'Open Daily from 7:30 AM to 6:00 PM',
+  googleMapsUrl: 'https://maps.app.goo.gl/xDRSUtZ3grSzm1FY8',
+  socials: {
+    facebook: 'https://facebook.com',
+    instagram: 'https://instagram.com',
+    tiktok: 'https://tiktok.com',
+  },
+} as const
+
+// Header Navigation Links with Direct Facilities Routes
+export const HEADER_NAV_LINKS: NavigationMenuItem[][] = [
+  [
+    {
+      label: 'Home',
+      to: '/',
+      icon: 'i-tabler-home',
+    },
+    {
+      label: 'Facilities',
+      to: '/facilities',
+      icon: 'i-tabler-trees',
+    },
+    {
+      label: 'Pricing',
+      to: '/pricing',
+      icon: 'i-tabler-ticket',
+    },
+    {
+      label: 'Shop',
+      to: '/shop',
+      icon: 'i-tabler-shopping-bag',
+    },
+    {
+      label: 'Events',
+      to: '/events',
+      icon: 'i-tabler-calendar-event',
+    },
+    {
+      label: 'Contact',
+      to: '/contact',
+      icon: 'i-tabler-phone',
+    },
+    {
+      label: 'Search',
+      to: '/search',
+      icon: 'i-tabler-search',
+    },
+  ],
+]
+
+// Navigation Links Map
+export const NAVIGATION_LINKS: Record<string, Link> = {
+  home: { label: 'Home', to: '/', icon: 'i-tabler-home' },
+  facilities: { label: 'Facilities', to: '/facilities', icon: 'i-tabler-trees' },
+  pricing: { label: 'Pricing', to: '/pricing', icon: 'i-tabler-ticket' },
+  shop: { label: 'Shop', to: '/shop', icon: 'i-tabler-shopping-bag' },
+  events: { label: 'Events', to: '/events', icon: 'i-tabler-calendar-event' },
+  contact: { label: 'Contact', to: '/contact', icon: 'i-tabler-phone' },
+}
+
+// Recreation Pillars (For Homepage Highlights)
+export const RECREATION_PILLARS = [
+  {
+    id: 'lawn-tennis',
+    title: 'Tennis on the Lawn',
+    tagline: 'Authentic grass-court tennis in the cool mountain climate.',
+    description: 'Experience classic grass tennis with friends or sign up for structured coaching sessions.',
+    icon: 'i-tabler-ball-tennis',
+    features: ['Natural grass surface', 'Casual & competitive play', 'Coaching available'],
+  },
+  {
+    id: 'archery-range',
+    title: 'Archery Range',
+    tagline: 'Test your focus, aim, and precision.',
+    description: 'Equipped with recurve bows, target stands, and range safety marshals.',
+    icon: 'i-tabler-target',
+    features: ['Recurve gear provided', 'Targets 10m to 30m', 'Safety instructors on site'],
+  },
+  {
+    id: 'badminton-courts',
+    title: 'Badminton Courts',
+    tagline: 'Fast-paced fun for all skill levels.',
+    description: 'Enjoy quick matches or friendly doubles on our outdoor courts with rackets and shuttles included.',
+    icon: 'i-tabler-barbell',
+    features: ['2 courts available', 'Rackets & shuttles included', 'Evening lighting'],
+  },
+  {
+    id: 'walking-jogging-trail',
+    title: 'Walking & Jogging Trail',
+    tagline: 'Scenic morning runs and peaceful evening walks.',
+    description: 'A 1.5km crushed-stone trail weaving alongside natural flora and tea garden perimeters.',
+    icon: 'i-tabler-walk',
+    features: ['1.5km circuit', 'Soft-impact pathing', 'Fresh tea estate breezes'],
+  },
+  {
+    id: 'picnic-bbq-area',
+    title: 'Picnic & BBQ Area',
+    tagline: 'Gather, grill, and celebrate outdoors.',
+    description: 'Shaded wooden gazebos paired with clean, heavy-duty charcoal grill stations.',
+    icon: 'i-tabler-grill',
+    features: ['Shaded seating', 'Built-in grill stations', 'Group booking available'],
+  },
+  {
+    id: 'kids-playground',
+    title: 'Kids Playground',
+    tagline: 'Safe, vibrant, and energetic play for children.',
+    description: 'Equipped with swings, slides, climbing frames, and obstacle features on soft grass.',
+    icon: 'i-tabler-mood-kid',
+    features: ['Soft rubberized grass', 'Secure perimeter', 'Visible from dining area'],
+  },
+  {
+    id: 'outdoor-fitness-zone',
+    title: 'Outdoor Fitness Zone',
+    tagline: 'Calisthenics and strength training in open air.',
+    description: 'Equipped with pull-up bars, parallel bars, core stations, and resistance equipment.',
+    icon: 'i-tabler-stretching',
+    features: ['Bodyweight exercise frames', 'Stretching mats', 'Open daily'],
+  },
+  {
+    id: 'tea-garden-stroll',
+    title: 'Tea Garden Stroll',
+    tagline: 'Scenic walks with unforgettable photos.',
+    description: 'A tranquil stroll along the edge of Kericho\'s world-famous tea gardens.',
+    icon: 'i-tabler-plant',
+    features: ['Guided nature walks', 'Photography spots', 'Highland views'],
+  },
+] as const
+
+// Pricing Passes
+export const PRICING_PASSES = [
+  {
+    id: 'day-pass',
+    name: 'Day Pass',
+    price: 500,
+    unit: 'day',
+    isPopular: false,
+    ctaText: 'BUY DAY PASS',
+    features: [
+      'Full access to all 8 recreation zones',
+      'Standard equipment rentals available on site',
+      'Valid 8:00 AM – 7:00 PM daily',
+    ],
+  },
+  {
+    id: 'monthly-member',
+    name: 'Monthly Member',
+    price: 2500,
+    unit: 'month',
+    isPopular: true,
+    ctaText: 'BECOME A MEMBER',
+    features: [
+      'Unlimited facility access all month',
+      'Free racket & archery gear rental',
+      '3 Free Guest Passes per month',
+      'Exclusive discounts on shop merchandise & events',
+    ],
+  },
+] as const
+
+// Shop Highlights
+export const SHOP_HIGHLIGHTS = [
+  {
+    id: 'tea-250g',
+    title: 'Kericho Premium Loose Leaf Tea (250g)',
+    price: 400,
+    category: 'Fresh Local Produce',
+    description: 'Handpicked from surrounding Kericho estates.',
+  },
+  {
+    id: 'yard-cap',
+    title: 'Official Recreation Yard Performance Cap',
+    price: 800,
+    category: 'Branded Sportswear',
+    description: 'Lightweight, moisture-wicking outdoor cap.',
+  },
+] as const
+
+// FAQ Items
+export const FAQ_ITEMS = [
+  {
+    question: 'Do I need to book in advance to visit for a day?',
+    answer: 'Walk-ins are always welcome for General Day Passes (KES 500)! However, to guarantee availability for lawn tennis or BBQ stations, we recommend reserving online.',
+  },
+  {
+    question: 'Are equipment rentals included in the entry fee?',
+    answer: 'Day Pass holders can rent sports gear at nominal rates on-site. Monthly Members receive complimentary gear rentals.',
+  },
+] as const
+
+// Featured Events
+export const FEATURED_EVENTS = [
+  {
+    id: 'event-marathon-2026',
+    title: 'ANNUAL KERICHO CROSS COUNTRY',
+    date: '10 OCT 2026',
+    location: 'Kericho',
+    description: '10KM run through Kericho country. Medals, refreshments & prizes!',
+    badge: '10 OCT 2026',
+    registrationOpen: false,
+  },
+] as const
