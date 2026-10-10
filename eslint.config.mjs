@@ -19,6 +19,17 @@ export default withNuxt(
     },
   }),
 
+  // Global rule overrides
+  {
+    rules: {
+      'node/prefer-global/process': 'off',
+      'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+      'better-tailwindcss/no-unknown-classes': ['error', {
+        ignore: ['animate-marquee'],
+      }],
+    },
+  },
+
   betterTailwindcss.configs['correctness-error'],
   {
     settings: {
@@ -56,7 +67,6 @@ export default withNuxt(
       ],
 
       // Override: Catch manual components using PascalCase and force them to kebab-case instead
-      // This lookahead ignores core tags (Nuxt, Client, UI Framework 'U', and native Vue fragments)
       'no-restricted-syntax': [
         'error',
         {
