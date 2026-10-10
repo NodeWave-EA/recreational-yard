@@ -6,7 +6,7 @@ export type Link = NuxtLinkProps | NavigationMenuItem
 
 // Announcement Bar Configuration
 export const ANNOUNCEMENT_BAR = {
-  text: 'Welcome to Kericho\'s Premier Outdoor Recreation Destination! We are officially open daily from 8:00 AM to 7:00 PM.',
+  text: 'Welcome to Kericho\'s Premier Outdoor Recreation Destination! We are officially open daily from 7:30 AM to 6:00 PM. Enjoy our facilities, events, and shop!',
   ctaText: 'Book Your Slot →',
   ctaLink: '/pricing',
 } as const
