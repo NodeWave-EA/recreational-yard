@@ -73,16 +73,16 @@ function getImageSrc(item: any) {
     <!-- Grid View Option -->
     <div
       v-if="viewMode === 'grid' && featuredFacilities?.length"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8"
     >
       <NuxtLink
         v-for="facility in featuredFacilities"
         :key="facility.id || facility.path"
         :to="facility.path"
-        class="group flex flex-col justify-between p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/60 hover:border-lime-500/50 dark:hover:border-lime-400/50 hover:shadow-lg transition-all duration-300"
+        class="group flex flex-col justify-between transition-all duration-300"
       >
         <div class="space-y-3">
-          <div class="relative aspect-4/3 rounded-xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-950">
+          <div class="relative aspect-4/3 rounded-2xl overflow-hidden border border-neutral-200/60 dark:border-neutral-800/60 bg-neutral-100 dark:bg-neutral-900">
             <NuxtImg
               v-if="getImageSrc(facility)"
               :src="getImageSrc(facility)"
@@ -129,7 +129,7 @@ function getImageSrc(item: any) {
           </div>
         </div>
 
-        <div class="pt-4 mt-3 border-t border-neutral-100 dark:border-neutral-800/80 flex items-center justify-between">
+        <div class="pt-3 mt-3 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between">
           <span class="text-xs font-bold text-lime-600 dark:text-lime-400 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
             Explore Zone
           </span>
@@ -141,13 +141,13 @@ function getImageSrc(item: any) {
     <!-- Flat List Row View Option -->
     <div
       v-else-if="viewMode === 'list' && featuredFacilities?.length"
-      class="divide-y divide-neutral-200 dark:divide-neutral-800"
+      class="divide-y divide-neutral-200/70 dark:divide-neutral-800/70"
     >
       <NuxtLink
         v-for="facility in featuredFacilities"
         :key="facility.id || facility.path"
         :to="facility.path"
-        class="group py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 hover:bg-neutral-100/50 dark:hover:bg-neutral-900/50 px-3 rounded-2xl transition-colors"
+        class="group py-4 sm:py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 transition-colors"
       >
         <!-- Image & Description -->
         <div class="flex items-start gap-4 min-w-0 flex-1">
@@ -190,7 +190,7 @@ function getImageSrc(item: any) {
         </div>
 
         <!-- Rate & Link Arrow -->
-        <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-200/50 dark:border-neutral-800/50 shrink-0">
+        <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2 sm:pt-0 shrink-0">
           <div v-if="facility.pricing" class="text-left sm:text-right">
             <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">Rate</span>
             <span class="text-sm font-extrabold text-neutral-950 dark:text-white">

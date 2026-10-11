@@ -275,7 +275,7 @@ onUnmounted(() => {
 
     <!-- Highlights Bar -->
     <div class="relative z-10 border-b border-neutral-200/80 dark:border-neutral-800/80 bg-white/50 dark:bg-neutral-950/50 backdrop-blur-md py-5 sm:py-6">
-      <UContainer class="max-w-5xl">
+      <UContainer class="w-full">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           <!-- Outdoor Zones -->
           <div class="flex items-start gap-4">
