@@ -44,6 +44,7 @@ export const LOCATION_DETAILS = {
   email: 'info@moderatelimited.co.ke',
   hours: 'Open Daily from 7:30 AM to 6:00 PM',
   googleMapsUrl: 'https://maps.app.goo.gl/xDRSUtZ3grSzm1FY8',
+  embedLink: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.739361381699!2d35.251213899999996!3d-0.36046449999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182a59c90dfcd6c5:0x64288e800c7613ec!2sRECREATION%20YARD%20LIMITED!5e0!3m2!1sen!2ske!4v1791612688404!5m2!1sen!2ske',
   socials: {
     facebook: 'https://facebook.com',
     instagram: 'https://instagram.com',
