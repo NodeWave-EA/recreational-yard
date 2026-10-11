@@ -25,3 +25,6 @@ logs
 
 # Husky (Local environment configuration)
 .husky/_/
+
+# Test
+test/
