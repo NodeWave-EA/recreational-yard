@@ -4,6 +4,21 @@ import type { NuxtLinkProps } from '#app'
 // Common Link Interface
 export type Link = NuxtLinkProps | NavigationMenuItem
 
+export const SITE_NAME = 'Recreation Yard'
+export const SITE_DESCRIPTION = 'Kericho\'s Premier Outdoor Recreation Destination'
+
+export const CONTACTS = {
+  phone: '+254726270046',
+  whatsapp: '+254726270046',
+  email: 'info@recreationyard.co.ke',
+} as const
+
+export const SOCIAL_LINKS = {
+  facebook: 'https://facebook.com',
+  instagram: 'https://instagram.com',
+  tiktok: 'https://tiktok.com',
+} as const
+
 // Announcement Bar Configuration
 export const ANNOUNCEMENT_BAR = {
   text: 'Welcome to Kericho\'s Premier Outdoor Recreation Destination! We are officially open daily from 7:30 AM to 6:00 PM. Enjoy our facilities, events, and shop!',
