@@ -6,6 +6,7 @@ import { FAQ_ITEMS, LOCATION_DETAILS } from '~/utils/site-data'
 const viewMode = ref<'grid' | 'list'>('grid')
 
 const {
+  pricingPlans,
   searchQuery,
   selectedCategory,
   sortBy,
@@ -15,6 +16,9 @@ const {
   filteredPlans,
   resetFilters,
 } = await usePricingCatalog()
+
+// Evaluates whether any pricing plans exist overall in the database catalog
+const hasAnyPlan = computed(() => (pricingPlans.value?.length || 0) > 0)
 
 // Accordion helper for FAQ items
 const faqAccordionItems = computed(() =>
@@ -42,9 +46,7 @@ useSeoMeta({
           class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-3.5 py-1 sm:py-0.5 rounded-full"
         >
           <UIcon name="i-tabler-ticket" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
-          <span>
-            Passes & Memberships
-          </span>
+          <span>Passes & Memberships</span>
         </UBadge>
       </div>
 
@@ -138,7 +140,7 @@ useSeoMeta({
 
     <!-- Main Content Container -->
     <UContainer class="w-full pt-6 space-y-16">
-      <!-- Active Filter Summary -->
+      <!-- Active Filter Summary Bar -->
       <div v-if="selectedCategory !== 'all' || searchQuery" class="flex flex-wrap items-center justify-between gap-3 text-xs border-b border-neutral-200 dark:border-neutral-800 pb-3">
         <div class="flex flex-wrap items-center gap-2">
           <span class="font-bold text-neutral-400">Active Filters:</span>
@@ -330,130 +332,72 @@ useSeoMeta({
         </div>
       </div>
 
-      <!-- Empty State -->
-      <div v-else class="py-16 text-center space-y-3 max-w-md mx-auto">
-        <UIcon name="i-tabler-ticket-off" class="size-12 text-neutral-400 mx-auto" />
-        <h3 class="text-lg font-bold">
-          No passes found
-        </h3>
-        <p class="text-xs text-neutral-500">
-          We couldn't find any passes matching your search or filter criteria. Try adjusting your filters or search terms to see more options.
-        </p>
-        <UButton
-          size="sm"
-          color="neutral"
-          variant="outline"
-          class="rounded-xl font-bold text-xs"
-          @click="resetFilters"
-        >
-          Reset Filters
-        </UButton>
-      </div>
+      <!-- Filter Empty State -->
+      <div v-else-if="hasAnyPlan" class="py-20 text-center space-y-4 max-w-md mx-auto px-4">
+        <div class="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+          <UIcon name="i-tabler-filter-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
+        </div>
 
-      <!-- Feature Comparison Breakdown -->
-      <!-- <div class="pt-8 border-t border-neutral-200 dark:border-neutral-800">
-        <div class="max-w-xl mb-6 text-left sm:text-center mx-auto">
-          <h3 class="text-lg sm:text-xl font-extrabold text-neutral-950 dark:text-white">
-            Feature Comparison
+        <div class="space-y-1">
+          <h3 class="text-lg font-bold text-neutral-950 dark:text-white">
+            No Matching Passes
           </h3>
-          <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
-            Compare the benefits and access levels of our Day Pass, Monthly Membership, and Annual VIP options to find the right fit for your recreational needs.
+          <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+            No passes or memberships match your current search query or active filter selections. Try clearing your filters or searching for something else.
           </p>
         </div>
 
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs border-collapse">
-            <thead>
-              <tr class="border-b border-neutral-200 dark:border-neutral-800 text-neutral-400 dark:text-neutral-500 font-bold uppercase tracking-wider">
-                <th class="py-3.5 px-4">
-                  Feature / Access
-                </th>
-                <th class="py-3.5 px-4 text-center">
-                  Day Pass
-                </th>
-                <th class="py-3.5 px-4 text-center text-lime-600 dark:text-lime-400">
-                  Monthly Member
-                </th>
-                <th class="py-3.5 px-4 text-center">
-                  Annual VIP
-                </th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-neutral-200/60 dark:divide-neutral-800/60 text-neutral-700 dark:text-neutral-300">
-              <tr class="hover:bg-neutral-100/50 dark:hover:bg-neutral-900/50 transition-colors">
-                <td class="py-3.5 px-4 font-semibold text-neutral-950 dark:text-white">
-                  Full Ground Access (8 Zones)
-                </td>
-                <td class="py-3.5 px-4 text-center">
-                  <UIcon name="i-tabler-check" class="size-4 text-lime-500 mx-auto" />
-                </td>
-                <td class="py-3.5 px-4 text-center">
-                  <UIcon name="i-tabler-check" class="size-4 text-lime-500 mx-auto" />
-                </td>
-                <td class="py-3.5 px-4 text-center">
-                  <UIcon name="i-tabler-check" class="size-4 text-lime-500 mx-auto" />
-                </td>
-              </tr>
-              <tr class="hover:bg-neutral-100/50 dark:hover:bg-neutral-900/50 transition-colors">
-                <td class="py-3.5 px-4 font-semibold text-neutral-950 dark:text-white">
-                  Free Racket & Archery Rental
-                </td>
-                <td class="py-3.5 px-4 text-center text-neutral-400 dark:text-neutral-500">
-                  Paid Rental
-                </td>
-                <td class="py-3.5 px-4 text-center">
-                  <UIcon name="i-tabler-check" class="size-4 text-lime-500 mx-auto" />
-                </td>
-                <td class="py-3.5 px-4 text-center">
-                  <UIcon name="i-tabler-check" class="size-4 text-lime-500 mx-auto" />
-                </td>
-              </tr>
-              <tr class="hover:bg-neutral-100/50 dark:hover:bg-neutral-900/50 transition-colors">
-                <td class="py-3.5 px-4 font-semibold text-neutral-950 dark:text-white">
-                  Monthly Guest Passes
-                </td>
-                <td class="py-3.5 px-4 text-center text-neutral-400 dark:text-neutral-500">
-                  —
-                </td>
-                <td class="py-3.5 px-4 text-center font-bold text-neutral-900 dark:text-white">
-                  3 / month
-                </td>
-                <td class="py-3.5 px-4 text-center font-bold text-neutral-900 dark:text-white">
-                  10 / year
-                </td>
-              </tr>
-              <tr class="hover:bg-neutral-100/50 dark:hover:bg-neutral-900/50 transition-colors">
-                <td class="py-3.5 px-4 font-semibold text-neutral-950 dark:text-white">
-                  Shop & Produce Discount
-                </td>
-                <td class="py-3.5 px-4 text-center text-neutral-400 dark:text-neutral-500">
-                  —
-                </td>
-                <td class="py-3.5 px-4 text-center font-bold text-lime-600 dark:text-lime-400">
-                  15% Off
-                </td>
-                <td class="py-3.5 px-4 text-center font-bold text-lime-600 dark:text-lime-400">
-                  20% Off
-                </td>
-              </tr>
-              <tr class="hover:bg-neutral-100/50 dark:hover:bg-neutral-900/50 transition-colors">
-                <td class="py-3.5 px-4 font-semibold text-neutral-950 dark:text-white">
-                  Personal Storage Locker
-                </td>
-                <td class="py-3.5 px-4 text-center text-neutral-400 dark:text-neutral-500">
-                  —
-                </td>
-                <td class="py-3.5 px-4 text-center text-neutral-400 dark:text-neutral-500">
-                  —
-                </td>
-                <td class="py-3.5 px-4 text-center">
-                  <UIcon name="i-tabler-check" class="size-4 text-lime-500 mx-auto" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="pt-2">
+          <UButton
+            size="sm"
+            color="neutral"
+            variant="outline"
+            icon="i-tabler-rotate-clockwise"
+            class="rounded-xl font-bold text-xs px-4 py-2 cursor-pointer"
+            @click="resetFilters"
+          >
+            Reset All Filters
+          </UButton>
         </div>
-      </div> -->
+      </div>
+
+      <!-- Catalog Empty State -->
+      <div v-else class="py-20 text-center space-y-4 max-w-md mx-auto px-4">
+        <div class="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+          <UIcon name="i-tabler-ticket-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
+        </div>
+
+        <div class="space-y-1">
+          <h3 class="text-lg font-bold text-neutral-950 dark:text-white">
+            No Passes Available
+          </h3>
+          <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+            There are currently no passes or membership plans listed in our catalog. Please check back later or contact us directly to inquire about booking options.
+          </p>
+        </div>
+
+        <div class="pt-2 flex items-center justify-center gap-3">
+          <UButton
+            to="/contact"
+            size="sm"
+            color="primary"
+            icon="i-tabler-mail"
+            class="rounded-xl font-bold text-xs px-4 py-2 text-neutral-950 cursor-pointer"
+          >
+            Contact Us
+          </UButton>
+          <UButton
+            to="/"
+            size="sm"
+            color="neutral"
+            variant="outline"
+            icon="i-tabler-home"
+            class="rounded-xl font-bold text-xs px-4 py-2 cursor-pointer"
+          >
+            Return Home
+          </UButton>
+        </div>
+      </div>
 
       <!-- Group & Corporate Booking Banner -->
       <div class="py-10 border-y border-neutral-200 dark:border-neutral-800">
