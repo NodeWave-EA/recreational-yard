@@ -364,7 +364,7 @@ useSeoMeta({
       <!-- Catalog Empty State -->
       <div v-else class="py-20 text-center space-y-4 max-w-md mx-auto px-4">
         <div class="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
-          <UIcon name="i-tabler-trees-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
+          <UIcon name="i-tabler-trees" class="size-8 text-neutral-400 dark:text-neutral-500" />
         </div>
 
         <div class="space-y-1">

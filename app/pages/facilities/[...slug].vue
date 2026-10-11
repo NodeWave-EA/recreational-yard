@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useContentQuery } from '~/composables/useContentQuery'
-import { LOCATION_DETAILS } from '~/utils/site-data'
+import { CONTACTS, LOCATION_DETAILS } from '~/utils/site-data'
 
 const route = useRoute()
 const { getByPath } = useContentQuery()
@@ -37,7 +37,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="py-8 sm:py-14 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen">
+  <div class="py-8 sm:py-14 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300">
     <UContainer v-if="facility" class="max-w-5xl">
       <!-- Back Link -->
       <NuxtLink
@@ -51,13 +51,16 @@ useSeoMeta({
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         <!-- Main Content -->
         <div class="lg:col-span-8 space-y-6">
+          <!-- Cover Banner -->
           <div class="relative rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900">
-            <img
+            <NuxtImg
               v-if="coverImgSrc"
               :src="coverImgSrc"
               :alt="facility.title"
+              format="webp"
+              quality="85"
               class="w-full h-72 sm:h-96 object-cover"
-            >
+            />
             <div v-else class="flex h-72 sm:h-96 w-full items-center justify-center text-neutral-400">
               <UIcon :name="facility.icon || 'i-tabler-trees'" class="size-16" />
             </div>
@@ -65,14 +68,15 @@ useSeoMeta({
             <UBadge
               v-if="facility.badge"
               color="primary"
-              class="absolute top-4 left-4 font-bold text-xs rounded-md shadow-md"
+              variant="soft"
+              class="absolute top-4 left-4 font-bold text-xs rounded-md uppercase backdrop-blur-md"
             >
               {{ facility.badge }}
             </UBadge>
           </div>
 
           <div class="space-y-3">
-            <h1 class="text-2xl sm:text-4xl font-black text-neutral-950 dark:text-white">
+            <h1 class="text-2xl sm:text-4xl font-black text-neutral-950 dark:text-white leading-tight">
               {{ facility.title }}
             </h1>
             <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
@@ -86,11 +90,38 @@ useSeoMeta({
               Facility Features & Amenities
             </h3>
             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-neutral-700 dark:text-neutral-300">
-              <li v-for="(feat, idx) in facility.features" :key="idx" class="flex items-center gap-2">
+              <li v-for="(feat, idx) in facility.features" :key="idx" class="flex items-center gap-2 font-medium">
                 <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0" />
                 <span>{{ feat }}</span>
               </li>
             </ul>
+          </div>
+
+          <!-- Gallery Link -->
+          <div class="pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <UIcon name="i-tabler-photo" class="size-5 text-lime-500 shrink-0" />
+              <div class="space-y-0.5">
+                <h4 class="text-xs font-bold text-neutral-950 dark:text-white">
+                  Facility Photo Gallery
+                </h4>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400">
+                  Explore high-resolution visual collections in our main gallery page.
+                </p>
+              </div>
+            </div>
+
+            <UButton
+              to="/gallery"
+              size="sm"
+              color="primary"
+              variant="link"
+              icon="i-tabler-arrow-right"
+              trailing
+              class="font-bold text-xs p-0 text-lime-600 dark:text-lime-400 hover:underline shrink-0"
+            >
+              View Gallery
+            </UButton>
           </div>
 
           <!-- Markdown Content Body -->
@@ -132,7 +163,7 @@ useSeoMeta({
                 size="lg"
                 color="primary"
                 icon="i-tabler-calendar-event"
-                class="font-black uppercase text-xs text-neutral-950 rounded-xl py-3.5"
+                class="font-black uppercase text-xs text-neutral-950 rounded-xl py-3.5 cursor-pointer"
               >
                 Reserve Facility
               </UButton>
@@ -143,7 +174,7 @@ useSeoMeta({
                 color="neutral"
                 variant="ghost"
                 icon="i-tabler-brand-whatsapp"
-                class="font-bold text-xs rounded-xl py-2.5 text-emerald-600 dark:text-emerald-400"
+                class="font-bold text-xs rounded-xl py-2.5 text-emerald-600 dark:text-emerald-400 cursor-pointer"
               >
                 Chat on WhatsApp
               </UButton>
