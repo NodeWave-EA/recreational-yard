@@ -1,7 +1,9 @@
 import type { CartItem, ShopProduct } from '~/types/recreation'
+import { useLocalStorage } from '@vueuse/core'
 
 export function useCart() {
-  const cart = useState<CartItem[]>('recreation-cart', () => [])
+  // Persists cart items in localStorage
+  const cart = useLocalStorage<CartItem[]>('recreation-cart', [])
   const isCartOpen = useState<boolean>('recreation-cart-open', () => false)
 
   const addToCart = (product: ShopProduct) => {
