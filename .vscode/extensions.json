@@ -3,6 +3,7 @@
     "dbaeumer.vscode-eslint",
     "ms-vscode.vscode-typescript-next",
     "vue.volar",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "antfu.iconify"
   ]
 }
