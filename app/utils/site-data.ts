@@ -10,7 +10,7 @@ export const SITE_DESCRIPTION = 'Kericho\'s Premier Outdoor Recreation Destinati
 export const CONTACTS = {
   phone: '+254726270046',
   whatsapp: '+254726270046',
-  email: 'info@recreationyard.co.ke',
+  email: 'info@moderatelimited.co.ke',
 } as const
 
 export const SOCIAL_LINKS = {
