@@ -6,6 +6,7 @@ import { LOCATION_DETAILS } from '~/utils/site-data'
 const viewMode = ref<'grid' | 'list'>('grid')
 
 const {
+  facilities,
   searchQuery,
   selectedCategory,
   sortBy,
@@ -16,6 +17,9 @@ const {
   getImageSrc,
   resetFilters,
 } = await useFacilitiesCatalog()
+
+// Evaluates whether any facilities exist in the database catalog overall
+const hasAnyFacility = computed(() => (facilities.value?.length || 0) > 0)
 
 useSeoMeta({
   title: `Facilities | ${LOCATION_DETAILS.company}`,
@@ -204,7 +208,7 @@ useSeoMeta({
                 {{ facility.description }}
               </p>
 
-              <!-- Consistent Checkmark Feature List -->
+              <!-- Feature List -->
               <div v-if="facility.features?.length" class="space-y-1.5 pt-1.5 text-xs text-neutral-600 dark:text-neutral-300 font-medium">
                 <div
                   v-for="(feat, idx) in facility.features.slice(0, 3)"
@@ -328,24 +332,71 @@ useSeoMeta({
         </div>
       </div>
 
-      <!-- Empty State -->
-      <div v-else class="py-16 text-center space-y-3 max-w-md mx-auto">
-        <UIcon name="i-tabler-trees-off" class="size-12 text-neutral-400 mx-auto" />
-        <h3 class="text-lg font-bold">
-          No facilities found
-        </h3>
-        <p class="text-xs text-neutral-500">
-          Try adjusting your search or filter criteria to find what you're looking for.
-        </p>
-        <UButton
-          size="sm"
-          color="neutral"
-          variant="outline"
-          class="rounded-xl font-bold text-xs"
-          @click="resetFilters"
-        >
-          Reset Filters
-        </UButton>
+      <!-- Filter Empty State -->
+      <div v-else-if="hasAnyFacility" class="py-20 text-center space-y-4 max-w-md mx-auto px-4">
+        <div class="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+          <UIcon name="i-tabler-filter-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
+        </div>
+
+        <div class="space-y-1">
+          <h3 class="text-lg font-bold text-neutral-950 dark:text-white">
+            No Matching Facilities
+          </h3>
+          <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+            No venues or grounds match your current search query or active filter selections. Try clearing your filters or searching for something else.
+          </p>
+        </div>
+
+        <div class="pt-2">
+          <UButton
+            size="sm"
+            color="neutral"
+            variant="outline"
+            icon="i-tabler-rotate-clockwise"
+            class="rounded-xl font-bold text-xs px-4 py-2 cursor-pointer"
+            @click="resetFilters"
+          >
+            Reset All Filters
+          </UButton>
+        </div>
+      </div>
+
+      <!-- Catalog Empty State -->
+      <div v-else class="py-20 text-center space-y-4 max-w-md mx-auto px-4">
+        <div class="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+          <UIcon name="i-tabler-trees-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
+        </div>
+
+        <div class="space-y-1">
+          <h3 class="text-lg font-bold text-neutral-950 dark:text-white">
+            No Facilities Available
+          </h3>
+          <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+            There are currently no facilities or venues listed in the catalog. Please check back later as we add new sports grounds and event spaces, or contact us directly.
+          </p>
+        </div>
+
+        <div class="pt-2 flex items-center justify-center gap-3">
+          <UButton
+            to="/contact"
+            size="sm"
+            color="primary"
+            icon="i-tabler-mail"
+            class="rounded-xl font-bold text-xs px-4 py-2 text-neutral-950 cursor-pointer"
+          >
+            Contact Us
+          </UButton>
+          <UButton
+            to="/"
+            size="sm"
+            color="neutral"
+            variant="outline"
+            icon="i-tabler-home"
+            class="rounded-xl font-bold text-xs px-4 py-2 cursor-pointer"
+          >
+            Return Home
+          </UButton>
+        </div>
       </div>
     </UContainer>
   </div>
