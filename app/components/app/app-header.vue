@@ -20,9 +20,9 @@ const navLinks = [
   { label: 'Home', to: '/', icon: 'i-tabler-home' },
   { label: 'Facilities', to: '/facilities', icon: 'i-tabler-trees' },
   { label: 'Pricing', to: '/pricing', icon: 'i-tabler-ticket' },
-  { label: 'Shop', to: '/shop', icon: 'i-tabler-shopping-bag' },
   { label: 'Events', to: '/events', icon: 'i-tabler-calendar-event' },
   { label: 'Gallery', to: '/gallery', icon: 'i-tabler-photo' },
+  { label: 'Shop', to: '/shop', icon: 'i-tabler-shopping-bag' },
   { label: 'Contact', to: '/contact', icon: 'i-tabler-phone' },
 ]
 </script>
