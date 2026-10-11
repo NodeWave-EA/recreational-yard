@@ -118,6 +118,12 @@ export default defineNuxtConfig({
         clientSecret: process.env.NUXT_STUDIO_AUTH_GOOGLE_CLIENT_SECRET || '',
       },
     },
+    repository: {
+      provider: 'github',
+      branch: 'main',
+      owner: 'Nodewave-EA',
+      repo: 'recreational-yard',
+    },
   },
 
   turnstile: {
