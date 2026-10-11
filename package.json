@@ -28,6 +28,7 @@
     "@types/nodemailer": "^8.0.2",
     "@vueuse/nuxt": "15.0.0",
     "better-sqlite3": "^13.0.3",
+    "fuse.js": "^7.5.0",
     "nodemailer": "^10.0.16",
     "nuxt": "^4.6.0",
     "nuxt-studio": "1.7.0",
