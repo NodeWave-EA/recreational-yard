@@ -4,7 +4,6 @@ import type { NormalizedSearchResult } from '~/utils/search-registry'
 import { useContentQuery } from '~/composables/useContentQuery'
 import {
   normalizeContentItem,
-
   SEARCH_COLLECTION_CONFIGS,
 } from '~/utils/search-registry'
 
@@ -118,7 +117,7 @@ function navigateToFullSearch() {
           <div class="flex items-center gap-2">
             <UIcon name="i-tabler-search" class="size-5 text-lime-500" />
             <h3 class="font-extrabold text-base">
-              Global Content Search
+              Search Catalog
             </h3>
           </div>
 
@@ -153,17 +152,17 @@ function navigateToFullSearch() {
         />
 
         <!-- Collapsible Collection Results -->
-        <div class="max-h-96 overflow-y-auto space-y-3 pr-1">
+        <div class="max-h-96 overflow-y-auto space-y-4 pr-2">
           <template v-if="groupedFilteredResults.length">
             <div
               v-for="group in groupedFilteredResults"
               :key="group.config.key"
-              class="border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden bg-neutral-50/50 dark:bg-neutral-950/40"
+              class="space-y-1"
             >
-              <!-- Collapsible Group Header Bar -->
+              <!-- Section Header Divider -->
               <button
                 type="button"
-                class="w-full px-4 py-2.5 flex items-center justify-between bg-neutral-100/80 dark:bg-neutral-800/60 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
+                class="w-full py-2 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 transition-colors cursor-pointer"
                 @click="toggleSection(group.config.key)"
               >
                 <div class="flex items-center gap-2.5">
@@ -183,24 +182,27 @@ function navigateToFullSearch() {
                 />
               </button>
 
-              <!-- Group Content Items -->
+              <!-- Group Content Flat Rows -->
               <div
                 v-show="openSections[group.config.key]"
-                class="divide-y divide-neutral-100 dark:divide-neutral-800/80 p-1"
+                class="divide-y divide-neutral-200/60 dark:divide-neutral-800/60"
               >
                 <div
                   v-for="item in group.items"
                   :key="item.id"
-                  class="group py-2 px-3 rounded-xl flex items-center justify-between gap-3 hover:bg-white dark:hover:bg-neutral-800 cursor-pointer transition-colors"
+                  class="group py-2.5 px-2 flex items-center justify-between gap-3 hover:bg-neutral-100/60 dark:hover:bg-neutral-800/60 rounded-xl cursor-pointer transition-colors"
                   @click="handleSelect(item.path)"
                 >
                   <div class="flex items-center gap-3 min-w-0">
-                    <img
+                    <NuxtImg
                       v-if="item.image"
                       :src="item.image"
                       :alt="item.title"
-                      class="size-9 shrink-0 rounded-lg object-cover border border-neutral-200 dark:border-neutral-700"
-                    >
+                      format="webp"
+                      quality="80"
+                      loading="lazy"
+                      class="size-9 shrink-0 rounded-lg object-cover border border-neutral-200 dark:border-neutral-800"
+                    />
                     <div
                       v-else
                       class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-lime-500/10 text-lime-600 dark:text-lime-400 group-hover:bg-lime-500 group-hover:text-neutral-950 transition-colors"
@@ -210,7 +212,7 @@ function navigateToFullSearch() {
 
                     <div class="min-w-0 space-y-0.5">
                       <div class="flex items-center gap-2 text-[10px]">
-                        <UBadge color="neutral" variant="subtle" class="font-bold rounded px-1.5 py-0.5 text-[9px]">
+                        <UBadge color="neutral" variant="subtle" class="font-bold rounded px-1.5 py-0.5 text-[9px] uppercase">
                           {{ item.badge }}
                         </UBadge>
                         <span v-if="item.meta" class="text-neutral-400 font-medium truncate">• {{ item.meta }}</span>
@@ -251,7 +253,9 @@ function navigateToFullSearch() {
             class="font-bold text-lime-600 dark:text-lime-400 hover:underline inline-flex items-center gap-1 cursor-pointer"
             @click="navigateToFullSearch"
           >
-            <span>Advanced Search</span>
+            <span>
+              Try Advanced Search
+            </span>
             <UIcon name="i-tabler-arrow-right" class="size-3.5" />
           </button>
         </div>
@@ -259,3 +263,27 @@ function navigateToFullSearch() {
     </template>
   </UModal>
 </template>
+
+<style scoped>
+div.overflow-y-auto {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(163, 163, 163, 0.3) transparent;
+}
+
+div.overflow-y-auto::-webkit-scrollbar {
+  width: 5px;
+}
+
+div.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+div.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(163, 163, 163, 0.3);
+  border-radius: 9999px;
+}
+
+div.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(132, 204, 22, 0.6);
+}
+</style>
