@@ -1,4 +1,3 @@
-// content.config.ts
 import { defineCollection, defineContentConfig, z } from '@nuxt/content'
 
 export default defineContentConfig({
@@ -14,7 +13,6 @@ export default defineContentConfig({
           src: z.string(),
           alt: z.string().default('Facility Image'),
         }).optional(),
-        gallery: z.array(z.string()).default([]),
         features: z.array(z.string()).default([]),
         capacity: z.string().optional(),
         pricing: z.object({
