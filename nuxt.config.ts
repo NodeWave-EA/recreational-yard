@@ -111,6 +111,15 @@ export default defineNuxtConfig({
     },
   },
 
+  studio: {
+    auth: {
+      google: {
+        clientId: process.env.NUXT_STUDIO_AUTH_GOOGLE_CLIENT_ID || '',
+        clientSecret: process.env.NUXT_STUDIO_AUTH_GOOGLE_CLIENT_SECRET || '',
+      },
+    },
+  },
+
   turnstile: {
     siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY || '',
   },
