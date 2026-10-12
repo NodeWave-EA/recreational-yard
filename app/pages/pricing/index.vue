@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useContentQuery } from '~/composables/useContentQuery'
 import { usePricingCatalog } from '~/composables/usePricingCatalog'
-import { FAQ_ITEMS, LOCATION_DETAILS } from '~/utils/site-data'
+import { LOCATION_DETAILS } from '~/utils/site-data'
 
 // Active View Mode State ('grid' | 'list')
 const viewMode = ref<'grid' | 'list'>('grid')
+
+const { getCollection } = useContentQuery()
 
 const {
   pricingPlans,
@@ -20,14 +23,30 @@ const {
 // Evaluates whether any pricing plans exist overall in the database catalog
 const hasAnyPlan = computed(() => (pricingPlans.value?.length || 0) > 0)
 
-// Accordion helper for FAQ items
-const faqAccordionItems = computed(() =>
-  FAQ_ITEMS.map((item, index) => ({
-    label: item.question,
-    content: item.answer,
-    value: `item-${index}`,
-  })),
-)
+// Fetch pricing-specific FAQs
+const { data: pricingFaqs } = await getCollection('pricing-faqs-collection', 'faqs', {
+  where: { category: 'Pricing & Passes' },
+  sort: [{ key: 'order', order: 'ASC' }],
+  enableLogging: false,
+})
+
+// Fetch pricing-specific testimonials
+const { data: pricingTestimonials } = await getCollection('pricing-testimonials-collection', 'testimonials', {
+  where: { category: 'Pricing & Passes', featured: true },
+  limit: 3,
+  enableLogging: false,
+})
+
+// Active open FAQ accordion items state
+const openFaqItems = ref<number[]>([0])
+
+function toggleFaqItem(index: number) {
+  if (openFaqItems.value.includes(index)) {
+    openFaqItems.value = openFaqItems.value.filter(i => i !== index)
+  } else {
+    openFaqItems.value.push(index)
+  }
+}
 
 useSeoMeta({
   title: `Pricing & Passes | ${LOCATION_DETAILS.company}`,
@@ -37,7 +56,7 @@ useSeoMeta({
 
 <template>
   <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-16 transition-colors duration-300">
-    <!-- Left-Aligned Mobile Hero Banner -->
+    <!-- Hero Banner -->
     <div class="pt-6 sm:pt-10 pb-2 sm:pb-4 text-left sm:text-center space-y-3 max-w-3xl mx-auto px-4">
       <div class="inline-flex">
         <UBadge
@@ -55,15 +74,14 @@ useSeoMeta({
       </h1>
 
       <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl mx-0 sm:mx-auto">
-        Whether you're here for a day of fun or looking to become a regular, we have a pass that fits your needs. Explore our entry-level passes, monthly memberships, and annual VIP options to find the perfect fit for your recreational adventures.
+        Whether you're here for a day of fun or looking to become a regular, we have a pass that fits your needs. Explore our entry-level passes, monthly memberships, and annual VIP options.
       </p>
     </div>
 
-    <!-- Sticky Search, Filter & View Toggle Toolbar -->
+    <!-- Sticky Toolbar -->
     <div class="sticky top-(--ui-header-height,4rem) z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3.5 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
       <UContainer class="w-full">
         <div class="flex flex-col md:flex-row items-center justify-between gap-3">
-          <!-- Pass Search Input -->
           <UInput
             v-model="searchQuery"
             icon="i-tabler-search"
@@ -399,6 +417,71 @@ useSeoMeta({
         </div>
       </div>
 
+      <!-- Testimonials Section -->
+      <div v-if="pricingTestimonials?.length" class="pt-10 border-t border-neutral-200 dark:border-neutral-800 space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-5">
+          <div>
+            <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-xs mb-2">
+              Pass Member Reviews
+            </UBadge>
+            <h2 class="text-2xl sm:text-3xl font-black text-neutral-950 dark:text-white">
+              Why Members Love Their Passes
+            </h2>
+          </div>
+          <p class="text-xs text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed">
+            Hear from monthly and annual pass holders about ground access, guest discounts, and value.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 divide-y md:divide-y-0 md:divide-x divide-neutral-200 dark:divide-neutral-800">
+          <div
+            v-for="(item, idx) in pricingTestimonials"
+            :key="idx"
+            class="space-y-4 pt-6 md:pt-0"
+            :class="{ 'md:pl-8': idx > 0 }"
+          >
+            <div class="flex items-center gap-1 text-lime-500">
+              <UIcon
+                v-for="star in (item.rating || 5)"
+                :key="star"
+                name="i-tabler-star-filled"
+                class="size-4"
+              />
+            </div>
+
+            <p class="text-xs sm:text-sm font-medium text-neutral-800 dark:text-neutral-200 leading-relaxed italic">
+              "{{ item.comment }}"
+            </p>
+
+            <div class="flex items-center gap-3 pt-2">
+              <NuxtImg
+                v-if="item.avatar"
+                :src="item.avatar"
+                :alt="item.author"
+                format="webp"
+                quality="80"
+                class="size-9 rounded-full object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
+              />
+              <div
+                v-else
+                class="flex size-9 shrink-0 items-center justify-center rounded-full bg-lime-500/10 text-lime-600 dark:text-lime-400 font-bold text-xs"
+              >
+                {{ item.author.charAt(0) }}
+              </div>
+
+              <div class="space-y-0.5">
+                <h3 class="text-xs font-bold text-neutral-950 dark:text-white">
+                  {{ item.author }}
+                </h3>
+                <p class="text-[10px] text-neutral-500 dark:text-neutral-400 font-medium">
+                  {{ item.role }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Group & Corporate Booking Banner -->
       <div class="py-10 border-y border-neutral-200 dark:border-neutral-800">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
@@ -428,23 +511,68 @@ useSeoMeta({
         </div>
       </div>
 
-      <!-- Frequently Asked Questions -->
-      <div class="space-y-6">
-        <div class="text-left space-y-2">
-          <h2 class="text-2xl sm:text-3xl font-bold text-neutral-950 dark:text-white">
-            Frequently Asked Questions
-          </h2>
-          <p class="text-xs text-neutral-500 dark:text-neutral-400">
-            Have questions about entry passes or membership terms? We've got answers.
-          </p>
+      <!-- Pass & Membership FAQs -->
+      <div v-if="pricingFaqs?.length" class="space-y-6 pt-2">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-5">
+          <div>
+            <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-xs mb-2">
+              Pass & Billing Guidance
+            </UBadge>
+            <h2 class="text-2xl sm:text-3xl font-black text-neutral-950 dark:text-white">
+              Pass & Membership FAQs
+            </h2>
+          </div>
+
+          <UButton
+            to="/faq"
+            color="neutral"
+            variant="ghost"
+            icon="i-tabler-arrow-right"
+            trailing
+            class="font-bold uppercase text-xs tracking-wider shrink-0"
+          >
+            Visit Help Center
+          </UButton>
         </div>
 
-        <UAccordion
-          :items="faqAccordionItems"
-          type="single"
-          collapsible
-          class="space-y-2"
-        />
+        <div class="divide-y divide-neutral-200/80 dark:divide-neutral-800/80">
+          <div
+            v-for="(faq, idx) in pricingFaqs"
+            :key="idx"
+            class="py-4 space-y-2"
+          >
+            <button
+              type="button"
+              class="w-full flex items-center justify-between text-left font-extrabold text-sm sm:text-base text-neutral-950 dark:text-white group cursor-pointer transition-colors"
+              @click="toggleFaqItem(idx)"
+            >
+              <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-4">
+                {{ faq.question }}
+              </span>
+              <UIcon
+                name="i-tabler-chevron-down"
+                class="size-5 text-neutral-400 transition-transform duration-200 shrink-0"
+                :class="{ 'rotate-180 text-lime-500': openFaqItems.includes(idx) }"
+              />
+            </button>
+
+            <Transition
+              enter-active-class="transition-all duration-200 ease-out"
+              enter-from-class="opacity-0 max-h-0"
+              enter-to-class="opacity-100 max-h-40"
+              leave-active-class="transition-all duration-150 ease-in"
+              leave-from-class="opacity-100 max-h-40"
+              leave-to-class="opacity-0 max-h-0"
+            >
+              <p
+                v-show="openFaqItems.includes(idx)"
+                class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed pr-6 pt-1 font-medium overflow-hidden"
+              >
+                {{ faq.answer }}
+              </p>
+            </Transition>
+          </div>
+        </div>
       </div>
     </UContainer>
   </div>
