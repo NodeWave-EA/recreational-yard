@@ -164,7 +164,7 @@ useSeoMeta({
         </Transition>
       </div>
 
-      <UContainer class="relative z-10 max-w-[1400px] py-10 sm:py-16 md:py-20 text-center space-y-2.5 sm:space-y-3 px-4 sm:px-6">
+      <UContainer class="relative z-10 max-w-350 py-10 sm:py-16 md:py-20 text-center space-y-2.5 sm:space-y-3 px-4 sm:px-6">
         <NuxtLink
           to="/gallery"
           class="inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-bold text-white/80 hover:text-white transition-colors uppercase tracking-widest mb-0.5 drop-shadow-md"
@@ -184,14 +184,13 @@ useSeoMeta({
     </div>
 
     <!-- Density Switcher Toolbar -->
-    <div class="sticky top-[var(--ui-header-height,3.5rem)] z-30 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md border-b border-neutral-200/50 dark:border-neutral-800/50 py-2.5 sm:py-3 mb-4 sm:mb-8 shadow-xs">
-      <UContainer class="max-w-[1400px] flex justify-center items-center px-4">
+    <div class="sticky top-(--ui-header-height,3.5rem) z-30 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md border-b border-neutral-200/50 dark:border-neutral-800/50 py-2.5 sm:py-3 mb-4 sm:mb-8 shadow-xs">
+      <UContainer class="max-w-350 flex justify-center items-center px-4">
         <div class="flex items-center gap-5 sm:gap-8 font-sans font-bold text-xs sm:text-sm tracking-widest">
-          <span class="text-[10px] sm:text-xs text-neutral-400 font-mono uppercase tracking-widest mr-1 sm:mr-2">Density:</span>
-          <button
+          <UButton
             v-for="size in (['S', 'M', 'L'] as const)"
             :key="size"
-            class="p-1.5 sm:p-2 transition-all cursor-pointer relative touch-manipulation min-w-[28px] text-center"
+            class="p-1.5 sm:p-2 transition-all cursor-pointer relative touch-manipulation min-w-7 text-center"
             :class="[
               density === size
                 ? 'text-black dark:text-white underline underline-offset-4 decoration-2 font-black'
@@ -200,12 +199,12 @@ useSeoMeta({
             @click="density = size"
           >
             {{ size }}
-          </button>
+          </UButton>
         </div>
       </UContainer>
     </div>
 
-    <!-- True Staggered Editorial Masonry Wall -->
+    <!-- Masonry Wall -->
     <UContainer class="max-w-[1800px] px-2.5 sm:px-6 lg:px-8">
       <div v-if="allPhotos.length" :class="masonryContainerClasses">
         <div
@@ -227,7 +226,7 @@ useSeoMeta({
             class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
           />
 
-          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-2.5 sm:p-4 flex flex-col justify-between">
+          <div class="absolute inset-0 bg-linear-to-t from-black/75 via-black/20 to-transparent sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-2.5 sm:p-4 flex flex-col justify-between">
             <div class="flex justify-end">
               <div class="flex size-7 sm:size-8 items-center justify-center rounded-full bg-black/60 hover:bg-lime-500 hover:text-neutral-950 text-white backdrop-blur-md border border-white/20 transition-all shadow-md">
                 <UIcon name="i-tabler-arrows-maximize" class="size-3.5 sm:size-4" />
