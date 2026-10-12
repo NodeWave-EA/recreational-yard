@@ -24,6 +24,16 @@ useSeoMeta({
       <HomeExperienceGrid />
     </UContainer>
 
+    <!-- Testimonials Section -->
+    <UContainer>
+      <HomeTestimonials />
+    </UContainer>
+
+    <!-- FAQ Accordion Section -->
+    <UContainer>
+      <HomeFaq />
+    </UContainer>
+
     <!-- Call to Action -->
     <UContainer>
       <HomeCtaBanner />
