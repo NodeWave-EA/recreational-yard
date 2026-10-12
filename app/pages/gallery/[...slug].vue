@@ -103,7 +103,7 @@ let bgIntervalId: ReturnType<typeof setInterval> | null = null
 
 const currentHeroImage = computed(() => {
   if (allPhotos.value.length) {
-    return allPhotos.value[heroBgIndex.value].url
+    return allPhotos.value[heroBgIndex.value]?.url
   }
   return dynamicGallery.value?.coverImage || ''
 })
@@ -190,7 +190,7 @@ useSeoMeta({
           <button
             v-for="size in (['S', 'M', 'L'] as const)"
             :key="size"
-            class="p-1.5 sm:p-2 transition-all cursor-pointer relative touch-manipulation min-w-[28px] text-center"
+            class="p-1.5 sm:p-2 transition-all cursor-pointer relative touch-manipulation min-w-7 text-center"
             :class="[
               density === size
                 ? 'text-black dark:text-white underline underline-offset-4 decoration-2 font-black'
