@@ -16,6 +16,16 @@ export default defineContentConfig({
           .editor({ input: 'textarea' })
           .describe('Brief summary of the facility for listings and cards'),
 
+        quote: z.object({
+          text: z
+            .string()
+            .describe('1-liner quote about this court or range'),
+          author: z
+            .string()
+            .optional()
+            .describe('Author or source (e.g., Lead Instructor, Guest Reviewer)'),
+        }).optional(),
+
         category: property(z.string().default('Outdoor Sports'))
           .editor({
             input: 'select',
@@ -331,6 +341,11 @@ export default defineContentConfig({
           })
           .describe('FAQ section categorization'),
 
+        facility: z
+          .string()
+          .optional()
+          .describe('Facility slug target (e.g. "archery-range"). Leave blank or set "all" for general facility FAQs'),
+
         order: z.number().default(99).describe('Display sequence within category'),
       }),
     }),
@@ -353,6 +368,11 @@ export default defineContentConfig({
             options: ['General', 'Pricing & Passes', 'Facilities & Sports', 'Events & Groups'],
           })
           .describe('Testimonial placement category'),
+
+        facility: z
+          .string()
+          .optional()
+          .describe('Facility slug target (e.g. "archery-range"). Leave blank or set "all" for general facility testimonials'),
 
         comment: property(z.string())
           .editor({ input: 'textarea' })
