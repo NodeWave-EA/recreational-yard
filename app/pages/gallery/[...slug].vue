@@ -1,16 +1,44 @@
 <script setup lang="ts">
+import { useContentQuery } from '~/composables/useContentQuery'
 import { useGalleryLayout } from '~/composables/useGalleryLayout'
 import { LOCATION_DETAILS } from '~/utils/site-data'
 
 const route = useRoute()
+const { getByPath } = useContentQuery()
 
-// Query collection document using Nuxt Content v3
-const { data: collection } = await useAsyncData(`gallery-doc-${route.path}`, () =>
-  queryCollection('gallery').path(route.path).first())
+// Fetch collection metadata
+const { data: collection } = await getByPath(
+  `gallery-doc-${route.path}`,
+  'gallery',
+  route.path,
+  { enableLogging: false },
+)
 
 if (!collection.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Gallery Collection Not Found' })
+  throw createError({ statusCode: 404, statusMessage: 'Gallery Collection Not Found', fatal: true })
 }
+
+const slug = computed(() => route.path.split('/').pop() || '')
+
+// Fetch dynamic local folder images from server API
+const { data: dynamicGallery } = await useFetch(`/api/gallery/${slug.value}`)
+
+// Combined photos: Merges dynamic local folder images with Markdown frontmatter photos (including external URLs)
+const allPhotos = computed(() => {
+  const scanned = dynamicGallery.value?.images || []
+  const explicit = collection.value?.photos || []
+
+  const merged = [...scanned, ...explicit]
+
+  // Deduplicate by image URL
+  const seenUrls = new Set<string>()
+  return merged.filter((photo) => {
+    if (!photo?.url || seenUrls.has(photo.url))
+      return false
+    seenUrls.add(photo.url)
+    return true
+  })
+})
 
 // Initialize layout composable
 const {
@@ -26,7 +54,7 @@ const activePhotoIndex = ref<number | null>(null)
 const filmstripContainerRef = ref<HTMLElement | null>(null)
 
 const activePhoto = computed(() =>
-  activePhotoIndex.value !== null && collection.value?.photos ? collection.value.photos[activePhotoIndex.value] : null,
+  activePhotoIndex.value !== null && allPhotos.value ? allPhotos.value[activePhotoIndex.value] : null,
 )
 
 // Auto-scroll active thumbnail into the center of the filmstrip bar
@@ -58,14 +86,14 @@ function closePhoto() {
 }
 
 function prevPhoto() {
-  if (activePhotoIndex.value !== null && collection.value?.photos) {
-    activePhotoIndex.value = (activePhotoIndex.value - 1 + collection.value.photos.length) % collection.value.photos.length
+  if (activePhotoIndex.value !== null && allPhotos.value.length) {
+    activePhotoIndex.value = (activePhotoIndex.value - 1 + allPhotos.value.length) % allPhotos.value.length
   }
 }
 
 function nextPhoto() {
-  if (activePhotoIndex.value !== null && collection.value?.photos) {
-    activePhotoIndex.value = (activePhotoIndex.value + 1) % collection.value.photos.length
+  if (activePhotoIndex.value !== null && allPhotos.value.length) {
+    activePhotoIndex.value = (activePhotoIndex.value + 1) % allPhotos.value.length
   }
 }
 
@@ -74,19 +102,13 @@ const heroBgIndex = ref(0)
 let bgIntervalId: ReturnType<typeof setInterval> | null = null
 
 const currentHeroImage = computed(() => {
-  if (collection.value?.photos?.length) {
-    return collection.value.photos[heroBgIndex.value].url
+  if (allPhotos.value.length) {
+    return allPhotos.value[heroBgIndex.value].url
   }
-  if (collection.value?.coverImage) {
-    return typeof collection.value.coverImage === 'string'
-      ? collection.value.coverImage
-      : collection.value.coverImage.src
-  }
-  return ''
+  return dynamicGallery.value?.coverImage || ''
 })
 
 onMounted(() => {
-  // Keyboard event handling
   const handleKeyDown = (e: KeyboardEvent) => {
     if (activePhotoIndex.value === null)
       return
@@ -99,10 +121,9 @@ onMounted(() => {
   }
   window.addEventListener('keydown', handleKeyDown)
 
-  // Start Background Image Loop
-  if (collection.value?.photos && collection.value.photos.length > 1) {
+  if (allPhotos.value.length > 1) {
     bgIntervalId = setInterval(() => {
-      heroBgIndex.value = (heroBgIndex.value + 1) % collection.value!.photos!.length
+      heroBgIndex.value = (heroBgIndex.value + 1) % allPhotos.value.length
     }, bgIntervalSeconds.value * 1000)
   }
 
@@ -162,7 +183,7 @@ useSeoMeta({
       </UContainer>
     </div>
 
-    <!-- Sticky Centered S | M | L Density Switcher -->
+    <!-- Density Switcher Toolbar -->
     <div class="sticky top-[var(--ui-header-height,3.5rem)] z-30 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md border-b border-neutral-200/50 dark:border-neutral-800/50 py-2.5 sm:py-3 mb-4 sm:mb-8 shadow-xs">
       <UContainer class="max-w-[1400px] flex justify-center items-center px-4">
         <div class="flex items-center gap-5 sm:gap-8 font-sans font-bold text-xs sm:text-sm tracking-widest">
@@ -186,9 +207,9 @@ useSeoMeta({
 
     <!-- True Staggered Editorial Masonry Wall -->
     <UContainer class="max-w-[1800px] px-2.5 sm:px-6 lg:px-8">
-      <div v-if="collection.photos?.length" :class="masonryContainerClasses">
+      <div v-if="allPhotos.length" :class="masonryContainerClasses">
         <div
-          v-for="(photo, idx) in collection.photos"
+          v-for="(photo, idx) in allPhotos"
           :key="idx"
           :class="[
             masonryItemClasses,
@@ -197,7 +218,6 @@ useSeoMeta({
           class="group relative overflow-hidden cursor-pointer bg-neutral-100 dark:bg-neutral-900 rounded-lg sm:rounded-none active:scale-[0.98] sm:active:scale-100 transition-all duration-300"
           @click="openPhoto(idx)"
         >
-          <!-- Frameless Edge-to-Edge NuxtImg -->
           <NuxtImg
             :src="photo.url"
             :alt="photo.caption || collection.title"
@@ -207,9 +227,7 @@ useSeoMeta({
             class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
           />
 
-          <!-- Touch/Hover Overlay with Top-Right Expand Icon & Bottom Caption -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-2.5 sm:p-4 flex flex-col justify-between">
-            <!-- Top Right Expand Badge -->
             <div class="flex justify-end">
               <div class="flex size-7 sm:size-8 items-center justify-center rounded-full bg-black/60 hover:bg-lime-500 hover:text-neutral-950 text-white backdrop-blur-md border border-white/20 transition-all shadow-md">
                 <UIcon name="i-tabler-arrows-maximize" class="size-3.5 sm:size-4" />
@@ -225,7 +243,7 @@ useSeoMeta({
       </div>
     </UContainer>
 
-    <!-- Glassmorphic Lightbox Modal Overlay with Centering Filmstrip -->
+    <!-- Glassmorphic Lightbox Modal Overlay -->
     <UModal
       :open="activePhotoIndex !== null"
       :ui="{
@@ -239,7 +257,7 @@ useSeoMeta({
           <!-- Top Control Bar: Index Counter & Close Button -->
           <div class="flex items-center justify-between px-3 sm:px-8 z-30 shrink-0">
             <span class="font-mono text-[11px] sm:text-xs font-bold text-white/90 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 shadow-lg">
-              {{ activePhotoIndex! + 1 }} / {{ collection.photos?.length }}
+              {{ activePhotoIndex! + 1 }} / {{ allPhotos.length }}
             </span>
 
             <button
@@ -291,7 +309,7 @@ useSeoMeta({
               class="flex items-center gap-2 sm:gap-2.5 overflow-x-auto max-w-full px-3 py-1.5 scroll-smooth scrollbar-none rounded-xl bg-black/40 backdrop-blur-md border border-white/10 touch-pan-x"
             >
               <button
-                v-for="(p, pIdx) in collection.photos"
+                v-for="(p, pIdx) in allPhotos"
                 :key="pIdx"
                 class="relative h-10 w-14 sm:h-13 sm:w-18 shrink-0 overflow-hidden rounded-md sm:rounded-lg border-2 transition-all duration-300 cursor-pointer active:scale-95"
                 :class="[
