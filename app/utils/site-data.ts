@@ -97,6 +97,11 @@ export const NAV_LINKS: NavigationMenuItem[] = [
     icon: 'i-tabler-calendar-event',
   },
   {
+    label: 'Gallery',
+    to: '/gallery',
+    icon: 'i-tabler-photo',
+  },
+  {
     label: 'Contact',
     to: '/contact',
     icon: 'i-tabler-phone',
