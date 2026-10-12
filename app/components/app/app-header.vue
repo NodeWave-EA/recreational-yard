@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppLogo from '~/components/app/app-logo.vue'
 import CommonGlobalSearchModal from '~/components/common/global-search-modal.vue'
+import { NAV_LINKS } from '~/utils/site-data'
 
 const { itemCount, toggleCart } = useCart()
 
@@ -15,16 +16,6 @@ defineShortcuts({
     },
   },
 })
-
-const navLinks = [
-  { label: 'Home', to: '/', icon: 'i-tabler-home' },
-  { label: 'Facilities', to: '/facilities', icon: 'i-tabler-trees' },
-  { label: 'Pricing', to: '/pricing', icon: 'i-tabler-ticket' },
-  { label: 'Events', to: '/events', icon: 'i-tabler-calendar-event' },
-  { label: 'Gallery', to: '/gallery', icon: 'i-tabler-photo' },
-  { label: 'Shop', to: '/shop', icon: 'i-tabler-shopping-bag' },
-  { label: 'Contact', to: '/contact', icon: 'i-tabler-phone' },
-]
 </script>
 
 <template>
@@ -41,8 +32,8 @@ const navLinks = [
         <!-- Desktop & Desktop-Wide Navigation (1024px+) -->
         <nav class="hidden lg:flex items-center gap-0.5 xl:gap-1 text-[11px] xl:text-xs font-bold uppercase tracking-wider">
           <NuxtLink
-            v-for="link in navLinks"
-            :key="link.to"
+            v-for="link in NAV_LINKS"
+            :key="link.label"
             :to="link.to"
             class="inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-md hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
             active-class="text-lime-600 dark:text-lime-400 font-black"
@@ -110,8 +101,8 @@ const navLinks = [
 
             <nav class="flex flex-col gap-1.5 text-sm font-bold uppercase tracking-wider">
               <NuxtLink
-                v-for="link in navLinks"
-                :key="link.to"
+                v-for="link in NAV_LINKS"
+                :key="link.label"
                 :to="link.to"
                 class="flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
                 active-class="bg-lime-500/15 text-lime-600 dark:text-lime-400 font-black"
