@@ -241,9 +241,21 @@ export default defineContentConfig({
           })
           .describe('Event availability status'),
 
-        date: z.string().describe('Event date display text or ISO format (e.g. "15 DEC 2026")'),
-        time: z.string().default('8:00 AM – 5:00 PM').describe('Time duration for event'),
-        location: z.string().default('Recreation Yard Kericho').describe('Specific venue or field location'),
+        date: z
+          .string()
+          .describe('Event date display text (e.g. "15 DEC 2026")'),
+
+        startDate: z
+          .string()
+          .optional()
+          .describe('ISO 8601 start date timestamp (e.g. "2026-10-25T05:45:00+03:00")'),
+        endDate: z
+          .string()
+          .optional()
+          .describe('ISO 8601 end date timestamp (e.g. "2026-10-25T13:00:00+03:00")'),
+
+        time: z.string().default('8:00 AM – 5:00 PM').describe('Time duration display text'),
+        location: z.string().default('Recreation Yard Kericho').describe('Specific venue or start point'),
 
         category: property(z.string().default('Community'))
           .editor({
@@ -254,7 +266,7 @@ export default defineContentConfig({
 
         entryFee: z.string().default('Free').describe('Entry cost (e.g. "Free", "KES 500", "KES 1,000 per team")'),
 
-        capacity: z.string().optional().describe('Max participant limit (e.g. "50 participants")'),
+        capacity: z.string().optional().describe('Max participant limit (e.g. "200 participants")'),
 
         coverImage: z.union([
           property(z.string()).editor({ input: 'media' }),
@@ -267,7 +279,23 @@ export default defineContentConfig({
         badge: z.string().optional().describe('Ribbon label (e.g. "Featured Tournament")'),
         featured: z.boolean().default(false).describe('Promote on homepage banner'),
         order: z.number().default(99).describe('Display sequence'),
-        tags: z.array(z.string()).default([]).describe('Search tags (e.g. ["Archery", "Weekend", "Family"])'),
+        tags: z.array(z.string()).default([]).describe('Search tags (e.g. ["Marathon", "Weekend", "Family"])'),
+
+        organizer: z.object({
+          name: z.string().default('Recreation Yard Kericho'),
+          phone: z.string().optional(),
+          email: z.string().optional(),
+        }).optional().describe('Event host or organizing body'),
+
+        registrationUrl: z.string().optional().describe('Direct external registration or ticketing link'),
+
+        schedule: z.array(
+          z.object({
+            time: z.string().describe('Schedule point or time window'),
+            activity: z.string().describe('Activity title'),
+            details: z.string().optional().describe('Additional notes or instructions'),
+          }),
+        ).default([]).describe('Timeline or itinerary for the event'),
 
         cta: z.object({
           label: z.string().default('Register Now'),
