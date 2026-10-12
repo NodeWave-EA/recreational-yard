@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { NAVIGATION_LINKS } from '~/utils/site-data'
-
 export interface HeroSlide {
   id: string
   title: string
@@ -87,9 +85,9 @@ onUnmounted(() => {
     <div class="absolute inset-0 h-full w-full overflow-hidden pointer-events-none z-0">
       <Transition name="fade">
         <NuxtImg
-          :key="activeSlide.image"
-          :src="activeSlide.image"
-          :alt="activeSlide.title"
+          :key="activeSlide?.image"
+          :src="activeSlide?.image"
+          :alt="activeSlide?.title"
           format="webp"
           quality="85"
           loading="eager"
@@ -98,8 +96,8 @@ onUnmounted(() => {
       </Transition>
 
       <!-- Directional Gradient Overlay Mask for High Contrast Text Legibility -->
-      <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 via-40% to-white/10 dark:from-neutral-950 dark:via-neutral-950/80 dark:via-40% dark:to-neutral-950/15" />
-      <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-white/30 dark:from-neutral-950/90 dark:via-transparent dark:to-neutral-950/30" />
+      <div class="absolute inset-0 bg-linear-to-r from-white via-white/80 via-40% to-white/10 dark:from-neutral-950 dark:via-neutral-950/80 dark:via-40% dark:to-neutral-950/15" />
+      <div class="absolute inset-0 bg-linear-to-t from-white/90 via-transparent to-white/30 dark:from-neutral-950/90 dark:via-transparent dark:to-neutral-950/30" />
     </div>
 
     <!-- Main Hero Split Content -->
@@ -125,7 +123,7 @@ onUnmounted(() => {
             <!-- Headline -->
             <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white uppercase leading-tight sm:leading-[1.1]">
               Good Games. Fresh Air. Great Company.
-              <span class="block bg-gradient-to-r from-lime-500 to-emerald-600 dark:from-lime-400 dark:to-emerald-400 bg-clip-text text-transparent">
+              <span class="block bg-linear-to-r from-lime-500 to-emerald-600 dark:from-lime-400 dark:to-emerald-400 bg-clip-text text-transparent">
                 Fun for All Ages
               </span>
             </h1>
@@ -140,7 +138,7 @@ onUnmounted(() => {
               <UButton
                 size="md"
                 color="primary"
-                :to="NAVIGATION_LINKS.pricing?.to"
+                to="/pricing"
                 icon="i-tabler-ticket"
                 class="w-full sm:w-auto font-black uppercase text-xs text-neutral-950 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl shadow-md hover:shadow-lime-500/25 transition-all justify-center"
               >
@@ -151,7 +149,7 @@ onUnmounted(() => {
                 size="md"
                 color="neutral"
                 variant="outline"
-                :to="NAVIGATION_LINKS.facilities?.to"
+                to="/facilities"
                 icon="i-tabler-trees"
                 class="w-full sm:w-auto font-black uppercase text-xs rounded-xl px-5 py-2.5 sm:px-6 sm:py-3 backdrop-blur-md justify-center"
               >
@@ -162,13 +160,13 @@ onUnmounted(() => {
 
           <!-- Right Column -->
           <div class="lg:col-span-6 relative">
-            <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 h-[330px] sm:h-[360px] items-center">
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 h-82.5 sm:h-90 items-center">
               <!-- Card 1 -->
               <div
                 class="sm:col-span-6 h-full relative group/card cursor-pointer overflow-hidden transition-all duration-500 border-2 shadow-2xl backdrop-blur-xs"
                 :class="[
-                  slides[0].shapeClass,
-                  slides[0].transformClass,
+                  slides[0]?.shapeClass,
+                  slides[0]?.transformClass,
                   activeIndex === 0
                     ? 'border-lime-500 dark:border-lime-400 ring-4 ring-lime-500/40 dark:ring-lime-400/40 scale-[1.03] z-20'
                     : 'border-white/40 dark:border-white/20 hover:border-lime-500/60 opacity-85 hover:opacity-100 z-10',
@@ -176,20 +174,20 @@ onUnmounted(() => {
                 @click="selectSlide(0)"
               >
                 <NuxtImg
-                  :src="slides[0].image"
-                  :alt="slides[0].title"
+                  :src="slides[0]?.image"
+                  :alt="slides[0]?.title"
                   format="webp"
                   quality="80"
                   class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
+                <div class="absolute inset-0 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
 
                 <!-- Recreation Pill Caption -->
                 <div class="absolute bottom-3 left-3 right-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900/90 text-white text-[11px] font-bold backdrop-blur-md shadow-lg border border-white/15 w-fit">
                   <div class="flex size-5 items-center justify-center rounded-full bg-lime-500/20 text-lime-400">
-                    <UIcon :name="slides[0].icon" class="size-3.5" />
+                    <UIcon :name="slides[0]?.icon" class="size-3.5" />
                   </div>
-                  <span class="truncate">{{ slides[0].tagline }}</span>
+                  <span class="truncate">{{ slides[0]?.tagline }}</span>
                 </div>
               </div>
 
@@ -199,8 +197,8 @@ onUnmounted(() => {
                 <div
                   class="relative flex-1 group/card cursor-pointer overflow-hidden transition-all duration-500 border-2 shadow-2xl backdrop-blur-xs"
                   :class="[
-                    slides[1].shapeClass,
-                    slides[1].transformClass,
+                    slides[1]?.shapeClass,
+                    slides[1]?.transformClass,
                     activeIndex === 1
                       ? 'border-lime-500 dark:border-lime-400 ring-4 ring-lime-500/40 dark:ring-lime-400/40 scale-[1.03] z-20'
                       : 'border-white/40 dark:border-white/20 hover:border-lime-500/60 opacity-85 hover:opacity-100 z-10',
@@ -208,20 +206,20 @@ onUnmounted(() => {
                   @click="selectSlide(1)"
                 >
                   <NuxtImg
-                    :src="slides[1].image"
-                    :alt="slides[1].title"
+                    :src="slides[1]?.image"
+                    :alt="slides[1]?.title"
                     format="webp"
                     quality="80"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
                   />
-                  <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
+                  <div class="absolute inset-0 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
 
                   <!-- Recreation Pill Caption -->
                   <div class="absolute bottom-2.5 left-2.5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900/90 text-white text-[11px] font-bold backdrop-blur-md shadow-lg border border-white/15 w-fit">
                     <div class="flex size-5 items-center justify-center rounded-full bg-lime-500/20 text-lime-400">
-                      <UIcon :name="slides[1].icon" class="size-3.5" />
+                      <UIcon :name="slides[1]?.icon" class="size-3.5" />
                     </div>
-                    <span class="truncate">{{ slides[1].tagline }}</span>
+                    <span class="truncate">{{ slides[1]?.tagline }}</span>
                   </div>
                 </div>
 
@@ -229,8 +227,8 @@ onUnmounted(() => {
                 <div
                   class="relative flex-1 group/card cursor-pointer overflow-hidden transition-all duration-500 border-2 shadow-2xl backdrop-blur-xs"
                   :class="[
-                    slides[2].shapeClass,
-                    slides[2].transformClass,
+                    slides[2]?.shapeClass,
+                    slides[2]?.transformClass,
                     activeIndex === 2
                       ? 'border-lime-500 dark:border-lime-400 ring-4 ring-lime-500/40 dark:ring-lime-400/40 scale-[1.03] z-20'
                       : 'border-white/40 dark:border-white/20 hover:border-lime-500/60 opacity-85 hover:opacity-100 z-10',
@@ -238,20 +236,20 @@ onUnmounted(() => {
                   @click="selectSlide(2)"
                 >
                   <NuxtImg
-                    :src="slides[2].image"
-                    :alt="slides[2].title"
+                    :src="slides[2]?.image"
+                    :alt="slides[2]?.title"
                     format="webp"
                     quality="80"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
                   />
-                  <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
+                  <div class="absolute inset-0 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
 
                   <!-- Recreation Pill Caption -->
                   <div class="absolute bottom-2.5 left-2.5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900/90 text-white text-[11px] font-bold backdrop-blur-md shadow-lg border border-white/15 w-fit">
                     <div class="flex size-5 items-center justify-center rounded-full bg-lime-500/20 text-lime-400">
-                      <UIcon :name="slides[2].icon" class="size-3.5" />
+                      <UIcon :name="slides[2]?.icon" class="size-3.5" />
                     </div>
-                    <span class="truncate">{{ slides[2].tagline }}</span>
+                    <span class="truncate">{{ slides[2]?.tagline }}</span>
                   </div>
                 </div>
               </div>
