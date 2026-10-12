@@ -187,10 +187,10 @@ useSeoMeta({
     <div class="sticky top-(--ui-header-height,3.5rem) z-30 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md border-b border-neutral-200/50 dark:border-neutral-800/50 py-2.5 sm:py-3 mb-4 sm:mb-8 shadow-xs">
       <UContainer class="max-w-350 flex justify-center items-center px-4">
         <div class="flex items-center gap-5 sm:gap-8 font-sans font-bold text-xs sm:text-sm tracking-widest">
-          <UButton
+          <button
             v-for="size in (['S', 'M', 'L'] as const)"
             :key="size"
-            class="p-1.5 sm:p-2 transition-all cursor-pointer relative touch-manipulation min-w-7 text-center"
+            class="p-1.5 sm:p-2 transition-all cursor-pointer relative touch-manipulation min-w-[28px] text-center"
             :class="[
               density === size
                 ? 'text-black dark:text-white underline underline-offset-4 decoration-2 font-black'
@@ -199,7 +199,7 @@ useSeoMeta({
             @click="density = size"
           >
             {{ size }}
-          </UButton>
+          </button>
         </div>
       </UContainer>
     </div>
