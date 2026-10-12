@@ -26,11 +26,20 @@ export const ANNOUNCEMENT_BAR = {
   ctaLink: '/pricing',
 } as const
 
-// Hero Highlights
-export const HERO_HIGHLIGHTS = [
-  'Safe • Clean • Well Maintained',
-  'Family & Community Focused',
-  'Tea Garden Views',
+// Highlights
+export const HIGHLIGHTS = [
+  {
+    text: 'Safe • Clean • Well Maintained',
+    icon: 'i-tabler-heart',
+  },
+  {
+    text: 'Family & Community Focused',
+    icon: 'i-tabler-users',
+  },
+  {
+    text: 'Tea Garden Views',
+    icon: 'i-tabler-tree',
+  },
 ] as const
 
 // Location & Business Details

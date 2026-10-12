@@ -33,6 +33,14 @@ const socials = [
             Kericho's premier outdoor sports and recreation destination, offering grass lawn tennis courts, target archery, wellness trails, and tea estate views.
           </p>
 
+          <!-- Highlights -->
+          <div class="space-y-2">
+            <p v-for="highlight in HIGHLIGHTS" :key="highlight" class="text-xs text-lime-500 font-semibold">
+              <UIcon :name="highlight.icon" class="size-3 text-lime-500 mr-1.5 inline-block" />
+              {{ highlight.text }}
+            </p>
+          </div>
+
           <!-- Social Links Pills -->
           <div class="flex items-center gap-2 pt-1">
             <a
@@ -113,7 +121,7 @@ const socials = [
       <!-- Copyright -->
       <div class="mt-10 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-medium text-neutral-500 dark:text-neutral-400 text-center sm:text-left">
         <p>
-          &copy; {{ new Date().getFullYear() }} {{ LOCATION_DETAILS.parentCompany }}. All rights reserved. <br class="sm:hidden">
+          &copy; {{ new Date().getFullYear() }} {{ LOCATION_DETAILS.parentCompany }} - OUTDOOR RECREATION. <br class="sm:hidden">
         </p>
         <p>
           <UIcon name="i-tabler-heart" class="size-3 text-lime-500 mr-1.5 inline-block" />
