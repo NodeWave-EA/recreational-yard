@@ -62,35 +62,35 @@ The site showcases:
 
 1. Install dependencies:
 
-```bash
-bun install
-# or
-npm install
-```
+   ```bash
+   bun install
+   # or
+   npm install
+   ```
 
 2. Create a local environment file:
 
-```bash
-cp .env.example .env
-```
+   ```bash
+   cp .env.example .env
+   ```
 
 3. Update the values in `.env` as needed for your local setup.
 
 4. Start the development server:
 
-```bash
-bun run dev
-# or
-npm run dev
-```
+   ```bash
+   bun run dev
+   # or
+   npm run dev
+   ```
 
-Then open http://localhost:3000 in your browser.
+Then open <http://localhost:3000> in your browser.
 
 ## Environment Variables
 
 The project expects the following environment variables, as defined in `.env.example` and `nuxt.config.ts`:
 
-```env
+```bash
 NUXT_PUBLIC_SITE_URL=http://localhost:3000
 NUXT_PUBLIC_TURNSTILE_SITE_KEY=...
 NUXT_TURNSTILE_SECRET_KEY=...
@@ -98,7 +98,7 @@ NUXT_SMTP_HOST=smtp.gmail.com
 NUXT_SMTP_PORT=587
 NUXT_SMTP_USER=info@moderatelimited.co.ke
 NUXT_SMTP_PASS=your_app_password_here
-NUXT_SMTP_FROM="Recreation Yard Website" <info@moderatelimited.co.ke>
+NUXT_SMTP_FROM="Recreation Yard Website <info@moderatelimited.co.ke>"
 NUXT_CONTACT_RECIPIENT=info@moderatelimited.co.ke
 ```
 
