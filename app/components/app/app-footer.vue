@@ -28,17 +28,17 @@ import { HIGHLIGHTS, LOCATION_DETAILS, NAV_LINKS, SOCIAL_LINKS } from '~/utils/s
 
           <!-- Social Links Pills -->
           <div class="flex items-center gap-2 pt-1">
-            <a
+            <NuxtLink
               v-for="item in SOCIAL_LINKS"
-              :key="item.name"
-              :href="item.href"
+              :key="item.label"
+              :to="item.to"
               target="_blank"
               rel="noopener noreferrer"
-              :aria-label="item.name"
+              :aria-label="item.label"
               class="flex size-9 items-center justify-center rounded-xl bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-lime-500 hover:text-neutral-950 dark:hover:bg-lime-500 dark:hover:text-neutral-950 transition-colors"
             >
               <UIcon :name="item.icon" class="size-4" />
-            </a>
+            </NuxtLink>
           </div>
         </div>
 
