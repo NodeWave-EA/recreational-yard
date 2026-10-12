@@ -40,7 +40,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-16 transition-colors duration-300">
+  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-16 transition-colors duration-300 w-full overflow-x-hidden">
     <!-- Page Header Banner -->
     <div class="pt-8 pb-4 text-center space-y-2 max-w-2xl mx-auto px-4">
       <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[11px] px-3 py-0.5 rounded-full">
@@ -58,19 +58,21 @@ useSeoMeta({
     </div>
 
     <!-- Sticky Search Bar & View Mode Toolbar -->
-    <div class="sticky top-(--ui-header-height,4rem) z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
+    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
       <UContainer class="max-w-6xl">
-        <div class="flex items-center gap-3">
-          <UInput
-            v-model="searchQuery"
-            icon="i-tabler-search"
-            placeholder="Type keywords to search entire catalog..."
-            size="lg"
-            color="primary"
-            class="w-full shadow-xs rounded-xl"
-            clearable
-            autofocus
-          />
+        <div class="flex items-center gap-2 sm:gap-3 w-full min-w-0">
+          <div class="flex-1 min-w-0">
+            <UInput
+              v-model="searchQuery"
+              icon="i-tabler-search"
+              placeholder="Type keywords to search catalog..."
+              size="md"
+              color="primary"
+              class="w-full rounded-xl"
+              clearable
+              autofocus
+            />
+          </div>
 
           <!-- Mobile Sidebar Filter Trigger Button -->
           <UButton
@@ -81,8 +83,8 @@ useSeoMeta({
             class="lg:hidden rounded-xl font-bold text-xs shrink-0 uppercase"
             @click="isMobileFiltersOpen = true"
           >
-            <span>Filters</span>
-            <UBadge v-if="activeFilterCount > 0" color="primary" size="sm" class="ml-1 rounded-full font-black text-[10px]">
+            <span class="hidden sm:inline">Filters</span>
+            <UBadge v-if="activeFilterCount > 0" color="primary" size="sm" class="ml-0.5 sm:ml-1 rounded-full font-black text-[10px]">
               {{ activeFilterCount }}
             </UBadge>
           </UButton>
@@ -114,7 +116,7 @@ useSeoMeta({
 
     <!-- Layout: Sidebar + Results Grid -->
     <UContainer class="max-w-6xl pt-6">
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
         <!-- Desktop Sidebar Filters -->
         <aside class="hidden lg:block lg:col-span-1 space-y-6 sticky top-[calc(var(--ui-header-height,4rem)+4.5rem)] h-fit p-4 rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-white/50 dark:bg-neutral-900/40">
           <div class="flex items-center justify-between pb-3 border-b border-neutral-200 dark:border-neutral-800">
@@ -232,7 +234,7 @@ useSeoMeta({
         </aside>
 
         <!-- Search Results View -->
-        <main class="lg:col-span-3 space-y-6">
+        <main class="lg:col-span-3 space-y-6 min-w-0 w-full">
           <!-- Active Filter Pills & Results Counter -->
           <div v-if="activeFilterCount > 0 || searchQuery" class="flex flex-wrap items-center justify-between gap-3 text-xs border-b border-neutral-200 dark:border-neutral-800 pb-3">
             <div class="flex flex-wrap items-center gap-2">
@@ -275,11 +277,11 @@ useSeoMeta({
           </div>
 
           <!-- Search Results Groups -->
-          <div v-if="processedResults.length" class="space-y-8">
+          <div v-if="processedResults.length" class="space-y-8 min-w-0 w-full">
             <div
               v-for="group in processedResults"
               :key="group.config.key"
-              class="space-y-3"
+              class="space-y-3 min-w-0 w-full"
             >
               <!-- Section Header -->
               <button
@@ -287,19 +289,19 @@ useSeoMeta({
                 class="w-full pb-2 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 transition-colors cursor-pointer"
                 @click="toggleSection(group.config.key)"
               >
-                <div class="flex items-center gap-2.5">
-                  <UIcon :name="group.config.icon" class="size-5 text-lime-500" />
-                  <h2 class="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white">
+                <div class="flex items-center gap-2.5 min-w-0">
+                  <UIcon :name="group.config.icon" class="size-5 text-lime-500 shrink-0" />
+                  <h2 class="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white truncate">
                     {{ group.config.label }}
                   </h2>
-                  <UBadge color="primary" variant="soft" size="sm" class="rounded-full font-bold text-xs px-2">
+                  <UBadge color="primary" variant="soft" size="sm" class="rounded-full font-bold text-xs px-2 shrink-0">
                     {{ group.items.length }}
                   </UBadge>
                 </div>
 
                 <UIcon
                   name="i-tabler-chevron-down"
-                  class="size-4 text-neutral-400 transition-transform duration-200"
+                  class="size-4 text-neutral-400 transition-transform duration-200 shrink-0"
                   :class="{ 'rotate-180': openSections[group.config.key] }"
                 />
               </button>
@@ -373,15 +375,15 @@ useSeoMeta({
               <!-- Flat List Row View Option -->
               <div
                 v-else-if="viewMode === 'list' && openSections[group.config.key]"
-                class="divide-y divide-neutral-200/60 dark:divide-neutral-800/60 pt-1"
+                class="divide-y divide-neutral-200/60 dark:divide-neutral-800/60 pt-1 min-w-0 w-full"
               >
                 <NuxtLink
                   v-for="item in group.items"
                   :key="item.id"
                   :to="item.path"
-                  class="group py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:bg-neutral-100/50 dark:hover:bg-neutral-900/50 px-2 rounded-xl transition-colors"
+                  class="group py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 hover:bg-neutral-100/50 dark:hover:bg-neutral-900/50 px-2.5 rounded-xl transition-colors w-full min-w-0 overflow-hidden"
                 >
-                  <div class="flex items-start gap-3.5 min-w-0">
+                  <div class="flex items-start gap-3.5 min-w-0 w-full">
                     <NuxtImg
                       v-if="item.image"
                       :src="item.image"
@@ -398,34 +400,36 @@ useSeoMeta({
                       <UIcon :name="item.icon" class="size-5" />
                     </div>
 
-                    <div class="space-y-1 min-w-0">
-                      <div class="flex items-center gap-2 text-[10px]">
-                        <UBadge v-if="item.badge" color="neutral" variant="subtle" class="font-bold rounded px-1.5 py-0.5 text-[9px] uppercase">
+                    <div class="space-y-1 min-w-0 flex-1">
+                      <div class="flex flex-wrap items-center gap-2 text-[10px] min-w-0">
+                        <UBadge v-if="item.badge" color="neutral" variant="subtle" class="font-bold rounded px-1.5 py-0.5 text-[9px] uppercase shrink-0">
                           {{ item.badge }}
                         </UBadge>
-                        <span v-if="item.meta" class="text-neutral-400 font-medium">• {{ item.meta }}</span>
+                        <span v-if="item.meta" class="text-neutral-400 font-medium truncate">• {{ item.meta }}</span>
                       </div>
 
-                      <h3 class="text-sm sm:text-base font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors truncate">
+                      <h3 class="text-sm sm:text-base font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors leading-snug break-words line-clamp-2">
                         {{ item.title }}
                       </h3>
 
-                      <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+                      <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed break-words">
                         {{ item.description }}
                       </p>
 
                       <!-- Body Snippet Match -->
-                      <div v-if="item.snippet" class="text-[11px] text-lime-600 dark:text-lime-400 font-medium leading-relaxed mt-1 flex items-start gap-1">
-                        <span class="font-bold text-[10px] uppercase text-lime-700 dark:text-lime-300 shrink-0">Body Match:</span>
-                        <span class="line-clamp-2">{{ item.snippet }}</span>
+                      <div v-if="item.snippet" class="text-[11px] text-lime-600 dark:text-lime-400 font-medium leading-relaxed mt-1 flex items-start gap-1 min-w-0">
+                        <span class="font-bold text-[10px] uppercase text-lime-700 dark:text-lime-300 shrink-0">Match:</span>
+                        <span class="line-clamp-2 break-words min-w-0">{{ item.snippet }}</span>
                       </div>
                     </div>
                   </div>
 
-                  <span class="inline-flex items-center gap-1 text-xs font-bold text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors shrink-0">
-                    <span>View Details</span>
-                    <UIcon name="i-tabler-arrow-right" class="size-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
+                  <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-200/60 dark:border-neutral-800/60 shrink-0">
+                    <span class="inline-flex items-center gap-1 text-xs font-bold text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+                      <span>View Details</span>
+                      <UIcon name="i-tabler-arrow-right" class="size-4 group-hover:translate-x-1 transition-transform text-lime-500" />
+                    </span>
+                  </div>
                 </NuxtLink>
               </div>
             </div>
