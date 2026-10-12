@@ -1,8 +1,4 @@
 import type { NavigationMenuItem } from '@nuxt/ui'
-import type { NuxtLinkProps } from '#app'
-
-// Common Link Interface
-export type Link = NuxtLinkProps | NavigationMenuItem
 
 export const SITE_NAME = 'Recreation Yard'
 export const SITE_DESCRIPTION = 'Kericho\'s Premier Outdoor Recreation Destination'
@@ -13,11 +9,23 @@ export const CONTACTS = {
   email: 'info@moderatelimited.co.ke',
 } as const
 
-export const SOCIAL_LINKS = {
-  facebook: 'https://facebook.com',
-  instagram: 'https://instagram.com',
-  tiktok: 'https://tiktok.com',
-} as const
+export const SOCIAL_LINKS: NavigationMenuItem[] = [
+  {
+    label: 'Facebook',
+    icon: 'i-tabler-brand-facebook',
+    to: 'https://facebook.com',
+  },
+  {
+    label: 'Instagram',
+    icon: 'i-tabler-brand-instagram',
+    to: 'https://instagram.com',
+  },
+  {
+    label: 'TikTok',
+    icon: 'i-tabler-brand-tiktok',
+    to: 'https://tiktok.com',
+  },
+] as const
 
 // Announcement Bar Configuration
 export const ANNOUNCEMENT_BAR = {
@@ -61,56 +69,39 @@ export const LOCATION_DETAILS = {
   },
 } as const
 
-// Header Navigation Links with Direct Facilities Routes
-export const HEADER_NAV_LINKS: NavigationMenuItem[][] = [
-  [
-    {
-      label: 'Home',
-      to: '/',
-      icon: 'i-tabler-home',
-    },
-    {
-      label: 'Facilities',
-      to: '/facilities',
-      icon: 'i-tabler-trees',
-    },
-    {
-      label: 'Pricing',
-      to: '/pricing',
-      icon: 'i-tabler-ticket',
-    },
-    {
-      label: 'Shop',
-      to: '/shop',
-      icon: 'i-tabler-shopping-bag',
-    },
-    {
-      label: 'Events',
-      to: '/events',
-      icon: 'i-tabler-calendar-event',
-    },
-    {
-      label: 'Contact',
-      to: '/contact',
-      icon: 'i-tabler-phone',
-    },
-    {
-      label: 'Search',
-      to: '/search',
-      icon: 'i-tabler-search',
-    },
-  ],
+// Navigation Links
+export const NAV_LINKS: NavigationMenuItem[] = [
+  {
+    label: 'Home',
+    to: '/',
+    icon: 'i-tabler-home',
+  },
+  {
+    label: 'Facilities',
+    to: '/facilities',
+    icon: 'i-tabler-trees',
+  },
+  {
+    label: 'Pricing',
+    to: '/pricing',
+    icon: 'i-tabler-ticket',
+  },
+  {
+    label: 'Shop',
+    to: '/shop',
+    icon: 'i-tabler-shopping-bag',
+  },
+  {
+    label: 'Events',
+    to: '/events',
+    icon: 'i-tabler-calendar-event',
+  },
+  {
+    label: 'Contact',
+    to: '/contact',
+    icon: 'i-tabler-phone',
+  },
 ]
-
-// Navigation Links Map
-export const NAVIGATION_LINKS: Record<string, Link> = {
-  home: { label: 'Home', to: '/', icon: 'i-tabler-home' },
-  facilities: { label: 'Facilities', to: '/facilities', icon: 'i-tabler-trees' },
-  pricing: { label: 'Pricing', to: '/pricing', icon: 'i-tabler-ticket' },
-  shop: { label: 'Shop', to: '/shop', icon: 'i-tabler-shopping-bag' },
-  events: { label: 'Events', to: '/events', icon: 'i-tabler-calendar-event' },
-  contact: { label: 'Contact', to: '/contact', icon: 'i-tabler-phone' },
-}
 
 // Recreation Pillars (For Homepage Highlights)
 export const RECREATION_PILLARS = [
