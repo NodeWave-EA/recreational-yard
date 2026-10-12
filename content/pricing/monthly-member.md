@@ -8,9 +8,12 @@ cta:
 currency: KES
 description: Unlimited monthly access with free sports gear rentals and exclusive event perks.
 features:
+  - Unlimited access
   - Member-only events and tournaments
-  - Discount on shop and coaching
+  - Discount on shop, events and coaching
   - Early access to bookings
+  - Free equipments use
+  - Guest pass >3 per month
 isPopular: true
 order: 2
 price: 2500
