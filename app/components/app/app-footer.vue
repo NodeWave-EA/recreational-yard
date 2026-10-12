@@ -113,11 +113,11 @@ const socials = [
       <!-- Copyright -->
       <div class="mt-10 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-medium text-neutral-500 dark:text-neutral-400 text-center sm:text-left">
         <p>
-          &copy; {{ new Date().getFullYear() }} {{ LOCATION_DETAILS.parentCompany }}. All rights reserved. <br class="sm:hidden"> Powered by {{ LOCATION_DETAILS.company }}.
+          &copy; {{ new Date().getFullYear() }} {{ LOCATION_DETAILS.parentCompany }}. All rights reserved. <br class="sm:hidden">
         </p>
         <p>
-          <UIcon name="i-tabler-map-pin" class="size-3 text-lime-500 mr-1.5 inline-block" />
-          {{ LOCATION_DETAILS.address }}
+          <UIcon name="i-tabler-heart" class="size-3 text-lime-500 mr-1.5 inline-block" />
+          PLAY. COMEPETE. RELAX.
         </p>
       </div>
     </UContainer>
