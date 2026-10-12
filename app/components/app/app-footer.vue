@@ -1,21 +1,6 @@
 <script setup lang="ts">
 import AppLogo from '~/components/app/app-logo.vue'
-import { LOCATION_DETAILS, NAVIGATION_LINKS } from '~/utils/site-data'
-
-const navLinks = [
-  NAVIGATION_LINKS.home,
-  NAVIGATION_LINKS.facilities,
-  NAVIGATION_LINKS.pricing,
-  NAVIGATION_LINKS.shop,
-  NAVIGATION_LINKS.events,
-  NAVIGATION_LINKS.contact,
-].filter(Boolean)
-
-const socials = [
-  { name: 'Facebook', icon: 'i-tabler-brand-facebook', href: LOCATION_DETAILS.socials.facebook },
-  { name: 'Instagram', icon: 'i-tabler-brand-instagram', href: LOCATION_DETAILS.socials.instagram },
-  { name: 'TikTok', icon: 'i-tabler-brand-tiktok', href: LOCATION_DETAILS.socials.tiktok },
-]
+import { HIGHLIGHTS, LOCATION_DETAILS, NAV_LINKS, SOCIAL_LINKS } from '~/utils/site-data'
 </script>
 
 <template>
@@ -25,8 +10,8 @@ const socials = [
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
         <!-- Brand Column -->
         <div class="space-y-4 sm:col-span-2 lg:col-span-5">
-          <NuxtLink to="/" class="inline-block focus:outline-none">
-            <AppLogo class="h-9 w-auto" />
+          <NuxtLink to="/" class="inline-block focus:outline-none" aria-label="Home">
+            <AppLogo class="h-9 sm:h-10 w-auto" />
           </NuxtLink>
 
           <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-md">
@@ -35,16 +20,16 @@ const socials = [
 
           <!-- Highlights -->
           <div class="space-y-2">
-            <p v-for="highlight in HIGHLIGHTS" :key="highlight" class="text-xs text-lime-500 font-semibold">
-              <UIcon :name="highlight.icon" class="size-3 text-lime-500 mr-1.5 inline-block" />
-              {{ highlight.text }}
+            <p v-for="highlight in HIGHLIGHTS" :key="highlight.text" class="text-xs text-lime-600 dark:text-lime-400 font-semibold flex items-center gap-1.5">
+              <UIcon :name="highlight.icon" class="size-3.5 text-lime-500 shrink-0" />
+              <span>{{ highlight.text }}</span>
             </p>
           </div>
 
           <!-- Social Links Pills -->
           <div class="flex items-center gap-2 pt-1">
             <a
-              v-for="item in socials"
+              v-for="item in SOCIAL_LINKS"
               :key="item.name"
               :href="item.href"
               target="_blank"
@@ -63,7 +48,11 @@ const socials = [
             Navigation
           </h4>
           <ul class="space-y-2 text-xs font-semibold text-neutral-700 dark:text-neutral-300">
-            <li v-for="link in navLinks" :key="link.to">
+            <li
+              v-for="link in NAV_LINKS"
+              :key="link.label"
+              class="flex items-center gap-1.5"
+            >
               <NuxtLink
                 :to="link.to"
                 class="hover:text-lime-600 dark:hover:text-lime-400 transition-colors inline-block py-0.5"
@@ -121,11 +110,11 @@ const socials = [
       <!-- Copyright -->
       <div class="mt-10 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-medium text-neutral-500 dark:text-neutral-400 text-center sm:text-left">
         <p>
-          &copy; {{ new Date().getFullYear() }} {{ LOCATION_DETAILS.parentCompany }} - OUTDOOR RECREATION. <br class="sm:hidden">
+          &copy; {{ new Date().getFullYear() }} {{ LOCATION_DETAILS.parentCompany }} - OUTDOOR RECREATION.
         </p>
-        <p>
-          <UIcon name="i-tabler-heart" class="size-3 text-lime-500 mr-1.5 inline-block" />
-          PLAY. COMEPETE. RELAX.
+        <p class="flex items-center gap-1">
+          <UIcon name="i-tabler-heart" class="size-3.5 text-lime-500 shrink-0" />
+          <span>PLAY. COMPETE. RELAX.</span>
         </p>
       </div>
     </UContainer>
