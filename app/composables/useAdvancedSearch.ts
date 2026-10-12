@@ -36,7 +36,7 @@ export function useAdvancedSearch() {
   const collectionData = ref<Record<string, ExtendedSearchResult[]>>({})
   const isLoading = ref(true)
 
-  // Fuse.js configuration for fuzzy search across title, description, badges, and Markdown body
+  // Fuse.js configuration for fuzzy search across title, description, badges, and body content
   const fuseOptions: Fuse.IFuseOptions<ExtendedSearchResult> = {
     keys: [
       { name: 'title', weight: 0.35 },
@@ -104,7 +104,7 @@ export function useAdvancedSearch() {
     { deep: true },
   )
 
-  // Fetch all collections and Markdown section ASTs
+  // Fetch all registered collections
   async function fetchFullTextCatalog() {
     isLoading.value = true
     try {
@@ -135,9 +135,9 @@ export function useAdvancedSearch() {
 
         const normalizedList: ExtendedSearchResult[] = docs.map((doc) => {
           const base = normalizeContentItem(doc, config.key)
-          const docPath = base.path
-          const extraBodyParts = sectionBodyMap.get(docPath) || []
-          const fullBodyText = sanitizeBodyText(`${base.description} ${extraBodyParts.join(' ')}`)
+          const rawPath = cleanPath(typeof doc.path === 'string' ? doc.path : base.path)
+          const extraBodyParts = sectionBodyMap.get(rawPath) || []
+          const fullBodyText = sanitizeBodyText(`${base.title} ${base.description} ${extraBodyParts.join(' ')}`)
 
           return {
             ...base,
@@ -155,7 +155,8 @@ export function useAdvancedSearch() {
 
       results.forEach((res) => {
         map[res.key] = res.items
-        openSections.value[res.key] = true
+        // Default sections to collapsed initially
+        openSections.value[res.key] = false
       })
 
       collectionData.value = map

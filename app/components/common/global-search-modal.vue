@@ -49,8 +49,8 @@ async function loadAllCollections() {
 
   results.forEach((res) => {
     map[res.key] = res.items
-    // Default open all sections initially
-    openSections.value[res.key] = true
+    // Default all sections to collapsed initially
+    openSections.value[res.key] = false
   })
 
   collectionResults.value = map

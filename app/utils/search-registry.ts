@@ -13,6 +13,8 @@ export const SEARCH_COLLECTION_CONFIGS: SearchCollectionMeta[] = [
   { key: 'shop', label: 'Shop Merchandise', icon: 'i-tabler-shopping-bag', defaultBadge: 'Product' },
   { key: 'events', label: 'Events & Tournaments', icon: 'i-tabler-calendar-event', defaultBadge: 'Event' },
   { key: 'gallery', label: 'Gallery', icon: 'i-tabler-photo', defaultBadge: 'Gallery' },
+  { key: 'faqs', label: 'FAQs & Help', icon: 'i-tabler-help-circle', defaultBadge: 'FAQ' },
+  { key: 'testimonials', label: 'Testimonials', icon: 'i-tabler-message-heart', defaultBadge: 'Review' },
 ]
 
 export interface NormalizedSearchResult {
@@ -94,17 +96,43 @@ function extractAround(text: string, index: number, matchLen: number, maxLength:
 }
 
 export function normalizeContentItem(item: Record<string, unknown>, collectionKey: string): NormalizedSearchResult {
-  const title = typeof item.title === 'string'
-    ? item.title
-    : typeof item.name === 'string'
-      ? item.name
-      : 'Untitled'
+  // Title extraction supporting standard documents, FAQs (question), and Testimonials (author)
+  let title = ''
+  if (typeof item.question === 'string') {
+    title = item.question
+  } else if (typeof item.author === 'string') {
+    title = item.author
+  } else if (typeof item.title === 'string') {
+    title = item.title
+  } else if (typeof item.name === 'string') {
+    title = item.name
+  } else {
+    title = 'Untitled'
+  }
 
-  const description = typeof item.description === 'string' ? item.description : ''
-  const path = cleanPath(typeof item.path === 'string' ? item.path : '/')
+  // Description extraction supporting standard documents, FAQs (answer), and Testimonials (comment)
+  let description = ''
+  if (typeof item.answer === 'string') {
+    description = item.answer
+  } else if (typeof item.comment === 'string') {
+    description = item.comment
+  } else if (typeof item.description === 'string') {
+    description = item.description
+  }
 
+  // Path routing mapping
+  let path = cleanPath(typeof item.path === 'string' ? item.path : '/')
+  if (collectionKey === 'faqs') {
+    path = item.category === 'Pricing & Passes' ? '/pricing' : '/contact'
+  } else if (collectionKey === 'testimonials') {
+    path = item.category === 'Pricing & Passes' ? '/pricing' : '/'
+  }
+
+  // Image extraction supporting cover images and testimonial avatars
   let image = ''
-  if (typeof item.coverImage === 'string') {
+  if (typeof item.avatar === 'string') {
+    image = item.avatar
+  } else if (typeof item.coverImage === 'string') {
     image = item.coverImage
   } else if (item.coverImage && typeof item.coverImage === 'object' && 'src' in item.coverImage && typeof item.coverImage.src === 'string') {
     image = item.coverImage.src
@@ -114,8 +142,11 @@ export function normalizeContentItem(item: Record<string, unknown>, collectionKe
     image = item.image.src
   }
 
+  // Meta string context
   let meta = ''
-  if (item.price !== undefined && typeof item.price === 'number') {
+  if (typeof item.rating === 'number') {
+    meta = `${'★'.repeat(item.rating)} (${typeof item.role === 'string' ? item.role : 'Member Review'})`
+  } else if (item.price !== undefined && typeof item.price === 'number') {
     const currency = typeof item.currency === 'string' ? item.currency : 'KES'
     meta = `${currency} ${item.price.toLocaleString()}`
     if (typeof item.billingCycle === 'string') {
@@ -123,6 +154,8 @@ export function normalizeContentItem(item: Record<string, unknown>, collectionKe
     }
   } else if (typeof item.date === 'string' && typeof item.location === 'string') {
     meta = `${item.date} • ${item.location}`
+  } else if (typeof item.category === 'string') {
+    meta = `Category: ${item.category}`
   } else if (typeof item.capacity === 'string') {
     meta = `Capacity: ${item.capacity}`
   }
@@ -142,7 +175,9 @@ export function normalizeContentItem(item: Record<string, unknown>, collectionKe
       ? item.badge
       : typeof item.category === 'string'
         ? item.category
-        : config?.defaultBadge || collectionKey,
+        : typeof item.role === 'string'
+          ? item.role
+          : config?.defaultBadge || collectionKey,
     image,
     meta,
   }
