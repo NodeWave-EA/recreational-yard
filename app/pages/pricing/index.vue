@@ -522,17 +522,6 @@ useSeoMeta({
               Pass & Membership FAQs
             </h2>
           </div>
-
-          <UButton
-            to="/faq"
-            color="neutral"
-            variant="ghost"
-            icon="i-tabler-arrow-right"
-            trailing
-            class="font-bold uppercase text-xs tracking-wider shrink-0"
-          >
-            Visit Help Center
-          </UButton>
         </div>
 
         <div class="divide-y divide-neutral-200/80 dark:divide-neutral-800/80">
