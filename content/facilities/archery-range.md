@@ -35,9 +35,9 @@ cta:
 
 ## Precision & Focus
 
-Test your accuracy at our sheltered target archery range[cite: 24]. Certified instructors guide beginners through safety fundamentals before practice rounds[cite: 24].
+Test your accuracy at our sheltered target archery range. Certified instructors guide beginners through safety fundamentals before practice rounds.
 
-:u-alert{icon="i-tabler-shield-check" color="neutral" variant="subtle" title="Safety First" description="All sessions include range safety briefings and protective arm gear[cite: 24]."}
+:u-alert{icon="i-tabler-shield-check" color="neutral" variant="subtle" title="Safety First" description="All sessions include range safety briefings and protective arm gear."}
 
 ### Range Guidelines
 

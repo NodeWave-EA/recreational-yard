@@ -26,7 +26,7 @@ cta:
 
 ## Traditional Lawn Tennis
 
-Play tennis surrounded by panoramic views of Kericho tea fields[cite: 24]. Our grass courts provide low bounce and fast play ideal for all skill levels[cite: 24].
+Play tennis surrounded by panoramic views of Kericho tea fields. Our grass courts provide low bounce and fast play ideal for all skill levels.
 
 :u-alert{icon="i-tabler-trophy" color="primary" variant="soft" title="Coaching Available" description="Book private coaching sessions with resident tennis trainers."}
 

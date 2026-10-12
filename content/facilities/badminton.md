@@ -26,9 +26,9 @@ cta:
 
 ## Fast & Energetic Rallies
 
-Enjoy fast-paced games on our outdoor badminton courts[cite: 24]. Designed for casual singles or competitive doubles, each booking comes equipped with gear[cite: 24].
+Enjoy fast-paced games on our outdoor badminton courts. Designed for casual singles or competitive doubles, each booking comes equipped with gear.
 
-:u-alert{icon="i-tabler-info-circle" color="neutral" variant="subtle" title="Equipment Access Included" description="Yonex rackets and feather shuttlecocks are provided at reception[cite: 24]."}
+:u-alert{icon="i-tabler-info-circle" color="neutral" variant="subtle" title="Equipment Access Included" description="Yonex rackets and feather shuttlecocks are provided at reception."}
 
 ### Court Rules & Guidelines
 
