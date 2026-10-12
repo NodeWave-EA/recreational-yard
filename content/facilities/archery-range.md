@@ -1,6 +1,9 @@
 ---
 title: "Archery Range"
 description: "Safe shooting range with archery targets, bows, arrows, and certified instructors."
+quote:
+  text: "The state-of-the-art safety nets and certified instructors make this the ideal training ground for archers of all skill levels."
+  author: "Head Archery Coach"
 category: "Target Sports"
 icon: "i-tabler-target"
 coverImage:
