@@ -1,55 +1,44 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug')
   if (!slug) {
     return { success: false, images: [], coverImage: null }
   }
 
-  // Look for the directory across standard local and production paths
-  const possiblePaths = [
-    path.join(process.cwd(), 'public', 'content', 'gallery', slug),
-    path.join(process.cwd(), '.output', 'public', 'content', 'gallery', slug),
-    path.resolve('./public/content/gallery', slug),
-    path.resolve('./.output/public/content/gallery', slug),
-  ]
+  const validExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.avif', '.gif', '.svg']
+  const images: Array<{ url: string, caption: string }> = []
+  let coverImage: string | null = null
+  const seenFileNames = new Set<string>()
 
-  let galleryDir: string | null = null
-  for (const p of possiblePaths) {
-    if (fs.existsSync(p)) {
-      galleryDir = p
-      break
-    }
-  }
-
-  if (!galleryDir) {
-    return { success: false, images: [], coverImage: null }
-  }
-
+  // Query Nitro Server Asset Storage (For Vercel Deployment)
   try {
-    const files = fs.readdirSync(galleryDir)
-    const validExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.avif', '.gif', '.svg']
+    const storage = useStorage('assets:gallery')
+    const keys = await storage.getKeys()
 
-    let coverImage: string | null = null
-    const images: Array<{ url: string, caption: string }> = []
+    // Match keys starting with the slug folder (e.g. "badminton:cover.jpeg" or "badminton/cover.jpeg")
+    const matchingKeys = keys.filter((k) => {
+      const normalized = k.replace(/\\/g, '/').replace(/:/g, '/')
+      return normalized.startsWith(`${slug}/`)
+    })
 
-    // Natural sort order (e.g. gallery-1.jpeg, gallery-2.jpeg)
-    files.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+    matchingKeys.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
 
-    files.forEach((file) => {
-      const ext = path.extname(file).toLowerCase()
-      if (validExtensions.includes(ext)) {
-        const publicUrl = `/content/gallery/${slug}/${file}`
-        const baseName = path.basename(file, ext)
+    for (const key of matchingKeys) {
+      const normalized = key.replace(/\\/g, '/').replace(/:/g, '/')
+      const fileName = normalized.split('/').pop() || ''
+      const extIndex = fileName.lastIndexOf('.')
+      const ext = extIndex !== -1 ? fileName.substring(extIndex).toLowerCase() : ''
+
+      if (validExtensions.includes(ext) && !seenFileNames.has(fileName)) {
+        seenFileNames.add(fileName)
+        const publicUrl = `/content/gallery/${slug}/${fileName}`
+        const baseName = extIndex !== -1 ? fileName.substring(0, extIndex) : fileName
 
         if (baseName.toLowerCase() === 'cover') {
           coverImage = publicUrl
-          // Include cover photo in gallery photo stream
-          images.unshift({
-            url: publicUrl,
-            caption: 'Cover Photo',
-          })
+          images.unshift({ url: publicUrl, caption: 'Cover Photo' })
         } else {
           const cleanCaption = baseName.replace(/[-_]/g, ' ')
           images.push({
@@ -58,15 +47,60 @@ export default defineEventHandler((event) => {
           })
         }
       }
-    })
-
-    return {
-      success: true,
-      slug,
-      coverImage: coverImage || (images.length > 0 ? images[0].url : null),
-      images,
     }
   } catch {
-    return { success: false, images: [], coverImage: null }
+    // Storage query skipped if empty
+  }
+
+  // Filesystem Fallback (For Local Dev Server)
+  if (images.length === 0) {
+    const possiblePaths = [
+      path.join(process.cwd(), 'public', 'content', 'gallery', slug),
+      path.join(process.cwd(), '.output', 'public', 'content', 'gallery', slug),
+    ]
+
+    let galleryDir: string | null = null
+    for (const p of possiblePaths) {
+      if (fs.existsSync(p)) {
+        galleryDir = p
+        break
+      }
+    }
+
+    if (galleryDir) {
+      try {
+        const files = fs.readdirSync(galleryDir)
+        files.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+
+        files.forEach((file) => {
+          const ext = path.extname(file).toLowerCase()
+          if (validExtensions.includes(ext) && !seenFileNames.has(file)) {
+            seenFileNames.add(file)
+            const publicUrl = `/content/gallery/${slug}/${file}`
+            const baseName = path.basename(file, ext)
+
+            if (baseName.toLowerCase() === 'cover') {
+              coverImage = publicUrl
+              images.unshift({ url: publicUrl, caption: 'Cover Photo' })
+            } else {
+              const cleanCaption = baseName.replace(/[-_]/g, ' ')
+              images.push({
+                url: publicUrl,
+                caption: cleanCaption.charAt(0).toUpperCase() + cleanCaption.slice(1),
+              })
+            }
+          }
+        })
+      } catch {
+        // Fallback complete
+      }
+    }
+  }
+
+  return {
+    success: true,
+    slug,
+    coverImage: coverImage || (images.length > 0 ? images[0].url : null),
+    images,
   }
 })

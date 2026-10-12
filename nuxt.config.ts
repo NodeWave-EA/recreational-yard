@@ -76,6 +76,12 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'vercel',
+    serverAssets: [
+      {
+        baseName: 'gallery',
+        dir: 'public/content/gallery',
+      },
+    ],
   },
 
   eslint: {
