@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const siteUrl = process.env.NUXT_PUBLIC_SITE_URL
+  || (process.env.NODE_ENV === 'production' ? 'https://recreational-yard.vercel.app' : 'http://localhost:3000')
+
 export default defineNuxtConfig({
 
   modules: ['@nuxt/eslint', '@nuxt/ui', '@vueuse/nuxt/module', '@nuxt/image', 'nuxt-studio', '@nuxt/content', '@nuxt/icon/module', '@nuxtjs/turnstile', '@nuxt/fonts', '@nuxtjs/seo', '@nuxt/hints', '@nuxt/a11y', '@nuxt/scripts', '@nuxt/devtools'],
@@ -11,7 +14,6 @@ export default defineNuxtConfig({
     buildAssetsDir: '/_nuxt/',
     head: {
       htmlAttrs: { lang: 'en' },
-      titleTemplate: '%s | Recreational Yard',
       meta: [
         { name: 'theme-color', content: '#0a255c' },
         { name: 'msapplication-TileColor', content: '#0a255c' },
@@ -42,11 +44,9 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: process.env.NODE_ENV === 'production'
-      ? process.env.NUXT_PUBLIC_SITE_URL || 'https://recreational-yard.vercel.app'
-      : 'http://localhost:3000',
+    url: siteUrl,
     name: 'Recreation Yard',
-    description: 'Kericho\'s premier outdoor recreation destination',
+    description: 'Kericho\'s premier outdoor recreation destination for sports, family activities, events, and relaxation.',
     defaultLocale: 'en',
   },
 
@@ -74,11 +74,18 @@ export default defineNuxtConfig({
     // Client-accessible public keys
     public: {
       turnstileSiteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY || '',
+      siteUrl,
     },
   },
 
   routeRules: {
     '/': { prerender: true },
+    '/facilities': { prerender: true },
+    '/pricing': { prerender: true },
+    '/events': { prerender: true },
+    '/gallery': { prerender: true },
+    '/shop': { prerender: true },
+    '/contact': { prerender: true },
   },
 
   compatibilityDate: '2026-06-30',
@@ -91,6 +98,21 @@ export default defineNuxtConfig({
         dir: 'public/content/gallery',
       },
     ],
+  },
+
+  aiReady: {
+    enabled: true,
+    database: {
+      type: 'sqlite',
+      filename: '/tmp/nuxt-ai.sqlite',
+    },
+    autoI18n: true,
+    cron: true,
+    runtimeSync: {
+      ttl: 3600,
+      batchSize: 20,
+      pruneTtl: 0,
+    },
   },
 
   eslint: {
@@ -124,6 +146,106 @@ export default defineNuxtConfig({
       xl: 1280,
       xxl: 1536,
     },
+  },
+
+  linkChecker: {
+    enabled: true,
+    runOnBuild: true,
+    failOnError: false,
+    fetchRemoteUrls: false,
+    showLiveInspections: true,
+    excludePages: ['/search'],
+    report: {
+      html: true,
+      json: true,
+    },
+  },
+
+  nuxtseo: {
+    enabled: true,
+    tips: true,
+  },
+
+  ogImage: {
+    enabled: false,
+  },
+
+  robots: {
+    enabled: true,
+    header: true,
+    metaTag: true,
+    sitemap: [`${siteUrl}/sitemap.xml`],
+    allow: [
+      '/',
+      '/facilities',
+      '/pricing',
+      '/events',
+      '/gallery',
+      '/shop',
+      '/contact',
+    ],
+    disallow: ['/search'],
+    robotsEnabledValue: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    groups: [
+      {
+        userAgent: '*',
+        allow: '/',
+        contentUsage: {
+          'bots': 'y',
+          'train-ai': 'y',
+          'ai-output': 'y',
+          'search': 'y',
+        },
+        contentSignal: {
+          'search': 'yes',
+          'ai-input': 'yes',
+          'ai-train': 'yes',
+        },
+      },
+    ],
+  },
+
+  schemaOrg: {
+    enabled: true,
+    defaults: true,
+    minify: process.env.NODE_ENV === 'production',
+  },
+
+  seo: {
+    enabled: true,
+    automaticDefaults: true,
+    automaticOgAndTwitterTags: true,
+    automaticTwitterTags: true,
+    canonicalLowercase: true,
+    canonicalQueryWhitelist: [],
+    redirectToCanonicalSiteUrl: true,
+    meta: {
+      ogLocale: 'en_KE',
+      twitterCard: 'summary_large_image',
+    },
+  },
+
+  sitemap: {
+    enabled: true,
+    sitemapName: 'sitemap.xml',
+    exclude: ['/search'],
+    defaults: {
+      changefreq: 'weekly',
+      priority: 0.7,
+    },
+    urls: [
+      { loc: '/', priority: 1, changefreq: 'weekly' },
+      { loc: '/facilities', priority: 0.9, changefreq: 'weekly' },
+      { loc: '/pricing', priority: 0.9, changefreq: 'weekly' },
+      { loc: '/events', priority: 0.8, changefreq: 'weekly' },
+      { loc: '/gallery', priority: 0.7, changefreq: 'weekly' },
+      { loc: '/shop', priority: 0.7, changefreq: 'weekly' },
+      { loc: '/contact', priority: 0.8, changefreq: 'monthly' },
+    ],
+  },
+
+  skewProtection: {
+    enabled: true,
   },
 
   studio: {

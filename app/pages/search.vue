@@ -36,6 +36,7 @@ const pageTitle = computed(() =>
 useSeoMeta({
   title: pageTitle,
   description: 'Search facilities, passes, merchandise, and community events.',
+  robots: 'noindex, nofollow',
 })
 </script>
 
@@ -58,7 +59,7 @@ useSeoMeta({
     </div>
 
     <!-- Sticky Search Bar & View Mode Toolbar -->
-    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
+    <div class="sticky top-(--ui-header-height,4rem) z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
       <UContainer class="max-w-6xl">
         <div class="flex items-center gap-2 sm:gap-3 w-full min-w-0">
           <div class="flex-1 min-w-0">
@@ -419,7 +420,7 @@ useSeoMeta({
                       <!-- Body Snippet Match -->
                       <div v-if="item.snippet" class="text-[11px] text-lime-600 dark:text-lime-400 font-medium leading-relaxed mt-1 flex items-start gap-1 min-w-0">
                         <span class="font-bold text-[10px] uppercase text-lime-700 dark:text-lime-300 shrink-0">Match:</span>
-                        <span class="line-clamp-2 break-words min-w-0">{{ item.snippet }}</span>
+                        <span class="line-clamp-2 wrap-break-word min-w-0">{{ item.snippet }}</span>
                       </div>
                     </div>
                   </div>
