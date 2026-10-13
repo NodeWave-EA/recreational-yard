@@ -108,6 +108,32 @@ export const NAV_LINKS: NavigationMenuItem[] = [
   },
 ]
 
+export interface FooterCategory {
+  title: string
+  links: NavigationMenuItem[]
+}
+
+export const FOOTER_LINKS: FooterCategory[] = [
+  {
+    title: 'Explore',
+    links: [
+      { label: 'Home', to: '/', icon: 'i-tabler-home' },
+      { label: 'Facilities & Zones', to: '/facilities', icon: 'i-tabler-trees' },
+      { label: 'Pricing & Day Passes', to: '/pricing', icon: 'i-tabler-ticket' },
+      { label: 'Events & Tournaments', to: '/events', icon: 'i-tabler-calendar-event' },
+    ],
+  },
+  {
+    title: 'Community',
+    links: [
+      { label: 'Photo Gallery', to: '/gallery', icon: 'i-tabler-photo' },
+      { label: 'Visitor Testimonials', to: '/testimonials', icon: 'i-tabler-message-circle' },
+      { label: 'Shop & Merchandise', to: '/shop', icon: 'i-tabler-shopping-bag' },
+      { label: 'Help & FAQs', to: '/faqs', icon: 'i-tabler-help' },
+    ],
+  },
+]
+
 // Recreation Pillars (For Homepage Highlights)
 export const RECREATION_PILLARS = [
   {
