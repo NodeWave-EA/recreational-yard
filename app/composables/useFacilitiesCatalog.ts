@@ -69,7 +69,11 @@ export async function useFacilitiesCatalog() {
   ]
 
   const selectedCategoryMeta = computed(() => {
-    return categoryOptions.value.find(c => c.id === selectedCategory.value) || categoryOptions.value[0]
+    return categoryOptions.value.find(c => c.id === selectedCategory.value) || {
+      id: 'all',
+      label: 'All Venues',
+      icon: 'i-tabler-layout-grid',
+    }
   })
 
   // Filtered and sorted facilities

@@ -38,7 +38,7 @@ async function loadAllCollections() {
       { enableLogging: false },
     )
 
-    const rawItems = (data.value ?? []) as Array<Record<string, unknown>>
+    const rawItems = (data.value ?? []).map(item => Object.assign({}, item) as unknown as Record<string, unknown>)
     const normalized = rawItems.map(item => normalizeContentItem(item, config.key))
 
     return { key: config.key, items: normalized }

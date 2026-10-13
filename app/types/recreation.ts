@@ -19,7 +19,7 @@ export interface ShopProduct {
   id: string
   name: string
   price: number
-  currency: 'KES'
+  currency: 'KES' | 'USD' | 'EUR' | string
   image: string
   inStock: boolean
 }

@@ -1,4 +1,5 @@
 import type { PageCollections } from '@nuxt/content'
+import type { IFuseOptions } from 'fuse.js'
 import type { NormalizedSearchResult } from '~/utils/search-registry'
 import Fuse from 'fuse.js'
 import {
@@ -37,7 +38,7 @@ export function useAdvancedSearch() {
   const isLoading = ref(true)
 
   // Fuse.js configuration for fuzzy search across title, description, badges, and body content
-  const fuseOptions: Fuse.IFuseOptions<ExtendedSearchResult> = {
+  const fuseOptions: IFuseOptions<ExtendedSearchResult> = {
     keys: [
       { name: 'title', weight: 0.35 },
       { name: 'description', weight: 0.25 },
@@ -69,7 +70,11 @@ export function useAdvancedSearch() {
   ]
 
   const selectedCategoryMeta = computed(() => {
-    return categoryOptions.value.find(c => c.id === selectedCollection.value) || categoryOptions.value[0]
+    return categoryOptions.value.find(c => c.id === selectedCollection.value) || {
+      id: 'all',
+      label: 'All Categories',
+      icon: 'i-tabler-layout-grid',
+    }
   })
 
   // Sync state changes to URL query string
@@ -116,8 +121,8 @@ export function useAdvancedSearch() {
           getSearchSections(`adv-search-sec-${config.key}`, collectionKey, { enableLogging: false }),
         ])
 
-        const docs = (rawDocs.value ?? []) as Array<Record<string, unknown>>
-        const sections = (rawSections.value ?? []) as Array<Record<string, unknown>>
+        const docs = (rawDocs.value ?? []).map(item => Object.assign({}, item) as unknown as Record<string, unknown>)
+        const sections = (rawSections.value ?? []).map(item => Object.assign({}, item) as unknown as Record<string, unknown>)
 
         const sectionBodyMap = new Map<string, string[]>()
         sections.forEach((sec) => {

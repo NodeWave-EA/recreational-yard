@@ -1,10 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 
-  modules: ['@nuxt/eslint', '@nuxt/ui', '@vueuse/nuxt/module', '@nuxt/image', 'nuxt-studio', '@nuxt/content', '@nuxt/icon/module', '@nuxtjs/turnstile', '@nuxt/fonts', '@nuxtjs/seo'],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@vueuse/nuxt/module', '@nuxt/image', 'nuxt-studio', '@nuxt/content', '@nuxt/icon/module', '@nuxtjs/turnstile', '@nuxt/fonts', '@nuxtjs/seo', '@nuxt/hints', '@nuxt/a11y', '@nuxt/scripts', '@nuxt/devtools'],
 
   devtools: {
-    enabled: true,
+    enabled: process.env.NODE_ENV !== 'production',
   },
 
   app: {
@@ -13,8 +13,8 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'en' },
       titleTemplate: '%s | Recreational Yard',
       meta: [
-        { name: 'theme-color', content: '' },
-        { name: 'msapplication-TileColor', content: '' },
+        { name: 'theme-color', content: '#0a255c' },
+        { name: 'msapplication-TileColor', content: '#0a255c' },
         { 'http-equiv': 'X-UA-Compatible', 'content': 'IE=edge' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'mobile-web-app-capable', content: 'yes' },
@@ -39,6 +39,15 @@ export default defineNuxtConfig({
 
   router: {
     options: { scrollBehaviorType: 'smooth' },
+  },
+
+  site: {
+    url: process.env.NODE_ENV === 'production'
+      ? process.env.NUXT_PUBLIC_SITE_URL || 'https://recreational-yard.vercel.app'
+      : 'http://localhost:3000',
+    name: 'Recreation Yard',
+    description: 'Kericho\'s premier outdoor recreation destination',
+    defaultLocale: 'en',
   },
 
   content: {

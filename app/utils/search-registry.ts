@@ -34,7 +34,7 @@ export interface NormalizedSearchResult {
 export function cleanPath(pathStr: string): string {
   if (!pathStr)
     return ''
-  let cleaned = pathStr.split('#')[0].split('?')[0]
+  let cleaned = pathStr.split('#')[0]?.split('?')[0] || ''
   if (!cleaned.startsWith('/')) {
     cleaned = `/${cleaned}`
   }

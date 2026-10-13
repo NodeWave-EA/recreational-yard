@@ -88,9 +88,14 @@ onUnmounted(() => {
           :key="activeSlide?.image"
           :src="activeSlide?.image"
           :alt="activeSlide?.title"
-          format="webp"
-          quality="85"
+          width="1920"
+          height="1080"
+          sizes="100vw"
+          format="avif,webp"
+          quality="75"
           loading="eager"
+          preload
+          fetchpriority="high"
           class="absolute inset-0 h-full w-full object-cover object-center opacity-65 dark:opacity-75 scale-105 transition-all duration-700"
         />
       </Transition>
@@ -171,13 +176,21 @@ onUnmounted(() => {
                     ? 'border-lime-500 dark:border-lime-400 ring-4 ring-lime-500/40 dark:ring-lime-400/40 scale-[1.03] z-20'
                     : 'border-white/40 dark:border-white/20 hover:border-lime-500/60 opacity-85 hover:opacity-100 z-10',
                 ]"
+                role="button"
+                tabindex="0"
                 @click="selectSlide(0)"
+                @keydown.enter="selectSlide(0)"
+                @keydown.space.prevent="selectSlide(0)"
               >
                 <NuxtImg
                   :src="slides[0]?.image"
                   :alt="slides[0]?.title"
-                  format="webp"
-                  quality="80"
+                  width="768"
+                  height="1024"
+                  sizes="(max-width: 640px) 100vw, 384px"
+                  format="avif,webp"
+                  quality="70"
+                  loading="lazy"
                   class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
                 />
                 <div class="absolute inset-0 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
@@ -203,13 +216,21 @@ onUnmounted(() => {
                       ? 'border-lime-500 dark:border-lime-400 ring-4 ring-lime-500/40 dark:ring-lime-400/40 scale-[1.03] z-20'
                       : 'border-white/40 dark:border-white/20 hover:border-lime-500/60 opacity-85 hover:opacity-100 z-10',
                   ]"
+                  role="button"
+                  tabindex="0"
                   @click="selectSlide(1)"
+                  @keydown.enter="selectSlide(1)"
+                  @keydown.space.prevent="selectSlide(1)"
                 >
                   <NuxtImg
                     :src="slides[1]?.image"
                     :alt="slides[1]?.title"
-                    format="webp"
-                    quality="80"
+                    width="1024"
+                    height="768"
+                    sizes="(max-width: 640px) 100vw, 384px"
+                    format="avif,webp"
+                    quality="70"
+                    loading="lazy"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
                   />
                   <div class="absolute inset-0 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
@@ -233,7 +254,11 @@ onUnmounted(() => {
                       ? 'border-lime-500 dark:border-lime-400 ring-4 ring-lime-500/40 dark:ring-lime-400/40 scale-[1.03] z-20'
                       : 'border-white/40 dark:border-white/20 hover:border-lime-500/60 opacity-85 hover:opacity-100 z-10',
                   ]"
+                  role="button"
+                  tabindex="0"
                   @click="selectSlide(2)"
+                  @keydown.enter="selectSlide(2)"
+                  @keydown.space.prevent="selectSlide(2)"
                 >
                   <NuxtImg
                     :src="slides[2]?.image"
@@ -260,7 +285,7 @@ onUnmounted(() => {
               <button
                 v-for="(_, idx) in slides"
                 :key="idx"
-                class="h-1.5 rounded-full transition-all duration-300"
+                class="min-h-1.5 min-w-11 flex items-center justify-center rounded-full transition-all duration-300"
                 :class="[activeIndex === idx ? 'w-6 bg-lime-500 dark:bg-lime-400' : 'w-1.5 bg-neutral-400/50 dark:bg-white/30 hover:bg-neutral-600 dark:hover:bg-white/60']"
                 :aria-label="`Switch to slide ${idx + 1}`"
                 @click="selectSlide(idx)"

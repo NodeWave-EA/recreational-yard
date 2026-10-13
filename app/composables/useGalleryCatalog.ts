@@ -1,6 +1,6 @@
 import { useContentQuery } from '~/composables/useContentQuery'
 
-export interface GalleryPhoto {
+interface CatalogGalleryPhoto {
   url: string
   caption?: string
   aspect?: 'portrait' | 'landscape' | 'square' | 'tall'
@@ -16,7 +16,7 @@ export interface GalleryCollection {
   badge?: string
   date?: string
   coverImage?: string | { src: string, alt?: string }
-  photos?: GalleryPhoto[]
+  photos?: CatalogGalleryPhoto[]
   featured?: boolean
   order?: number
 }
@@ -86,7 +86,11 @@ export async function useGalleryCatalog() {
   ]
 
   const selectedCategoryMeta = computed(() => {
-    return categoryOptions.value.find(c => c.id === selectedCategory.value) || categoryOptions.value[0]
+    return categoryOptions.value.find(c => c.id === selectedCategory.value) || {
+      id: 'all',
+      label: 'All Categories',
+      icon: 'i-tabler-layout-grid',
+    }
   })
 
   // Filtered and sorted collections list

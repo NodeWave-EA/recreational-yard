@@ -86,7 +86,11 @@ export async function useEventsCatalog() {
   ]
 
   const selectedCategoryMeta = computed(() => {
-    return categoryOptions.value.find(c => c.id === selectedCategory.value) || categoryOptions.value[0]
+    return categoryOptions.value.find(c => c.id === selectedCategory.value) || {
+      id: 'all',
+      label: 'All Events',
+      icon: 'i-tabler-layout-grid',
+    }
   })
 
   // Filtered and sorted events list

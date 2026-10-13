@@ -34,14 +34,19 @@ function handleAddToCart() {
     return
 
   const prod: ShopProduct = {
-    id: product.value.path,
-    name: product.value.title || product.value.name,
+    id: product.value.path || route.path,
+    name: product.value.title || product.value.name || 'Product',
     price: product.value.price || 0,
     currency: product.value.currency || 'KES',
-    image: product.value.image?.src || (typeof product.value.image === 'string' ? product.value.image : ''),
+    image: typeof product.value.image === 'string' ? product.value.image : product.value.image?.src || '',
     inStock: product.value.inStock ?? true,
   }
   addToCart(prod)
+}
+
+function getProductImage() {
+  const image = product.value?.image
+  return typeof image === 'string' ? image : image?.src || ''
 }
 
 function decreaseQuantity() {
@@ -86,12 +91,18 @@ useSeoMeta({
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         <!-- Showcase Image Container -->
         <div class="lg:col-span-6 relative rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60">
-          <img
-            v-if="product.image?.src || typeof product.image === 'string'"
-            :src="product.image?.src || product.image"
+          <NuxtImg
+            v-if="getProductImage()"
+            :src="getProductImage()"
             :alt="product.title || product.name"
-            class="w-full h-80 sm:h-[420px] object-cover"
-          >
+            width="800"
+            height="800"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            format="webp"
+            quality="80"
+            loading="eager"
+            class="w-full h-80 sm:h-105 object-cover"
+          />
           <UBadge
             v-if="product.badge"
             color="primary"

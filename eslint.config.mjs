@@ -5,6 +5,12 @@ import { getDefaultAttributes } from 'eslint-plugin-better-tailwindcss/api/defau
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
+  {
+    ignores: [
+      'recreational-yard.vercel.app-*.json',
+      '.vscode/**',
+    ],
+  },
   antfu({
     formatters: {
       css: true,
@@ -14,7 +20,8 @@ export default withNuxt(
     },
     stylistic: {
       indent: 2,
-      commaDangle: 'never',
+      semi: false,
+      quotes: 'single',
       braceStyle: '1tbs',
     },
   }),

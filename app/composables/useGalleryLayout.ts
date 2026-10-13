@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 
-export interface GalleryPhoto {
+interface GalleryLayoutPhoto {
   url: string
   caption?: string
   aspect?: 'portrait' | 'landscape' | 'square' | 'tall'
@@ -47,7 +47,7 @@ export function useGalleryLayout() {
     'aspect-2/3', // Full vertical portrait
   ]
 
-  function getPhotoAspectClass(index: number, photo?: GalleryPhoto) {
+  function getPhotoAspectClass(index: number, photo?: GalleryLayoutPhoto) {
     if (photo?.aspect) {
       if (photo.aspect === 'portrait')
         return 'aspect-3/4'

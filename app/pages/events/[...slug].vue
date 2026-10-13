@@ -60,7 +60,7 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: JSON.stringify({
+      textContent: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Event',
         'name': event.value.title,
@@ -119,12 +119,18 @@ useSeoMeta({
         <div class="lg:col-span-8 space-y-8">
           <!-- Cover Banner -->
           <div class="relative rounded-2xl overflow-hidden bg-neutral-200 dark:bg-neutral-900">
-            <img
+            <NuxtImg
               v-if="getImageSrc(event)"
               :src="getImageSrc(event)"
               :alt="event.title"
+              width="1200"
+              height="675"
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              format="webp"
+              quality="80"
+              loading="eager"
               class="w-full h-64 sm:h-96 xl:h-112 object-cover"
-            >
+            />
             <div v-else class="flex h-64 sm:h-96 w-full items-center justify-center bg-lime-500/10 text-lime-600 dark:text-lime-400">
               <UIcon name="i-tabler-calendar-event" class="size-16" />
             </div>

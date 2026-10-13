@@ -1,21 +1,5 @@
 import { useContentQuery } from '~/composables/useContentQuery'
 
-export interface ShopProduct {
-  id?: string
-  path: string
-  title?: string
-  name?: string
-  description?: string
-  price?: number
-  currency?: string
-  badge?: string
-  category?: string
-  inStock?: boolean
-  image?: string | { src?: string, alt?: string }
-  order?: number
-  details?: string[]
-}
-
 export async function useShopCatalog() {
   const { getCollection } = useContentQuery()
   const { addToCart } = useCart()
@@ -70,7 +54,11 @@ export async function useShopCatalog() {
   ]
 
   const selectedCategoryMeta = computed(() => {
-    return categoryOptions.value.find(c => c.id === selectedCategory.value) || categoryOptions.value[0]
+    return categoryOptions.value.find(c => c.id === selectedCategory.value) || {
+      id: 'all',
+      label: 'All Categories',
+      icon: 'i-tabler-layout-grid',
+    }
   })
 
   // Reactive product filtering & sorting

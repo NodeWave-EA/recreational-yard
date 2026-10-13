@@ -43,7 +43,7 @@ function getImageSrc(item: any) {
             :variant="viewMode === 'grid' ? 'solid' : 'ghost'"
             icon="i-tabler-layout-grid"
             aria-label="Grid View"
-            class="rounded-lg font-bold"
+            class="min-h-11 min-w-11 cursor-pointer justify-center rounded-lg font-bold"
             @click="viewMode = 'grid'"
           />
           <UButton
@@ -52,7 +52,7 @@ function getImageSrc(item: any) {
             :variant="viewMode === 'list' ? 'solid' : 'ghost'"
             icon="i-tabler-list"
             aria-label="List View"
-            class="rounded-lg font-bold"
+            class="min-h-11 min-w-11 cursor-pointer justify-center rounded-lg font-bold"
             @click="viewMode = 'list'"
           />
         </div>

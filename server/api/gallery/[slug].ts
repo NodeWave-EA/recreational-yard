@@ -1,5 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { defineEventHandler, getRouterParam } from 'h3'
+import { useStorage } from 'nitropack/runtime/internal/storage'
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug')
@@ -100,7 +102,7 @@ export default defineEventHandler(async (event) => {
   return {
     success: true,
     slug,
-    coverImage: coverImage || (images.length > 0 ? images[0].url : null),
+    coverImage: coverImage || images[0]?.url || null,
     images,
   }
 })

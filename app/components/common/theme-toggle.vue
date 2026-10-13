@@ -10,7 +10,7 @@ const { isDark, toggleTheme } = useTheme()
       size="md"
       :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
       :icon="isDark ? 'i-tabler-sun' : 'i-tabler-moon'"
-      class="rounded-sm text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
+      class="min-h-11 min-w-11 rounded-sm cursor-pointer justify-center text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
       @click="toggleTheme($event)"
     />
     <template #fallback>

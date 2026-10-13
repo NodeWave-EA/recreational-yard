@@ -50,7 +50,7 @@ defineShortcuts({
             color="neutral"
             variant="ghost"
             aria-label="Open Search"
-            class="relative text-neutral-700 dark:text-neutral-200 hover:text-lime-600"
+            class="relative min-h-11 min-w-11 justify-center cursor-pointer text-neutral-700 dark:text-neutral-200 hover:text-lime-600"
             @click="isSearchModalOpen = true"
           >
             <UIcon name="i-tabler-search" class="size-5" />
@@ -63,7 +63,7 @@ defineShortcuts({
           <CommonThemeToggle />
 
           <!-- Shopping Cart Drawer Button -->
-          <UButton color="neutral" variant="ghost" class="relative" @click="toggleCart">
+          <UButton color="neutral" variant="ghost" aria-label="Open shopping bag" class="cursor-pointer relative justify-center min-h-11 min-w-11" @click="toggleCart">
             <UIcon name="i-tabler-shopping-bag" class="size-5" />
             <UBadge v-if="itemCount > 0" color="primary" variant="solid" class="absolute -top-1 -right-1 flex size-4 items-center justify-center rounded-full p-0 text-[9px] font-black">
               {{ itemCount }}
@@ -96,7 +96,7 @@ defineShortcuts({
           <div class="space-y-6">
             <div class="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-4">
               <AppLogo class="h-8 w-auto" />
-              <UButton color="neutral" variant="ghost" icon="i-tabler-x" class="size-8" @click="isMobileOpen = false" />
+              <UButton color="neutral" variant="ghost" icon="i-tabler-x" aria-label="Close navigation menu" class="size-11" @click="isMobileOpen = false" />
             </div>
 
             <nav class="flex flex-col gap-1.5 text-sm font-bold uppercase tracking-wider">

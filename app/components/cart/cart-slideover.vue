@@ -44,12 +44,16 @@ function closeCart() {
           >
             <!-- Product Thumbnail -->
             <NuxtLink :to="item.product.id" class="shrink-0" @click="closeCart">
-              <img
+              <NuxtImg
                 v-if="item.product.image"
                 :src="item.product.image"
                 :alt="item.product.name"
+                width="56"
+                height="56"
+                sizes="56px"
+                loading="lazy"
                 class="size-14 rounded-xl object-cover border border-neutral-200/80 dark:border-neutral-800/80"
-              >
+              />
               <div
                 v-else
                 class="flex size-14 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400 border border-neutral-200 dark:border-neutral-800"
@@ -83,6 +87,7 @@ function closeCart() {
                   variant="ghost"
                   icon="i-tabler-minus"
                   aria-label="Decrease quantity"
+                  class="min-h-11 min-w-11 justify-center text-neutral-400 hover:text-lime-600 dark:hover:text-lime-400"
                   @click="updateQuantity(item.product.id, item.quantity - 1)"
                 />
                 <span class="px-2 text-xs font-black text-neutral-950 dark:text-white">{{ item.quantity }}</span>
@@ -92,6 +97,7 @@ function closeCart() {
                   variant="ghost"
                   icon="i-tabler-plus"
                   aria-label="Increase quantity"
+                  class="min-h-11 min-w-11 justify-center text-neutral-400 hover:text-lime-600 dark:hover:text-lime-400"
                   @click="updateQuantity(item.product.id, item.quantity + 1)"
                 />
               </div>
@@ -102,7 +108,7 @@ function closeCart() {
                 variant="ghost"
                 icon="i-tabler-trash"
                 aria-label="Remove item"
-                class="rounded-lg"
+                class="min-h-11 min-w-11 rounded-lg justify-center text-neutral-400 hover:text-red-500 dark:hover:text-red-400"
                 @click="removeFromCart(item.product.id)"
               />
             </div>

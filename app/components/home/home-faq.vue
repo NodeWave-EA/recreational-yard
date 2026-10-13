@@ -43,6 +43,8 @@ function toggleItem(index: number) {
       >
         <button
           type="button"
+          :aria-expanded="openItems.includes(idx)"
+          :aria-controls="`faq-answer-${idx}`"
           class="w-full flex items-center justify-between text-left font-extrabold text-sm sm:text-base text-neutral-950 dark:text-white group cursor-pointer transition-colors"
           @click="toggleItem(idx)"
         >
@@ -66,6 +68,7 @@ function toggleItem(index: number) {
         >
           <p
             v-show="openItems.includes(idx)"
+            :id="`faq-answer-${idx}`"
             class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed pr-6 pt-1 font-medium overflow-hidden"
           >
             {{ faq.answer }}

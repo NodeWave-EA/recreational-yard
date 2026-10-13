@@ -1,6 +1,6 @@
 import { useContentQuery } from '~/composables/useContentQuery'
 
-export interface PricingPlan {
+interface CatalogPricingPlan {
   id?: string
   path: string
   title?: string
@@ -62,11 +62,15 @@ export async function usePricingCatalog() {
   ]
 
   const selectedCategoryMeta = computed(() => {
-    return categoryOptions.value.find(c => c.id === selectedCategory.value) || categoryOptions.value[0]
+    return categoryOptions.value.find(c => c.id === selectedCategory.value) || {
+      id: 'all',
+      label: 'All Passes',
+      icon: 'i-tabler-layout-grid',
+    }
   })
 
   // Filtered and sorted plans
-  const filteredPlans = computed<PricingPlan[]>(() => {
+  const filteredPlans = computed<CatalogPricingPlan[]>(() => {
     if (!pricingPlans.value)
       return []
 
