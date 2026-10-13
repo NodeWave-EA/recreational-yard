@@ -63,7 +63,7 @@
   --ui-primary: var(--color-brand-lime-500);
   --ui-neutral: var(--color-brand-navy-900);
 
-  --custom-banner-height: 1rem;
+  --custom-banner-height: 1.2rem;
   --custom-header-base-height: 4rem;
   --ui-header-height: calc(var(--custom-banner-height) + var(--custom-header-base-height));
 }
