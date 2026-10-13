@@ -21,10 +21,15 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
-        { name: 'apple-mobile-web-app-title', content: 'Recreational Yard' },
+        { name: 'apple-mobile-web-app-title', content: 'RYK' },
         { name: 'application-name', content: 'Recreational Yard' },
       ],
       link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon-96x96.png?v=20261013', sizes: '96x96' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg?v=20261013' },
+        { rel: 'shortcut icon', href: '/favicon.ico?v=20261013' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png?v=20261013' },
+        { rel: 'manifest', href: '/manifest.json?v=20261013' },
       ],
     },
     pageTransition: {
