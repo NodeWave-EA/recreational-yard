@@ -101,7 +101,7 @@ export function normalizeContentItem(item: Record<string, unknown>, collectionKe
   if (typeof item.question === 'string') {
     title = item.question
   } else if (typeof item.author === 'string') {
-    title = item.author
+    title = `${item.author}'s Review`
   } else if (typeof item.title === 'string') {
     title = item.title
   } else if (typeof item.name === 'string') {
@@ -120,12 +120,30 @@ export function normalizeContentItem(item: Record<string, unknown>, collectionKe
     description = item.description
   }
 
-  // Path routing mapping
-  let path = cleanPath(typeof item.path === 'string' ? item.path : '/')
-  if (collectionKey === 'faqs') {
-    path = item.category === 'Pricing & Passes' ? '/pricing' : '/contact'
-  } else if (collectionKey === 'testimonials') {
-    path = item.category === 'Pricing & Passes' ? '/pricing' : '/'
+  // Canonical path routing extraction
+  const rawPath = typeof item.path === 'string' && item.path
+    ? item.path
+    : typeof item._path === 'string' && item._path
+      ? item._path
+      : ''
+
+  let path = cleanPath(rawPath)
+
+  // Fallback to collection slug URL if rawPath is missing or generic
+  if (!path || path === '/' || path === `/${collectionKey}`) {
+    const slug = typeof item.slug === 'string'
+      ? item.slug
+      : typeof item.id === 'string'
+        ? item.id
+        : typeof item.stem === 'string'
+          ? item.stem
+          : ''
+    if (slug) {
+      const cleanSlug = slug.replace(/^\/+/, '').replace(new RegExp(`^${collectionKey}/+`), '')
+      path = `/${collectionKey}/${cleanSlug}`
+    } else {
+      path = `/${collectionKey}`
+    }
   }
 
   // Image extraction supporting cover images and testimonial avatars
