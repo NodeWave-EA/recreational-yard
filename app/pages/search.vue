@@ -37,7 +37,21 @@ useSeoMeta({
   title: pageTitle,
   description: 'Search facilities, passes, merchandise, and community events.',
   robots: 'noindex, nofollow',
+  ogTitle: pageTitle,
+  ogDescription: 'Search facilities, passes, merchandise, and community events.',
+  ogImage: `${useRuntimeConfig().public.siteUrl}/logo.png`,
+  ogUrl: `${useRuntimeConfig().public.siteUrl}/search`,
 })
+
+const siteUrl = useRuntimeConfig().public.siteUrl
+useSchemaOrg([{
+  '@type': 'SearchResultsPage',
+  '@id': `${siteUrl}/search#webpage`,
+  'url': `${siteUrl}/search`,
+  'name': pageTitle,
+  'description': 'Search facilities, passes, merchandise, and community events.',
+  'isPartOf': { '@id': `${siteUrl}/#website` },
+}])
 </script>
 
 <template>
@@ -409,11 +423,11 @@ useSeoMeta({
                         <span v-if="item.meta" class="text-neutral-400 font-medium truncate">• {{ item.meta }}</span>
                       </div>
 
-                      <h3 class="text-sm sm:text-base font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors leading-snug break-words line-clamp-2">
+                      <h3 class="text-sm sm:text-base font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors leading-snug wrap-break-word line-clamp-2">
                         {{ item.title }}
                       </h3>
 
-                      <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed break-words">
+                      <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed wrap-break-word">
                         {{ item.description }}
                       </p>
 

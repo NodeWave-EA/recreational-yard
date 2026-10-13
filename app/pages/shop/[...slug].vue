@@ -70,7 +70,30 @@ function increaseQuantity() {
 useSeoMeta({
   title: `${product.value.title || product.value.name} | Shop | ${LOCATION_DETAILS.company}`,
   description: product.value.description,
+  ogTitle: `${product.value.title || product.value.name} | Shop | ${LOCATION_DETAILS.company}`,
+  ogDescription: product.value.description,
+  ogImage: getProductImage() || undefined,
+  ogUrl: `${useRuntimeConfig().public.siteUrl}${route.path}`,
 })
+
+const siteUrl = useRuntimeConfig().public.siteUrl
+const pageUrl = `${siteUrl}${route.path}`
+useSchemaOrg([{
+  '@type': 'Product',
+  '@id': `${pageUrl}#product`,
+  'url': pageUrl,
+  'name': product.value.title || product.value.name,
+  'description': product.value.description,
+  'image': getProductImage() || undefined,
+  'brand': { '@type': 'Brand', 'name': LOCATION_DETAILS.company },
+  'offers': {
+    '@type': 'Offer',
+    'url': pageUrl,
+    'price': product.value.price,
+    'priceCurrency': product.value.currency || 'KES',
+    'availability': product.value.inStock === false ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+  },
+}])
 </script>
 
 <template>

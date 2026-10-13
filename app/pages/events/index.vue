@@ -27,7 +27,22 @@ const hasAnyEvent = computed(() => (events.value?.length || 0) > 0)
 useSeoMeta({
   title: `Events & Tournaments | ${LOCATION_DETAILS.company}`,
   description: 'Upcoming sports tournaments, family weekend festivals, and community marathons in Kericho.',
+  ogTitle: `Events & Tournaments | ${LOCATION_DETAILS.company}`,
+  ogDescription: 'Upcoming sports tournaments, family weekend festivals, and community marathons in Kericho.',
+  ogImage: `${useRuntimeConfig().public.siteUrl}/logo.png`,
+  ogUrl: `${useRuntimeConfig().public.siteUrl}/events`,
 })
+
+const siteUrl = useRuntimeConfig().public.siteUrl
+useSchemaOrg([{
+  '@type': 'CollectionPage',
+  '@id': `${siteUrl}/events#webpage`,
+  'url': `${siteUrl}/events`,
+  'name': `Events & Tournaments | ${LOCATION_DETAILS.company}`,
+  'description': 'Upcoming sports tournaments, family weekend festivals, and community marathons in Kericho.',
+  'isPartOf': { '@id': `${siteUrl}/#website` },
+  'about': { '@id': `${siteUrl}/#organization` },
+}])
 </script>
 
 <template>

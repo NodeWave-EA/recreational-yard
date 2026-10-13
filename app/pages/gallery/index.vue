@@ -24,7 +24,22 @@ const hasAnyCollection = computed(() => (collections.value?.length || 0) > 0)
 useSeoMeta({
   title: `Photo Gallery & Collections | ${LOCATION_DETAILS.company}`,
   description: 'Explore high-resolution photo collections from our lawn tennis opens, tea estate vistas, and recreation grounds.',
+  ogTitle: `Photo Gallery & Collections | ${LOCATION_DETAILS.company}`,
+  ogDescription: 'Explore high-resolution photo collections from our lawn tennis opens, tea estate vistas, and recreation grounds.',
+  ogImage: `${useRuntimeConfig().public.siteUrl}/logo.png`,
+  ogUrl: `${useRuntimeConfig().public.siteUrl}/gallery`,
 })
+
+const siteUrl = useRuntimeConfig().public.siteUrl
+useSchemaOrg([{
+  '@type': 'CollectionPage',
+  '@id': `${siteUrl}/gallery#webpage`,
+  'url': `${siteUrl}/gallery`,
+  'name': `Photo Gallery & Collections | ${LOCATION_DETAILS.company}`,
+  'description': 'Explore high-resolution photo collections from our lawn tennis opens, tea estate vistas, and recreation grounds.',
+  'isPartOf': { '@id': `${siteUrl}/#website` },
+  'about': { '@id': `${siteUrl}/#organization` },
+}])
 </script>
 
 <template>
@@ -52,7 +67,7 @@ useSeoMeta({
     </div>
 
     <!-- Sticky Search, Filter & View Toggle Toolbar -->
-    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3.5 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
+    <div class="sticky top-(--ui-header-height,4rem) z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3.5 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
       <UContainer class="max-w-5xl">
         <div class="flex flex-col md:flex-row items-center justify-between gap-3">
           <!-- Gallery Search Input -->

@@ -55,48 +55,52 @@ const targetCtaUrl = computed(() => {
   return event.value?.registrationUrl || event.value?.cta?.to || '/contact?type=event-registration'
 })
 
-// Schema.org Event structured metadata
-useHead({
-  script: [
-    {
-      type: 'application/ld+json',
-      textContent: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Event',
-        'name': event.value.title,
-        'description': event.value.description,
-        'startDate': event.value.startDate || undefined,
-        'endDate': event.value.endDate || undefined,
-        'eventStatus': event.value.status === 'cancelled' ? 'https://schema.org/EventCancelled' : 'https://schema.org/EventScheduled',
-        'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
-        'location': {
-          '@type': 'Place',
-          'name': event.value.location || LOCATION_DETAILS.company,
-          'address': LOCATION_DETAILS.address,
-        },
-        'image': getImageSrc(event.value) ? [getImageSrc(event.value)] : undefined,
-        'organizer': {
-          '@type': 'Organization',
-          'name': event.value.organizer?.name || LOCATION_DETAILS.company,
-          'telephone': event.value.organizer?.phone || LOCATION_DETAILS.phone,
-          'email': event.value.organizer?.email || LOCATION_DETAILS.email,
-        },
-        'offers': {
-          '@type': 'Offer',
-          'price': event.value.entryFee === 'Free' ? '0' : event.value.entryFee,
-          'priceCurrency': 'KES',
-          'url': targetCtaUrl.value,
-          'availability': event.value.status === 'sold_out' ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock',
-        },
-      }),
-    },
-  ],
-})
-
 useSeoMeta({
   title: `${event.value.title} | Events | ${LOCATION_DETAILS.company}`,
   description: event.value.description,
+  ogTitle: `${event.value.title} | Events | ${LOCATION_DETAILS.company}`,
+  ogDescription: event.value.description,
+  ogImage: getImageSrc(event.value) || undefined,
+  ogUrl: `${useRuntimeConfig().public.siteUrl}${route.path}`,
 })
+
+const siteUrl = useRuntimeConfig().public.siteUrl
+const pageUrl = `${siteUrl}${route.path}`
+useSchemaOrg([{
+  '@type': 'Event',
+  '@id': `${pageUrl}#event`,
+  'url': pageUrl,
+  'name': event.value.title,
+  'description': event.value.description,
+  'startDate': event.value.startDate || undefined,
+  'endDate': event.value.endDate || undefined,
+  'eventStatus': event.value.status === 'cancelled' ? 'https://schema.org/EventCancelled' : 'https://schema.org/EventScheduled',
+  'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
+  'location': {
+    '@type': 'Place',
+    'name': event.value.location || LOCATION_DETAILS.company,
+    'address': {
+      '@type': 'PostalAddress',
+      'streetAddress': LOCATION_DETAILS.address,
+      'addressLocality': 'Kericho',
+      'addressCountry': 'KE',
+    },
+  },
+  'image': getImageSrc(event.value) ? [getImageSrc(event.value)] : undefined,
+  'organizer': {
+    '@type': 'Organization',
+    'name': event.value.organizer?.name || LOCATION_DETAILS.company,
+    'telephone': event.value.organizer?.phone || LOCATION_DETAILS.phone,
+    'email': event.value.organizer?.email || LOCATION_DETAILS.email,
+  },
+  'offers': {
+    '@type': 'Offer',
+    'price': event.value.entryFee === 'Free' ? '0' : event.value.entryFee,
+    'priceCurrency': 'KES',
+    'url': targetCtaUrl.value,
+    'availability': event.value.status === 'sold_out' ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock',
+  },
+}])
 </script>
 
 <template>

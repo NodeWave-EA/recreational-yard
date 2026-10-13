@@ -51,7 +51,22 @@ function toggleFaqItem(index: number) {
 useSeoMeta({
   title: `Pricing & Passes | ${LOCATION_DETAILS.company}`,
   description: 'Simple, transparent pass options for general recreation, lawn sports, and monthly memberships.',
+  ogTitle: `Pricing & Passes | ${LOCATION_DETAILS.company}`,
+  ogDescription: 'Simple, transparent pass options for general recreation, lawn sports, and monthly memberships.',
+  ogImage: `${useRuntimeConfig().public.siteUrl}/logo.png`,
+  ogUrl: `${useRuntimeConfig().public.siteUrl}/pricing`,
 })
+
+const siteUrl = useRuntimeConfig().public.siteUrl
+useSchemaOrg([{
+  '@type': 'CollectionPage',
+  '@id': `${siteUrl}/pricing#webpage`,
+  'url': `${siteUrl}/pricing`,
+  'name': `Pricing & Passes | ${LOCATION_DETAILS.company}`,
+  'description': 'Simple, transparent pass options for general recreation, lawn sports, and monthly memberships.',
+  'isPartOf': { '@id': `${siteUrl}/#website` },
+  'about': { '@id': `${siteUrl}/#organization` },
+}])
 </script>
 
 <template>

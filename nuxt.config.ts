@@ -102,17 +102,6 @@ export default defineNuxtConfig({
 
   aiReady: {
     enabled: true,
-    database: {
-      type: 'sqlite',
-      filename: '/tmp/nuxt-ai.sqlite',
-    },
-    autoI18n: true,
-    cron: true,
-    runtimeSync: {
-      ttl: 3600,
-      batchSize: 20,
-      pruneTtl: 0,
-    },
   },
 
   eslint: {
@@ -167,11 +156,12 @@ export default defineNuxtConfig({
   },
 
   ogImage: {
-    enabled: false,
+    enabled: true,
   },
 
   robots: {
     enabled: true,
+    debug: true,
     header: true,
     metaTag: true,
     sitemap: [`${siteUrl}/sitemap.xml`],

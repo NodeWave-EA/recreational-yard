@@ -117,7 +117,22 @@ async function handleSubmit() {
 useSeoMeta({
   title: `Contact Us & Bookings | ${SITE_NAME}`,
   description: 'Reach Recreation Yard Limited in Kericho for court reservations, membership passes, private venue bookings, or customer support.',
+  ogTitle: `Contact Us & Bookings | ${SITE_NAME}`,
+  ogDescription: 'Reach Recreation Yard Limited in Kericho for court reservations, membership passes, private venue bookings, or customer support.',
+  ogImage: `${useRuntimeConfig().public.siteUrl}/logo.png`,
+  ogUrl: `${useRuntimeConfig().public.siteUrl}/contact`,
 })
+
+const siteUrl = useRuntimeConfig().public.siteUrl
+useSchemaOrg([{
+  '@type': 'ContactPage',
+  '@id': `${siteUrl}/contact#webpage`,
+  'url': `${siteUrl}/contact`,
+  'name': `Contact Us & Bookings | ${SITE_NAME}`,
+  'description': 'Reach Recreation Yard Limited in Kericho for court reservations, membership passes, private venue bookings, or customer support.',
+  'isPartOf': { '@id': `${siteUrl}/#website` },
+  'about': { '@id': `${siteUrl}/#organization` },
+}])
 </script>
 
 <template>

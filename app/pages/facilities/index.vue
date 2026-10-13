@@ -24,7 +24,22 @@ const hasAnyFacility = computed(() => (facilities.value?.length || 0) > 0)
 useSeoMeta({
   title: `Facilities | ${LOCATION_DETAILS.company}`,
   description: 'Explore our sports grounds, outdoor recreation spaces, and event venues in Kericho.',
+  ogTitle: `Facilities | ${LOCATION_DETAILS.company}`,
+  ogDescription: 'Explore our sports grounds, outdoor recreation spaces, and event venues in Kericho.',
+  ogImage: `${useRuntimeConfig().public.siteUrl}/logo.png`,
+  ogUrl: `${useRuntimeConfig().public.siteUrl}/facilities`,
 })
+
+const siteUrl = useRuntimeConfig().public.siteUrl
+useSchemaOrg([{
+  '@type': 'CollectionPage',
+  '@id': `${siteUrl}/facilities#webpage`,
+  'url': `${siteUrl}/facilities`,
+  'name': `Facilities | ${LOCATION_DETAILS.company}`,
+  'description': 'Explore our sports grounds, outdoor recreation spaces, and event venues in Kericho.',
+  'isPartOf': { '@id': `${siteUrl}/#website` },
+  'about': { '@id': `${siteUrl}/#organization` },
+}])
 </script>
 
 <template>

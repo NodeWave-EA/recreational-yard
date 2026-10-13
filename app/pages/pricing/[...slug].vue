@@ -32,7 +32,29 @@ const contactCtaUrl = computed(() => {
 useSeoMeta({
   title: `${plan.value.title} | Pricing | ${LOCATION_DETAILS.company}`,
   description: plan.value.description,
+  ogTitle: `${plan.value.title} | Pricing | ${LOCATION_DETAILS.company}`,
+  ogDescription: plan.value.description,
+  ogImage: `${useRuntimeConfig().public.siteUrl}/logo.png`,
+  ogUrl: `${useRuntimeConfig().public.siteUrl}${route.path}`,
 })
+
+const siteUrl = useRuntimeConfig().public.siteUrl
+const pageUrl = `${siteUrl}${route.path}`
+useSchemaOrg([{
+  '@type': 'Product',
+  '@id': `${pageUrl}#product`,
+  'url': pageUrl,
+  'name': plan.value.title,
+  'description': plan.value.description,
+  'brand': { '@type': 'Brand', 'name': LOCATION_DETAILS.company },
+  'offers': {
+    '@type': 'Offer',
+    'url': `${siteUrl}${contactCtaUrl.value}`,
+    'price': plan.value.price,
+    'priceCurrency': plan.value.currency || 'KES',
+    'availability': 'https://schema.org/InStock',
+  },
+}])
 </script>
 
 <template>

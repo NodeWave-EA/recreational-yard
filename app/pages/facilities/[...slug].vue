@@ -86,7 +86,29 @@ const coverImgSrc = computed(() => {
 useSeoMeta({
   title: `${facility.value.title} | Facilities | ${LOCATION_DETAILS.company}`,
   description: facility.value.description,
+  ogTitle: `${facility.value.title} | Facilities | ${LOCATION_DETAILS.company}`,
+  ogDescription: facility.value.description,
+  ogImage: coverImgSrc.value || undefined,
+  ogUrl: `${useRuntimeConfig().public.siteUrl}${route.path}`,
 })
+
+const siteUrl = useRuntimeConfig().public.siteUrl
+const pageUrl = `${siteUrl}${route.path}`
+useSchemaOrg([{
+  '@type': 'Place',
+  '@id': `${pageUrl}#facility`,
+  'url': pageUrl,
+  'name': facility.value.title,
+  'description': facility.value.description,
+  'image': coverImgSrc.value || undefined,
+  'address': {
+    '@type': 'PostalAddress',
+    'streetAddress': LOCATION_DETAILS.address,
+    'addressLocality': 'Kericho',
+    'addressCountry': 'KE',
+  },
+  'isPartOf': { '@id': `${siteUrl}/#organization` },
+}])
 </script>
 
 <template>

@@ -54,7 +54,22 @@ function handleDecrement(productPath: string) {
 useSeoMeta({
   title: `Shop & Merchandise | ${LOCATION_DETAILS.company}`,
   description: 'Shop official Recreation Yard sportswear, fresh Kericho tea produce, and sports gear.',
+  ogTitle: `Shop & Merchandise | ${LOCATION_DETAILS.company}`,
+  ogDescription: 'Shop official Recreation Yard sportswear, fresh Kericho tea produce, and sports gear.',
+  ogImage: `${useRuntimeConfig().public.siteUrl}/logo.png`,
+  ogUrl: `${useRuntimeConfig().public.siteUrl}/shop`,
 })
+
+const siteUrl = useRuntimeConfig().public.siteUrl
+useSchemaOrg([{
+  '@type': 'CollectionPage',
+  '@id': `${siteUrl}/shop#webpage`,
+  'url': `${siteUrl}/shop`,
+  'name': `Shop & Merchandise | ${LOCATION_DETAILS.company}`,
+  'description': 'Shop official Recreation Yard sportswear, fresh Kericho tea produce, and sports gear.',
+  'isPartOf': { '@id': `${siteUrl}/#website` },
+  'about': { '@id': `${siteUrl}/#organization` },
+}])
 </script>
 
 <template>

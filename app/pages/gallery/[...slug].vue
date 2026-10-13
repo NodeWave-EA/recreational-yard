@@ -137,7 +137,23 @@ onMounted(() => {
 useSeoMeta({
   title: `${collection.value.title} | ${LOCATION_DETAILS.company}`,
   description: collection.value.description,
+  ogTitle: `${collection.value.title} | ${LOCATION_DETAILS.company}`,
+  ogDescription: collection.value.description,
+  ogImage: allPhotos.value[0]?.url || undefined,
+  ogUrl: `${useRuntimeConfig().public.siteUrl}${route.path}`,
 })
+
+const siteUrl = useRuntimeConfig().public.siteUrl
+const pageUrl = `${siteUrl}${route.path}`
+useSchemaOrg([{
+  '@type': 'ImageGallery',
+  '@id': `${pageUrl}#gallery`,
+  'url': pageUrl,
+  'name': collection.value.title,
+  'description': collection.value.description,
+  'image': allPhotos.value.map(photo => photo.url),
+  'isPartOf': { '@id': `${siteUrl}/#organization` },
+}])
 </script>
 
 <template>
