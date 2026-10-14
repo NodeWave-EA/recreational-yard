@@ -136,44 +136,44 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-16 transition-colors duration-300">
+  <div class="min-h-screen bg-default text-default pb-16 transition-colors duration-300">
     <!-- Left-Aligned Mobile Hero Header -->
     <section class="pt-6 sm:pt-10 pb-2 sm:pb-4 text-left sm:text-center px-4 mx-auto space-y-3">
       <div class="inline-flex">
         <UBadge
           color="primary"
           variant="soft"
-          class="font-bold uppercase tracking-widest text-[10px] sm:text-xs px-3 py-1 rounded-full border border-lime-500/20"
+          class="font-bold uppercase tracking-widest text-[10px] sm:text-xs px-3 py-1 rounded-full border border-primary"
         >
-          <UIcon name="i-tabler-headset" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
+          <UIcon name="i-tabler-headset" class="size-3.5 mr-1.5 text-primary shrink-0" />
           <span>Bookings & enquiries</span>
         </UBadge>
       </div>
 
-      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white leading-tight">
+      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-highlighted leading-tight">
         Recreation Yard Kericho
       </h1>
 
-      <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-md mx-0 sm:mx-auto">
+      <p class="text-xs sm:text-sm text-muted leading-relaxed max-w-md mx-0 sm:mx-auto">
         Contact us about outdoor recreation, Recreation Yard Runners, sports kits, group bookings, partnerships or general enquiries.
       </p>
     </section>
 
     <!-- Compact Contact Info Bar -->
-    <div class="border-y border-neutral-200 dark:border-neutral-800 py-4 sm:py-6 my-4 sm:my-6">
-      <UContainer class="w-full">
+    <div class="border-y border-default py-4 sm:py-6 my-4 sm:my-6">
+      <UContainer>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           <!-- Phone / WhatsApp -->
           <a
             :href="`tel:${CONTACTS.phone}`"
-            class="group flex items-center gap-2.5 sm:gap-3.5 hover:text-lime-600 dark:hover:text-lime-400 transition-colors min-w-0"
+            class="group flex items-center gap-2.5 sm:gap-3.5 hover:text-primary dark:hover:text-primary transition-colors min-w-0"
           >
-            <div class="flex size-9 sm:size-11 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400 group-hover:bg-lime-500 group-hover:text-neutral-950 transition-colors">
+            <div class="flex size-9 sm:size-11 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary group-hover:bg-primary group-hover:text-highlighted transition-colors">
               <UIcon name="i-tabler-phone-call" class="size-4 sm:size-5" />
             </div>
             <div class="min-w-0 flex-1">
-              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-neutral-400 block truncate">Phone / WhatsApp</span>
-              <span class="text-xs sm:text-sm font-black text-neutral-950 dark:text-white block mt-0.5 group-hover:text-lime-600 dark:group-hover:text-lime-400 truncate">
+              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-muted block truncate">Phone / WhatsApp</span>
+              <span class="text-xs sm:text-sm font-black text-highlighted block mt-0.5 group-hover:text-primary truncate">
                 {{ CONTACTS.phone }}
               </span>
             </div>
@@ -182,14 +182,14 @@ useSchemaOrg([{
           <!-- Email Address -->
           <a
             :href="`mailto:${CONTACTS.email}`"
-            class="group flex items-center gap-2.5 sm:gap-3.5 hover:text-lime-600 dark:hover:text-lime-400 transition-colors min-w-0"
+            class="group flex items-center gap-2.5 sm:gap-3.5 hover:text-primary dark:hover:text-primary transition-colors min-w-0"
           >
-            <div class="flex size-9 sm:size-11 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400 group-hover:bg-lime-500 group-hover:text-neutral-950 transition-colors">
+            <div class="flex size-9 sm:size-11 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary group-hover:bg-primary group-hover:text-highlighted transition-colors">
               <UIcon name="i-tabler-mail" class="size-4 sm:size-5" />
             </div>
             <div class="min-w-0 flex-1">
-              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-neutral-400 block truncate">Email Address</span>
-              <span class="text-xs sm:text-sm font-black text-neutral-950 dark:text-white block mt-0.5 group-hover:text-lime-600 dark:group-hover:text-lime-400 truncate">
+              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-muted block truncate">Email Address</span>
+              <span class="text-xs sm:text-sm font-black text-highlighted block mt-0.5 group-hover:text-primary truncate">
                 {{ CONTACTS.email }}
               </span>
             </div>
@@ -197,12 +197,12 @@ useSchemaOrg([{
 
           <!-- Operating Hours -->
           <div class="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
-            <div class="flex size-9 sm:size-11 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400">
+            <div class="flex size-9 sm:size-11 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary">
               <UIcon name="i-tabler-clock" class="size-4 sm:size-5" />
             </div>
             <div class="min-w-0 flex-1">
-              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-neutral-400 block truncate">Operating Hours</span>
-              <span class="text-xs sm:text-sm font-bold text-neutral-950 dark:text-white block mt-0.5 truncate">
+              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-muted block truncate">Operating Hours</span>
+              <span class="text-xs sm:text-sm font-bold text-highlighted block mt-0.5 truncate">
                 8:00 AM - 7:00 PM
               </span>
             </div>
@@ -210,12 +210,12 @@ useSchemaOrg([{
 
           <!-- Location -->
           <div class="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
-            <div class="flex size-9 sm:size-11 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400">
+            <div class="flex size-9 sm:size-11 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary">
               <UIcon name="i-tabler-map-pin" class="size-4 sm:size-5" />
             </div>
             <div class="min-w-0 flex-1">
-              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-neutral-400 block truncate">Location</span>
-              <span class="text-xs sm:text-sm font-bold text-neutral-950 dark:text-white block mt-0.5 truncate">
+              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-muted block truncate">Location</span>
+              <span class="text-xs sm:text-sm font-bold text-highlighted block mt-0.5 truncate">
                 KOOMA, Kericho–Kisumu Hwy
               </span>
             </div>
@@ -225,7 +225,7 @@ useSchemaOrg([{
     </div>
 
     <!-- Main Content Container -->
-    <UContainer class="w-full pt-4 space-y-16">
+    <UContainer class="pt-4 space-y-16">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
         <!-- Left: Online Inquiry Form -->
         <div class="lg:col-span-7 space-y-6">
@@ -233,10 +233,10 @@ useSchemaOrg([{
             <UBadge color="neutral" variant="soft" class="font-bold text-[10px] uppercase tracking-wider mb-2">
               Send Us a Message
             </UBadge>
-            <h2 class="text-2xl font-black text-neutral-950 dark:text-white">
+            <h2 class="text-2xl font-black text-highlighted">
               Online Inquiry Form
             </h2>
-            <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+            <p class="text-xs text-muted mt-1">
               Fill in your details and our concierge team will respond within 2 hours.
             </p>
           </div>
@@ -255,7 +255,7 @@ useSchemaOrg([{
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="space-y-1.5">
-                <label class="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Your Full Name *</label>
+                <label class="text-xs font-bold uppercase tracking-wider text-muted">Your Full Name *</label>
                 <UInput
                   v-model="formState.name"
                   icon="i-tabler-user"
@@ -268,7 +268,7 @@ useSchemaOrg([{
               </div>
 
               <div class="space-y-1.5">
-                <label class="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Email Address *</label>
+                <label class="text-xs font-bold uppercase tracking-wider text-muted">Email Address *</label>
                 <UInput
                   v-model="formState.email"
                   type="email"
@@ -284,7 +284,7 @@ useSchemaOrg([{
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="space-y-1.5">
-                <label class="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Phone / WhatsApp Number</label>
+                <label class="text-xs font-bold uppercase tracking-wider text-muted">Phone / WhatsApp Number</label>
                 <UInput
                   v-model="formState.phone"
                   icon="i-tabler-phone"
@@ -296,7 +296,7 @@ useSchemaOrg([{
               </div>
 
               <div class="space-y-1.5">
-                <label class="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Inquiry Category *</label>
+                <label class="text-xs font-bold uppercase tracking-wider text-muted">Inquiry Category *</label>
                 <USelectMenu
                   v-model="formState.inquiryType"
                   :items="inquiryOptions"
@@ -309,7 +309,7 @@ useSchemaOrg([{
             </div>
 
             <div class="space-y-1.5">
-              <label class="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Subject Line</label>
+              <label class="text-xs font-bold uppercase tracking-wider text-muted">Subject Line</label>
               <UInput
                 v-model="formState.subject"
                 placeholder="e.g. Group recreation or sports kit enquiry"
@@ -320,7 +320,7 @@ useSchemaOrg([{
             </div>
 
             <div class="space-y-1.5">
-              <label class="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Your Message *</label>
+              <label class="text-xs font-bold uppercase tracking-wider text-muted">Your Message *</label>
               <UTextarea
                 v-model="formState.message"
                 placeholder="Provide details about your proposed date, time, group size, or specific questions..."
@@ -345,7 +345,7 @@ useSchemaOrg([{
               color="primary"
               icon="i-tabler-send"
               :loading="isSubmitting"
-              class="font-black uppercase text-xs text-neutral-950 rounded-xl py-3.5"
+              class="font-black uppercase text-xs text-highlighted rounded-sm py-3.5"
             >
               Send Message
             </UButton>
@@ -353,32 +353,32 @@ useSchemaOrg([{
         </div>
 
         <!-- Right: Venue Overview & Direct Channels -->
-        <div class="lg:col-span-5 space-y-8 lg:border-l lg:border-neutral-200/80 lg:dark:border-neutral-800 lg:pl-10">
+        <div class="lg:col-span-5 space-y-8 lg:border-l lg:border-default lg:dark:border-default lg:pl-10">
           <div class="space-y-3">
             <UBadge color="neutral" variant="soft" class="font-bold text-[10px] uppercase tracking-wider">
               Venue Overview
             </UBadge>
-            <h3 class="text-2xl font-black text-neutral-950 dark:text-white">
+            <h3 class="text-2xl font-black text-highlighted">
               Recreation Yard Kericho
             </h3>
-            <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            <p class="text-xs sm:text-sm text-muted leading-relaxed">
               Recreation Yard Limited connects outdoor recreation, running, sports merchandise and group experiences. We serve individuals, families, schools, corporate organisations, sports clubs, event organisers and community groups.
             </p>
           </div>
 
           <!-- Quick Info List -->
-          <div class="space-y-3 divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800 py-4">
+          <div class="space-y-3 divide-y divide-default dark:divide-default border-y border-default py-4">
             <div class="flex items-center gap-3 pt-3 first:pt-0">
-              <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0" />
-              <span class="text-xs text-neutral-700 dark:text-neutral-300 font-medium">Prior booking helps confirm availability</span>
+              <UIcon name="i-tabler-circle-check-filled" class="size-4 text-primary shrink-0" />
+              <span class="text-xs text-muted font-medium">Prior booking helps confirm availability</span>
             </div>
             <div class="flex items-center gap-3 pt-3">
-              <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0" />
-              <span class="text-xs text-neutral-700 dark:text-neutral-300 font-medium">Flexible recreation and merchandise enquiries</span>
+              <UIcon name="i-tabler-circle-check-filled" class="size-4 text-primary shrink-0" />
+              <span class="text-xs text-muted font-medium">Flexible recreation and merchandise enquiries</span>
             </div>
             <div class="flex items-center gap-3 pt-3">
-              <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0" />
-              <span class="text-xs text-neutral-700 dark:text-neutral-300 font-medium">Dedicated event hosts for corporate groups</span>
+              <UIcon name="i-tabler-circle-check-filled" class="size-4 text-primary shrink-0" />
+              <span class="text-xs text-muted font-medium">Dedicated event hosts for corporate groups</span>
             </div>
           </div>
 
@@ -392,7 +392,7 @@ useSchemaOrg([{
               color="neutral"
               variant="ghost"
               icon="i-tabler-brand-whatsapp"
-              class="font-bold text-xs rounded-xl py-3 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
+              class="font-bold text-xs rounded-sm py-3 text-success dark:text-success border border-success"
             >
               WhatsApp Chat
             </UButton>
@@ -401,19 +401,19 @@ useSchemaOrg([{
       </div>
 
       <!-- Contact & Support FAQs (Category: General) -->
-      <div v-if="contactFaqs?.length" class="border-t border-neutral-200 dark:border-neutral-800 pt-10 space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-5">
+      <div v-if="contactFaqs?.length" class="border-t border-default pt-10 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-default pb-5">
           <div>
             <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-xs mb-2">
               Support Guidance
             </UBadge>
-            <h2 class="text-2xl sm:text-3xl font-black text-neutral-950 dark:text-white">
+            <h2 class="text-2xl sm:text-3xl font-black text-highlighted">
               Frequently Asked Questions
             </h2>
           </div>
         </div>
 
-        <div class="divide-y divide-neutral-200/80 dark:divide-neutral-800/80">
+        <div class="divide-y divide-default dark:divide-default">
           <div
             v-for="(faq, idx) in contactFaqs"
             :key="idx"
@@ -421,16 +421,16 @@ useSchemaOrg([{
           >
             <button
               type="button"
-              class="w-full flex items-center justify-between text-left font-extrabold text-sm sm:text-base text-neutral-950 dark:text-white group cursor-pointer transition-colors"
+              class="w-full flex items-center justify-between text-left font-extrabold text-sm sm:text-base text-highlighted group cursor-pointer transition-colors"
               @click="toggleFaqItem(idx)"
             >
-              <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-4">
+              <span class="group-hover:text-primary transition-colors pr-4">
                 {{ faq.question }}
               </span>
               <UIcon
                 name="i-tabler-chevron-down"
-                class="size-5 text-neutral-400 transition-transform duration-200 shrink-0"
-                :class="{ 'rotate-180 text-lime-500': openFaqItems.includes(idx) }"
+                class="size-5 text-muted transition-transform duration-200 shrink-0"
+                :class="{ 'rotate-180 text-primary': openFaqItems.includes(idx) }"
               />
             </button>
 
@@ -444,7 +444,7 @@ useSchemaOrg([{
             >
               <p
                 v-show="openFaqItems.includes(idx)"
-                class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed pr-6 pt-1 font-medium overflow-hidden"
+                class="text-xs sm:text-sm text-muted leading-relaxed pr-6 pt-1 font-medium overflow-hidden"
               >
                 {{ faq.answer }}
               </p>
@@ -454,17 +454,17 @@ useSchemaOrg([{
       </div>
 
       <!-- Embedded Google Map Frame -->
-      <div class="border-t border-neutral-200 dark:border-neutral-800 pt-10 space-y-6">
+      <div class="border-t border-default pt-10 space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-wider text-[10px] mb-1">
-              <UIcon name="i-tabler-map-pin" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
+              <UIcon name="i-tabler-map-pin" class="size-3.5 mr-1.5 text-primary shrink-0" />
               Location
             </UBadge>
-            <h3 class="text-xl sm:text-2xl font-black text-neutral-950 dark:text-white">
+            <h3 class="text-xl sm:text-2xl font-black text-highlighted">
               KOOMA, Kericho–Kisumu Highway
             </h3>
-            <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
+            <p class="text-xs text-muted mt-0.5">
               Easily accessible from Kericho town, our venue is located along the scenic Kericho - Kisumu Highway, offering a convenient and picturesque setting for all visitors.
             </p>
           </div>
@@ -474,13 +474,13 @@ useSchemaOrg([{
             target="_blank"
             color="primary"
             icon="i-tabler-location"
-            class="font-extrabold uppercase text-xs text-neutral-950 rounded-xl px-5 py-2.5 shrink-0"
+            class="font-extrabold uppercase text-xs text-highlighted rounded-sm px-5 py-2.5 shrink-0"
           >
             Open in Google Maps
           </UButton>
         </div>
 
-        <div v-if="LOCATION_DETAILS.embedLink" class="relative w-full h-80 sm:h-105 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900">
+        <div v-if="LOCATION_DETAILS.embedLink" class="relative w-full h-80 sm:h-105  overflow-hidden border border-default bg-elevated">
           <iframe
             title="Recreation Yard Kericho Google Map Location"
             :src="LOCATION_DETAILS.embedLink"

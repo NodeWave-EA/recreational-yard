@@ -24,25 +24,26 @@ function getImageSrc(item: any) {
 <template>
   <section class="space-y-6">
     <!-- Section Header with View Mode Controls -->
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-5">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-default pb-5">
       <div>
         <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-xs mb-2">
           Recreation Yard Kericho
         </UBadge>
-        <h2 class="text-2xl sm:text-4xl font-black tracking-tight text-neutral-950 dark:text-white">
+        <h2 class="text-2xl sm:text-4xl font-black tracking-tight text-highlighted">
           A green space for shared experiences
         </h2>
       </div>
 
       <div class="flex items-center gap-3 shrink-0">
         <!-- View Toggle Control Group -->
-        <div class="flex items-center p-1 rounded-xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+        <div class="flex items-center p-1 rounded-sm bg-elevated border border-default" role="group" aria-label="View mode">
           <UButton
             size="xs"
             :color="viewMode === 'grid' ? 'primary' : 'neutral'"
             :variant="viewMode === 'grid' ? 'solid' : 'ghost'"
             icon="i-tabler-layout-grid"
             aria-label="Grid View"
+            :aria-pressed="viewMode === 'grid'"
             class="min-h-11 min-w-11 cursor-pointer justify-center rounded-lg font-bold"
             @click="viewMode = 'grid'"
           />
@@ -52,6 +53,7 @@ function getImageSrc(item: any) {
             :variant="viewMode === 'list' ? 'solid' : 'ghost'"
             icon="i-tabler-list"
             aria-label="List View"
+            :aria-pressed="viewMode === 'list'"
             class="min-h-11 min-w-11 cursor-pointer justify-center rounded-lg font-bold"
             @click="viewMode = 'list'"
           />
@@ -82,7 +84,7 @@ function getImageSrc(item: any) {
         class="group flex flex-col justify-between transition-all duration-300"
       >
         <div class="space-y-3">
-          <div class="relative aspect-4/3 rounded-2xl overflow-hidden border border-neutral-200/60 dark:border-neutral-800/60 bg-neutral-100 dark:bg-neutral-900">
+          <div class="relative aspect-4/3  overflow-hidden border border-default bg-elevated">
             <NuxtImg
               v-if="getImageSrc(facility)"
               :src="getImageSrc(facility)"
@@ -94,7 +96,7 @@ function getImageSrc(item: any) {
             />
             <div
               v-else
-              class="flex size-full items-center justify-center bg-lime-500/10 text-lime-600 dark:text-lime-400"
+              class="flex size-full items-center justify-center bg-primary/10 text-primary"
             >
               <UIcon :name="facility.icon || 'i-tabler-trees'" class="size-10" />
             </div>
@@ -110,30 +112,30 @@ function getImageSrc(item: any) {
           </div>
 
           <div class="space-y-1">
-            <div class="flex items-center justify-between text-[10px] font-bold text-neutral-500">
+            <div class="flex items-center justify-between text-[10px] font-bold text-muted">
               <span v-if="facility.capacity" class="flex items-center gap-1">
-                <UIcon name="i-tabler-users" class="size-3.5 text-lime-500" /> Cap: {{ facility.capacity }}
+                <UIcon name="i-tabler-users" class="size-3.5 text-primary" /> Cap: {{ facility.capacity }}
               </span>
-              <span v-if="facility.pricing?.rate" class="text-neutral-950 dark:text-white font-extrabold text-xs">
+              <span v-if="facility.pricing?.rate" class="text-highlighted font-extrabold text-xs">
                 {{ facility.pricing.rate }}
               </span>
             </div>
 
-            <h3 class="text-base font-extrabold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors line-clamp-1">
+            <h3 class="text-base font-extrabold text-highlighted group-hover:text-primary transition-colors line-clamp-1">
               {{ facility.title }}
             </h3>
 
-            <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+            <p class="text-xs text-muted line-clamp-2 leading-relaxed">
               {{ facility.description }}
             </p>
           </div>
         </div>
 
-        <div class="pt-3 mt-3 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between">
-          <span class="text-xs font-bold text-lime-600 dark:text-lime-400 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+        <div class="pt-3 mt-3 border-t border-default flex items-center justify-between">
+          <span class="text-xs font-bold text-primary flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
             Learn more
           </span>
-          <UIcon name="i-tabler-arrow-right" class="size-4 text-neutral-400 group-hover:text-lime-500 transition-colors" />
+          <UIcon name="i-tabler-arrow-right" class="size-4 text-muted group-hover:text-primary transition-colors" />
         </div>
       </NuxtLink>
     </div>
@@ -141,7 +143,7 @@ function getImageSrc(item: any) {
     <!-- Flat List Row View Option -->
     <div
       v-else-if="viewMode === 'list' && featuredFacilities?.length"
-      class="divide-y divide-neutral-200/70 dark:divide-neutral-800/70"
+      class="divide-y divide-default dark:divide-default"
     >
       <NuxtLink
         v-for="facility in featuredFacilities"
@@ -159,11 +161,11 @@ function getImageSrc(item: any) {
               format="webp"
               quality="80"
               loading="lazy"
-              class="size-20 sm:size-24 rounded-xl object-cover border border-neutral-200 dark:border-neutral-800 group-hover:scale-105 transition-transform duration-300"
+              class="size-20 sm:size-24 rounded-sm object-cover border border-default group-hover:scale-105 transition-transform duration-300"
             />
             <div
               v-else
-              class="flex size-20 sm:size-24 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400 border border-neutral-200 dark:border-neutral-800"
+              class="flex size-20 sm:size-24 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary border border-default"
             >
               <UIcon :name="facility.icon || 'i-tabler-trees'" class="size-8" />
             </div>
@@ -174,16 +176,16 @@ function getImageSrc(item: any) {
               <UBadge v-if="facility.badge" color="primary" variant="soft" class="font-bold rounded px-1.5 py-0.5 text-[9px] uppercase">
                 {{ facility.badge }}
               </UBadge>
-              <span v-if="facility.capacity" class="text-neutral-500 font-bold flex items-center gap-1">
-                <UIcon name="i-tabler-users" class="size-3.5 text-lime-500" /> Cap: {{ facility.capacity }}
+              <span v-if="facility.capacity" class="text-muted font-bold flex items-center gap-1">
+                <UIcon name="i-tabler-users" class="size-3.5 text-primary" /> Cap: {{ facility.capacity }}
               </span>
             </div>
 
-            <h3 class="text-base sm:text-lg font-extrabold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors truncate">
+            <h3 class="text-base sm:text-lg font-extrabold text-highlighted group-hover:text-primary transition-colors truncate">
               {{ facility.title }}
             </h3>
 
-            <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed max-w-2xl">
+            <p class="text-xs text-muted line-clamp-2 leading-relaxed max-w-2xl">
               {{ facility.description }}
             </p>
           </div>
@@ -192,10 +194,10 @@ function getImageSrc(item: any) {
         <!-- Rate & Link Arrow -->
         <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2 sm:pt-0 shrink-0">
           <div v-if="facility.pricing" class="text-left sm:text-right">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">Rate</span>
-            <span class="text-sm font-extrabold text-neutral-950 dark:text-white">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-muted block">Rate</span>
+            <span class="text-sm font-extrabold text-highlighted">
               {{ facility.pricing.rate }}
-              <span v-if="facility.pricing.unit" class="text-[10px] font-normal text-neutral-400">/ {{ facility.pricing.unit }}</span>
+              <span v-if="facility.pricing.unit" class="text-[10px] font-normal text-muted">/ {{ facility.pricing.unit }}</span>
             </span>
           </div>
 
@@ -205,7 +207,7 @@ function getImageSrc(item: any) {
             size="sm"
             icon="i-tabler-arrow-right"
             trailing
-            class="font-black uppercase text-xs text-neutral-950 rounded-xl px-4 py-2"
+            class="font-black uppercase text-xs text-highlighted rounded-sm px-4 py-2"
           >
             Explore
           </UButton>

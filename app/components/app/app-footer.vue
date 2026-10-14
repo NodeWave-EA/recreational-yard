@@ -15,7 +15,7 @@ function isLinkActive(path: string) {
 </script>
 
 <template>
-  <footer id="contact" class="border-t border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white transition-colors duration-300 w-full">
+  <footer id="contact" class="border-t border-default bg-default text-default transition-colors duration-300 w-full">
     <UContainer class="py-12 sm:py-16">
       <!-- Main Footer Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-start">
@@ -25,7 +25,7 @@ function isLinkActive(path: string) {
             <AppLogo class="h-9 sm:h-10 w-auto" />
           </NuxtLink>
 
-          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-md">
+          <p class="text-xs sm:text-sm text-muted leading-relaxed max-w-md">
             Recreation Yard Limited is a recreation, sports, wellness, events and sports merchandise business helping people move, play, connect and thrive in Kericho and beyond.
           </p>
 
@@ -34,16 +34,16 @@ function isLinkActive(path: string) {
             <div
               v-for="highlight in HIGHLIGHTS"
               :key="highlight.text"
-              class="text-xs text-lime-600 dark:text-lime-400 font-bold flex items-center gap-2"
+              class="text-xs text-primary font-bold flex items-center gap-2"
             >
-              <UIcon :name="highlight.icon" class="size-4 text-lime-500 shrink-0" />
+              <UIcon :name="highlight.icon" class="size-4 text-primary shrink-0" />
               <span>{{ highlight.text }}</span>
             </div>
           </div>
 
           <!-- Social Links Pills -->
           <div class="pt-2">
-            <span class="text-[10px] font-black uppercase tracking-wider text-neutral-400 block mb-2">Connect With Us</span>
+            <span class="text-[10px] font-black uppercase tracking-wider text-muted block mb-2">Connect With Us</span>
             <div class="flex items-center gap-2">
               <NuxtLink
                 v-for="item in SOCIAL_LINKS"
@@ -52,7 +52,7 @@ function isLinkActive(path: string) {
                 target="_blank"
                 rel="noopener noreferrer"
                 :aria-label="item.label"
-                class="flex size-9 items-center justify-center rounded-xl bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-lime-500 hover:text-neutral-950 dark:hover:bg-lime-500 dark:hover:text-neutral-950 transition-colors"
+                class="flex size-9 items-center justify-center rounded-sm bg-elevated text-muted hover:bg-primary hover:text-highlighted dark:hover:bg-primary dark:hover:text-highlighted transition-colors"
               >
                 <UIcon :name="item.icon" class="size-4.5" />
               </NuxtLink>
@@ -62,7 +62,7 @@ function isLinkActive(path: string) {
 
         <!-- Explore & Activities -->
         <div class="space-y-3.5 sm:col-span-1 lg:col-span-2">
-          <h4 class="text-[11px] font-black uppercase tracking-wider text-neutral-400 border-b border-neutral-200 dark:border-neutral-800 pb-2">
+          <h4 class="text-[11px] font-black uppercase tracking-wider text-muted border-b border-default pb-2">
             Explore
           </h4>
           <ul class="space-y-2 text-xs">
@@ -72,11 +72,11 @@ function isLinkActive(path: string) {
                 class="inline-flex items-center gap-2 py-1 transition-colors relative"
                 :class="[
                   isLinkActive(link.to as string)
-                    ? 'text-lime-600 dark:text-lime-400 font-extrabold'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white font-medium',
+                    ? 'text-primary font-extrabold'
+                    : 'text-muted hover:text-highlighted dark:hover:text-inverted font-medium',
                 ]"
               >
-                <span v-if="isLinkActive(link.to as string)" class="size-1.5 rounded-full bg-lime-500 shrink-0" />
+                <span v-if="isLinkActive(link.to as string)" class="size-1.5 rounded-full bg-primary shrink-0" />
                 <span>{{ link.label }}</span>
               </NuxtLink>
             </li>
@@ -85,7 +85,7 @@ function isLinkActive(path: string) {
 
         <!-- Community & Resources -->
         <div class="space-y-3.5 sm:col-span-1 lg:col-span-2">
-          <h4 class="text-[11px] font-black uppercase tracking-wider text-neutral-400 border-b border-neutral-200 dark:border-neutral-800 pb-2">
+          <h4 class="text-[11px] font-black uppercase tracking-wider text-muted border-b border-default pb-2">
             Community
           </h4>
           <ul class="space-y-2 text-xs">
@@ -95,11 +95,11 @@ function isLinkActive(path: string) {
                 class="inline-flex items-center gap-2 py-1 transition-colors relative"
                 :class="[
                   isLinkActive(link.to as string)
-                    ? 'text-lime-600 dark:text-lime-400 font-extrabold'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white font-medium',
+                    ? 'text-primary font-extrabold'
+                    : 'text-muted hover:text-highlighted dark:hover:text-inverted font-medium',
                 ]"
               >
-                <span v-if="isLinkActive(link.to as string)" class="size-1.5 rounded-full bg-lime-500 shrink-0" />
+                <span v-if="isLinkActive(link.to as string)" class="size-1.5 rounded-full bg-primary shrink-0" />
                 <span>{{ link.label }}</span>
               </NuxtLink>
             </li>
@@ -108,38 +108,38 @@ function isLinkActive(path: string) {
 
         <!-- Contact & Location Details -->
         <div class="space-y-3.5 sm:col-span-1 lg:col-span-3">
-          <h4 class="text-[11px] font-black uppercase tracking-wider text-neutral-400 border-b border-neutral-200 dark:border-neutral-800 pb-2">
+          <h4 class="text-[11px] font-black uppercase tracking-wider text-muted border-b border-default pb-2">
             Visit & Contact
           </h4>
 
-          <ul class="space-y-3 text-xs text-neutral-600 dark:text-neutral-400 font-medium">
+          <ul class="space-y-3 text-xs text-muted font-medium">
             <li class="flex items-start gap-2.5">
-              <UIcon name="i-tabler-map-pin" class="size-4 text-lime-500 shrink-0 mt-0.5" />
+              <UIcon name="i-tabler-map-pin" class="size-4 text-primary shrink-0 mt-0.5" />
               <span class="leading-snug">{{ LOCATION_DETAILS.address }}</span>
             </li>
 
             <li class="flex items-center gap-2.5">
-              <UIcon name="i-tabler-phone" class="size-4 text-lime-500 shrink-0" />
+              <UIcon name="i-tabler-phone" class="size-4 text-primary shrink-0" />
               <NuxtLink
                 :href="`tel:${LOCATION_DETAILS.phone}`"
-                class="hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
+                class="hover:text-primary dark:hover:text-primary transition-colors"
               >
                 {{ LOCATION_DETAILS.phone }}
               </NuxtLink>
             </li>
 
             <li class="flex items-center gap-2.5">
-              <UIcon name="i-tabler-mail" class="size-4 text-lime-500 shrink-0" />
+              <UIcon name="i-tabler-mail" class="size-4 text-primary shrink-0" />
               <NuxtLink
                 :href="`mailto:${LOCATION_DETAILS.email}`"
-                class="hover:text-lime-600 dark:hover:text-lime-400 transition-colors truncate"
+                class="hover:text-primary dark:hover:text-primary transition-colors truncate"
               >
                 {{ LOCATION_DETAILS.email }}
               </NuxtLink>
             </li>
 
             <li class="flex items-center gap-2.5">
-              <UIcon name="i-tabler-clock" class="size-4 text-lime-500 shrink-0" />
+              <UIcon name="i-tabler-clock" class="size-4 text-primary shrink-0" />
               <span>{{ LOCATION_DETAILS.hours }}</span>
             </li>
           </ul>
@@ -151,7 +151,7 @@ function isLinkActive(path: string) {
               size="sm"
               color="primary"
               icon="i-tabler-location"
-              class="font-black uppercase text-xs text-neutral-950 rounded-xl px-4 py-2.5"
+              class="font-black uppercase text-xs text-highlighted rounded-sm px-4 py-2.5"
             >
               Get Directions
             </UButton>
@@ -160,13 +160,13 @@ function isLinkActive(path: string) {
       </div>
 
       <!-- Bottom Copyright Bar -->
-      <div class="mt-12 pt-6 border-t border-neutral-200/80 dark:border-neutral-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-bold text-neutral-500 dark:text-neutral-400 text-center sm:text-left">
+      <div class="mt-12 pt-6 border-t border-default flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-bold text-muted text-center sm:text-left">
         <p>
           &copy; {{ new Date().getFullYear() }} {{ LOCATION_DETAILS.company }} • OUTDOOR RECREATION.
         </p>
 
-        <div class="flex items-center gap-2 text-lime-600 dark:text-lime-400">
-          <UIcon name="i-tabler-heart" class="size-3.5 text-lime-500 shrink-0" />
+        <div class="flex items-center gap-2 text-primary">
+          <UIcon name="i-tabler-heart" class="size-3.5 text-primary shrink-0" />
           <span class="uppercase tracking-wider text-[10px]">Move. Play. Connect. Thrive.</span>
         </div>
       </div>

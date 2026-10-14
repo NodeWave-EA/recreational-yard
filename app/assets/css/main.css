@@ -52,6 +52,7 @@
   --color-lime-800: #476312;
   --color-lime-900: #3c5413;
   --color-lime-950: #1f2f05;
+  --color-primary-foreground: #0c1e38;
 
   /* override default font */
   --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
@@ -59,7 +60,7 @@
 }
 
 :root {
-  --ui-radius: 0.25rem;
+  --ui-radius: 0;
   --ui-primary: var(--color-brand-lime-500);
   --ui-neutral: var(--color-brand-navy-900);
 
@@ -73,16 +74,36 @@
   --ui-bg: #f8fafc;
   --ui-bg-muted: #f1f5f9;
   --ui-bg-elevated: #ffffff;
+  --ui-bg-accented: #e2e8f0;
+  --ui-bg-inverted: #0c1e38;
+  --ui-text: #0f172a;
   --ui-text-highlighted: #0c1e38;
   --ui-text-muted: #475569;
+  --ui-text-toned: #334155;
+  --ui-text-dimmed: #64748b;
+  --ui-text-inverted: #ffffff;
+  --ui-border: #cbd5e1;
+  --ui-border-muted: #e2e8f0;
+  --ui-border-accented: #94a3b8;
+  --ui-border-inverted: #0c1e38;
 }
 
 .dark {
   --ui-bg: #0c1e38;
   --ui-bg-muted: #0f172a;
   --ui-bg-elevated: #182e4e;
+  --ui-bg-accented: #21355c;
+  --ui-bg-inverted: #f8fafc;
+  --ui-text: #f1f5f9;
   --ui-text-highlighted: #ffffff;
-  --ui-text-muted: #94a3b8;
+  --ui-text-muted: #cbd5e1;
+  --ui-text-toned: #e2e8f0;
+  --ui-text-dimmed: #94a3b8;
+  --ui-text-inverted: #0c1e38;
+  --ui-border: #38506f;
+  --ui-border-muted: #263c5c;
+  --ui-border-accented: #678fce;
+  --ui-border-inverted: #f8fafc;
 }
 
 /* Global Theme View Transitions */
@@ -121,4 +142,59 @@ h6 {
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
+}
+
+.bg-primary {
+  color: var(--color-primary-foreground);
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-brand-lime-500);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Keep catalog rows readable when content and actions wrap on narrow screens. */
+[data-catalog-list] {
+  min-width: 0;
+}
+
+[data-catalog-list-row] {
+  min-width: 0;
+}
+
+[data-catalog-list-row] h2,
+[data-catalog-list-row] h3,
+[data-catalog-list-row] p {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 639px) {
+  [data-catalog-list-row] {
+    padding-block: 1rem;
+  }
+
+  [data-catalog-list-row] > * {
+    min-width: 0;
+  }
+
+  [data-catalog-list-row] img {
+    max-width: 5rem;
+  }
+
+  [data-catalog-list-row] [data-list-action] {
+    width: 100%;
+    border-top: 1px solid var(--ui-border);
+    padding-top: 0.75rem;
+  }
 }

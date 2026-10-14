@@ -10,12 +10,6 @@ const { getCollection } = useContentQuery()
 
 const {
   pricingPlans,
-  searchQuery,
-  selectedCategory,
-  sortBy,
-  categoryOptions,
-  sortOptions,
-  selectedCategoryMeta,
   filteredPlans,
   resetFilters,
 } = await usePricingCatalog()
@@ -70,7 +64,7 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-16 transition-colors duration-300">
+  <div class="min-h-screen bg-default text-default pb-16 transition-colors duration-300">
     <!-- Hero Banner -->
     <div class="pt-6 sm:pt-10 pb-2 sm:pb-4 text-left sm:text-center space-y-3 max-w-3xl mx-auto px-4">
       <div class="inline-flex">
@@ -79,119 +73,27 @@ useSchemaOrg([{
           variant="soft"
           class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-3.5 py-1 sm:py-0.5 rounded-full"
         >
-          <UIcon name="i-tabler-ticket" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
+          <UIcon name="i-tabler-ticket" class="size-3.5 mr-1.5 text-primary shrink-0" />
           <span>Services & quotations</span>
         </UBadge>
       </div>
 
-      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white leading-tight">
+      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-highlighted leading-tight">
         Services built around your needs
       </h1>
 
-      <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl mx-0 sm:mx-auto">
+      <p class="text-xs sm:text-base text-muted leading-relaxed max-w-2xl mx-0 sm:mx-auto">
         We coordinate outdoor recreation, group experiences, sports kits, uniforms and selected equipment. Requirements, availability and pricing are confirmed before an arrangement is finalised.
       </p>
     </div>
 
-    <!-- Sticky Toolbar -->
-    <div class="sticky top-(--ui-header-height,4rem) z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3.5 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
-      <UContainer class="w-full">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-3">
-          <UInput
-            v-model="searchQuery"
-            icon="i-tabler-search"
-            placeholder="Search passes, features, or access levels..."
-            size="md"
-            color="primary"
-            class="w-full md:w-80 shadow-xs rounded-xl"
-            clearable
-          />
-
-          <!-- Filter Dropdowns & View Mode Switcher -->
-          <div class="flex flex-wrap items-center gap-2.5 w-full md:w-auto justify-between md:justify-end">
-            <!-- Pass Type Dropdown with Search -->
-            <USelectMenu
-              v-model="selectedCategory"
-              :items="categoryOptions"
-              :options="categoryOptions"
-              value-key="id"
-              label-key="label"
-              value-attribute="id"
-              option-attribute="label"
-              searchable
-              placeholder="Filter Pass Type..."
-              class="w-44 shrink-0"
-            >
-              <template #leading>
-                <UIcon :name="selectedCategoryMeta.icon" class="size-4 text-lime-500 shrink-0" />
-              </template>
-              <template #item="{ item }">
-                <div class="flex items-center gap-2 truncate">
-                  <UIcon :name="item?.icon || 'i-tabler-ticket'" class="size-4 text-lime-500 shrink-0" />
-                  <span class="truncate">{{ item?.label }}</span>
-                </div>
-              </template>
-            </USelectMenu>
-
-            <!-- Sort Dropdown -->
-            <USelectMenu
-              v-model="sortBy"
-              :items="sortOptions"
-              :options="sortOptions"
-              value-key="id"
-              label-key="label"
-              value-attribute="id"
-              option-attribute="label"
-              class="w-40 shrink-0"
-            />
-
-            <!-- View Mode Switcher (Grid vs List) -->
-            <div class="flex items-center p-1 rounded-xl bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0">
-              <UButton
-                size="xs"
-                :color="viewMode === 'grid' ? 'primary' : 'neutral'"
-                :variant="viewMode === 'grid' ? 'solid' : 'ghost'"
-                icon="i-tabler-layout-grid"
-                aria-label="Grid View"
-                class="rounded-lg font-bold"
-                @click="viewMode = 'grid'"
-              />
-              <UButton
-                size="xs"
-                :color="viewMode === 'list' ? 'primary' : 'neutral'"
-                :variant="viewMode === 'list' ? 'solid' : 'ghost'"
-                icon="i-tabler-list"
-                aria-label="List View"
-                class="rounded-lg font-bold"
-                @click="viewMode = 'list'"
-              />
-            </div>
-          </div>
-        </div>
-      </UContainer>
-    </div>
-
     <!-- Main Content Container -->
-    <UContainer class="w-full pt-6 space-y-16">
-      <!-- Active Filter Summary Bar -->
-      <div v-if="selectedCategory !== 'all' || searchQuery" class="flex flex-wrap items-center justify-between gap-3 text-xs border-b border-neutral-200 dark:border-neutral-800 pb-3">
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="font-bold text-neutral-400">Active Filters:</span>
-          <UBadge v-if="searchQuery" color="primary" variant="soft" class="rounded-lg font-bold text-[11px] px-2 py-0.5 flex items-center gap-1">
-            <span>Query: "{{ searchQuery }}"</span>
-            <UIcon name="i-tabler-x" class="size-3.5 cursor-pointer" @click="searchQuery = ''" />
-          </UBadge>
-          <UBadge v-if="selectedCategory !== 'all'" color="primary" variant="soft" class="rounded-lg font-bold text-[11px] px-2 py-0.5 flex items-center gap-1">
-            <span>Pass Type: {{ selectedCategoryMeta.label }}</span>
-            <UIcon name="i-tabler-x" class="size-3.5 cursor-pointer" @click="selectedCategory = 'all'" />
-          </UBadge>
-          <UButton size="xs" color="neutral" variant="link" class="text-xs font-bold text-neutral-400" @click="resetFilters">
-            Clear All
-          </UButton>
+    <UContainer class="pt-6 space-y-16">
+      <div class="mb-6 flex justify-end" role="group" aria-label="View mode">
+        <div class="flex items-center gap-1 p-1 rounded-sm bg-elevated border border-default">
+          <UButton size="xs" :color="viewMode === 'grid' ? 'primary' : 'neutral'" :variant="viewMode === 'grid' ? 'solid' : 'ghost'" icon="i-tabler-layout-grid" aria-label="Grid View" :aria-pressed="viewMode === 'grid'" class="rounded-sm" @click="viewMode = 'grid'" />
+          <UButton size="xs" :color="viewMode === 'list' ? 'primary' : 'neutral'" :variant="viewMode === 'list' ? 'solid' : 'ghost'" icon="i-tabler-list" aria-label="List View" :aria-pressed="viewMode === 'list'" class="rounded-sm" @click="viewMode = 'list'" />
         </div>
-        <span class="font-bold text-neutral-500">
-          Showing {{ filteredPlans.length }} {{ filteredPlans.length === 1 ? 'option' : 'options' }}
-        </span>
       </div>
 
       <!-- Grid View Option -->
@@ -209,11 +111,11 @@ useSchemaOrg([{
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
               <div
-                class="flex size-12 items-center justify-center rounded-2xl transition-colors"
+                class="flex size-12 items-center justify-center  transition-colors"
                 :class="[
                   plan.isPopular
-                    ? 'bg-lime-500/15 text-lime-600 dark:text-lime-400'
-                    : 'bg-neutral-100 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400',
+                    ? 'bg-primary/15 text-primary'
+                    : 'bg-elevated text-muted',
                 ]"
               >
                 <UIcon :name="plan.isPopular ? 'i-tabler-crown' : 'i-tabler-ticket'" class="size-6" />
@@ -230,36 +132,36 @@ useSchemaOrg([{
             </div>
 
             <!-- Title & Description -->
-            <h2 class="text-xl font-black text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
+            <h2 class="text-xl font-black text-highlighted group-hover:text-primary transition-colors">
               {{ plan.title }}
             </h2>
 
-            <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 mt-1.5 leading-relaxed">
+            <p class="text-xs text-muted line-clamp-2 mt-1.5 leading-relaxed">
               {{ plan.description }}
             </p>
 
             <!-- Price Banner -->
-            <div class="my-4 pt-3 border-t border-neutral-200/60 dark:border-neutral-800/60">
-              <span v-if="plan.price" class="text-[9px] font-bold uppercase tracking-wider text-neutral-400 block">{{ plan.currency || 'KES' }}</span>
+            <div class="my-4 pt-3 border-t border-default">
+              <span v-if="plan.price" class="text-[9px] font-bold uppercase tracking-wider text-muted block">{{ plan.currency || 'KES' }}</span>
               <div class="flex items-baseline gap-1 mt-0.5">
-                <span class="text-2xl sm:text-3xl font-black text-neutral-950 dark:text-white">
+                <span class="text-2xl sm:text-3xl font-black text-highlighted">
                   {{ plan.price ? plan.price.toLocaleString() : 'Quote on request' }}
                 </span>
-                <span class="text-xs text-neutral-400 font-medium">/ {{ plan.billingCycle }}</span>
+                <span class="text-xs text-muted font-medium">/ {{ plan.billingCycle }}</span>
               </div>
             </div>
 
             <!-- Feature Bullet List -->
-            <div v-if="plan.features?.length" class="space-y-2 pt-1 text-xs text-neutral-600 dark:text-neutral-300">
+            <div v-if="plan.features?.length" class="space-y-2 pt-1 text-xs text-muted">
               <div v-for="(feat, idx) in plan.features.slice(0, 4)" :key="idx" class="flex items-start gap-2">
-                <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0 mt-0.5" />
+                <UIcon name="i-tabler-circle-check-filled" class="size-4 text-primary shrink-0 mt-0.5" />
                 <span class="leading-tight">{{ feat }}</span>
               </div>
             </div>
           </div>
 
           <!-- Footer CTA Button -->
-          <div class="pt-4 mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60">
+          <div class="pt-4 mt-4 border-t border-default">
             <UButton
               :to="plan.path"
               :color="plan.isPopular ? 'primary' : 'neutral'"
@@ -267,8 +169,8 @@ useSchemaOrg([{
               size="md"
               icon="i-tabler-arrow-right"
               trailing
-              class="w-full font-black uppercase text-xs rounded-xl justify-center py-2.5"
-              :class="[plan.isPopular ? 'text-neutral-950' : '']"
+              class="w-full font-black uppercase text-xs rounded-sm justify-center py-2.5"
+              :class="[plan.isPopular ? 'text-highlighted' : '']"
             >
               {{ plan.cta?.label || 'Get Pass' }}
             </UButton>
@@ -279,23 +181,23 @@ useSchemaOrg([{
       <!-- Flat Row List View Option -->
       <div
         v-else-if="viewMode === 'list' && filteredPlans.length"
-        class="divide-y divide-neutral-200/70 dark:divide-neutral-800/70"
+        data-catalog-list class="divide-y divide-default dark:divide-default"
       >
         <div
           v-for="plan in filteredPlans"
           :key="plan.id || plan.path"
-          class="group py-5 transition-colors"
+          data-catalog-list-row class="group py-5 transition-colors"
         >
           <!-- Top Row: Icon, Info & Price/CTA -->
           <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <!-- Badge Icon + Plan Details -->
             <div class="flex items-start gap-4 min-w-0 flex-1">
               <div
-                class="flex size-16 sm:size-20 shrink-0 items-center justify-center rounded-2xl transition-colors"
+                class="flex size-16 sm:size-20 shrink-0 items-center justify-center  transition-colors"
                 :class="[
                   plan.isPopular
-                    ? 'bg-lime-500/15 text-lime-600 dark:text-lime-400'
-                    : 'bg-neutral-100 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400',
+                    ? 'bg-primary/15 text-primary'
+                    : 'bg-elevated text-muted',
                 ]"
               >
                 <UIcon :name="plan.isPopular ? 'i-tabler-crown' : 'i-tabler-ticket'" class="size-8" />
@@ -311,30 +213,30 @@ useSchemaOrg([{
                   >
                     {{ plan.badge }}
                   </UBadge>
-                  <span class="text-neutral-400 font-medium">• {{ plan.billingCycle }} access</span>
+                  <span class="text-muted font-medium">• {{ plan.billingCycle }} access</span>
                 </div>
 
-                <h2 class="text-base sm:text-xl font-black text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors truncate">
+                <h2 class="text-base sm:text-xl font-black text-highlighted group-hover:text-primary transition-colors truncate">
                   <NuxtLink :to="plan.path">
                     {{ plan.title }}
                   </NuxtLink>
                 </h2>
 
-                <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed max-w-2xl">
+                <p class="text-xs text-muted line-clamp-2 leading-relaxed max-w-2xl">
                   {{ plan.description }}
                 </p>
               </div>
             </div>
 
             <!-- Price & Action Button -->
-            <div class="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto pt-3 sm:pt-0 shrink-0">
+            <div class="flex items-center justify-between sm:justify-end gap-5 w-full lg:w-auto pt-3 sm:pt-0 shrink-0">
               <div class="text-left sm:text-right">
-                <span v-if="plan.price" class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">{{ plan.currency || 'KES' }}</span>
+                <span v-if="plan.price" class="text-[10px] font-bold uppercase tracking-wider text-muted block">{{ plan.currency || 'KES' }}</span>
                 <div class="flex items-baseline gap-1">
-                  <span class="text-xl sm:text-2xl font-black text-neutral-950 dark:text-white">
+                  <span class="text-xl sm:text-2xl font-black text-highlighted">
                     {{ plan.price ? plan.price.toLocaleString() : 'Quote on request' }}
                   </span>
-                  <span class="text-[11px] text-neutral-400">/ {{ plan.billingCycle }}</span>
+                  <span class="text-[11px] text-muted">/ {{ plan.billingCycle }}</span>
                 </div>
               </div>
 
@@ -345,8 +247,8 @@ useSchemaOrg([{
                 size="sm"
                 icon="i-tabler-arrow-right"
                 trailing
-                class="font-black uppercase text-xs rounded-xl px-4 py-2"
-                :class="[plan.isPopular ? 'text-neutral-950' : '']"
+                class="font-black uppercase text-xs rounded-sm px-4 py-2"
+                :class="[plan.isPopular ? 'text-highlighted' : '']"
               >
                 {{ plan.cta?.label || 'View Details' }}
               </UButton>
@@ -354,10 +256,10 @@ useSchemaOrg([{
           </div>
 
           <!-- Bottom Row: Features -->
-          <div v-if="plan.features?.length" class="mt-3.5 pt-3 border-t border-neutral-200/60 dark:border-neutral-800/60 w-full">
-            <div class="flex flex-wrap items-center gap-x-6 gap-y-1.5 text-xs text-neutral-600 dark:text-neutral-300">
+          <div v-if="plan.features?.length" class="mt-3.5 pt-3 border-t border-default w-full">
+            <div class="flex flex-wrap items-center gap-x-6 gap-y-1.5 text-xs text-muted">
               <div v-for="(feat, idx) in plan.features" :key="idx" class="inline-flex items-center gap-1.5">
-                <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0" />
+                <UIcon name="i-tabler-circle-check-filled" class="size-4 text-primary shrink-0" />
                 <span class="font-medium">{{ feat }}</span>
               </div>
             </div>
@@ -367,15 +269,15 @@ useSchemaOrg([{
 
       <!-- Filter Empty State -->
       <div v-else-if="hasAnyPlan" class="py-20 text-center space-y-4 max-w-md mx-auto px-4">
-        <div class="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
-          <UIcon name="i-tabler-filter-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
+        <div class="flex size-16 items-center justify-center  bg-elevated mx-auto border border-default">
+          <UIcon name="i-tabler-filter-off" class="size-8 text-muted" />
         </div>
 
         <div class="space-y-1">
-          <h3 class="text-lg font-bold text-neutral-950 dark:text-white">
+          <h3 class="text-lg font-bold text-highlighted">
             No Matching Services
           </h3>
-          <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+          <p class="text-xs text-muted leading-relaxed">
             No services match your current search query or active filter selections. Try clearing your filters or searching for something else.
           </p>
         </div>
@@ -386,7 +288,7 @@ useSchemaOrg([{
             color="neutral"
             variant="outline"
             icon="i-tabler-rotate-clockwise"
-            class="rounded-xl font-bold text-xs px-4 py-2 cursor-pointer"
+            class="rounded-sm font-bold text-xs px-4 py-2 cursor-pointer"
             @click="resetFilters"
           >
             Reset All Filters
@@ -396,15 +298,15 @@ useSchemaOrg([{
 
       <!-- Catalog Empty State -->
       <div v-else class="py-20 text-center space-y-4 max-w-md mx-auto px-4">
-        <div class="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
-          <UIcon name="i-tabler-ticket-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
+        <div class="flex size-16 items-center justify-center  bg-elevated mx-auto border border-default">
+          <UIcon name="i-tabler-ticket-off" class="size-8 text-muted" />
         </div>
 
         <div class="space-y-1">
-          <h3 class="text-lg font-bold text-neutral-950 dark:text-white">
+          <h3 class="text-lg font-bold text-highlighted">
             No Services Available
           </h3>
-          <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+          <p class="text-xs text-muted leading-relaxed">
             Services are arranged around your requirements. Contact us to discuss recreation, group experiences, sports kits or selected equipment.
           </p>
         </div>
@@ -415,7 +317,7 @@ useSchemaOrg([{
             size="sm"
             color="primary"
             icon="i-tabler-mail"
-            class="rounded-xl font-bold text-xs px-4 py-2 text-neutral-950 cursor-pointer"
+            class="rounded-sm font-bold text-xs px-4 py-2 text-highlighted cursor-pointer"
           >
             Contact Us
           </UButton>
@@ -425,7 +327,7 @@ useSchemaOrg([{
             color="neutral"
             variant="outline"
             icon="i-tabler-home"
-            class="rounded-xl font-bold text-xs px-4 py-2 cursor-pointer"
+            class="rounded-sm font-bold text-xs px-4 py-2 cursor-pointer"
           >
             Return Home
           </UButton>
@@ -433,29 +335,29 @@ useSchemaOrg([{
       </div>
 
       <!-- Testimonials Section -->
-      <div v-if="pricingTestimonials?.length" class="pt-10 border-t border-neutral-200 dark:border-neutral-800 space-y-8">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-5">
+      <div v-if="pricingTestimonials?.length" class="pt-10 border-t border-default space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-default pb-5">
           <div>
             <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-xs mb-2">
               Pass Member Reviews
             </UBadge>
-            <h2 class="text-2xl sm:text-3xl font-black text-neutral-950 dark:text-white">
+            <h2 class="text-2xl sm:text-3xl font-black text-highlighted">
               Why Members Love Their Passes
             </h2>
           </div>
-          <p class="text-xs text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed">
+          <p class="text-xs text-muted max-w-md leading-relaxed">
             Hear from monthly and annual pass holders about ground access, guest discounts, and value.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 divide-y md:divide-y-0 md:divide-x divide-neutral-200 dark:divide-neutral-800">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 divide-y md:divide-y-0 md:divide-x divide-default dark:divide-default">
           <div
             v-for="(item, idx) in pricingTestimonials"
             :key="idx"
             class="space-y-4 pt-6 md:pt-0"
             :class="{ 'md:pl-8': idx > 0 }"
           >
-            <div class="flex items-center gap-1 text-lime-500">
+            <div class="flex items-center gap-1 text-primary">
               <UIcon
                 v-for="star in (item.rating || 5)"
                 :key="star"
@@ -464,7 +366,7 @@ useSchemaOrg([{
               />
             </div>
 
-            <p class="text-xs sm:text-sm font-medium text-neutral-800 dark:text-neutral-200 leading-relaxed italic">
+            <p class="text-xs sm:text-sm font-medium text-muted leading-relaxed italic">
               "{{ item.comment }}"
             </p>
 
@@ -475,20 +377,20 @@ useSchemaOrg([{
                 :alt="item.author"
                 format="webp"
                 quality="80"
-                class="size-9 rounded-full object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
+                class="size-9 rounded-full object-cover border border-default shrink-0"
               />
               <div
                 v-else
-                class="flex size-9 shrink-0 items-center justify-center rounded-full bg-lime-500/10 text-lime-600 dark:text-lime-400 font-bold text-xs"
+                class="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-xs"
               >
                 {{ item.author.charAt(0) }}
               </div>
 
               <div class="space-y-0.5">
-                <h3 class="text-xs font-bold text-neutral-950 dark:text-white">
+                <h3 class="text-xs font-bold text-highlighted">
                   {{ item.author }}
                 </h3>
-                <p class="text-[10px] text-neutral-500 dark:text-neutral-400 font-medium">
+                <p class="text-[10px] text-muted font-medium">
                   {{ item.role }}
                 </p>
               </div>
@@ -498,17 +400,17 @@ useSchemaOrg([{
       </div>
 
       <!-- Group & Corporate Booking Banner -->
-      <div class="py-10 border-y border-neutral-200 dark:border-neutral-800">
+      <div class="py-10 border-y border-default">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div class="lg:col-span-8 space-y-3">
             <UBadge color="primary" variant="soft" class="font-bold text-xs uppercase tracking-wider">
-              <UIcon name="i-tabler-users" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
+              <UIcon name="i-tabler-users" class="size-3.5 mr-1.5 text-primary shrink-0" />
               Group & Corporate Bookings
             </UBadge>
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-neutral-950 dark:text-white">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-highlighted">
               Planning a group, school or corporate experience?
             </h3>
-            <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-300 leading-relaxed">
+            <p class="text-xs sm:text-base text-muted leading-relaxed">
               We discuss suitable programmes for birthdays, graduations, meetings and team-building activities based on your objectives, group size, preferred activities and available time.
             </p>
           </div>
@@ -518,7 +420,7 @@ useSchemaOrg([{
               size="lg"
               color="primary"
               icon="i-tabler-users"
-              class="w-full sm:w-auto font-black uppercase text-xs text-neutral-950 rounded-xl px-6 py-3.5 justify-center"
+              class="w-full lg:w-auto font-black uppercase text-xs text-highlighted rounded-sm px-6 py-3.5 justify-center"
             >
               Request a Quote
             </UButton>
@@ -528,18 +430,18 @@ useSchemaOrg([{
 
       <!-- Pass & Membership FAQs -->
       <div v-if="pricingFaqs?.length" class="space-y-6 pt-2">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-5">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-default pb-5">
           <div>
             <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-xs mb-2">
               Pass & Billing Guidance
             </UBadge>
-            <h2 class="text-2xl sm:text-3xl font-black text-neutral-950 dark:text-white">
+            <h2 class="text-2xl sm:text-3xl font-black text-highlighted">
               Pass & Membership FAQs
             </h2>
           </div>
         </div>
 
-        <div class="divide-y divide-neutral-200/80 dark:divide-neutral-800/80">
+        <div data-catalog-list class="divide-y divide-default dark:divide-default">
           <div
             v-for="(faq, idx) in pricingFaqs"
             :key="idx"
@@ -547,16 +449,16 @@ useSchemaOrg([{
           >
             <button
               type="button"
-              class="w-full flex items-center justify-between text-left font-extrabold text-sm sm:text-base text-neutral-950 dark:text-white group cursor-pointer transition-colors"
+              class="w-full flex items-center justify-between text-left font-extrabold text-sm sm:text-base text-highlighted group cursor-pointer transition-colors"
               @click="toggleFaqItem(idx)"
             >
-              <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-4">
+              <span class="group-hover:text-primary transition-colors pr-4">
                 {{ faq.question }}
               </span>
               <UIcon
                 name="i-tabler-chevron-down"
-                class="size-5 text-neutral-400 transition-transform duration-200 shrink-0"
-                :class="{ 'rotate-180 text-lime-500': openFaqItems.includes(idx) }"
+                class="size-5 text-muted transition-transform duration-200 shrink-0"
+                :class="{ 'rotate-180 text-primary': openFaqItems.includes(idx) }"
               />
             </button>
 
@@ -570,7 +472,7 @@ useSchemaOrg([{
             >
               <p
                 v-show="openFaqItems.includes(idx)"
-                class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed pr-6 pt-1 font-medium overflow-hidden"
+                class="text-xs sm:text-sm text-muted leading-relaxed pr-6 pt-1 font-medium overflow-hidden"
               >
                 {{ faq.answer }}
               </p>

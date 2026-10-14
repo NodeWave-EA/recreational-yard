@@ -80,7 +80,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="relative min-h-[calc(100vh-var(--ui-header-height,4rem))] w-full flex flex-col justify-between bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white overflow-hidden transition-colors duration-300">
+  <section class="relative min-h-[calc(100vh-var(--ui-header-height,4rem))] w-full flex flex-col justify-between bg-default text-muted overflow-hidden transition-colors duration-300">
     <!-- Full-Width & Full-Height Background Image Layer -->
     <div class="absolute inset-0 h-full w-full overflow-hidden pointer-events-none z-0">
       <Transition name="fade">
@@ -107,7 +107,7 @@ onUnmounted(() => {
 
     <!-- Main Hero Split Content -->
     <div class="relative z-10 flex-1 flex items-center py-6 sm:py-8 lg:py-10">
-      <UContainer class="w-full max-w-7xl">
+      <UContainer>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <!-- Left Column -->
           <div class="lg:col-span-6 space-y-3 sm:space-y-4 text-left">
@@ -116,9 +116,9 @@ onUnmounted(() => {
               <UBadge
                 color="primary"
                 variant="soft"
-                class="font-bold text-[10px] sm:text-xs uppercase tracking-widest px-3.5 py-1 rounded-full border border-lime-500/30 backdrop-blur-md"
+                class="font-bold text-[10px] sm:text-xs uppercase tracking-widest px-3.5 py-1 rounded-full border border-primary backdrop-blur-md"
               >
-                <UIcon name="i-tabler-map-pin" class="size-3.5 sm:size-4 mr-1.5 text-lime-600 dark:text-lime-400 shrink-0" />
+                <UIcon name="i-tabler-map-pin" class="size-3.5 sm:size-4 mr-1.5 text-primary shrink-0" />
                 <span class="truncate">
                   MOVE. PLAY. CONNECT. THRIVE.
                 </span>
@@ -126,7 +126,7 @@ onUnmounted(() => {
             </div>
 
             <!-- Headline -->
-            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white uppercase leading-tight sm:leading-[1.1]">
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-highlighted uppercase leading-tight sm:leading-[1.1]">
               Recreation, sport and shared experiences.
               <span class="block bg-linear-to-r from-lime-500 to-emerald-600 dark:from-lime-400 dark:to-emerald-400 bg-clip-text text-transparent">
                 Built for active living
@@ -134,7 +134,7 @@ onUnmounted(() => {
             </h1>
 
             <!-- Description -->
-            <p class="max-w-xl text-xs sm:text-sm text-neutral-700 dark:text-neutral-200 leading-relaxed font-medium">
+            <p class="max-w-xl text-xs sm:text-sm text-muted leading-relaxed font-medium">
               Recreation Yard Limited brings together outdoor recreation, running and walking, sports merchandise, and group experiences at Kooma along the Kericho–Kisumu Highway. Come to move, play, connect, relax and thrive.
             </p>
 
@@ -145,7 +145,7 @@ onUnmounted(() => {
                 color="primary"
                 to="/pricing"
                 icon="i-tabler-ticket"
-                class="w-full sm:w-auto font-black uppercase text-xs text-neutral-950 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl shadow-md hover:shadow-lime-500/25 transition-all justify-center"
+                class="w-full sm:w-auto font-black uppercase text-xs text-highlighted px-5 py-2.5 sm:px-6 sm:py-3 rounded-sm shadow-md hover:shadow-lime-500/25 transition-all justify-center"
               >
                 Plan Your Visit
               </UButton>
@@ -156,7 +156,7 @@ onUnmounted(() => {
                 variant="outline"
                 to="/facilities"
                 icon="i-tabler-trees"
-                class="w-full sm:w-auto font-black uppercase text-xs rounded-xl px-5 py-2.5 sm:px-6 sm:py-3 backdrop-blur-md justify-center"
+                class="w-full sm:w-auto font-black uppercase text-xs rounded-sm px-5 py-2.5 sm:px-6 sm:py-3 backdrop-blur-md justify-center"
               >
                 Explore Recreation
               </UButton>
@@ -173,8 +173,8 @@ onUnmounted(() => {
                   slides[0]?.shapeClass,
                   slides[0]?.transformClass,
                   activeIndex === 0
-                    ? 'border-lime-500 dark:border-lime-400 ring-4 ring-lime-500/40 dark:ring-lime-400/40 scale-[1.03] z-20'
-                    : 'border-white/40 dark:border-white/20 hover:border-lime-500/60 opacity-85 hover:opacity-100 z-10',
+                    ? 'border-primary dark:border-primary ring-4 ring-lime-500/40 dark:ring-lime-400/40 scale-[1.03] z-20'
+                    : 'border-white/40 dark:border-white/20 hover:border-primary opacity-85 hover:opacity-100 z-10',
                 ]"
                 role="button"
                 tabindex="0"
@@ -196,8 +196,8 @@ onUnmounted(() => {
                 <div class="absolute inset-0 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
 
                 <!-- Recreation Pill Caption -->
-                <div class="absolute bottom-3 left-3 right-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900/90 text-white text-[11px] font-bold backdrop-blur-md shadow-lg border border-white/15 w-fit">
-                  <div class="flex size-5 items-center justify-center rounded-full bg-lime-500/20 text-lime-400">
+                <div class="absolute bottom-3 left-3 right-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-elevated/90 text-inverted text-[11px] font-bold backdrop-blur-md shadow-lg border border-white/15 w-fit">
+                  <div class="flex size-5 items-center justify-center rounded-full bg-primary/20 text-primary">
                     <UIcon :name="slides[0]?.icon" class="size-3.5" />
                   </div>
                   <span class="truncate">{{ slides[0]?.tagline }}</span>
@@ -213,8 +213,8 @@ onUnmounted(() => {
                     slides[1]?.shapeClass,
                     slides[1]?.transformClass,
                     activeIndex === 1
-                      ? 'border-lime-500 dark:border-lime-400 ring-4 ring-lime-500/40 dark:ring-lime-400/40 scale-[1.03] z-20'
-                      : 'border-white/40 dark:border-white/20 hover:border-lime-500/60 opacity-85 hover:opacity-100 z-10',
+                      ? 'border-primary dark:border-primary ring-4 ring-lime-500/40 dark:ring-lime-400/40 scale-[1.03] z-20'
+                      : 'border-white/40 dark:border-white/20 hover:border-primary opacity-85 hover:opacity-100 z-10',
                   ]"
                   role="button"
                   tabindex="0"
@@ -236,8 +236,8 @@ onUnmounted(() => {
                   <div class="absolute inset-0 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
 
                   <!-- Recreation Pill Caption -->
-                  <div class="absolute bottom-2.5 left-2.5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900/90 text-white text-[11px] font-bold backdrop-blur-md shadow-lg border border-white/15 w-fit">
-                    <div class="flex size-5 items-center justify-center rounded-full bg-lime-500/20 text-lime-400">
+                  <div class="absolute bottom-2.5 left-2.5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-elevated/90 text-inverted text-[11px] font-bold backdrop-blur-md shadow-lg border border-white/15 w-fit">
+                    <div class="flex size-5 items-center justify-center rounded-full bg-primary/20 text-primary">
                       <UIcon :name="slides[1]?.icon" class="size-3.5" />
                     </div>
                     <span class="truncate">{{ slides[1]?.tagline }}</span>
@@ -251,8 +251,8 @@ onUnmounted(() => {
                     slides[2]?.shapeClass,
                     slides[2]?.transformClass,
                     activeIndex === 2
-                      ? 'border-lime-500 dark:border-lime-400 ring-4 ring-lime-500/40 dark:ring-lime-400/40 scale-[1.03] z-20'
-                      : 'border-white/40 dark:border-white/20 hover:border-lime-500/60 opacity-85 hover:opacity-100 z-10',
+                      ? 'border-primary dark:border-primary ring-4 ring-lime-500/40 dark:ring-lime-400/40 scale-[1.03] z-20'
+                      : 'border-white/40 dark:border-white/20 hover:border-primary opacity-85 hover:opacity-100 z-10',
                   ]"
                   role="button"
                   tabindex="0"
@@ -270,8 +270,8 @@ onUnmounted(() => {
                   <div class="absolute inset-0 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-transparent" />
 
                   <!-- Recreation Pill Caption -->
-                  <div class="absolute bottom-2.5 left-2.5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900/90 text-white text-[11px] font-bold backdrop-blur-md shadow-lg border border-white/15 w-fit">
-                    <div class="flex size-5 items-center justify-center rounded-full bg-lime-500/20 text-lime-400">
+                  <div class="absolute bottom-2.5 left-2.5 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-elevated/90 text-inverted text-[11px] font-bold backdrop-blur-md shadow-lg border border-white/15 w-fit">
+                    <div class="flex size-5 items-center justify-center rounded-full bg-primary/20 text-primary">
                       <UIcon :name="slides[2]?.icon" class="size-3.5" />
                     </div>
                     <span class="truncate">{{ slides[2]?.tagline }}</span>
@@ -286,7 +286,7 @@ onUnmounted(() => {
                 v-for="(_, idx) in slides"
                 :key="idx"
                 class="min-h-1.5 min-w-11 flex items-center justify-center rounded-full transition-all duration-300"
-                :class="[activeIndex === idx ? 'w-6 bg-lime-500 dark:bg-lime-400' : 'w-1.5 bg-neutral-400/50 dark:bg-white/30 hover:bg-neutral-600 dark:hover:bg-white/60']"
+                :class="[activeIndex === idx ? 'w-6 bg-primary bg-primary' : 'w-1.5 bg-elevated/30 hover:bg-elevated dark:hover:bg-default/60']"
                 :aria-label="`Switch to slide ${idx + 1}`"
                 @click="selectSlide(idx)"
               />
@@ -297,49 +297,49 @@ onUnmounted(() => {
     </div>
 
     <!-- Highlights Bar -->
-    <div class="relative z-10 border-b border-neutral-200/80 dark:border-neutral-800/80 bg-white/50 dark:bg-neutral-950/50 backdrop-blur-md py-5 sm:py-6">
-      <UContainer class="w-full">
+    <div class="relative z-10 border-b border-default bg-default/50 backdrop-blur-md py-5 sm:py-6">
+      <UContainer>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           <!-- Outdoor Zones -->
           <div class="flex items-start gap-4">
-            <div class="flex size-11 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400">
+            <div class="flex size-11 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary">
               <UIcon name="i-tabler-trees" class="size-6" />
             </div>
             <div>
-              <h3 class="text-sm font-black text-neutral-950 dark:text-white uppercase tracking-wide">
+              <h3 class="text-sm font-black text-highlighted uppercase tracking-wide">
                 Recreation and shared experiences
               </h3>
-              <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
+              <p class="text-xs text-muted mt-1 leading-relaxed">
                 Lawn games, picnics, social activities and group recreation in a welcoming outdoor setting.
               </p>
             </div>
           </div>
 
           <!-- Opening Hours -->
-          <div class="flex items-start gap-4 border-t md:border-t-0 md:border-l border-neutral-200 dark:border-neutral-800 pt-5 md:pt-0 md:pl-8">
-            <div class="flex size-11 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400">
+          <div class="flex items-start gap-4 border-t md:border-t-0 md:border-l border-default pt-5 md:pt-0 md:pl-8">
+            <div class="flex size-11 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary">
               <UIcon name="i-tabler-clock" class="size-6" />
             </div>
             <div>
-              <h3 class="text-sm font-black text-neutral-950 dark:text-white uppercase tracking-wide">
+              <h3 class="text-sm font-black text-highlighted uppercase tracking-wide">
                 Plan before you visit
               </h3>
-              <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
+              <p class="text-xs text-muted mt-1 leading-relaxed">
                 Prior booking helps us confirm availability, activities and group arrangements.
               </p>
             </div>
           </div>
 
           <!-- Highland Views -->
-          <div class="flex items-start gap-4 border-t md:border-t-0 md:border-l border-neutral-200 dark:border-neutral-800 pt-5 md:pt-0 md:pl-8">
-            <div class="flex size-11 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400">
+          <div class="flex items-start gap-4 border-t md:border-t-0 md:border-l border-default pt-5 md:pt-0 md:pl-8">
+            <div class="flex size-11 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary">
               <UIcon name="i-tabler-plant" class="size-6" />
             </div>
             <div>
-              <h3 class="text-sm font-black text-neutral-950 dark:text-white uppercase tracking-wide">
+              <h3 class="text-sm font-black text-highlighted uppercase tracking-wide">
                 Running and active living
               </h3>
-              <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
+              <p class="text-xs text-muted mt-1 leading-relaxed">
                 Physical and virtual running, jogging and walking through Recreation Yard Runners.
               </p>
             </div>

@@ -54,5 +54,8 @@
     "strings": "on",
     "comments": "off",
     "other": "on"
+  },
+  "chat.tools.terminal.autoApprove": {
+    "bun": true
   }
 }

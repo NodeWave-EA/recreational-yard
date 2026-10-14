@@ -22,8 +22,8 @@ defineShortcuts({
   <div class="sticky top-0 z-50">
     <AppAnnouncement />
 
-    <header class="border-b border-neutral-200/80 bg-white/95 backdrop-blur-md transition-colors dark:border-neutral-800/80 dark:bg-neutral-950/95">
-      <div class="mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-6 py-2.5">
+    <header class="border-b border-default bg-default/95 backdrop-blur-md transition-colors">
+      <UContainer class="flex items-center justify-between py-2.5">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-2.5 shrink-0" aria-label="Home">
           <AppLogo class="h-7 sm:h-8 lg:h-9 w-auto" />
@@ -35,10 +35,10 @@ defineShortcuts({
             v-for="link in NAV_LINKS"
             :key="link.label"
             :to="link.to"
-            class="inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-md hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
-            active-class="text-lime-600 dark:text-lime-400 font-black"
+            class="inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-md hover:text-primary dark:hover:text-primary transition-colors"
+            active-class="text-primary font-black"
           >
-            <UIcon :name="link.icon" class="hidden xl:inline-block size-4 text-lime-500 shrink-0" />
+            <UIcon :name="link.icon" class="hidden xl:inline-block size-4 text-primary shrink-0" />
             <span>{{ link.label }}</span>
           </NuxtLink>
         </nav>
@@ -50,11 +50,11 @@ defineShortcuts({
             color="neutral"
             variant="ghost"
             aria-label="Open Search"
-            class="relative min-h-11 min-w-11 justify-center cursor-pointer text-neutral-700 dark:text-neutral-200 hover:text-lime-600"
+            class="relative min-h-11 min-w-11 justify-center cursor-pointer text-muted hover:text-primary"
             @click="isSearchModalOpen = true"
           >
             <UIcon name="i-tabler-search" class="size-5" />
-            <UKbd class="hidden xl:inline-block px-1.5 py-0.5 text-[9px] font-mono rounded bg-neutral-100 dark:bg-neutral-800 border">
+            <UKbd class="hidden xl:inline-block px-1.5 py-0.5 text-[9px] font-mono rounded bg-elevated border">
               ⌘K
             </UKbd>
           </UButton>
@@ -71,7 +71,7 @@ defineShortcuts({
           </UButton>
 
           <!-- Join Now Primary CTA -->
-          <UButton to="/pricing" size="md" color="primary" class="hidden sm:inline-flex rounded-sm px-3 xl:px-4 text-xs font-black uppercase text-neutral-950">
+          <UButton to="/pricing" size="md" color="primary" class="hidden sm:inline-flex rounded-sm px-3 xl:px-4 text-xs font-black uppercase text-highlighted">
             JOIN NOW
           </UButton>
 
@@ -86,15 +86,15 @@ defineShortcuts({
             <UIcon :name="isMobileOpen ? 'i-tabler-x' : 'i-tabler-menu-2'" class="size-6" />
           </UButton>
         </div>
-      </div>
+      </UContainer>
     </header>
 
     <!-- Slideover Drawer for Mobile & Tablet Viewports -->
     <USlideover v-model:open="isMobileOpen" title="Navigation Menu">
       <template #content>
-        <div class="p-6 space-y-6 flex flex-col justify-between h-full bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">
+        <div class="p-6 space-y-6 flex flex-col justify-between h-full bg-default text-default">
           <div class="space-y-6">
-            <div class="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-4">
+            <div class="flex items-center justify-between border-b border-default pb-4">
               <AppLogo class="h-8 w-auto" />
               <UButton color="neutral" variant="ghost" icon="i-tabler-x" aria-label="Close navigation menu" class="size-11" @click="isMobileOpen = false" />
             </div>
@@ -104,30 +104,30 @@ defineShortcuts({
                 v-for="link in NAV_LINKS"
                 :key="link.label"
                 :to="link.to"
-                class="flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
-                active-class="bg-lime-500/15 text-lime-600 dark:text-lime-400 font-black"
+                class="flex items-center gap-3 px-3.5 py-3 rounded-sm hover:bg-elevated dark:hover:bg-elevated transition-colors"
+                active-class="bg-primary/15 text-primary font-black"
                 @click="isMobileOpen = false"
               >
-                <UIcon :name="link.icon" class="size-5 text-lime-500 shrink-0" />
+                <UIcon :name="link.icon" class="size-5 text-primary shrink-0" />
                 <span>{{ link.label }}</span>
               </NuxtLink>
             </nav>
           </div>
 
-          <div class="space-y-4 pt-6 border-t border-neutral-200 dark:border-neutral-800">
+          <div class="space-y-4 pt-6 border-t border-default">
             <UButton
               to="/pricing"
               block
               size="lg"
               color="primary"
-              class="font-black uppercase text-xs text-neutral-950 rounded-xl py-3.5"
+              class="font-black uppercase text-xs text-highlighted rounded-sm py-3.5"
               @click="isMobileOpen = false"
             >
               JOIN NOW
             </UButton>
 
             <div class="flex items-center justify-between pt-2">
-              <span class="text-xs text-neutral-400 font-bold">Theme Mode</span>
+              <span class="text-xs text-muted font-bold">Theme Mode</span>
               <CommonThemeToggle />
             </div>
           </div>

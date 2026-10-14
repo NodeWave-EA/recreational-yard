@@ -24,13 +24,13 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="py-8 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full">
-    <UContainer v-if="faq" class="max-w-3xl space-y-8">
+  <div class="py-8 sm:py-12 bg-default text-default min-h-screen transition-colors duration-300 w-full">
+    <UContainer v-if="faq" class="space-y-8">
       <!-- Back Link -->
       <div>
         <NuxtLink
           to="/faqs"
-          class="inline-flex items-center gap-2 text-xs font-bold text-neutral-500 hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
+          class="inline-flex items-center gap-2 text-xs font-bold text-muted hover:text-primary dark:hover:text-primary transition-colors"
         >
           <UIcon name="i-tabler-arrow-left" class="size-4" />
           <span>Back to All FAQs</span>
@@ -38,7 +38,7 @@ useSeoMeta({
       </div>
 
       <!-- FAQ Header Section -->
-      <div class="space-y-4 border-b border-neutral-200 dark:border-neutral-800 pb-6">
+      <div class="space-y-4 border-b border-default pb-6">
         <div class="flex flex-wrap items-center gap-2">
           <UBadge color="primary" variant="soft" class="font-extrabold uppercase text-[10px] tracking-wider px-2.5 py-1 rounded">
             {{ faq.category }}
@@ -48,15 +48,15 @@ useSeoMeta({
           </UBadge>
         </div>
 
-        <h1 class="text-2xl sm:text-4xl font-black text-neutral-950 dark:text-white leading-tight">
+        <h1 class="text-2xl sm:text-4xl font-black text-highlighted leading-tight">
           {{ faq.question }}
         </h1>
       </div>
 
       <!-- Flat Answer Body -->
       <div class="space-y-6">
-        <div class="pl-4 border-l-4 border-lime-500">
-          <p class="text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-medium">
+        <div class="pl-4 border-l-4 border-primary">
+          <p class="text-sm sm:text-base leading-relaxed text-muted font-medium">
             {{ faq.answer }}
           </p>
         </div>
@@ -67,8 +67,8 @@ useSeoMeta({
       </div>
 
       <!-- Bottom Assistance Links -->
-      <div class="pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
-        <h3 class="text-xs font-black uppercase tracking-wider text-neutral-400">
+      <div class="pt-8 border-t border-default space-y-4">
+        <h3 class="text-xs font-black uppercase tracking-wider text-muted">
           Need Further Assistance?
         </h3>
 
@@ -78,7 +78,7 @@ useSeoMeta({
             color="primary"
             size="md"
             icon="i-tabler-mail"
-            class="font-black uppercase text-xs text-neutral-950 rounded-xl px-5 py-2.5"
+            class="font-black uppercase text-xs text-highlighted rounded-sm px-5 py-2.5"
           >
             Send Inquiry
           </UButton>
@@ -89,7 +89,7 @@ useSeoMeta({
             color="neutral"
             variant="ghost"
             icon="i-tabler-brand-whatsapp"
-            class="font-bold text-xs rounded-xl py-2.5 text-emerald-600 dark:text-emerald-400"
+            class="font-bold text-xs rounded-sm py-2.5 text-success dark:text-success"
           >
             WhatsApp Support
           </UButton>

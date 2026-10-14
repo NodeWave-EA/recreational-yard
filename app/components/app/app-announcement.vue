@@ -19,9 +19,9 @@ onMounted(checkOverflow)
 <template>
   <aside
     aria-label="Announcement Bar"
-    class="relative border-b border-neutral-200/80 bg-neutral-100 text-xs font-medium text-neutral-800 transition-colors dark:border-neutral-800/80 dark:bg-neutral-900 dark:text-neutral-200 overflow-hidden"
+    class="relative border-b border-default bg-elevated text-xs font-medium text-default transition-colors overflow-hidden"
   >
-    <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-1.5 sm:px-6">
+    <UContainer class="flex items-center justify-between gap-3 py-1.5">
       <!-- Scrolling Marquee or Static Text Container -->
       <div ref="containerRef" class="relative flex-1 overflow-hidden min-w-0">
         <div
@@ -39,11 +39,11 @@ onMounted(checkOverflow)
       <!-- CTA Button -->
       <NuxtLink
         :to="ANNOUNCEMENT_BAR.ctaLink"
-        class="shrink-0 rounded-sm bg-lime-500 px-2.5 py-0.5 text-[10px] sm:text-[11px] font-black uppercase text-neutral-950 shadow-xs transition-transform hover:scale-105 hover:bg-lime-400 focus-visible:outline-2 focus-visible:outline-lime-600 dark:bg-lime-400 dark:hover:bg-lime-300 whitespace-nowrap"
+        class="shrink-0 rounded-sm bg-primary px-2.5 py-0.5 text-[10px] sm:text-[11px] font-black uppercase text-highlighted shadow-xs transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-primary whitespace-nowrap"
       >
         {{ ANNOUNCEMENT_BAR.ctaText }}
       </NuxtLink>
-    </div>
+    </UContainer>
   </aside>
 </template>
 

@@ -111,26 +111,26 @@ function navigateToFullSearch() {
 <template>
   <UModal v-model:open="isOpen" :ui="{ content: 'max-w-2xl' }">
     <template #content>
-      <div class="p-5 sm:p-6 space-y-4 bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-2xl text-neutral-900 dark:text-white">
+      <div class="p-5 sm:p-6 space-y-4 bg-default  border border-default shadow-2xl text-muted">
         <!-- Modal Header -->
-        <div class="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-3">
+        <div class="flex items-center justify-between border-b border-default pb-3">
           <div class="flex items-center gap-2">
-            <UIcon name="i-tabler-search" class="size-5 text-lime-500" />
+            <UIcon name="i-tabler-search" class="size-5 text-primary" />
             <h3 class="font-extrabold text-base">
               Search Catalog
             </h3>
           </div>
 
           <div class="flex items-center gap-2">
-            <span class="hidden sm:inline-flex items-center gap-1 text-[11px] text-neutral-400 font-medium">
-              Press <UKbd class="px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 border text-[10px] font-mono">ESC</UKbd> to exit
+            <span class="hidden sm:inline-flex items-center gap-1 text-[11px] text-muted font-medium">
+              Press <UKbd class="px-1.5 py-0.5 rounded bg-elevated border text-[10px] font-mono">ESC</UKbd> to exit
             </span>
             <UButton
               color="neutral"
               variant="soft"
               icon="i-tabler-x"
               size="sm"
-              class="rounded-xl font-bold text-xs"
+              class="rounded-sm font-bold text-xs"
               aria-label="Close search modal"
               @click="isOpen = false"
             >
@@ -162,12 +162,12 @@ function navigateToFullSearch() {
               <!-- Section Header Divider -->
               <button
                 type="button"
-                class="w-full py-2 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 transition-colors cursor-pointer"
+                class="w-full py-2 flex items-center justify-between border-b border-default transition-colors cursor-pointer"
                 @click="toggleSection(group.config.key)"
               >
                 <div class="flex items-center gap-2.5">
-                  <UIcon :name="group.config.icon" class="size-4 text-lime-500 shrink-0" />
-                  <span class="text-xs font-black uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
+                  <UIcon :name="group.config.icon" class="size-4 text-primary shrink-0" />
+                  <span class="text-xs font-black uppercase tracking-wider text-muted">
                     {{ group.config.label }}
                   </span>
                   <UBadge color="primary" variant="soft" size="sm" class="rounded-full font-bold text-[10px] px-2">
@@ -177,7 +177,7 @@ function navigateToFullSearch() {
 
                 <UIcon
                   name="i-tabler-chevron-down"
-                  class="size-4 text-neutral-400 transition-transform duration-200"
+                  class="size-4 text-muted transition-transform duration-200"
                   :class="{ 'rotate-180': openSections[group.config.key] }"
                 />
               </button>
@@ -185,12 +185,12 @@ function navigateToFullSearch() {
               <!-- Group Content Flat Rows -->
               <div
                 v-show="openSections[group.config.key]"
-                class="divide-y divide-neutral-200/60 dark:divide-neutral-800/60"
+                class="divide-y divide-default dark:divide-default"
               >
                 <div
                   v-for="item in group.items"
                   :key="item.id"
-                  class="group py-2.5 px-2 flex items-center justify-between gap-3 hover:bg-neutral-100/60 dark:hover:bg-neutral-800/60 rounded-xl cursor-pointer transition-colors"
+                  class="group py-2.5 px-2 flex items-center justify-between gap-3 hover:bg-elevated/60 dark:hover:bg-elevated/60 rounded-sm cursor-pointer transition-colors"
                   @click="handleSelect(item.path)"
                 >
                   <div class="flex items-center gap-3 min-w-0">
@@ -201,11 +201,11 @@ function navigateToFullSearch() {
                       format="webp"
                       quality="80"
                       loading="lazy"
-                      class="size-9 shrink-0 rounded-lg object-cover border border-neutral-200 dark:border-neutral-800"
+                      class="size-9 shrink-0 rounded-lg object-cover border border-default"
                     />
                     <div
                       v-else
-                      class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-lime-500/10 text-lime-600 dark:text-lime-400 group-hover:bg-lime-500 group-hover:text-neutral-950 transition-colors"
+                      class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-highlighted transition-colors"
                     >
                       <UIcon :name="item.icon" class="size-4" />
                     </div>
@@ -215,20 +215,20 @@ function navigateToFullSearch() {
                         <UBadge color="neutral" variant="subtle" class="font-bold rounded px-1.5 py-0.5 text-[9px] uppercase">
                           {{ item.badge }}
                         </UBadge>
-                        <span v-if="item.meta" class="text-neutral-400 font-medium truncate">• {{ item.meta }}</span>
+                        <span v-if="item.meta" class="text-muted font-medium truncate">• {{ item.meta }}</span>
                       </div>
 
-                      <h4 class="font-bold text-xs sm:text-sm text-neutral-900 dark:text-white truncate group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
+                      <h4 class="font-bold text-xs sm:text-sm text-muted truncate group-hover:text-primary transition-colors">
                         {{ item.title }}
                       </h4>
 
-                      <p class="text-[11px] text-neutral-500 dark:text-neutral-400 line-clamp-1 leading-tight">
+                      <p class="text-[11px] text-muted line-clamp-1 leading-tight">
                         {{ item.description }}
                       </p>
                     </div>
                   </div>
 
-                  <UIcon name="i-tabler-chevron-right" class="size-4 text-neutral-400 group-hover:translate-x-0.5 transition-transform shrink-0" />
+                  <UIcon name="i-tabler-chevron-right" class="size-4 text-muted group-hover:translate-x-0.5 transition-transform shrink-0" />
                 </div>
               </div>
             </div>
@@ -236,21 +236,21 @@ function navigateToFullSearch() {
 
           <!-- Empty State -->
           <div v-else class="py-12 text-center space-y-2">
-            <UIcon name="i-tabler-search-off" class="size-10 text-neutral-400 mx-auto" />
-            <p class="text-xs font-bold text-neutral-500">
+            <UIcon name="i-tabler-search-off" class="size-10 text-muted mx-auto" />
+            <p class="text-xs font-bold text-muted">
               No results found matching "{{ searchQuery }}"
             </p>
           </div>
         </div>
 
         <!-- Modal Footer -->
-        <div class="pt-3 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-xs">
-          <span class="text-neutral-400 text-[11px]">
+        <div class="pt-3 border-t border-default flex items-center justify-between text-xs">
+          <span class="text-muted text-[11px]">
             Found {{ totalMatchCount }} {{ totalMatchCount === 1 ? 'match' : 'matches' }}
           </span>
           <button
             type="button"
-            class="font-bold text-lime-600 dark:text-lime-400 hover:underline inline-flex items-center gap-1 cursor-pointer"
+            class="font-bold text-primary hover:underline inline-flex items-center gap-1 cursor-pointer"
             @click="navigateToFullSearch"
           >
             <span>
