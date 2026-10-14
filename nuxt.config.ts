@@ -182,7 +182,11 @@ export default defineNuxtConfig({
 
   prerender: {
     crawlLinks: true,
-    ignore: ['/**?*'],
+    ignore: [
+      '/**?*', // Ignores standard page query parameters
+      '/_vercel/image/**', // Prevents the Vercel image compilation crash
+      '/_vercel/image', // Catches base Vercel image routing variations
+    ],
   },
 
   robots: {
