@@ -27,11 +27,11 @@ export default defineNuxtConfig({
         { name: 'application-name', content: 'Recreational Yard' },
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/favicon-96x96.png?v=20261013', sizes: '96x96' },
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg?v=20261013' },
-        { rel: 'shortcut icon', href: '/favicon.ico?v=20261013' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png?v=20261013' },
-        { rel: 'manifest', href: '/manifest.json?v=20261013' },
+        { rel: 'icon', type: 'image/png', href: '/favicon-96x96.png', sizes: '96x96' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'shortcut icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        { rel: 'manifest', href: '/manifest.json' },
       ],
     },
     pageTransition: {
