@@ -241,21 +241,10 @@ export default defineNuxtConfig({
     discoverVideos: true,
     sitemapName: 'sitemap.xml',
     exclude: ['/search'],
-    // defaults: {
-    //   changefreq: 'weekly',
-    //   priority: 0.7,
-    // },
-    // urls: [
-    //   { loc: '/', priority: 1, changefreq: 'weekly' },
-    //   { loc: '/facilities', priority: 0.9, changefreq: 'weekly' },
-    //   { loc: '/pricing', priority: 0.9, changefreq: 'weekly' },
-    //   { loc: '/events', priority: 0.8, changefreq: 'weekly' },
-    //   { loc: '/gallery', priority: 0.7, changefreq: 'weekly' },
-    //   { loc: '/shop', priority: 0.7, changefreq: 'weekly' },
-    //   { loc: '/faqs', priority: 0.8, changefreq: 'weekly' },
-    //   { loc: '/testimonials', priority: 0.8, changefreq: 'weekly' },
-    //   { loc: '/contact', priority: 0.8, changefreq: 'monthly' },
-    // ],
+    defaults: {
+      changefreq: 'weekly',
+      priority: 0.7,
+    },
   },
 
   skewProtection: {
@@ -264,6 +253,11 @@ export default defineNuxtConfig({
 
   studio: {
     route: '/editor',
+    git: {
+      commit: {
+        messagePrefix: '[Studio] Update content:',
+      },
+    },
     repository: {
       provider: 'github',
       branch: 'main',
