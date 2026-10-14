@@ -122,12 +122,6 @@ export default defineNuxtConfig({
 
   aiReady: {
     autoI18n: true,
-    cron: true,
-    runtimeSync: {
-      ttl: 3600,
-      batchSize: 20,
-      pruneTtl: 0,
-    },
   },
 
   eslint: {
