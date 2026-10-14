@@ -1,2 +1,9 @@
 #!/usr/bin/env sh
-npx lint-staged
+# check if bun is installed and use it to run the pre-commit hook, otherwise fallback to node
+if command -v bun >/dev/null 2>&1; then
+  printf "Using bun to run pre-commit hook\n"
+  bun --bun run lint-staged
+else
+  printf "Using node to run pre-commit hook\n"
+  npx lint-staged
+fi
