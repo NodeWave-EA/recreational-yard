@@ -86,13 +86,26 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true },
     '/facilities': { prerender: true },
+    '/facilities/**': { prerender: true },
     '/pricing': { prerender: true },
+    '/pricing/**': { prerender: true },
     '/events': { prerender: true },
+    '/events/**': { prerender: true },
     '/gallery': { prerender: true },
+    '/gallery/**': { prerender: true },
     '/shop': { prerender: true },
+    '/shop/**': { prerender: true },
     '/faqs': { prerender: true },
+    '/faqs/**': { prerender: true },
     '/testimonials': { prerender: true },
+    '/testimonials/**': { prerender: true },
     '/contact': { prerender: true },
+
+    // Interactive / Private Routes (Client-side rendering)
+    '/search': { ssr: false },
+    '/editor': { ssr: false },
+    '/editor/**': { ssr: false },
+    '/__nuxt_studio/**': { ssr: true },
   },
 
   compatibilityDate: '2026-06-30',
@@ -108,7 +121,13 @@ export default defineNuxtConfig({
   },
 
   aiReady: {
-    enabled: true,
+    autoI18n: true,
+    cron: true,
+    runtimeSync: {
+      ttl: 3600,
+      batchSize: 20,
+      pruneTtl: 0,
+    },
   },
 
   eslint: {
@@ -152,6 +171,7 @@ export default defineNuxtConfig({
     showLiveInspections: true,
     excludePages: ['/search'],
     report: {
+      publish: true,
       html: true,
       json: true,
     },
@@ -166,25 +186,15 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
+  prerender: {
+    crawlLinks: true,
+  },
+
   robots: {
     enabled: true,
     debug: true,
     header: true,
     metaTag: true,
-    sitemap: [`${siteUrl}/sitemap.xml`],
-    allow: [
-      '/',
-      '/facilities',
-      '/pricing',
-      '/events',
-      '/gallery',
-      '/shop',
-      '/faqs',
-      '/testimonials',
-      '/contact',
-    ],
-    disallow: ['/search'],
-    robotsEnabledValue: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
     groups: [
       {
         userAgent: '*',
@@ -226,23 +236,26 @@ export default defineNuxtConfig({
 
   sitemap: {
     enabled: true,
+    autoI18n: true,
+    discoverImages: true,
+    discoverVideos: true,
     sitemapName: 'sitemap.xml',
     exclude: ['/search'],
-    defaults: {
-      changefreq: 'weekly',
-      priority: 0.7,
-    },
-    urls: [
-      { loc: '/', priority: 1, changefreq: 'weekly' },
-      { loc: '/facilities', priority: 0.9, changefreq: 'weekly' },
-      { loc: '/pricing', priority: 0.9, changefreq: 'weekly' },
-      { loc: '/events', priority: 0.8, changefreq: 'weekly' },
-      { loc: '/gallery', priority: 0.7, changefreq: 'weekly' },
-      { loc: '/shop', priority: 0.7, changefreq: 'weekly' },
-      { loc: '/faqs', priority: 0.8, changefreq: 'weekly' },
-      { loc: '/testimonials', priority: 0.8, changefreq: 'weekly' },
-      { loc: '/contact', priority: 0.8, changefreq: 'monthly' },
-    ],
+    // defaults: {
+    //   changefreq: 'weekly',
+    //   priority: 0.7,
+    // },
+    // urls: [
+    //   { loc: '/', priority: 1, changefreq: 'weekly' },
+    //   { loc: '/facilities', priority: 0.9, changefreq: 'weekly' },
+    //   { loc: '/pricing', priority: 0.9, changefreq: 'weekly' },
+    //   { loc: '/events', priority: 0.8, changefreq: 'weekly' },
+    //   { loc: '/gallery', priority: 0.7, changefreq: 'weekly' },
+    //   { loc: '/shop', priority: 0.7, changefreq: 'weekly' },
+    //   { loc: '/faqs', priority: 0.8, changefreq: 'weekly' },
+    //   { loc: '/testimonials', priority: 0.8, changefreq: 'weekly' },
+    //   { loc: '/contact', priority: 0.8, changefreq: 'monthly' },
+    // ],
   },
 
   skewProtection: {
@@ -250,6 +263,7 @@ export default defineNuxtConfig({
   },
 
   studio: {
+    route: '/editor',
     repository: {
       provider: 'github',
       branch: 'main',
