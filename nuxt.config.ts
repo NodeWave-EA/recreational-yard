@@ -4,7 +4,7 @@ const siteUrl = process.env.NUXT_PUBLIC_SITE_URL
 
 export default defineNuxtConfig({
 
-  modules: ['@nuxt/eslint', '@nuxt/ui', '@vueuse/nuxt/module', '@nuxt/image', 'nuxt-studio', '@nuxt/content', '@nuxt/icon/module', '@nuxtjs/turnstile', '@nuxt/fonts', '@nuxtjs/seo', '@nuxt/hints', '@nuxt/a11y', '@nuxt/scripts', '@nuxt/devtools'],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@vueuse/nuxt/module', '@nuxt/image', 'nuxt-studio', '@nuxt/content', '@nuxt/icon/module', '@nuxtjs/turnstile', '@nuxt/fonts', '@nuxtjs/seo', '@nuxt/hints', '@nuxt/a11y', '@nuxt/scripts', '@nuxt/devtools', '@nuxtjs/robots'],
 
   devtools: {
     enabled: process.env.NODE_ENV !== 'production',
