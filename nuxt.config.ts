@@ -6,6 +6,8 @@ export default defineNuxtConfig({
 
   modules: ['@nuxt/eslint', '@nuxt/ui', '@vueuse/nuxt/module', '@nuxt/image', 'nuxt-studio', '@nuxt/content', '@nuxt/icon/module', '@nuxtjs/turnstile', '@nuxt/fonts', '@nuxtjs/seo', '@nuxt/hints', '@nuxt/a11y', '@nuxt/scripts', '@nuxt/devtools', '@nuxtjs/robots'],
 
+  ssr: true,
+
   devtools: {
     enabled: process.env.NODE_ENV !== 'production',
   },
@@ -103,8 +105,7 @@ export default defineNuxtConfig({
 
     // Interactive / Private Routes (Client-side rendering)
     '/search': { ssr: false },
-    '/editor': { ssr: false },
-    '/editor/**': { ssr: false },
+    '/editor/**': { ssr: true },
     '/__nuxt_studio/**': { ssr: true },
   },
 
