@@ -1,9 +1,9 @@
 ---
-author: "Dr. Sarah Cherono"
-role: "Monthly Pass Member"
+author: "Recreation Yard Limited"
+role: "Customer commitment"
 category: "Pricing & Passes"
-comment: "The monthly pass is incredible value for anyone playing tennis or using the jogging trails regularly. The guest pass perks make it easy to bring family along on weekends."
+comment: "We confirm specifications, prices and booking conditions clearly before an order or booking is finalised."
 rating: 5
-avatar: "https://robohash.org/dr-sarah-cherono"
 featured: true
+order: 1
 ---

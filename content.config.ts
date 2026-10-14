@@ -51,7 +51,7 @@ export default defineContentConfig({
 
         operatingHours: z
           .string()
-          .default('7:30 AM – 6:00 PM')
+          .default('Confirm availability when booking')
           .describe('Opening hours specific to this facility'),
 
         ageGroup: property(z.string().default('All Ages'))
@@ -126,7 +126,7 @@ export default defineContentConfig({
         category: property(z.string().default('Day Passes'))
           .editor({
             input: 'select',
-            options: ['Day Passes', 'Memberships', 'Facility Hire', 'Group & School Packages'],
+            options: ['Group & School Packages', 'Facility Hire'],
           })
           .describe('Category tab on the pricing page'),
 

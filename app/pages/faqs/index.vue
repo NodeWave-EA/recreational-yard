@@ -102,7 +102,7 @@ useSeoMeta({
             </h1>
 
             <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              Everything you need to know about court bookings, day passes, facilities, and visiting Recreation Yard Kericho.
+              Find clear information about bookings, recreation, running, sports merchandise, group experiences and contacting Recreation Yard Limited.
             </p>
           </div>
 

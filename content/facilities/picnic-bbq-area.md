@@ -1,37 +1,34 @@
 ---
-title: "Picnic & BBQ Area"
-description: "Shaded outdoor seating spots, wooden tables, and dedicated grill stations."
-category: "Social & Family"
-icon: "i-tabler-grill"
-coverImage:
-  src: "/content/gallery/picnic-bbq-area/cover.jpeg"
-  alt: "Picnic and BBQ Area"
+title: "Picnic and Outdoor Leisure"
+description: "Enjoy a picnic-style visit where you bring your own meals and permitted refreshments and combine relaxation with selected games."
+quote:
+  text: "All visitors must follow venue rules for safety, cleanliness, refreshments and events."
+  author: "Recreation Yard Limited"
+category: "Relaxation & Picnics"
+icon: "i-tabler-picnic-table"
 features:
-  - "Dedicated BBQ grill stations"
-  - "Shaded wooden picnic tables"
-  - "Trash disposal & wash stations"
-  - "Lawn space for group gatherings"
-capacity: "Groups up to 20 per spot"
-pricing:
-  rate: "KES 2,000"
-  unit: "half day"
-  note: "Grill station & charcoal access"
-featured: false
-order: 5
-badge: "Shaded Spots"
+  - "Welcoming outdoor environment"
+  - "Suitable for individuals and organised groups"
+  - "Advance planning available"
+rules:
+  - "Prior booking is required for group events and organised activities"
+  - "Follow venue safety and cleanliness rules"
+  - "Activity availability is confirmed before visiting"
+operatingHours: "Confirm availability when booking"
+ageGroup: "All Ages"
+bookingRequired: true
+featured: true
+order: 1
+badge: "Recreation Yard Kericho"
 cta:
-  label: "Reserve BBQ Spot"
-  to: "/contact?facility=picnic-bbq-area"
+  label: "Ask about availability"
+  to: "/contact?type=facility-booking"
 ---
 
-## Outdoor Family Feasts
+## Picnic and Outdoor Leisure
 
-Gather friends and family for open-air lunches on the lawn. Each picnic station includes grill setups, shaded seating, and clean utilities.
+Enjoy a picnic-style visit where you bring your own meals and permitted refreshments and combine relaxation with selected games. We create opportunities for people to move, play, connect, relax and thrive through recreation and shared experiences.
 
-:u-alert{icon="i-tabler-flame" color="neutral" variant="subtle" title="Grill Service" description="Charcoal and basic grilling utensils are provided upon check-in."}
+### Plan your experience
 
-### Station Perks
-
-- Dedicated charcoal grill unit
-- Seating for up to 10 guests per table
-- Easy access to playground and restrooms
+Contact Recreation Yard Limited with your preferred date, expected attendance, intended activities and any special requirements. We will advise on suitability, availability and applicable arrangements.

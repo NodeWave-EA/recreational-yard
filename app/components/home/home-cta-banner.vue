@@ -5,15 +5,15 @@
       <div class="lg:col-span-7 space-y-2.5 sm:space-y-3">
         <UBadge color="primary" variant="soft" class="font-bold text-[10px] sm:text-xs uppercase tracking-wider">
           <UIcon name="i-tabler-ticket" class="size-3.5 mr-1.5 text-lime-500" />
-          <span>Plan Your Visit</span>
+          <span>Move. Play. Connect. Thrive.</span>
         </UBadge>
 
         <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-neutral-950 dark:text-white uppercase leading-tight">
-          Ready to Experience Recreation Yard?
+          Let’s create an active experience together.
         </h2>
 
         <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-          Get a day pass for immediate court access, sign up as a monthly member for complimentary gear rentals, or contact our team for custom group bookings.
+          Contact us to plan a recreational visit, join Recreation Yard Runners, source sports kits, or arrange a group, school or corporate experience. Availability, specifications and pricing are confirmed before booking or ordering.
         </p>
       </div>
 
@@ -26,7 +26,7 @@
           icon="i-tabler-ticket"
           class="w-full sm:w-auto font-black uppercase text-xs text-neutral-950 rounded-xl px-6 py-3.5 whitespace-nowrap justify-center shadow-xs"
         >
-          View Pricing
+          Discuss your requirements
         </UButton>
 
         <UButton
@@ -37,7 +37,7 @@
           icon="i-tabler-headset"
           class="w-full sm:w-auto font-extrabold uppercase text-xs rounded-xl px-6 py-3.5 whitespace-nowrap justify-center"
         >
-          Contact Us
+          Contact Recreation Yard
         </UButton>
       </div>
     </div>

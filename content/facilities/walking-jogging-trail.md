@@ -1,37 +1,34 @@
 ---
-title: "Walking & Jogging Trail"
-description: "1.5km scenic trail winding through fresh Kericho tea gardens."
-category: "Trails & Nature"
+title: "Running, Jogging and Walking"
+description: "A welcoming setting for running, jogging and walking as part of an active lifestyle."
+quote:
+  text: "Recreation Yard Runners supports both physical meet-ups in Kericho and virtual participation."
+  author: "Recreation Yard Limited"
+category: "Outdoor Sports"
 icon: "i-tabler-run"
-coverImage:
-  src: "/content/gallery/walking-jogging-trail/cover.webp"
-  alt: "Scenic Tea Garden Trail"
 features:
-  - "1.5km crushed-gravel trail loop"
-  - "Distance markers every 250 meters"
-  - "Hydration check-points"
-  - "Gentle gradient for walking or running"
-capacity: "Open Access"
-pricing:
-  rate: "Included"
-  unit: "with Day Pass"
-  note: "Valid for all pass holders"
+  - "Welcoming outdoor environment"
+  - "Suitable for individuals and organised groups"
+  - "Advance planning available"
+rules:
+  - "Prior booking is required for group events and organised activities"
+  - "Follow venue safety and cleanliness rules"
+  - "Activity availability is confirmed before visiting"
+operatingHours: "Confirm availability when booking"
+ageGroup: "All Ages"
+bookingRequired: true
 featured: true
-order: 4
-badge: "1.5km Trail"
+order: 1
+badge: "Recreation Yard Kericho"
 cta:
-  label: "Explore Passes"
-  to: "/pricing"
+  label: "Ask about availability"
+  to: "/contact?type=facility-booking"
 ---
 
-## Highland Nature Trails
+## Running, Jogging and Walking
 
-Recharge with a morning jog or evening walk through tea rows. The 1.5km loop provides fresh mountain air and clear pathways.
+A welcoming setting for running, jogging and walking as part of an active lifestyle. We create opportunities for people to move, play, connect, relax and thrive through recreation and shared experiences.
 
-:u-alert{icon="i-tabler-trees" color="primary" variant="soft" title="Scenic Views" description="Includes photo lookout points overlooking the tea valley."}
+### Plan your experience
 
-### Trail Features
-
-- Smooth gravel pathway for runners and walkers
-- Clearly marked route indicators
-- Benches positioned along scenic viewpoints
+Contact Recreation Yard Limited with your preferred date, expected attendance, intended activities and any special requirements. We will advise on suitability, availability and applicable arrangements.

@@ -1,37 +1,34 @@
 ---
-title: "Tennis on the Lawn"
-description: "Grass courts offering casual games, doubles practice, and professional coaching."
-category: "Racket Sports"
+title: "Lawn Tennis"
+description: "Use the grass playing area for friendly lawn tennis and shared outdoor activity, subject to availability."
+quote:
+  text: "Please contact us in advance to discuss availability, equipment and group needs."
+  author: "Recreation Yard Limited"
+category: "Outdoor Sports"
 icon: "i-tabler-ball-tennis"
-coverImage:
-  src: "/content/gallery/tennis-on-the-lawn/cover.jpeg"
-  alt: "Lawn Tennis Court"
 features:
-  - "Manicured natural grass courts"
-  - "Wilson tennis rackets & ball hoppers"
-  - "1-on-1 coaching sessions available"
-  - "Umpire stands & player benching"
-capacity: "4 Players per court"
-pricing:
-  rate: "KES 1,200"
-  unit: "per hour"
-  note: "Balls & rackets provided"
+  - "Welcoming outdoor environment"
+  - "Suitable for individuals and organised groups"
+  - "Advance planning available"
+rules:
+  - "Prior booking is required for group events and organised activities"
+  - "Follow venue safety and cleanliness rules"
+  - "Activity availability is confirmed before visiting"
+operatingHours: "Confirm availability when booking"
+ageGroup: "All Ages"
+bookingRequired: true
 featured: true
-order: 2
-badge: "Grass Courts"
+order: 1
+badge: "Recreation Yard Kericho"
 cta:
-  label: "Book Lawn Tennis"
-  to: "/contact?facility=tennis-on-the-lawn"
+  label: "Ask about availability"
+  to: "/contact?type=facility-booking"
 ---
 
-## Traditional Lawn Tennis
+## Lawn Tennis
 
-Play tennis surrounded by panoramic views of Kericho tea fields. Our grass courts provide low bounce and fast play ideal for all skill levels.
+Use the grass playing area for friendly lawn tennis and shared outdoor activity, subject to availability. We create opportunities for people to move, play, connect, relax and thrive through recreation and shared experiences.
 
-:u-alert{icon="i-tabler-trophy" color="primary" variant="soft" title="Coaching Available" description="Book private coaching sessions with resident tennis trainers."}
+### Plan your experience
 
-### Play Details
-
-- Flat court shoes strictly required
-- Morning and late afternoon sessions recommended
-- Racquet stringing service available on request
+Contact Recreation Yard Limited with your preferred date, expected attendance, intended activities and any special requirements. We will advise on suitability, availability and applicable arrangements.

@@ -26,7 +26,7 @@ function isLinkActive(path: string) {
           </NuxtLink>
 
           <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-md">
-            Kericho's premier outdoor sports and recreation destination, offering natural grass lawn tennis courts, target archery, wellness trails, and tea estate views.
+            Recreation Yard Limited is a recreation, sports, wellness, events and sports merchandise business helping people move, play, connect and thrive in Kericho and beyond.
           </p>
 
           <!-- Highlights -->
@@ -167,7 +167,7 @@ function isLinkActive(path: string) {
 
         <div class="flex items-center gap-2 text-lime-600 dark:text-lime-400">
           <UIcon name="i-tabler-heart" class="size-3.5 text-lime-500 shrink-0" />
-          <span class="uppercase tracking-wider text-[10px]">Play. Compete. Relax.</span>
+          <span class="uppercase tracking-wider text-[10px]">Move. Play. Connect. Thrive.</span>
         </div>
       </div>
     </UContainer>

@@ -1,37 +1,34 @@
 ---
-title: "Kids Playground"
-description: "Safe, enclosed play area featuring swings, slides, and climbing structures for children."
-category: "Social & Family"
-icon: "i-tabler-mood-kid"
-coverImage:
-  src: "/content/gallery/kids-playground/cover.jpeg"
-  alt: "Children Playground"
+title: "Family and Social Recreation"
+description: "A welcoming outdoor environment for families and groups to spend time together through recreation."
+quote:
+  text: "Activities and suitability depend on the venue arrangements confirmed for your visit."
+  author: "Recreation Yard Limited"
+category: "Kids & Family"
+icon: "i-tabler-users-group"
 features:
-  - "Enclosed safe play environment"
-  - "Swings, slides, and climbing frames"
-  - "Soft grass & padded landing zones"
-  - "Adjacent shaded seating for parents"
-capacity: "25 Children"
-pricing:
-  rate: "Included"
-  unit: "with Day Pass"
-  note: "Adult supervision required"
-featured: false
-order: 6
-badge: "Safe Play"
+  - "Welcoming outdoor environment"
+  - "Suitable for individuals and organised groups"
+  - "Advance planning available"
+rules:
+  - "Prior booking is required for group events and organised activities"
+  - "Follow venue safety and cleanliness rules"
+  - "Activity availability is confirmed before visiting"
+operatingHours: "Confirm availability when booking"
+ageGroup: "All Ages"
+bookingRequired: true
+featured: true
+order: 1
+badge: "Recreation Yard Kericho"
 cta:
-  label: "Get Family Pass"
-  to: "/pricing"
+  label: "Ask about availability"
+  to: "/contact?type=facility-booking"
 ---
 
-## Safe Fun for Children
+## Family and Social Recreation
 
-Our enclosed playground provides safe outdoor play for kids. Parents can relax at adjacent benches while keeping children in full view.
+A welcoming outdoor environment for families and groups to spend time together through recreation. We create opportunities for people to move, play, connect, relax and thrive through recreation and shared experiences.
 
-:u-alert{icon="i-tabler-heart-handshake" color="primary" variant="soft" title="Family-Friendly" description="Free access for all children holding a valid Day Pass or Family Membership."}
+### Plan your experience
 
-### Safety Notes
-
-- Adult supervision required at all times
-- Suitable for children aged 2 to 12
-- Regularly inspected and cleaned equipment
+Contact Recreation Yard Limited with your preferred date, expected attendance, intended activities and any special requirements. We will advise on suitability, availability and applicable arrangements.

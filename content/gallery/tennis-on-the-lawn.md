@@ -1,16 +1,11 @@
 ---
-title: "Tennis on the Lawn"
-description: "Vibrant snapshots of natural grass tennis matches set against the sweeping tea estate landscape of Kericho."
-category: "sports"
-badge: "Grass Courts"
-date: "OCT 2026"
-coverImage:
-  src: "/content/gallery/tennis-on-the-lawn/cover.jpeg"
-  alt: "Lawn Tennis Court"
+title: "Lawn and Outdoor Games"
+description: "Badminton, lawn tennis, cornhole and selected recreational games in a green outdoor setting."
+category: "lawn-games"
+badge: "Recreation Yard Limited"
 featured: true
-order: 2
+order: 1
+photos: []
 ---
 
-## Lawn Tennis Elegance
-
-Immerse yourself in traditional lawn tennis amidst the cool highland breeze. Our grass courts offer optimal footing and pristine scenic views.
+Badminton, lawn tennis, cornhole and selected recreational games in a green outdoor setting.

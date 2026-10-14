@@ -103,7 +103,7 @@ export default defineEventHandler(async (event) => {
         <p style="white-space: pre-wrap; background-color: #f3f4f6; padding: 16px; border-radius: 8px; font-size: 13px; color: #1f2937;">${body.message}</p>
 
         <hr style="border: 0; border-top: 1px solid #e5e7eb; margin: 24px 0;" />
-        <p style="font-size: 11px; color: #9ca3af; text-align: center;">Sent from Recreation Yard Kericho Website • IP: ${clientIp}</p>
+        <p style="font-size: 11px; color: #9ca3af; text-align: center;">Sent from Recreation Yard Limited Website • IP: ${clientIp}</p>
       </div>
     `
 

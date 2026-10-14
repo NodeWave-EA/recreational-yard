@@ -1,9 +1,9 @@
 ---
-author: "Grace Koech"
-role: "Family Visitor"
+author: "Recreation Yard Limited"
+role: "Company profile"
 category: "General"
-comment: "Recreation Yard is Kericho's premier outdoor destination. Beautiful tea estate views, spotless amenities, and an environment where the entire family can unwind."
+comment: "We create opportunities for people to move, play, connect, relax and thrive through recreation, sport and shared experiences."
 rating: 5
-avatar: "https://robohash.org/grace-koech"
 featured: true
+order: 1
 ---

@@ -27,10 +27,10 @@ function toggleFaqItem(index: number) {
 const inquiryOptions = [
   'General Inquiry',
   'Facility Booking',
-  'Membership Pass',
+  'Running Club',
   'Event Registration',
   'Group & Corporate Booking',
-  'Shop / Order Support',
+  'Sports Kits & Merchandise',
 ]
 
 const formState = reactive({
@@ -58,9 +58,9 @@ onMounted(() => {
     formState.subject = `Booking Request: ${facility.replace(/-/g, ' ')}`
     formState.message = `Hello, I would like to reserve a slot for ${facility.replace(/-/g, ' ')}. Please advise on availability and guidelines.`
   } else if (pass) {
-    formState.inquiryType = 'Membership Pass'
-    formState.subject = `Membership Inquiry: ${pass.replace(/-/g, ' ')}`
-    formState.message = `Hello, I am interested in signing up for the ${pass.replace(/-/g, ' ')}. Please guide me through registration.`
+    formState.inquiryType = 'Sports Kits & Merchandise'
+    formState.subject = `Service enquiry: ${pass.replace(/-/g, ' ')}`
+    formState.message = `Hello, I would like more information about ${pass.replace(/-/g, ' ')}. Please advise on availability and requirements.`
   } else if (eventName) {
     formState.inquiryType = 'Event Registration'
     formState.subject = `Event Registration: ${eventName.replace(/-/g, ' ')}`
@@ -68,7 +68,7 @@ onMounted(() => {
   } else if (type === 'group-booking') {
     formState.inquiryType = 'Group & Corporate Booking'
     formState.subject = 'Custom Group / Corporate Function Request'
-    formState.message = 'Hello, we are planning a group outing/team building function at Recreation Yard. Please send us a customized quote.'
+    formState.message = 'Hello, we are planning a group outing, team-building function or shared experience at Recreation Yard. Please advise on suitability, availability and quotation.'
   }
 })
 
@@ -116,9 +116,9 @@ async function handleSubmit() {
 
 useSeoMeta({
   title: `Contact Us & Bookings | ${SITE_NAME}`,
-  description: 'Reach Recreation Yard Limited in Kericho for court reservations, membership passes, private venue bookings, or customer support.',
+  description: 'Contact Recreation Yard Limited in Kericho for recreation, running, sports merchandise and group experience enquiries.',
   ogTitle: `Contact Us & Bookings | ${SITE_NAME}`,
-  ogDescription: 'Reach Recreation Yard Limited in Kericho for court reservations, membership passes, private venue bookings, or customer support.',
+  ogDescription: 'Contact Recreation Yard Limited in Kericho for recreation, running, sports merchandise and group experience enquiries.',
   ogImage: `${useRuntimeConfig().public.siteUrl}/logo.png`,
   ogUrl: `${useRuntimeConfig().public.siteUrl}/contact`,
 })
@@ -129,7 +129,7 @@ useSchemaOrg([{
   '@id': `${siteUrl}/contact#webpage`,
   'url': `${siteUrl}/contact`,
   'name': `Contact Us & Bookings | ${SITE_NAME}`,
-  'description': 'Reach Recreation Yard Limited in Kericho for court reservations, membership passes, private venue bookings, or customer support.',
+  'description': 'Contact Recreation Yard Limited in Kericho for recreation, running, sports merchandise and group experience enquiries.',
   'isPartOf': { '@id': `${siteUrl}/#website` },
   'about': { '@id': `${siteUrl}/#organization` },
 }])
@@ -146,7 +146,7 @@ useSchemaOrg([{
           class="font-bold uppercase tracking-widest text-[10px] sm:text-xs px-3 py-1 rounded-full border border-lime-500/20"
         >
           <UIcon name="i-tabler-headset" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
-          <span>Support & Concierge</span>
+          <span>Bookings & enquiries</span>
         </UBadge>
       </div>
 
@@ -155,7 +155,7 @@ useSchemaOrg([{
       </h1>
 
       <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-md mx-0 sm:mx-auto">
-        Reach out to our team for court reservations, membership passes, private venue bookings, or customer support. We respond within 2 hours.
+        Contact us about outdoor recreation, Recreation Yard Runners, sports kits, group bookings, partnerships or general enquiries.
       </p>
     </section>
 
@@ -312,7 +312,7 @@ useSchemaOrg([{
               <label class="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Subject Line</label>
               <UInput
                 v-model="formState.subject"
-                placeholder="e.g. Reservation for Lawn Tennis & BBQ Gazebo"
+                placeholder="e.g. Group recreation or sports kit enquiry"
                 size="md"
                 color="neutral"
                 class="w-full"
@@ -362,7 +362,7 @@ useSchemaOrg([{
               Recreation Yard Kericho
             </h3>
             <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              Recreation Yard is a premier outdoor recreational venue in Kericho, Kenya. We offer a variety of facilities including lawn tennis courts, BBQ gazebos, and event spaces for private functions. Our team is dedicated to providing exceptional service and ensuring a memorable experience for all our guests.
+              Recreation Yard Limited connects outdoor recreation, running, sports merchandise and group experiences. We serve individuals, families, schools, corporate organisations, sports clubs, event organisers and community groups.
             </p>
           </div>
 
@@ -370,11 +370,11 @@ useSchemaOrg([{
           <div class="space-y-3 divide-y divide-neutral-200 dark:divide-neutral-800 border-y border-neutral-200 dark:border-neutral-800 py-4">
             <div class="flex items-center gap-3 pt-3 first:pt-0">
               <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0" />
-              <span class="text-xs text-neutral-700 dark:text-neutral-300 font-medium">Walk-ins open daily from 8:00 AM – 7:00 PM</span>
+              <span class="text-xs text-neutral-700 dark:text-neutral-300 font-medium">Prior booking helps confirm availability</span>
             </div>
             <div class="flex items-center gap-3 pt-3">
               <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0" />
-              <span class="text-xs text-neutral-700 dark:text-neutral-300 font-medium">Free secure parking for 100+ vehicles</span>
+              <span class="text-xs text-neutral-700 dark:text-neutral-300 font-medium">Flexible recreation and merchandise enquiries</span>
             </div>
             <div class="flex items-center gap-3 pt-3">
               <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0" />
@@ -480,7 +480,7 @@ useSchemaOrg([{
           </UButton>
         </div>
 
-        <div class="relative w-full h-80 sm:h-105 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900">
+        <div v-if="LOCATION_DETAILS.embedLink" class="relative w-full h-80 sm:h-105 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900">
           <iframe
             title="Recreation Yard Kericho Google Map Location"
             :src="LOCATION_DETAILS.embedLink"

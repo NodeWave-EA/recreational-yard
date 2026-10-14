@@ -1,37 +1,34 @@
 ---
-title: "Tea Garden Stroll"
-description: "Guided nature walks through lush tea fields with curated photo spots and scenic viewpoints."
-category: "Trails & Nature"
+title: "Outdoor Recreation Space"
+description: "Spend time outdoors, relax and connect in the green environment at Recreation Yard Kericho."
+quote:
+  text: "The venue supports leisure, games, picnics, celebrations and group activities."
+  author: "Recreation Yard Limited"
+category: "Relaxation & Picnics"
 icon: "i-tabler-trees"
-coverImage:
-  src: "/content/gallery/tea-garden-stroll/cover.jpeg"
-  alt: "Tea Garden Nature Walk"
 features:
-  - "Guided walks through Kericho tea fields"
-  - "Curated photography viewpoints"
-  - "Botanical and tea history insights"
-  - "Complimentary single-origin tea tasting"
-capacity: "Guided groups up to 15"
-pricing:
-  rate: "KES 500"
-  unit: "per person"
-  note: "Includes tea tasting session"
-featured: false
-order: 8
-badge: "Photo Spots"
+  - "Welcoming outdoor environment"
+  - "Suitable for individuals and organised groups"
+  - "Advance planning available"
+rules:
+  - "Prior booking is required for group events and organised activities"
+  - "Follow venue safety and cleanliness rules"
+  - "Activity availability is confirmed before visiting"
+operatingHours: "Confirm availability when booking"
+ageGroup: "All Ages"
+bookingRequired: true
+featured: true
+order: 1
+badge: "Recreation Yard Kericho"
 cta:
-  label: "Book Garden Stroll"
-  to: "/contact?facility=tea-garden-stroll"
+  label: "Ask about availability"
+  to: "/contact?type=facility-booking"
 ---
 
-## Guided Highland Walk
+## Outdoor Recreation Space
 
-Discover the beauty of Kericho's tea fields with guided walks. Take in scenery, capture photos at elevated viewpoints, and sample freshly brewed tea.
+Spend time outdoors, relax and connect in the green environment at Recreation Yard Kericho. We create opportunities for people to move, play, connect, relax and thrive through recreation and shared experiences.
 
-:u-alert{icon="i-tabler-camera" color="primary" variant="soft" title="Photography Friendly" description="Features scenic photo stops overlooking the tea valley."}
+### Plan your experience
 
-### Walk Highlights
-
-- 45-minute easy walking pace
-- Local guide introducing tea harvesting techniques
-- Post-walk tea tasting at the clubhouse veranda
+Contact Recreation Yard Limited with your preferred date, expected attendance, intended activities and any special requirements. We will advise on suitability, availability and applicable arrangements.

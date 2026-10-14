@@ -1,13 +1,15 @@
-# Recreational Yard
+# Recreation Yard Limited
 
-Recreational Yard is a Nuxt-based marketing and booking website for a premier outdoor recreation destination in Kericho, Kenya. The experience combines a modern digital storefront, gallery-driven storytelling, membership pricing, and a contact form connected to email delivery and anti-bot protection.
+This is the Nuxt website for RECREATION YARD LIMITED, a recreation, sports, wellness, events and sports merchandise business based at Kooma, along the Kericho–Kisumu Highway in Kericho, Kenya. The brand brings together Recreation Yard Kericho and Recreation Yard Runners under the promise: Move. Play. Connect. Thrive.
 
 ## Overview
 
 The site showcases:
 
-- Outdoor facilities such as tennis, archery, badminton, jogging trails, picnic and BBQ areas, and a kids playground
-- Membership and day-pass pricing
+- Outdoor recreation including badminton, lawn tennis, cornhole, chess, picnics and selected supervised activities
+- Physical and virtual running, jogging and walking through Recreation Yard Runners
+- Running kits, complete marathon kits, school games uniforms, corporate sportswear and selected equipment
+- Group experiences for birthdays, graduations, meetings and team building
 - A gallery and facility content library managed through markdown files
 - Event promotion and contact inquiries
 - SEO-friendly pages and responsive UI built with Nuxt and Nuxt UI
@@ -40,7 +42,7 @@ The site showcases:
 ## Features
 
 - Facility landing pages and catalog browsing
-- Pricing plans with monthly membership CTA flows
+- Service and quotation enquiries based on customer requirements
 - Event and shop highlights sections
 - Contact form with:
   - required field validation
@@ -96,10 +98,10 @@ NUXT_PUBLIC_TURNSTILE_SITE_KEY=...
 NUXT_TURNSTILE_SECRET_KEY=...
 NUXT_SMTP_HOST=smtp.gmail.com
 NUXT_SMTP_PORT=587
-NUXT_SMTP_USER=info@moderatelimited.co.ke
+NUXT_SMTP_USER=relax@recreationyard.com
 NUXT_SMTP_PASS=your_app_password_here
-NUXT_SMTP_FROM="Recreation Yard Website <info@moderatelimited.co.ke>"
-NUXT_CONTACT_RECIPIENT=info@moderatelimited.co.ke
+NUXT_SMTP_FROM="Recreation Yard Limited <relax@recreationyard.com>"
+NUXT_CONTACT_RECIPIENT=relax@recreationyard.com
 ```
 
 Notes:

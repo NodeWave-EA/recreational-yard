@@ -86,13 +86,15 @@ useSchemaOrg([{
   'description': product.value.description,
   'image': getProductImage() || undefined,
   'brand': { '@type': 'Brand', 'name': LOCATION_DETAILS.company },
-  'offers': {
-    '@type': 'Offer',
-    'url': pageUrl,
-    'price': product.value.price,
-    'priceCurrency': product.value.currency || 'KES',
-    'availability': product.value.inStock === false ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
-  },
+  'offers': product.value.price
+    ? {
+        '@type': 'Offer',
+        'url': pageUrl,
+        'price': product.value.price,
+        'priceCurrency': product.value.currency || 'KES',
+        'availability': product.value.inStock === false ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+      }
+    : undefined,
 }])
 </script>
 
@@ -151,11 +153,10 @@ useSchemaOrg([{
 
           <!-- Price Display -->
           <div class="flex items-baseline gap-2 py-3 border-y border-neutral-200 dark:border-neutral-800">
-            <span class="text-sm font-bold text-neutral-400">{{ product.currency || 'KES' }}</span>
             <span class="text-3xl font-black text-neutral-950 dark:text-white">
-              {{ (product.price || 0).toLocaleString() }}
+              {{ product.price ? `${product.currency || 'KES'} ${product.price.toLocaleString()}` : 'Quote on request' }}
             </span>
-            <span v-if="product.inStock !== false" class="ml-auto text-xs font-bold text-lime-600 dark:text-lime-400 flex items-center gap-1">
+            <span v-if="product.price && product.inStock !== false" class="ml-auto text-xs font-bold text-lime-600 dark:text-lime-400 flex items-center gap-1">
               <UIcon name="i-tabler-check" class="size-4" /> In Stock
             </span>
           </div>
@@ -177,7 +178,7 @@ useSchemaOrg([{
           <div class="pt-4">
             <!-- Stepper -->
             <div
-              v-if="cartQuantity > 0"
+              v-if="product.price && cartQuantity > 0"
               class="flex items-center justify-between w-full py-2"
             >
               <span class="text-xs font-black uppercase text-lime-600 dark:text-lime-400 flex items-center gap-1.5">
@@ -210,7 +211,7 @@ useSchemaOrg([{
 
             <!-- Add Button -->
             <UButton
-              v-else
+              v-if="product.price"
               block
               size="lg"
               color="primary"
@@ -219,6 +220,17 @@ useSchemaOrg([{
               @click="handleAddToCart"
             >
               Add to Shopping Bag
+            </UButton>
+            <UButton
+              v-else
+              to="/contact?type=group-booking"
+              block
+              size="lg"
+              color="primary"
+              icon="i-tabler-message"
+              class="font-black uppercase text-xs text-neutral-950 rounded-xl py-3.5"
+            >
+              Request details
             </UButton>
           </div>
         </div>

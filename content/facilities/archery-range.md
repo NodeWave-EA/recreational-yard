@@ -1,46 +1,34 @@
 ---
-title: "Archery Range"
-description: "Safe shooting range with archery targets, bows, arrows, and certified instructors."
+title: "Supervised Archery Activities"
+description: "Archery is available as a selected recreational activity subject to appropriate supervision, safety controls and prior confirmation."
 quote:
-  text: "The state-of-the-art safety nets and certified instructors make this the ideal training ground for archers of all skill levels."
-  author: "Head Archery Coach"
+  text: "Archery sessions are arranged according to availability and agreed safety requirements."
+  author: "Recreation Yard Limited"
 category: "Target Sports"
 icon: "i-tabler-target"
-coverImage:
-  src: "/content/gallery/archery-range/cover.jpg"
-  alt: "Highland Archery Range"
 features:
-  - "6 individual shooting lanes (10m to 30m)"
-  - "Recurve bows, arm guards, and arrows"
-  - "Safety briefing before every session"
-  - "High-density straw target backstops"
+  - "Welcoming outdoor environment"
+  - "Suitable for individuals and organised groups"
+  - "Advance planning available"
 rules:
-  - "Flat, closed-toe shoes required on shooting lines"
-  - "Do not cross the shooting line until all archers finish"
-  - "Children under 12 must be supervised by an adult"
-capacity: "12 Archers per session"
-operatingHours: "7:30 AM – 6:00 PM"
+  - "Prior booking is required for group events and organised activities"
+  - "Follow venue safety and cleanliness rules"
+  - "Activity availability is confirmed before visiting"
+operatingHours: "Confirm availability when booking"
 ageGroup: "All Ages"
-pricing:
-  rate: "KES 1,500"
-  unit: "per 45 mins"
-  note: "Includes instructor guidance & gear"
+bookingRequired: true
 featured: true
-order: 3
-badge: "Instructors On-Site"
+order: 1
+badge: "Recreation Yard Kericho"
 cta:
-  label: "Book Archery Session"
-  to: "/contact?facility=archery-range"
+  label: "Ask about availability"
+  to: "/contact?type=facility-booking"
 ---
 
-## Precision & Focus
+## Supervised Archery Activities
 
-Test your accuracy at our sheltered target archery range. Certified instructors guide beginners through safety fundamentals before practice rounds.
+Archery is available as a selected recreational activity subject to appropriate supervision, safety controls and prior confirmation. We create opportunities for people to move, play, connect, relax and thrive through recreation and shared experiences.
 
-:u-alert{icon="i-tabler-shield-check" color="neutral" variant="subtle" title="Safety First" description="All sessions include range safety briefings and protective arm gear."}
+### Plan your experience
 
-### Range Guidelines
-
-- Closed-toe shoes required
-- Minimum age requirement: 10 years
-- Group challenges available for corporate events
+Contact Recreation Yard Limited with your preferred date, expected attendance, intended activities and any special requirements. We will advise on suitability, availability and applicable arrangements.

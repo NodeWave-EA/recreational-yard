@@ -5,7 +5,7 @@ const siteUrl = useRuntimeConfig().public.siteUrl
 
 useSeoMeta({
   title: `Recreation Yard Limited  Kericho`,
-  description: LOCATION_DETAILS.tagline,
+  description: 'Recreation Yard Limited brings outdoor recreation, running, sports merchandise and shared experiences to Kericho, Kenya.',
   ogTitle: LOCATION_DETAILS.company,
   ogDescription: LOCATION_DETAILS.tagline,
   ogImage: `${siteUrl}/logo.png`,
@@ -27,6 +27,11 @@ useSchemaOrg([{
   <div class="space-y-16 sm:space-y-24 pb-16">
     <!-- Hero Section -->
     <HomeHero />
+
+    <!-- Company Profile -->
+    <UContainer>
+      <HomeCompanyProfile />
+    </UContainer>
 
     <!-- Facilities Teaser -->
     <UContainer>

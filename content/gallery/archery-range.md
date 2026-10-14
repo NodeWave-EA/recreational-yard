@@ -1,16 +1,11 @@
 ---
-title: Archery Range
-badge: Precision
-category: sports
-coverImage:
-  src: /content/gallery/archery-range/cover.jpg
-  alt: Target Archery Range
-date: SEP 2026
-description: Target focus and archer form highlights from our sheltered outdoor target archery lanes.
-featured: false
-order: 3
+title: "Lawn and Outdoor Games"
+description: "Badminton, lawn tennis, cornhole and selected recreational games in a green outdoor setting."
+category: "lawn-games"
+badge: "Recreation Yard Limited"
+featured: true
+order: 1
+photos: []
 ---
 
-## Precision in the Highlands
-
-A look inside our target archery facility where patience, discipline, and aim come together in a safe environment.
+Badminton, lawn tennis, cornhole and selected recreational games in a green outdoor setting.

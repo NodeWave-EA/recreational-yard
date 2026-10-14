@@ -50,9 +50,9 @@ function toggleFaqItem(index: number) {
 
 useSeoMeta({
   title: `Pricing & Passes | ${LOCATION_DETAILS.company}`,
-  description: 'Simple, transparent pass options for general recreation, lawn sports, and monthly memberships.',
+  description: 'Explore Recreation Yard Limited services and request arrangements or quotations based on your requirements.',
   ogTitle: `Pricing & Passes | ${LOCATION_DETAILS.company}`,
-  ogDescription: 'Simple, transparent pass options for general recreation, lawn sports, and monthly memberships.',
+  ogDescription: 'Explore Recreation Yard Limited services and request arrangements or quotations based on your requirements.',
   ogImage: `${useRuntimeConfig().public.siteUrl}/logo.png`,
   ogUrl: `${useRuntimeConfig().public.siteUrl}/pricing`,
 })
@@ -63,7 +63,7 @@ useSchemaOrg([{
   '@id': `${siteUrl}/pricing#webpage`,
   'url': `${siteUrl}/pricing`,
   'name': `Pricing & Passes | ${LOCATION_DETAILS.company}`,
-  'description': 'Simple, transparent pass options for general recreation, lawn sports, and monthly memberships.',
+  'description': 'Explore Recreation Yard Limited services and request arrangements or quotations based on your requirements.',
   'isPartOf': { '@id': `${siteUrl}/#website` },
   'about': { '@id': `${siteUrl}/#organization` },
 }])
@@ -80,16 +80,16 @@ useSchemaOrg([{
           class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-3.5 py-1 sm:py-0.5 rounded-full"
         >
           <UIcon name="i-tabler-ticket" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
-          <span>Passes & Memberships</span>
+          <span>Services & quotations</span>
         </UBadge>
       </div>
 
       <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white leading-tight">
-        Simple, Transparent Pricing
+        Services built around your needs
       </h1>
 
       <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl mx-0 sm:mx-auto">
-        Whether you're here for a day of fun or looking to become a regular, we have a pass that fits your needs. Explore our entry-level passes, monthly memberships, and annual VIP options.
+        We coordinate outdoor recreation, group experiences, sports kits, uniforms and selected equipment. Requirements, availability and pricing are confirmed before an arrangement is finalised.
       </p>
     </div>
 
@@ -240,10 +240,10 @@ useSchemaOrg([{
 
             <!-- Price Banner -->
             <div class="my-4 pt-3 border-t border-neutral-200/60 dark:border-neutral-800/60">
-              <span class="text-[9px] font-bold uppercase tracking-wider text-neutral-400 block">{{ plan.currency || 'KES' }}</span>
+              <span v-if="plan.price" class="text-[9px] font-bold uppercase tracking-wider text-neutral-400 block">{{ plan.currency || 'KES' }}</span>
               <div class="flex items-baseline gap-1 mt-0.5">
                 <span class="text-2xl sm:text-3xl font-black text-neutral-950 dark:text-white">
-                  {{ (plan.price || 0).toLocaleString() }}
+                  {{ plan.price ? plan.price.toLocaleString() : 'Quote on request' }}
                 </span>
                 <span class="text-xs text-neutral-400 font-medium">/ {{ plan.billingCycle }}</span>
               </div>
@@ -329,10 +329,10 @@ useSchemaOrg([{
             <!-- Price & Action Button -->
             <div class="flex items-center justify-between sm:justify-end gap-5 w-full sm:w-auto pt-3 sm:pt-0 shrink-0">
               <div class="text-left sm:text-right">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">{{ plan.currency || 'KES' }}</span>
+                <span v-if="plan.price" class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">{{ plan.currency || 'KES' }}</span>
                 <div class="flex items-baseline gap-1">
                   <span class="text-xl sm:text-2xl font-black text-neutral-950 dark:text-white">
-                    {{ (plan.price || 0).toLocaleString() }}
+                    {{ plan.price ? plan.price.toLocaleString() : 'Quote on request' }}
                   </span>
                   <span class="text-[11px] text-neutral-400">/ {{ plan.billingCycle }}</span>
                 </div>
@@ -373,10 +373,10 @@ useSchemaOrg([{
 
         <div class="space-y-1">
           <h3 class="text-lg font-bold text-neutral-950 dark:text-white">
-            No Matching Passes
+            No Matching Services
           </h3>
           <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
-            No passes or memberships match your current search query or active filter selections. Try clearing your filters or searching for something else.
+            No services match your current search query or active filter selections. Try clearing your filters or searching for something else.
           </p>
         </div>
 
@@ -402,10 +402,10 @@ useSchemaOrg([{
 
         <div class="space-y-1">
           <h3 class="text-lg font-bold text-neutral-950 dark:text-white">
-            No Passes Available
+            No Services Available
           </h3>
           <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
-            There are currently no passes or membership plans listed in our catalog. Please check back later or contact us directly to inquire about booking options.
+            Services are arranged around your requirements. Contact us to discuss recreation, group experiences, sports kits or selected equipment.
           </p>
         </div>
 
@@ -506,10 +506,10 @@ useSchemaOrg([{
               Group & Corporate Bookings
             </UBadge>
             <h3 class="text-2xl sm:text-3xl font-extrabold text-neutral-950 dark:text-white">
-              Hosting a Team Building Event or Party?
+              Planning a group, school or corporate experience?
             </h3>
             <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-300 leading-relaxed">
-              We offer tailored group packages for corporate events, birthday parties, and team-building activities. Contact us to create a memorable experience for your group.
+              We discuss suitable programmes for birthdays, graduations, meetings and team-building activities based on your objectives, group size, preferred activities and available time.
             </p>
           </div>
           <div class="lg:col-span-4 flex lg:justify-end">

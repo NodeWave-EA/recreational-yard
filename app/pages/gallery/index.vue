@@ -23,9 +23,9 @@ const hasAnyCollection = computed(() => (collections.value?.length || 0) > 0)
 
 useSeoMeta({
   title: `Photo Gallery & Collections | ${LOCATION_DETAILS.company}`,
-  description: 'Explore high-resolution photo collections from our lawn tennis opens, tea estate vistas, and recreation grounds.',
+  description: 'Explore Recreation Yard Limited’s outdoor recreation, running, sportswear and group experience collections.',
   ogTitle: `Photo Gallery & Collections | ${LOCATION_DETAILS.company}`,
-  ogDescription: 'Explore high-resolution photo collections from our lawn tennis opens, tea estate vistas, and recreation grounds.',
+  ogDescription: 'Explore Recreation Yard Limited’s outdoor recreation, running, sportswear and group experience collections.',
   ogImage: `${useRuntimeConfig().public.siteUrl}/logo.png`,
   ogUrl: `${useRuntimeConfig().public.siteUrl}/gallery`,
 })
@@ -36,7 +36,7 @@ useSchemaOrg([{
   '@id': `${siteUrl}/gallery#webpage`,
   'url': `${siteUrl}/gallery`,
   'name': `Photo Gallery & Collections | ${LOCATION_DETAILS.company}`,
-  'description': 'Explore high-resolution photo collections from our lawn tennis opens, tea estate vistas, and recreation grounds.',
+  'description': 'Explore Recreation Yard Limited’s outdoor recreation, running, sportswear and group experience collections.',
   'isPartOf': { '@id': `${siteUrl}/#website` },
   'about': { '@id': `${siteUrl}/#organization` },
 }])
@@ -62,7 +62,7 @@ useSchemaOrg([{
       </h1>
 
       <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl mx-0 sm:mx-auto">
-        A curated showcase of lawn sports action, highland tea garden panoramas, and community gatherings in Kericho.
+        A showcase of recreation, running, sports merchandise and shared experiences from Recreation Yard Limited.
       </p>
     </div>
 

@@ -1,9 +1,9 @@
 ---
-author: "Amina Hassan"
-role: "Corporate Event Host"
+author: "Recreation Yard Limited"
+role: "Community promise"
 category: "Events & Groups"
-comment: "We hosted our annual corporate retreat at the Tea Garden Pavilion. From the grass volleyball tournament to the private BBQ lawn setup, the team handled everything seamlessly."
+comment: "We welcome schools, clubs, companies, event organisers and community groups to discuss suitable experiences and partnerships."
 rating: 5
-avatar: "https://robohash.org/amina-hassan"
 featured: true
+order: 1
 ---

@@ -1,10 +1,11 @@
 ---
-title: "Highland Tea Estate Panoramas"
-description: "A visual tour of the scenic tea garden trails, sunset overlooks, and lush green estate surrounding Recreation Yard."
+title: "Outdoor Recreation Space"
+description: "A green environment for picnics, relaxation and shared experiences."
 category: "scenery"
-badge: "Scenic Views"
-date: "2026-09-01"
-coverImage:
-  src: "/content/gallery/highland-tea-estate-views/cover.jpg"
-  alt: ""
+badge: "Recreation Yard Limited"
+featured: true
+order: 1
+photos: []
 ---
+
+A green environment for picnics, relaxation and shared experiences.

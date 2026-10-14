@@ -1,16 +1,11 @@
 ---
-title: "Outdoor Fitness Zone"
-description: "Calisthenics sessions, bodyweight training, and cross-fitness workouts in the open air."
-category: "sports"
-badge: "Calisthenics"
-date: "OCT 2026"
-coverImage:
-  src: "/content/gallery/outdoor-fitness-zone/cover.jpg"
-  alt: "Outdoor Fitness Zone"
-featured: false
-order: 7
+title: "Outdoor Recreation Space"
+description: "A green environment for picnics, relaxation and shared experiences."
+category: "scenery"
+badge: "Recreation Yard Limited"
+featured: true
+order: 1
+photos: []
 ---
 
-## Open-Air Bodyweight Fitness
-
-Train outside with dedicated pull-up rigs, parallel bars, and plyometric equipment situated directly on our open grass yard.
+A green environment for picnics, relaxation and shared experiences.

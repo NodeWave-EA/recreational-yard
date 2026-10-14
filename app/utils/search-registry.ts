@@ -9,9 +9,9 @@ export interface SearchCollectionMeta {
 
 export const SEARCH_COLLECTION_CONFIGS: SearchCollectionMeta[] = [
   { key: 'facilities', label: 'Facilities', icon: 'i-tabler-trees', defaultBadge: 'Facility' },
-  { key: 'pricing', label: 'Pricing Passes', icon: 'i-tabler-ticket', defaultBadge: 'Pass' },
-  { key: 'shop', label: 'Shop Merchandise', icon: 'i-tabler-shopping-bag', defaultBadge: 'Product' },
-  { key: 'events', label: 'Events & Tournaments', icon: 'i-tabler-calendar-event', defaultBadge: 'Event' },
+  { key: 'pricing', label: 'Services & Quotations', icon: 'i-tabler-briefcase', defaultBadge: 'Service' },
+  { key: 'shop', label: 'Sports Merchandise', icon: 'i-tabler-shirt-sport', defaultBadge: 'Sportswear' },
+  { key: 'events', label: 'Community & Group Experiences', icon: 'i-tabler-calendar-event', defaultBadge: 'Opportunity' },
   { key: 'gallery', label: 'Gallery', icon: 'i-tabler-photo', defaultBadge: 'Gallery' },
   { key: 'faqs', label: 'FAQs & Help', icon: 'i-tabler-help-circle', defaultBadge: 'FAQ' },
   { key: 'testimonials', label: 'Testimonials', icon: 'i-tabler-message-heart', defaultBadge: 'Review' },

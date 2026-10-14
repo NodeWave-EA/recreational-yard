@@ -1,10 +1,9 @@
 ---
-author: "David Kiprop"
-role: "First-Time Archer"
+author: "Recreation Yard Limited"
+role: "Service commitment"
 category: "Facilities & Sports"
-facility: "archery-range"
-comment: "The instructor was incredibly patient with our family. Hitting the bullseye on my first visit to the Kericho Archery Range was an unforgettable thrill!"
+comment: "Activities are arranged responsibly, with availability, safety requirements and venue rules communicated before participation."
 rating: 5
-avatar: "https://robohash.org/david-kiprop"
 featured: true
+order: 1
 ---

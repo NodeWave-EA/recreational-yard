@@ -27,10 +27,10 @@ function getImageSrc(item: any) {
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-5">
       <div>
         <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-xs mb-2">
-          On-Site Amenities
+          Recreation Yard Kericho
         </UBadge>
         <h2 class="text-2xl sm:text-4xl font-black tracking-tight text-neutral-950 dark:text-white">
-          Featured Recreation Grounds
+          A green space for shared experiences
         </h2>
       </div>
 
@@ -65,7 +65,7 @@ function getImageSrc(item: any) {
           trailing
           class="font-bold uppercase text-xs tracking-wider"
         >
-          View All Facilities
+          Explore our services
         </UButton>
       </div>
     </div>
@@ -131,7 +131,7 @@ function getImageSrc(item: any) {
 
         <div class="pt-3 mt-3 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between">
           <span class="text-xs font-bold text-lime-600 dark:text-lime-400 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-            Explore Zone
+            Learn more
           </span>
           <UIcon name="i-tabler-arrow-right" class="size-4 text-neutral-400 group-hover:text-lime-500 transition-colors" />
         </div>

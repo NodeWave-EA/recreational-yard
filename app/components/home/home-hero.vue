@@ -15,8 +15,8 @@ const AUTO_SWITCH_INTERVAL_MS = 30000
 const slides: HeroSlide[] = [
   {
     id: 'archery',
-    title: 'Target Archery',
-    tagline: 'Take your best shot',
+    title: 'Recreation Yard Kericho',
+    tagline: 'A space to move and connect',
     image: '/images/archery.jpg',
     icon: 'i-tabler-target-arrow',
     shapeClass: 'rounded-t-[3.5rem] rounded-b-2xl',
@@ -24,8 +24,8 @@ const slides: HeroSlide[] = [
   },
   {
     id: 'tennis',
-    title: 'Lawn Tennis',
-    tagline: 'Play on the lawn',
+    title: 'Recreation Yard Runners',
+    tagline: 'Run, jog, walk and enjoy',
     image: '/images/tennis.jpg',
     icon: 'i-tabler-ball-tennis',
     shapeClass: 'rounded-br-[3.5rem] rounded-tl-[2.5rem] rounded-tr-2xl rounded-bl-xl',
@@ -33,8 +33,8 @@ const slides: HeroSlide[] = [
   },
   {
     id: 'landscape',
-    title: 'Tea Estate Trail',
-    tagline: 'Breathe in Kericho',
+    title: 'Sports kits and equipment',
+    tagline: 'Gear for teams and events',
     image: '/images/kericho-landscape.jpg',
     icon: 'i-tabler-trees',
     shapeClass: 'rounded-tr-[3.5rem] rounded-bl-[3rem] rounded-tl-xl rounded-br-2xl',
@@ -120,22 +120,22 @@ onUnmounted(() => {
               >
                 <UIcon name="i-tabler-map-pin" class="size-3.5 sm:size-4 mr-1.5 text-lime-600 dark:text-lime-400 shrink-0" />
                 <span class="truncate">
-                  Escape the routine. Step into the fresh air.
+                  MOVE. PLAY. CONNECT. THRIVE.
                 </span>
               </UBadge>
             </div>
 
             <!-- Headline -->
             <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white uppercase leading-tight sm:leading-[1.1]">
-              Good Games. Fresh Air. Great Company.
+              Recreation, sport and shared experiences.
               <span class="block bg-linear-to-r from-lime-500 to-emerald-600 dark:from-lime-400 dark:to-emerald-400 bg-clip-text text-transparent">
-                Fun for All Ages
+                Built for active living
               </span>
             </h1>
 
             <!-- Description -->
             <p class="max-w-xl text-xs sm:text-sm text-neutral-700 dark:text-neutral-200 leading-relaxed font-medium">
-              Whether you are here to challenge your friends to a game on the grass tennis courts, find your focus at the archery range, or fire up the BBQ under a shaded gazebo, we have got a spot on the lawn waiting for you.
+              Recreation Yard Limited brings together outdoor recreation, running and walking, sports merchandise, and group experiences at Kooma along the Kericho–Kisumu Highway. Come to move, play, connect, relax and thrive.
             </p>
 
             <!-- CTA Action Buttons -->
@@ -147,7 +147,7 @@ onUnmounted(() => {
                 icon="i-tabler-ticket"
                 class="w-full sm:w-auto font-black uppercase text-xs text-neutral-950 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl shadow-md hover:shadow-lime-500/25 transition-all justify-center"
               >
-                Get Your Pass
+                Plan Your Visit
               </UButton>
 
               <UButton
@@ -158,7 +158,7 @@ onUnmounted(() => {
                 icon="i-tabler-trees"
                 class="w-full sm:w-auto font-black uppercase text-xs rounded-xl px-5 py-2.5 sm:px-6 sm:py-3 backdrop-blur-md justify-center"
               >
-                Explore Facilities
+                Explore Recreation
               </UButton>
             </div>
           </div>
@@ -307,10 +307,10 @@ onUnmounted(() => {
             </div>
             <div>
               <h3 class="text-sm font-black text-neutral-950 dark:text-white uppercase tracking-wide">
-                8+ Outdoor Zones
+                Recreation and shared experiences
               </h3>
               <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
-                Grass lawn tennis, target archery, jogging trails, and private BBQ gazebos.
+                Lawn games, picnics, social activities and group recreation in a welcoming outdoor setting.
               </p>
             </div>
           </div>
@@ -322,10 +322,10 @@ onUnmounted(() => {
             </div>
             <div>
               <h3 class="text-sm font-black text-neutral-950 dark:text-white uppercase tracking-wide">
-                Open Daily 7:30 AM - 6:00 PM
+                Plan before you visit
               </h3>
               <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
-                Casual walk-ins welcome daily alongside instant online court reservations.
+                Prior booking helps us confirm availability, activities and group arrangements.
               </p>
             </div>
           </div>
@@ -337,10 +337,10 @@ onUnmounted(() => {
             </div>
             <div>
               <h3 class="text-sm font-black text-neutral-950 dark:text-white uppercase tracking-wide">
-                Highland Views
+                Running and active living
               </h3>
               <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
-                Relax with fresh air and scenic views across surrounding Kericho tea gardens.
+                Physical and virtual running, jogging and walking through Recreation Yard Runners.
               </p>
             </div>
           </div>

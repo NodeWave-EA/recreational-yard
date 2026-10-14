@@ -94,7 +94,7 @@ useSchemaOrg([{
       </h1>
 
       <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl mx-0 sm:mx-auto">
-        Browse our curated selection of official Recreation Yard merchandise, fresh Kericho tea produce, and sports gear. Find the perfect items to support your favorite activities and enjoy quality products from our shop.
+        Explore running apparel, complete marathon kits, school games uniforms, corporate sportswear and selected sporting equipment. We confirm specifications, availability, pricing and delivery arrangements before orders are processed.
       </p>
     </div>
 
@@ -106,7 +106,7 @@ useSchemaOrg([{
           <UInput
             v-model="searchQuery"
             icon="i-tabler-search"
-            placeholder="Search merchandise and tea produce..."
+            placeholder="Search sportswear and equipment..."
             size="md"
             color="primary"
             class="w-full md:w-80 shadow-xs rounded-xl"
@@ -273,15 +273,15 @@ useSchemaOrg([{
           <!-- Price & Stepper / Add Action -->
           <div class="pt-3 mt-3 flex items-center justify-between gap-2 border-t border-neutral-200/60 dark:border-neutral-800/60">
             <div>
-              <span class="text-[9px] font-bold uppercase tracking-wider text-neutral-400 block">{{ product.currency || 'KES' }}</span>
+              <span v-if="product.price" class="text-[9px] font-bold uppercase tracking-wider text-neutral-400 block">{{ product.currency || 'KES' }}</span>
               <span class="text-lg font-black text-neutral-950 dark:text-white">
-                {{ (product.price || 0).toLocaleString() }}
+                {{ product.price ? `${product.currency || 'KES'} ${product.price.toLocaleString()}` : 'Quote on request' }}
               </span>
             </div>
 
             <!-- Quantity Stepper when in Cart -->
             <div
-              v-if="getCartQuantity(product.path) > 0"
+              v-if="product.price && getCartQuantity(product.path) > 0"
               class="flex items-center border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden bg-neutral-100 dark:bg-neutral-900"
             >
               <UButton
@@ -305,7 +305,7 @@ useSchemaOrg([{
 
             <!-- Standard Add Button when not in Cart -->
             <UButton
-              v-else
+              v-if="product.price"
               color="primary"
               size="sm"
               icon="i-tabler-shopping-bag-plus"
@@ -313,6 +313,16 @@ useSchemaOrg([{
               @click="handleAdd(product)"
             >
               Add to Bag
+            </UButton>
+            <UButton
+              v-else
+              :to="`/contact?type=group-booking&product=${product.path}`"
+              color="primary"
+              size="sm"
+              icon="i-tabler-message"
+              class="font-bold uppercase text-xs text-neutral-950 rounded-xl px-4 py-2 shrink-0"
+            >
+              Request details
             </UButton>
           </div>
         </div>
@@ -376,15 +386,15 @@ useSchemaOrg([{
           <!-- Price & Stepper / Add Action -->
           <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2 sm:pt-0 shrink-0">
             <div class="text-left sm:text-right">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">{{ product.currency || 'KES' }}</span>
+              <span v-if="product.price" class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">{{ product.currency || 'KES' }}</span>
               <span class="text-lg sm:text-xl font-black text-neutral-950 dark:text-white">
-                {{ (product.price || 0).toLocaleString() }}
+                {{ product.price ? `${product.currency || 'KES'} ${product.price.toLocaleString()}` : 'Quote on request' }}
               </span>
             </div>
 
             <!-- Quantity Stepper when in Cart -->
             <div
-              v-if="getCartQuantity(product.path) > 0"
+              v-if="product.price && getCartQuantity(product.path) > 0"
               class="flex items-center border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden bg-neutral-100 dark:bg-neutral-900"
             >
               <UButton
@@ -408,7 +418,7 @@ useSchemaOrg([{
 
             <!-- Standard Add Button when not in Cart -->
             <UButton
-              v-else
+              v-if="product.price"
               color="primary"
               size="sm"
               icon="i-tabler-shopping-bag-plus"
@@ -416,6 +426,16 @@ useSchemaOrg([{
               @click="handleAdd(product)"
             >
               Add to Bag
+            </UButton>
+            <UButton
+              v-else
+              :to="`/contact?type=group-booking&product=${product.path}`"
+              color="primary"
+              size="sm"
+              icon="i-tabler-message"
+              class="font-bold uppercase text-xs text-neutral-950 rounded-xl px-4 py-2 shrink-0"
+            >
+              Request details
             </UButton>
           </div>
         </div>

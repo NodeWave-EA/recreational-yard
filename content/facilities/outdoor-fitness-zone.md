@@ -1,37 +1,34 @@
 ---
-title: "Outdoor Fitness Zone"
-description: "Open-air bodyweight gym and calisthenics equipment set in serene tea garden surroundings."
-category: "Fitness & Wellness"
-icon: "i-tabler-stretching"
-coverImage:
-  src: "/content/gallery/outdoor-fitness-zone/cover.jpg"
-  alt: "Outdoor Calisthenics Fitness Zone"
+title: "Active Living Space"
+description: "A flexible outdoor setting for movement, informal activity and wellness-oriented group experiences."
+quote:
+  text: "Activities and arrangements are confirmed with customers before a visit."
+  author: "Recreation Yard Limited"
+category: "Outdoor Sports"
+icon: "i-tabler-heart-rate-monitor"
 features:
-  - "Pull-up bars, dip stations & parallettes"
-  - "Plyometric jump boxes"
-  - "Workout mats for floor exercises"
-  - "Open-air bodyweight training floor"
-capacity: "15 Athletes"
-pricing:
-  rate: "Included"
-  unit: "with Day Pass"
-  note: "Free workout mats available"
-featured: false
-order: 7
-badge: "Calisthenics"
+  - "Welcoming outdoor environment"
+  - "Suitable for individuals and organised groups"
+  - "Advance planning available"
+rules:
+  - "Prior booking is required for group events and organised activities"
+  - "Follow venue safety and cleanliness rules"
+  - "Activity availability is confirmed before visiting"
+operatingHours: "Confirm availability when booking"
+ageGroup: "All Ages"
+bookingRequired: true
+featured: true
+order: 1
+badge: "Recreation Yard Kericho"
 cta:
-  label: "Explore Passes"
-  to: "/pricing"
+  label: "Ask about availability"
+  to: "/contact?type=facility-booking"
 ---
 
-## Open-Air Strength & Conditioning
+## Active Living Space
 
-Workout outdoors with bodyweight and calisthenics equipment. Ideal for warm-ups, cross-training, or core conditioning routines.
+A flexible outdoor setting for movement, informal activity and wellness-oriented group experiences. We create opportunities for people to move, play, connect, relax and thrive through recreation and shared experiences.
 
-:u-alert{icon="i-tabler-barbell" color="neutral" variant="subtle" title="Free Training Gear" description="Exercise mats and resistance bands available at reception."}
+### Plan your experience
 
-### Equipment Highlights
-
-- Heavy-duty steel pull-up and dip bars
-- Step-up platforms & core benches
-- Spacious grass floor for mobility work
+Contact Recreation Yard Limited with your preferred date, expected attendance, intended activities and any special requirements. We will advise on suitability, availability and applicable arrangements.

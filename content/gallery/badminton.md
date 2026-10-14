@@ -1,16 +1,11 @@
 ---
-title: Badminton Courts
-badge: Action Shots
-category: sports
-coverImage:
-  src: /content/gallery/badminton/cover.jpeg
-  alt: Outdoor Badminton Court
-date: OCT 2026
-description: High-resolution visual collection capturing energetic rallies and evening action on our non-slip outdoor badminton courts.
+title: "Lawn and Outdoor Games"
+description: "Badminton, lawn tennis, cornhole and selected recreational games in a green outdoor setting."
+category: "lawn-games"
+badge: "Recreation Yard Limited"
 featured: true
 order: 1
+photos: []
 ---
 
-## High Energy Outdoor Badminton
-
-A curated lookbook capturing fast-paced rallies and casual afternoon matches across our non-slip outdoor courts. All equipment shown is available for on-site rental.
+Badminton, lawn tennis, cornhole and selected recreational games in a green outdoor setting.

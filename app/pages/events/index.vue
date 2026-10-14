@@ -66,7 +66,7 @@ useSchemaOrg([{
             </h1>
 
             <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              From lawn tennis opens and highland trail marathons to weekend family BBQ festivals — discover upcoming activities in Kericho.
+              Discover Recreation Yard Runners, group experiences, community activities and partnership opportunities in Kericho.
             </p>
           </div>
 
