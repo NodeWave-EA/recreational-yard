@@ -122,7 +122,7 @@ onUnmounted(() => {
               icon="i-tabler-trees"
               class="w-full sm:w-auto font-black uppercase text-xs rounded-md px-6 py-3 sm:py-2.5 cursor-pointer justify-center border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white hover:border-lime-500"
             >
-              Explore Grounds
+              Explore Facilities
             </UButton>
           </div>
         </div>
