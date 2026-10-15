@@ -6,7 +6,6 @@ import { LOCATION_DETAILS } from '~/utils/site-data'
 const route = useRoute()
 const { getByPath } = useContentQuery()
 
-// Fetch collection metadata
 const { data: collection } = await getByPath(
   `gallery-doc-${route.path}`,
   'gallery',
@@ -20,17 +19,14 @@ if (!collection.value) {
 
 const slug = computed(() => route.path.split('/').pop() || '')
 
-// Fetch dynamic local folder images from server API
 const { data: dynamicGallery } = await useFetch(`/api/gallery/${slug.value}`)
 
-// Combined photos: Merges dynamic local folder images with Markdown frontmatter photos (including external URLs)
 const allPhotos = computed(() => {
   const scanned = dynamicGallery.value?.images || []
   const explicit = collection.value?.photos || []
 
   const merged = [...scanned, ...explicit]
 
-  // Deduplicate by image URL
   const seenUrls = new Set<string>()
   return merged.filter((photo) => {
     if (!photo?.url || seenUrls.has(photo.url))
@@ -40,7 +36,6 @@ const allPhotos = computed(() => {
   })
 })
 
-// Initialize layout composable
 const {
   density,
   bgIntervalSeconds,
@@ -49,7 +44,6 @@ const {
   getPhotoAspectClass,
 } = useGalleryLayout()
 
-// Lightbox modal state & auto-centering ref
 const activePhotoIndex = ref<number | null>(null)
 const filmstripContainerRef = ref<HTMLElement | null>(null)
 
@@ -57,7 +51,6 @@ const activePhoto = computed(() =>
   activePhotoIndex.value !== null && allPhotos.value ? allPhotos.value[activePhotoIndex.value] : null,
 )
 
-// Auto-scroll active thumbnail into the center of the filmstrip bar
 function scrollToActiveThumbnail(index: number | null) {
   if (index === null || !filmstripContainerRef.value)
     return
@@ -97,7 +90,6 @@ function nextPhoto() {
   }
 }
 
-// Hero Background Loop
 const heroBgIndex = ref(0)
 let bgIntervalId: ReturnType<typeof setInterval> | null = null
 
@@ -157,8 +149,7 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div v-if="collection" class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-16 sm:pb-24 transition-colors duration-300 w-full overflow-x-clip">
-    <!-- Edge-to-Edge Hero Header with Looping Background -->
+  <div v-if="collection" class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-12 sm:pb-24 transition-colors duration-300 w-full overflow-x-clip">
     <div class="relative w-full bg-neutral-900 overflow-hidden">
       <div class="absolute inset-0 opacity-40 overflow-hidden bg-black">
         <Transition
@@ -180,7 +171,7 @@ useSchemaOrg([{
         </Transition>
       </div>
 
-      <UContainer class="relative z-10 py-12 sm:py-16 md:py-20 text-center space-y-3">
+      <UContainer class="relative z-10 py-8 sm:py-16 md:py-20 px-3 sm:px-6 lg:px-8 text-center space-y-2 sm:space-y-3">
         <NuxtLink
           to="/gallery"
           class="inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-bold text-white/80 hover:text-white transition-colors uppercase tracking-widest mb-1 drop-shadow-md"
@@ -199,9 +190,8 @@ useSchemaOrg([{
       </UContainer>
     </div>
 
-    <!-- Density Switcher Toolbar -->
-    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md border-b border-neutral-200/80 dark:border-neutral-800/80 py-2.5 sm:py-3 shadow-xs">
-      <UContainer class="flex justify-center items-center">
+    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md border-b border-neutral-200/80 dark:border-neutral-800/80 py-2 sm:py-3 shadow-none sm:shadow-xs">
+      <UContainer class="flex justify-center items-center px-3 sm:px-6 lg:px-8">
         <div class="flex items-center gap-6 sm:gap-8 font-sans font-bold text-xs sm:text-sm tracking-widest">
           <span class="text-xs font-bold text-neutral-400 uppercase tracking-wider hidden sm:inline">Grid Density:</span>
           <button
@@ -221,8 +211,7 @@ useSchemaOrg([{
       </UContainer>
     </div>
 
-    <!-- Masonry Wall Gallery -->
-    <UContainer class="pt-8">
+    <UContainer class="pt-4 sm:pt-8 px-3 sm:px-6 lg:px-8">
       <div v-if="allPhotos.length" :class="masonryContainerClasses">
         <div
           v-for="(photo, idx) in allPhotos"
@@ -231,7 +220,7 @@ useSchemaOrg([{
             masonryItemClasses,
             getPhotoAspectClass(idx, photo),
           ]"
-          class="group relative overflow-hidden cursor-pointer bg-neutral-100 dark:bg-neutral-900 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300"
+          class="group relative overflow-hidden cursor-pointer bg-transparent sm:bg-neutral-100 sm:dark:bg-neutral-900 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs"
           @click="openPhoto(idx)"
         >
           <NuxtImg
@@ -240,7 +229,7 @@ useSchemaOrg([{
             format="webp"
             quality="85"
             loading="lazy"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out rounded-md sm:rounded-none"
           />
 
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-3 sm:p-4 flex flex-col justify-between">
@@ -250,7 +239,6 @@ useSchemaOrg([{
               </div>
             </div>
 
-            <!-- Bottom Caption -->
             <p v-if="photo.caption" class="text-white text-xs font-medium tracking-wide drop-shadow-sm line-clamp-2">
               {{ photo.caption }}
             </p>
@@ -259,7 +247,6 @@ useSchemaOrg([{
       </div>
     </UContainer>
 
-    <!-- Glassmorphic Lightbox Modal Overlay -->
     <UModal
       :open="activePhotoIndex !== null"
       :ui="{
@@ -270,7 +257,6 @@ useSchemaOrg([{
     >
       <template #content>
         <div v-if="activePhoto" class="relative flex flex-col justify-between w-full h-[92dvh] py-3 sm:py-4 select-none overflow-hidden">
-          <!-- Top Control Bar: Index Counter & Close Button -->
           <div class="flex items-center justify-between px-3 sm:px-8 z-30 shrink-0">
             <span class="font-mono text-[11px] sm:text-xs font-bold text-white/90 bg-black/60 backdrop-blur-md px-3 py-1 rounded-md border border-white/10 shadow-lg">
               {{ activePhotoIndex! + 1 }} / {{ allPhotos.length }}
@@ -285,7 +271,6 @@ useSchemaOrg([{
             </button>
           </div>
 
-          <!-- Main View Stage Area -->
           <div class="relative flex-1 w-full flex items-center justify-center px-2 sm:px-12 my-1.5 sm:my-2 min-h-0 overflow-hidden">
             <NuxtImg
               :src="activePhoto.url"
@@ -295,7 +280,6 @@ useSchemaOrg([{
               class="max-w-full max-h-full w-auto h-auto object-contain rounded-md shadow-2xl transition-all duration-300"
             />
 
-            <!-- Left / Right Navigation Chevrons -->
             <button
               class="absolute left-1.5 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex size-9 sm:size-12 items-center justify-center rounded-md bg-black/60 hover:bg-lime-500 hover:text-neutral-950 text-white backdrop-blur-md border border-white/10 shadow-xl transition-all cursor-pointer active:scale-90"
               aria-label="Previous photo"
@@ -313,13 +297,11 @@ useSchemaOrg([{
             </button>
           </div>
 
-          <!-- Bottom Bar: Active Caption & Auto-Centering Filmstrip -->
           <div class="flex flex-col items-center gap-2 sm:gap-3 px-2 sm:px-4 shrink-0 text-center max-w-full">
             <p v-if="activePhoto.caption" class="text-[11px] sm:text-xs font-medium text-white/90 drop-shadow-md max-w-2xl truncate px-2">
               {{ activePhoto.caption }}
             </p>
 
-            <!-- Filmstrip Horizontal Carousel -->
             <div
               ref="filmstripContainerRef"
               class="flex items-center gap-2 sm:gap-2.5 overflow-x-auto max-w-full px-3 py-1.5 scroll-smooth scrollbar-none rounded-md bg-black/40 backdrop-blur-md border border-white/10 touch-pan-x"

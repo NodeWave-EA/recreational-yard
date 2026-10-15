@@ -24,38 +24,19 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white space-y-12 sm:space-y-16 pb-16 transition-colors duration-300 w-full overflow-x-clip">
-    <!-- 1. Main Visual Hero Section -->
+  <UContainer class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white space-y-12 sm:space-y-16 pb-16 transition-colors duration-300 w-full overflow-x-clip">
     <HomeHero />
 
-    <!-- 2. Primary Services & Facilities Teaser (Immediate Catalog Exposure) -->
-    <UContainer>
-      <HomeFacilitiesTeaser />
-    </UContainer>
+    <HomeFacilitiesTeaser />
 
-    <!-- 3. Company Profile, Mission & Core Values -->
-    <UContainer>
-      <HomeCompanyProfile />
-    </UContainer>
+    <HomeCompanyProfile />
 
-    <!-- 4. Community Events & Sports Merchandise Grid -->
-    <UContainer>
-      <HomeExperienceGrid />
-    </UContainer>
+    <HomeExperienceGrid />
 
-    <!-- 5. Social Proof & Community Testimonials -->
-    <UContainer>
-      <HomeTestimonials />
-    </UContainer>
+    <HomeTestimonials />
 
-    <!-- 6. General Guidance FAQ Section -->
-    <UContainer>
-      <HomeFaq />
-    </UContainer>
+    <HomeFaq />
 
-    <!-- 7. High-Conversion Call to Action Banner -->
-    <UContainer>
-      <HomeCtaBanner />
-    </UContainer>
-  </div>
+    <HomeCtaBanner />
+  </UContainer>
 </template>

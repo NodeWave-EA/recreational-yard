@@ -18,18 +18,15 @@ const emit = defineEmits<{
 const router = useRouter()
 const { getCollection } = useContentQuery()
 
-// Active View Mode State ('grid' | 'list')
 const viewMode = ref<'grid' | 'list'>('list')
 const searchQuery = ref('')
 const openSections = ref<Record<string, boolean>>({})
 
-// Sync props.open with local state
 const isOpen = computed({
   get: () => props.open,
   set: val => emit('update:open', val),
 })
 
-// Fetch all collections dynamically based on SEARCH_COLLECTION_CONFIGS
 const collectionResults = ref<Record<string, NormalizedSearchResult[]>>({})
 
 async function loadAllCollections() {
@@ -51,7 +48,6 @@ async function loadAllCollections() {
 
   results.forEach((res) => {
     map[res.key] = res.items
-    // Default all sections to open initially for instant visibility
     openSections.value[res.key] = true
   })
 
@@ -62,7 +58,6 @@ onMounted(() => {
   loadAllCollections()
 })
 
-// Filter items per collection
 const groupedFilteredResults = computed(() => {
   const q = searchQuery.value.toLowerCase().trim()
   const grouped: Array<{
@@ -113,18 +108,16 @@ function navigateToFullSearch() {
 <template>
   <UModal v-model:open="isOpen" :ui="{ content: 'max-w-3xl' }">
     <template #content>
-      <div class="p-5 sm:p-6 space-y-4 bg-white dark:bg-neutral-900 rounded-md border border-neutral-200 dark:border-neutral-800 shadow-2xl text-neutral-900 dark:text-white">
-        <!-- Modal Header -->
-        <div class="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-3">
+      <div class="p-3 sm:p-6 space-y-3 sm:space-y-4 bg-white dark:bg-neutral-900 rounded-none sm:rounded-md border-0 sm:border border-neutral-200 dark:border-neutral-800 shadow-none sm:shadow-2xl text-neutral-900 dark:text-white">
+        <div class="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-2.5 sm:pb-3">
           <div class="flex items-center gap-2">
             <UIcon name="i-tabler-search" class="size-5 text-lime-500" />
-            <h3 class="font-extrabold text-base">
+            <h3 class="font-extrabold text-sm sm:text-base">
               Search Catalog
             </h3>
           </div>
 
-          <div class="flex items-center gap-3">
-            <!-- Grid vs List View Mode Toggle Button -->
+          <div class="flex items-center gap-2 sm:gap-3">
             <div class="flex items-center p-0.5 rounded-md bg-neutral-200/60 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
               <UButton
                 size="xs"
@@ -164,7 +157,6 @@ function navigateToFullSearch() {
           </div>
         </div>
 
-        <!-- Search Input -->
         <UInput
           v-model="searchQuery"
           icon="i-tabler-search"
@@ -176,18 +168,16 @@ function navigateToFullSearch() {
           clearable
         />
 
-        <!-- Collapsible Collection Results Stage -->
-        <div class="max-h-96 overflow-y-auto space-y-4 pr-1">
+        <div class="max-h-96 overflow-y-auto space-y-3 sm:space-y-4 pr-1">
           <template v-if="groupedFilteredResults.length">
             <div
               v-for="group in groupedFilteredResults"
               :key="group.config.key"
               class="space-y-2"
             >
-              <!-- Section Header Divider -->
               <button
                 type="button"
-                class="w-full py-2 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 transition-colors cursor-pointer"
+                class="w-full py-1.5 sm:py-2 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 transition-colors cursor-pointer"
                 @click="toggleSection(group.config.key)"
               >
                 <div class="flex items-center gap-2.5">
@@ -207,18 +197,17 @@ function navigateToFullSearch() {
                 />
               </button>
 
-              <!-- 1. Grid View Option (Clickable Cards with 4-Side Borders) -->
               <div
                 v-if="viewMode === 'grid' && openSections[group.config.key]"
-                class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1"
+                class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1 w-full"
               >
                 <div
                   v-for="item in group.items"
                   :key="item.id"
-                  class="group p-3 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs cursor-pointer flex flex-col justify-between"
+                  class="group p-0 sm:p-3 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs cursor-pointer flex flex-col justify-between w-full min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-3 sm:pb-0"
                   @click="handleSelect(item.path)"
                 >
-                  <div class="space-y-2">
+                  <div class="space-y-1.5 sm:space-y-2">
                     <div class="flex items-center justify-between text-[10px] min-w-0">
                       <UBadge color="neutral" variant="subtle" class="font-bold rounded-md px-1.5 py-0.5 text-[9px] uppercase">
                         {{ item.badge }}
@@ -242,18 +231,17 @@ function navigateToFullSearch() {
                 </div>
               </div>
 
-              <!-- 2. Flat List Row View Option (Clickable Rows with 4-Side Borders) -->
               <div
                 v-else-if="viewMode === 'list' && openSections[group.config.key]"
-                class="space-y-2 pt-1"
+                class="space-y-2 pt-1 w-full"
               >
                 <div
                   v-for="item in group.items"
                   :key="item.id"
-                  class="group p-2.5 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs cursor-pointer flex items-center justify-between gap-3 min-w-0"
+                  class="group p-0 sm:p-2.5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs cursor-pointer flex items-center justify-between gap-3 min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-2.5 sm:pb-0"
                   @click="handleSelect(item.path)"
                 >
-                  <div class="flex items-center gap-3 min-w-0 flex-1">
+                  <div class="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
                     <NuxtImg
                       v-if="item.image"
                       :src="item.image"
@@ -261,13 +249,13 @@ function navigateToFullSearch() {
                       format="webp"
                       quality="80"
                       loading="lazy"
-                      class="size-10 shrink-0 rounded-md object-cover border border-neutral-200 dark:border-neutral-800"
+                      class="size-9 sm:size-10 shrink-0 rounded-md object-cover border border-neutral-200 dark:border-neutral-800"
                     />
                     <div
                       v-else
-                      class="flex size-10 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 group-hover:bg-lime-500 group-hover:text-neutral-950 transition-colors"
+                      class="flex size-9 sm:size-10 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 group-hover:bg-lime-500 group-hover:text-neutral-950 transition-colors"
                     >
-                      <UIcon :name="item.icon" class="size-5" />
+                      <UIcon :name="item.icon" class="size-4 sm:size-5" />
                     </div>
 
                     <div class="min-w-0 space-y-0.5 flex-1">
@@ -294,17 +282,15 @@ function navigateToFullSearch() {
             </div>
           </template>
 
-          <!-- Empty State -->
-          <div v-else class="py-12 text-center space-y-2">
-            <UIcon name="i-tabler-search-off" class="size-10 text-neutral-400 mx-auto" />
+          <div v-else class="py-8 sm:py-12 text-center space-y-2">
+            <UIcon name="i-tabler-search-off" class="size-8 sm:size-10 text-neutral-400 mx-auto" />
             <p class="text-xs font-bold text-neutral-500">
               No results found matching "{{ searchQuery }}"
             </p>
           </div>
         </div>
 
-        <!-- Modal Footer -->
-        <div class="pt-3 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-xs">
+        <div class="pt-2.5 sm:pt-3 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between text-xs">
           <span class="text-neutral-400 text-[11px]">
             Found {{ totalMatchCount }} {{ totalMatchCount === 1 ? 'match' : 'matches' }}
           </span>

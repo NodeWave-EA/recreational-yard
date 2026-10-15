@@ -1,4 +1,3 @@
-// @ts-check
 import antfu from '@antfu/eslint-config'
 import betterTailwindcss from 'eslint-plugin-better-tailwindcss'
 import { getDefaultAttributes } from 'eslint-plugin-better-tailwindcss/api/defaults'
@@ -25,8 +24,6 @@ export default withNuxt(
       braceStyle: '1tbs',
     },
   }),
-
-  // Global rule overrides
   {
     rules: {
       'node/prefer-global/process': 'off',
@@ -36,7 +33,6 @@ export default withNuxt(
       }],
     },
   },
-
   betterTailwindcss.configs['correctness-error'],
   {
     settings: {
@@ -49,12 +45,9 @@ export default withNuxt(
       },
     },
   },
-
-  // Custom Casing Rules for Vue Templates
   {
     files: ['**/*.vue'],
     rules: {
-      // Force PascalCase for the whitelisted built-in components globally
       'vue/component-name-in-template-casing': [
         'error',
         'PascalCase',
@@ -63,8 +56,6 @@ export default withNuxt(
           ignores: [],
         },
       ],
-
-      // Ensures component filenames match standard convention rules
       'vue/match-component-file-name': [
         'error',
         {
@@ -72,8 +63,6 @@ export default withNuxt(
           shouldMatchCase: false,
         },
       ],
-
-      // Override: Catch manual components using PascalCase and force them to kebab-case instead
       'no-restricted-syntax': [
         'error',
         {
@@ -81,6 +70,7 @@ export default withNuxt(
           message: 'Your manual components must use kebab-case (e.g. <my-component />). Only built-in Nuxt core and Nuxt UI components should use PascalCase.',
         },
       ],
+      'better-tailwindcss/no-conflicting-classes': 'off',
     },
   },
 )

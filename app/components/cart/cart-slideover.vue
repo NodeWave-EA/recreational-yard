@@ -20,7 +20,6 @@ function navigateToProduct(path: string) {
   >
     <template #content>
       <div class="flex h-full flex-col justify-between p-4 sm:p-6 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">
-        <!-- Header -->
         <div class="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-4">
           <div class="flex items-center gap-2">
             <UIcon name="i-tabler-shopping-bag" class="size-5 text-lime-500" />
@@ -41,7 +40,6 @@ function navigateToProduct(path: string) {
           />
         </div>
 
-        <!-- Cart Items List (Clickable Cards with 4-Side Borders) -->
         <div v-if="cart.length > 0" class="my-4 flex-1 overflow-y-auto space-y-3 pr-1">
           <div
             v-for="item in cart"
@@ -50,7 +48,6 @@ function navigateToProduct(path: string) {
             @click="navigateToProduct(item.product.id)"
           >
             <div class="flex items-center gap-3 min-w-0 flex-1">
-              <!-- Product Thumbnail -->
               <div class="shrink-0 relative">
                 <NuxtImg
                   v-if="item.product.image"
@@ -70,7 +67,6 @@ function navigateToProduct(path: string) {
                 </div>
               </div>
 
-              <!-- Title & Price Info -->
               <div class="flex-1 min-w-0 space-y-0.5">
                 <h4 class="text-xs font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors truncate">
                   {{ item.product.name }}
@@ -85,7 +81,6 @@ function navigateToProduct(path: string) {
               </div>
             </div>
 
-            <!-- Stepper + Delete Controls -->
             <div class="flex items-center gap-1.5 shrink-0 self-end sm:self-auto" @click.stop.prevent>
               <div class="flex items-center border border-neutral-200 dark:border-neutral-800 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900">
                 <UButton
@@ -122,7 +117,6 @@ function navigateToProduct(path: string) {
           </div>
         </div>
 
-        <!-- Empty State -->
         <div v-else class="my-auto text-center py-12 space-y-3">
           <div class="flex size-16 mx-auto items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 text-neutral-400 border border-neutral-200/80 dark:border-neutral-800/80">
             <UIcon name="i-tabler-shopping-cart-off" class="size-8" />
@@ -148,7 +142,6 @@ function navigateToProduct(path: string) {
           </UButton>
         </div>
 
-        <!-- Cart Footer / Total -->
         <div v-if="cart.length > 0" class="border-t border-neutral-200 dark:border-neutral-800 pt-4 space-y-4">
           <div class="space-y-1.5">
             <div class="flex justify-between items-center text-xs text-neutral-500">

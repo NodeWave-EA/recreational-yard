@@ -25,13 +25,11 @@ export async function usePricingCatalog() {
   const selectedCategory = ref('all')
   const sortBy = ref('default')
 
-  // Query pricing plans from content collection
   const { data: pricingPlans, pending: isLoading } = await getCollection('pricing-page-plans', 'pricing', {
     sort: [{ key: 'order', order: 'ASC' }],
     enableLogging: false,
   })
 
-  // Dynamic pass type options for Nuxt UI SelectMenu
   const categoryOptions = computed(() => {
     const defaultOpt = { id: 'all', label: 'All Pass Types', icon: 'i-tabler-layout-grid' }
     if (!pricingPlans.value)
@@ -69,19 +67,16 @@ export async function usePricingCatalog() {
     }
   })
 
-  // Filtered and sorted plans
   const filteredPlans = computed<CatalogPricingPlan[]>(() => {
     if (!pricingPlans.value)
       return []
 
     let list = [...pricingPlans.value]
 
-    // Category Filter
     if (selectedCategory.value !== 'all') {
       list = list.filter(p => (p.badge || p.category) === selectedCategory.value)
     }
 
-    // Search Query Filter
     if (searchQuery.value.trim()) {
       const q = searchQuery.value.toLowerCase().trim()
       list = list.filter((p) => {
@@ -92,7 +87,6 @@ export async function usePricingCatalog() {
       })
     }
 
-    // Sorting
     if (sortBy.value === 'price-asc') {
       list.sort((a, b) => (a.price || 0) - (b.price || 0))
     } else if (sortBy.value === 'price-desc') {

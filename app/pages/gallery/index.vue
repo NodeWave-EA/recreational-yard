@@ -2,23 +2,13 @@
 import { useGalleryCatalog } from '~/composables/useGalleryCatalog'
 import { LOCATION_DETAILS } from '~/utils/site-data'
 
-// Active View Mode State ('grid' | 'list')
 const viewMode = ref<'grid' | 'list'>('grid')
 
 const {
   collections,
-  searchQuery,
-  selectedCategory,
-  sortBy,
-  categoryOptions,
-  sortOptions,
-  selectedCategoryMeta,
-  filteredCollections,
   getCoverImageSrc,
-  resetFilters,
 } = await useGalleryCatalog()
 
-// Evaluates whether any collections exist overall in the database catalog
 const hasAnyCollection = computed(() => (collections.value?.length || 0) > 0)
 
 useSeoMeta({
@@ -43,23 +33,22 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-16 transition-colors duration-300 w-full overflow-x-clip">
-    <!-- Header Banner -->
-    <div class="pt-6 sm:pt-10 pb-6 border-b border-neutral-200/80 dark:border-neutral-800/80">
-      <UContainer>
-        <div class="space-y-3 text-left sm:text-center">
+  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-12 sm:pb-16 transition-colors duration-300 w-full overflow-x-clip">
+    <div class="pt-4 sm:pt-10 pb-4 sm:pb-6 border-b border-neutral-200/80 dark:border-neutral-800/80">
+      <UContainer class="px-3 sm:px-6 lg:px-8">
+        <div class="space-y-2 sm:space-y-3 text-left sm:text-center">
           <div class="inline-flex">
             <UBadge
               color="primary"
               variant="soft"
-              class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-3 py-0.5 rounded-md"
+              class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-2.5 sm:px-3 py-0.5 rounded-md"
             >
               <UIcon name="i-tabler-photo" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
               <span>Visual Collections</span>
             </UBadge>
           </div>
 
-          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white leading-tight">
+          <h1 class="text-xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white leading-tight">
             Yard Photo Gallery
           </h1>
 
@@ -70,121 +59,49 @@ useSchemaOrg([{
       </UContainer>
     </div>
 
-    <!-- Sticky Search, Filter & View Toggle Toolbar -->
-    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
-      <UContainer>
-        <div class="flex flex-col md:flex-row items-center justify-between gap-3">
-          <!-- Gallery Search Input -->
-          <UInput
-            v-model="searchQuery"
-            icon="i-tabler-search"
-            placeholder="Search galleries or topics..."
-            size="md"
-            color="primary"
-            class="w-full md:w-80 rounded-md"
-            clearable
-          />
+    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-2.5 sm:py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-none sm:shadow-xs transition-all">
+      <UContainer class="px-3 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between gap-3 sm:gap-4">
+          <span class="text-xs font-bold text-neutral-500 dark:text-neutral-400">
+            Available Collections: <span class="text-lime-600 dark:text-lime-400 font-extrabold text-sm">{{ collections?.length || 0 }}</span>
+          </span>
 
-          <!-- Controls Group: Category, Sorting & View Mode Switcher -->
-          <div class="flex flex-wrap items-center gap-2.5 w-full md:w-auto justify-between md:justify-end shrink-0">
-            <!-- Category Dropdown -->
-            <USelectMenu
-              v-model="selectedCategory"
-              :items="categoryOptions"
-              :options="categoryOptions"
-              value-key="id"
-              label-key="label"
-              value-attribute="id"
-              option-attribute="label"
-              searchable
-              placeholder="Filter Category..."
-              class="w-44 shrink-0 rounded-md"
-            >
-              <template #leading>
-                <UIcon :name="selectedCategoryMeta.icon" class="size-4 text-lime-500 shrink-0" />
-              </template>
-              <template #item="{ item }">
-                <div class="flex items-center gap-2 truncate">
-                  <UIcon :name="item?.icon || 'i-tabler-photo'" class="size-4 text-lime-500 shrink-0" />
-                  <span class="truncate">{{ item?.label }}</span>
-                </div>
-              </template>
-            </USelectMenu>
-
-            <!-- Sort Dropdown -->
-            <USelectMenu
-              v-model="sortBy"
-              :items="sortOptions"
-              :options="sortOptions"
-              value-key="id"
-              label-key="label"
-              value-attribute="id"
-              option-attribute="label"
-              class="w-40 shrink-0 rounded-md"
+          <div class="flex items-center p-1 rounded-md bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0">
+            <UButton
+              size="xs"
+              :color="viewMode === 'grid' ? 'primary' : 'neutral'"
+              :variant="viewMode === 'grid' ? 'solid' : 'ghost'"
+              icon="i-tabler-layout-grid"
+              aria-label="Grid View"
+              class="rounded-md font-bold"
+              @click="viewMode = 'grid'"
             />
-
-            <!-- View Mode Switcher (Grid vs List) -->
-            <div class="flex items-center p-1 rounded-md bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0">
-              <UButton
-                size="xs"
-                :color="viewMode === 'grid' ? 'primary' : 'neutral'"
-                :variant="viewMode === 'grid' ? 'solid' : 'ghost'"
-                icon="i-tabler-layout-grid"
-                aria-label="Grid View"
-                class="rounded-md font-bold"
-                @click="viewMode = 'grid'"
-              />
-              <UButton
-                size="xs"
-                :color="viewMode === 'list' ? 'primary' : 'neutral'"
-                :variant="viewMode === 'list' ? 'solid' : 'ghost'"
-                icon="i-tabler-list"
-                aria-label="List View"
-                class="rounded-md font-bold"
-                @click="viewMode = 'list'"
-              />
-            </div>
+            <UButton
+              size="xs"
+              :color="viewMode === 'list' ? 'primary' : 'neutral'"
+              :variant="viewMode === 'list' ? 'solid' : 'ghost'"
+              icon="i-tabler-list"
+              aria-label="List View"
+              class="rounded-md font-bold"
+              @click="viewMode = 'list'"
+            />
           </div>
         </div>
       </UContainer>
     </div>
 
-    <!-- Main Content Container -->
-    <UContainer class="pt-8">
-      <!-- Active Filter Summary -->
-      <div v-if="selectedCategory !== 'all' || searchQuery" class="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs border-b border-neutral-200 dark:border-neutral-800 pb-3">
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="font-bold text-neutral-400">Active Filters:</span>
-          <UBadge v-if="searchQuery" color="primary" variant="soft" class="rounded-md font-bold text-[11px] px-2 py-0.5 flex items-center gap-1">
-            <span>Query: "{{ searchQuery }}"</span>
-            <UIcon name="i-tabler-x" class="size-3.5 cursor-pointer" @click="searchQuery = ''" />
-          </UBadge>
-          <UBadge v-if="selectedCategory !== 'all'" color="primary" variant="soft" class="rounded-md font-bold text-[11px] px-2 py-0.5 flex items-center gap-1">
-            <span>Category: {{ selectedCategoryMeta.label }}</span>
-            <UIcon name="i-tabler-x" class="size-3.5 cursor-pointer" @click="selectedCategory = 'all'" />
-          </UBadge>
-          <UButton size="xs" color="neutral" variant="link" class="text-xs font-bold text-neutral-400" @click="resetFilters">
-            Clear All
-          </UButton>
-        </div>
-        <span class="font-bold text-neutral-500">
-          Showing {{ filteredCollections.length }} {{ filteredCollections.length === 1 ? 'collection' : 'collections' }}
-        </span>
-      </div>
-
-      <!-- 1. Grid View Option (Clickable Cards with 4-Side Borders on Hover) -->
+    <UContainer class="pt-4 sm:pt-8 px-3 sm:px-6 lg:px-8">
       <div
-        v-if="viewMode === 'grid' && filteredCollections.length"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        v-if="viewMode === 'grid' && hasAnyCollection"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full"
       >
         <NuxtLink
-          v-for="collection in filteredCollections"
+          v-for="collection in collections"
           :key="collection.path"
           :to="collection.path"
-          class="group flex flex-col justify-between p-4 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs hover:shadow-md min-w-0"
+          class="group flex flex-col justify-between p-0 sm:p-4 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs hover:shadow-md w-full min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-4 sm:pb-0"
         >
-          <div class="space-y-3">
-            <!-- Thumbnail Image Cover -->
+          <div class="space-y-2.5 sm:space-y-3">
             <div class="relative aspect-16/10 rounded-md overflow-hidden border border-neutral-200/60 dark:border-neutral-800/60 bg-neutral-100 dark:bg-neutral-900">
               <NuxtImg
                 v-if="getCoverImageSrc(collection)"
@@ -202,8 +119,7 @@ useSchemaOrg([{
                 <UIcon name="i-tabler-photo" class="size-10" />
               </div>
 
-              <!-- Badges Layer -->
-              <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+              <div class="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 flex items-center gap-1.5">
                 <UBadge
                   v-if="collection.badge"
                   color="primary"
@@ -214,18 +130,16 @@ useSchemaOrg([{
                 </UBadge>
               </div>
 
-              <!-- Photos Count Pill -->
               <span
                 v-if="collection.photos?.length"
-                class="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-neutral-900/80 text-white font-bold text-[10px] backdrop-blur-md border border-white/10 flex items-center gap-1"
+                class="absolute bottom-2 left-2 sm:bottom-2.5 sm:right-2.5 px-2 py-0.5 rounded-md bg-neutral-900/80 text-white font-bold text-[10px] backdrop-blur-md border border-white/10 flex items-center gap-1"
               >
                 <UIcon name="i-tabler-photo" class="size-3 text-lime-400" />
                 {{ collection.photos.length }}
               </span>
             </div>
 
-            <!-- Details -->
-            <div class="space-y-1.5 min-w-0">
+            <div class="space-y-1 sm:space-y-1.5 min-w-0">
               <div class="flex flex-wrap items-center gap-2 text-[10px] font-bold">
                 <UBadge v-if="collection.category" color="neutral" variant="subtle" class="rounded-md px-1.5 py-0.5 uppercase text-[9px]">
                   {{ collection.category }}
@@ -245,7 +159,7 @@ useSchemaOrg([{
             </div>
           </div>
 
-          <div class="pt-3 mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between">
+          <div class="pt-2.5 sm:pt-3 mt-3 sm:mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between">
             <span class="text-xs font-bold text-lime-600 dark:text-lime-400 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
               Explore Collection
             </span>
@@ -254,20 +168,18 @@ useSchemaOrg([{
         </NuxtLink>
       </div>
 
-      <!-- 2. Flat List Row View Option (Clickable Rows) -->
       <div
-        v-else-if="viewMode === 'list' && filteredCollections.length"
-        class="space-y-4"
+        v-else-if="viewMode === 'list' && hasAnyCollection"
+        class="space-y-3 sm:space-y-4 w-full"
       >
         <NuxtLink
-          v-for="collection in filteredCollections"
+          v-for="collection in collections"
           :key="collection.path"
           :to="collection.path"
-          class="group block p-4 sm:p-5 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs hover:shadow-md min-w-0"
+          class="group block p-0 sm:p-5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs hover:shadow-md w-full min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-4 sm:pb-0"
         >
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
-            <!-- Cover Thumbnail & Collection Info -->
-            <div class="flex items-start gap-3.5 sm:gap-4 min-w-0 flex-1 w-full sm:w-auto">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-6">
+            <div class="flex items-start gap-3 sm:gap-4 min-w-0 flex-1 w-full sm:w-auto">
               <div class="shrink-0 relative">
                 <NuxtImg
                   v-if="getCoverImageSrc(collection)"
@@ -302,7 +214,7 @@ useSchemaOrg([{
                   </span>
                 </div>
 
-                <h2 class="text-base sm:text-lg font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors truncate">
+                <h2 class="text-sm sm:text-lg font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors truncate">
                   {{ collection.title }}
                 </h2>
 
@@ -312,8 +224,7 @@ useSchemaOrg([{
               </div>
             </div>
 
-            <!-- Action Button -->
-            <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100 dark:border-neutral-800/60 shrink-0">
+            <div class="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100 dark:border-neutral-800/60 shrink-0">
               <span class="inline-flex items-center gap-1 font-black uppercase text-xs text-neutral-950 dark:text-white bg-lime-500 group-hover:bg-lime-400 px-3.5 py-2 rounded-md transition-colors">
                 <span>View Collection</span>
                 <UIcon name="i-tabler-arrow-right" class="size-4" />
@@ -323,43 +234,13 @@ useSchemaOrg([{
         </NuxtLink>
       </div>
 
-      <!-- Filter Empty State -->
-      <div v-else-if="hasAnyCollection" class="py-20 text-center space-y-4 max-w-md mx-auto">
-        <div class="flex size-16 items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
-          <UIcon name="i-tabler-filter-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
+      <div v-else class="py-12 sm:py-20 text-center space-y-4 max-w-md mx-auto">
+        <div class="flex size-14 sm:size-16 items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+          <UIcon name="i-tabler-photo-off" class="size-7 sm:size-8 text-neutral-400 dark:text-neutral-500" />
         </div>
 
         <div class="space-y-1">
-          <h3 class="text-lg font-bold text-neutral-950 dark:text-white">
-            No Matching Collections
-          </h3>
-          <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
-            No photo galleries match your current search query or active filter selections. Try clearing your filters or searching for something else.
-          </p>
-        </div>
-
-        <div class="pt-2">
-          <UButton
-            size="sm"
-            color="neutral"
-            variant="outline"
-            icon="i-tabler-rotate-clockwise"
-            class="rounded-md font-bold text-xs px-4 py-2 cursor-pointer"
-            @click="resetFilters"
-          >
-            Reset All Filters
-          </UButton>
-        </div>
-      </div>
-
-      <!-- Catalog Empty State -->
-      <div v-else class="py-20 text-center space-y-4 max-w-md mx-auto">
-        <div class="flex size-16 items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
-          <UIcon name="i-tabler-photo-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
-        </div>
-
-        <div class="space-y-1">
-          <h3 class="text-lg font-bold text-neutral-950 dark:text-white">
+          <h3 class="text-base sm:text-lg font-bold text-neutral-950 dark:text-white">
             No Collections Available
           </h3>
           <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">

@@ -29,9 +29,8 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="py-6 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
-    <UContainer v-if="testimonial" class="space-y-8">
-      <!-- Back Link -->
+  <div class="py-4 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
+    <UContainer v-if="testimonial" class="space-y-6 sm:space-y-8 px-3 sm:px-6 lg:px-8">
       <div>
         <NuxtLink
           to="/testimonials"
@@ -42,9 +41,8 @@ useSeoMeta({
         </NuxtLink>
       </div>
 
-      <!-- Testimonial Card -->
-      <div class="p-6 sm:p-8 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-6">
-        <div class="flex items-center justify-between gap-3 border-b border-neutral-100 dark:border-neutral-800 pb-4">
+      <div class="p-0 sm:p-8 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs space-y-4 sm:space-y-6">
+        <div class="flex items-center justify-between gap-3 border-b border-neutral-200/80 dark:border-neutral-800/80 pb-3 sm:pb-4">
           <UBadge color="primary" variant="soft" class="text-[10px] uppercase font-black tracking-wider px-2.5 py-1 rounded-md">
             {{ testimonial.category }}
           </UBadge>
@@ -59,8 +57,7 @@ useSeoMeta({
           </div>
         </div>
 
-        <!-- Quote -->
-        <blockquote class="text-base sm:text-xl font-medium italic text-neutral-900 dark:text-white leading-relaxed">
+        <blockquote class="text-sm sm:text-xl font-medium italic text-neutral-900 dark:text-white leading-relaxed">
           “{{ testimonial.comment }}”
         </blockquote>
 
@@ -68,33 +65,31 @@ useSeoMeta({
           <ContentRenderer :value="testimonial" />
         </div>
 
-        <!-- Author Profile Footer -->
-        <div class="flex items-center gap-4 pt-4 border-t border-neutral-100 dark:border-neutral-800">
+        <div class="flex items-center gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-neutral-200/80 dark:border-neutral-800/80">
           <NuxtImg
             v-if="testimonial.avatar"
             :src="testimonial.avatar"
             :alt="testimonial.author"
             width="48"
             height="48"
-            class="size-12 rounded-md object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
+            class="size-10 sm:size-12 rounded-md object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
           />
-          <div v-else class="flex size-12 shrink-0 items-center justify-center rounded-md bg-lime-500/10 font-black text-lime-600 dark:text-lime-400 text-sm">
+          <div v-else class="flex size-10 sm:size-12 shrink-0 items-center justify-center rounded-md bg-lime-500/10 font-black text-lime-600 dark:text-lime-400 text-xs sm:text-sm">
             {{ testimonial.author.charAt(0) }}
           </div>
 
           <div class="min-w-0 flex-1">
-            <h1 class="text-sm sm:text-base font-black text-neutral-950 dark:text-white truncate">
+            <h1 class="text-xs sm:text-base font-black text-neutral-950 dark:text-white truncate">
               {{ testimonial.author }}
             </h1>
-            <p class="text-xs text-neutral-500 dark:text-neutral-400 font-medium">
+            <p class="text-[11px] sm:text-xs text-neutral-500 dark:text-neutral-400 font-medium">
               {{ testimonial.role }}
             </p>
           </div>
         </div>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="pt-4 flex flex-wrap items-center justify-between gap-4">
+      <div class="pt-2 sm:pt-4 flex flex-wrap items-center justify-between gap-3 sm:gap-4">
         <UButton
           to="/contact"
           color="primary"

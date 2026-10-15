@@ -1,354 +1,206 @@
 <script setup lang="ts">
-export interface HeroSlide {
-  id: string
-  title: string
-  tagline: string
-  image: string
-  icon: string
-  path: string
-}
+import { useGallery } from '~/composables/useGallery'
 
-// Slide switch interval for punchy auto-looping (6 seconds)
-const AUTO_SWITCH_INTERVAL_MS = 6000
+const { allImages, fetchAllImages } = useGallery()
 
-const slides: HeroSlide[] = [
-  {
-    id: 'recreation-yard-kericho',
-    title: 'Recreation Yard Kericho',
-    tagline: 'Green Space for Lawn Games & Recreation',
-    image: '/images/archery.jpg',
-    icon: 'i-tabler-trees',
-    path: '/facilities',
-  },
-  {
-    id: 'recreation-yard-runners',
-    title: 'Recreation Yard Runners',
-    tagline: 'Run. Jog. Walk. Enjoy the Journey',
-    image: '/images/tennis.jpg',
-    icon: 'i-tabler-run',
-    path: '/events',
-  },
-  {
-    id: 'sports-merchandise',
-    title: 'Sports Kits & Merchandise',
-    tagline: 'Running Apparel, Team Uniforms & Gear',
-    image: '/images/kericho-landscape.jpg',
-    icon: 'i-tabler-shirt-sport',
-    path: '/shop',
-  },
+onMounted(async () => {
+  await fetchAllImages()
+  startAutoScroll()
+})
+
+const AUTO_SCROLL_MS = 4000
+const activeIndex = ref(0)
+let scrollTimer: ReturnType<typeof setInterval> | null = null
+
+const fallbackImages = [
+  { url: '/images/archery.jpg', caption: 'Archery Range', category: 'RECREATION' },
+  { url: '/images/tennis.jpg', caption: 'Tennis on Lawn', category: 'SPORTS' },
+  { url: '/images/kericho-landscape.jpg', caption: 'Tea Garden Stroll', category: 'NATURE' },
 ]
 
-const activeIndex = ref(0)
-let timer: ReturnType<typeof setInterval> | null = null
+const galleryList = computed(() => {
+  return allImages.value.length > 0 ? allImages.value : fallbackImages
+})
 
-const activeSlide = computed(() => slides[activeIndex.value] || slides[0])
+const visibleImages = computed(() => {
+  const list = galleryList.value
+  if (list.length === 0)
+    return []
+
+  const total = list.length
+  const prevIdx = (activeIndex.value - 1 + total) % total
+  const currIdx = activeIndex.value % total
+  const nextIdx = (activeIndex.value + 1) % total
+
+  return [
+    { ...list[prevIdx], originalIndex: prevIdx, position: 'prev' },
+    { ...list[currIdx], originalIndex: currIdx, position: 'active' },
+    { ...list[nextIdx], originalIndex: nextIdx, position: 'next' },
+  ]
+})
+
+function nextSlide() {
+  if (galleryList.value.length === 0)
+    return
+  activeIndex.value = (activeIndex.value + 1) % galleryList.value.length
+}
+
+function prevSlide() {
+  if (galleryList.value.length === 0)
+    return
+  activeIndex.value = (activeIndex.value - 1 + galleryList.value.length) % galleryList.value.length
+}
 
 function selectSlide(index: number) {
   activeIndex.value = index
-  resetTimer()
+  resetAutoScroll()
 }
 
-function nextSlide() {
-  activeIndex.value = (activeIndex.value + 1) % slides.length
-}
-
-function startTimer() {
-  if (import.meta.client) {
-    timer = setInterval(nextSlide, AUTO_SWITCH_INTERVAL_MS)
+function startAutoScroll() {
+  if (import.meta.client && !scrollTimer) {
+    scrollTimer = setInterval(nextSlide, AUTO_SCROLL_MS)
   }
 }
 
-function resetTimer() {
-  if (timer) {
-    clearInterval(timer)
-    startTimer()
+function resetAutoScroll() {
+  if (scrollTimer) {
+    clearInterval(scrollTimer)
+    scrollTimer = null
+    startAutoScroll()
   }
 }
-
-onMounted(() => {
-  startTimer()
-})
 
 onUnmounted(() => {
-  if (timer)
-    clearInterval(timer)
+  if (scrollTimer)
+    clearInterval(scrollTimer)
 })
 </script>
 
 <template>
-  <section class="relative min-h-[calc(100vh-var(--ui-header-height,4rem))] w-full flex flex-col justify-between bg-neutral-950 text-white overflow-hidden transition-colors duration-300">
-    <!-- Clean Background Image (Zero Overlay Gradients) -->
-    <div class="absolute inset-0 h-full w-full overflow-hidden pointer-events-none z-0">
-      <Transition name="fade" mode="out-in">
-        <NuxtImg
-          :key="activeSlide?.image"
-          :src="activeSlide?.image"
-          :alt="activeSlide?.title"
-          width="1920"
-          height="1080"
-          sizes="100vw"
-          format="avif,webp"
-          quality="90"
-          loading="eager"
-          preload
-          fetchpriority="high"
-          class="absolute inset-0 h-full w-full object-cover object-center"
-        />
-      </Transition>
-    </div>
-
-    <!-- Main Hero Content Stage -->
-    <div class="relative z-10 flex-1 flex items-center py-8 sm:py-12 lg:py-16">
-      <UContainer class="w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          <!-- Left Main Hero Text Column -->
-          <div class="lg:col-span-6 space-y-4 text-left">
-            <div class="inline-flex max-w-full">
-              <UBadge
-                color="primary"
-                variant="soft"
-                class="font-bold text-[10px] sm:text-xs uppercase tracking-widest px-3.5 py-1 rounded-md border border-lime-500/40 backdrop-blur-md"
-              >
-                <UIcon name="i-tabler-map-pin" class="size-3.5 sm:size-4 mr-1.5 text-lime-400 shrink-0" />
-                <span class="truncate">
-                  MOVE. PLAY. CONNECT. THRIVE.
-                </span>
-              </UBadge>
-            </div>
-
-            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white uppercase leading-tight sm:leading-[1.1] drop-shadow-lg">
-              Recreation, sport and shared experiences.
-              <span class="block text-lime-400">
-                Built for active living
-              </span>
-            </h1>
-
-            <p class="max-w-xl text-xs sm:text-sm text-white leading-relaxed font-semibold drop-shadow-md">
-              Recreation Yard Limited brings together outdoor recreation, running and walking, sports merchandise, and group experiences at Kooma along the Kericho–Kisumu Highway. Come to move, play, connect, relax and thrive.
-            </p>
-
-            <!-- CTA Action Buttons -->
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-3 pt-2">
-              <UButton
-                size="md"
-                color="primary"
-                to="/pricing"
-                icon="i-tabler-ticket"
-                class="w-full sm:w-auto font-black uppercase text-xs text-neutral-950 px-6 py-3 rounded-md shadow-md cursor-pointer transition-all justify-center"
-              >
-                Plan Your Visit
-              </UButton>
-
-              <UButton
-                size="md"
-                color="neutral"
-                variant="outline"
-                to="/facilities"
-                icon="i-tabler-trees"
-                class="w-full sm:w-auto font-black uppercase text-xs rounded-md px-6 py-3 backdrop-blur-md cursor-pointer justify-center border-white/60 text-white hover:border-lime-500"
-              >
-                Explore Recreation
-              </UButton>
-            </div>
-
-            <!-- Mobile-Only Auto-Loop Progress Indicators (< 1024px) -->
-            <div class="flex lg:hidden items-center gap-2 pt-4">
-              <button
-                v-for="(_, idx) in slides"
-                :key="idx"
-                class="h-1.5 flex-1 rounded-md transition-all duration-300 cursor-pointer"
-                :class="[activeIndex === idx ? 'bg-lime-400' : 'bg-white/50']"
-                :aria-label="`Switch to slide ${idx + 1}`"
-                @click="selectSlide(idx)"
-              />
-            </div>
+  <section class="relative min-h-[calc(100vh-var(--ui-header-height,4rem))] lg:h-[calc(100vh-var(--ui-header-height,4rem))] w-full flex flex-col justify-between bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white overflow-hidden transition-colors duration-300">
+    <div class="relative z-10 flex-1 flex items-center py-2 sm:py-8 lg:py-4 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 items-center w-full">
+        <div class="lg:col-span-5 space-y-3 lg:space-y-4 text-left px-3 sm:px-0">
+          <div class="inline-flex max-w-full">
+            <UBadge
+              color="primary"
+              variant="soft"
+              class="font-bold text-[10px] sm:text-xs uppercase tracking-widest px-2.5 py-1 rounded-md border border-lime-500/40"
+            >
+              <UIcon name="i-tabler-photo-sensors" class="size-3.5 sm:size-4 mr-1.5 text-lime-600 dark:text-lime-400 shrink-0" />
+              <span class="truncate">DYNAMIC RECREATION GALLERY</span>
+            </UBadge>
           </div>
 
-          <!-- Right Column: Interactive Image Cards (DESKTOP ONLY - hidden lg:block) -->
-          <div class="hidden lg:block lg:col-span-6 relative">
-            <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 h-82.5 sm:h-90 items-center">
-              <!-- Slide 1 Card -->
-              <NuxtLink
-                :to="slides[0].path"
-                class="sm:col-span-6 h-full relative group/card cursor-pointer overflow-hidden rounded-md border-2 transition-all duration-300 shadow-xl bg-neutral-900"
-                :class="[
-                  activeIndex === 0
-                    ? 'border-lime-500 ring-2 ring-lime-500/40 scale-[1.02] z-20'
-                    : 'border-white/30 hover:border-lime-500 opacity-90 hover:opacity-100 z-10',
-                ]"
-                @mouseenter="selectSlide(0)"
+          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white uppercase leading-tight sm:leading-[1.1]">
+            Recreation, sport and shared experiences.
+            <span class="block text-lime-600 dark:text-lime-400">
+              Built for active living
+            </span>
+          </h1>
+
+          <p class="max-w-xl text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed font-semibold">
+            Explore our outdoor facilities dynamically captured across Kericho tea gardens, archery ranges, lawn sports, and running trails.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-2.5 sm:gap-3 pt-1">
+            <UButton
+              size="md"
+              color="primary"
+              to="/gallery"
+              icon="i-tabler-photo"
+              class="w-full sm:w-auto font-black uppercase text-xs text-neutral-950 px-6 py-3 sm:py-2.5 rounded-md shadow-xs cursor-pointer justify-center"
+            >
+              Full Gallery
+            </UButton>
+
+            <UButton
+              size="md"
+              color="neutral"
+              variant="outline"
+              to="/facilities"
+              icon="i-tabler-trees"
+              class="w-full sm:w-auto font-black uppercase text-xs rounded-md px-6 py-3 sm:py-2.5 cursor-pointer justify-center border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white hover:border-lime-500"
+            >
+              Explore Grounds
+            </UButton>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 relative w-full px-0">
+          <div class="relative flex items-center justify-between gap-1 sm:gap-4 h-72 sm:h-80 lg:h-96 py-0 w-full">
+            <div
+              v-for="item in visibleImages"
+              :key="item.url"
+              class="relative transition-all duration-500 ease-out overflow-hidden cursor-pointer select-none shrink-0"
+              :class="[
+                item.position === 'active'
+                  ? 'w-[84%] sm:w-1/2 h-full z-20 rounded-md sm:rounded-md border-2 border-lime-500 ring-2 ring-lime-500/40 shadow-xs'
+                  : 'w-[7%] sm:w-1/4 h-[88%] sm:h-[82%] z-10 rounded-sm sm:rounded-md border-0 sm:border-2 border-neutral-200 dark:border-neutral-800 opacity-50 hover:opacity-90 grayscale-30 hover:grayscale-0',
+              ]"
+              @click="selectSlide(item.originalIndex)"
+            >
+              <NuxtImg
+                :src="item.url"
+                :alt="item.caption"
+                width="800"
+                height="1000"
+                sizes="(max-width: 640px) 100vw, 400px"
+                format="avif,webp"
+                quality="85"
+                loading="lazy"
+                class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+
+              <div
+                class="absolute bottom-1.5 left-1.5 right-1.5 p-2 rounded-md bg-neutral-950/85 text-white backdrop-blur-md border border-neutral-800/80 transition-all duration-300"
+                :class="[item.position === 'active' ? 'opacity-100' : 'opacity-0 sm:opacity-75']"
               >
-                <NuxtImg
-                  :src="slides[0]?.image"
-                  :alt="slides[0]?.title"
-                  width="768"
-                  height="1024"
-                  sizes="384px"
-                  format="avif,webp"
-                  quality="85"
-                  loading="lazy"
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
-                />
-
-                <div class="absolute bottom-3 left-3 right-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-neutral-950/90 text-white text-[11px] font-bold backdrop-blur-md border border-neutral-800 w-fit">
-                  <div class="flex size-5 items-center justify-center rounded-md bg-lime-500/20 text-lime-400">
-                    <UIcon :name="slides[0]?.icon" class="size-3.5" />
-                  </div>
-                  <span class="truncate">{{ slides[0]?.tagline }}</span>
-                </div>
-              </NuxtLink>
-
-              <!-- Column for Slide 2 and 3 Cards -->
-              <div class="sm:col-span-6 flex flex-col gap-4 h-full">
-                <NuxtLink
-                  :to="slides[1].path"
-                  class="relative flex-1 group/card cursor-pointer overflow-hidden rounded-md border-2 transition-all duration-300 shadow-xl bg-neutral-900"
-                  :class="[
-                    activeIndex === 1
-                      ? 'border-lime-500 ring-2 ring-lime-500/40 scale-[1.02] z-20'
-                      : 'border-white/30 hover:border-lime-500 opacity-90 hover:opacity-100 z-10',
-                  ]"
-                  @mouseenter="selectSlide(1)"
-                >
-                  <NuxtImg
-                    :src="slides[1]?.image"
-                    :alt="slides[1]?.title"
-                    width="1024"
-                    height="768"
-                    sizes="384px"
-                    format="avif,webp"
-                    quality="85"
-                    loading="lazy"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
-                  />
-
-                  <div class="absolute bottom-2.5 left-2.5 inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-neutral-950/90 text-white text-[11px] font-bold backdrop-blur-md border border-neutral-800 w-fit">
-                    <div class="flex size-5 items-center justify-center rounded-md bg-lime-500/20 text-lime-400">
-                      <UIcon :name="slides[1]?.icon" class="size-3.5" />
-                    </div>
-                    <span class="truncate">{{ slides[1]?.tagline }}</span>
-                  </div>
-                </NuxtLink>
-
-                <NuxtLink
-                  :to="slides[2].path"
-                  class="relative flex-1 group/card cursor-pointer overflow-hidden rounded-md border-2 transition-all duration-300 shadow-xl bg-neutral-900"
-                  :class="[
-                    activeIndex === 2
-                      ? 'border-lime-500 ring-2 ring-lime-500/40 scale-[1.02] z-20'
-                      : 'border-white/30 hover:border-lime-500 opacity-90 hover:opacity-100 z-10',
-                  ]"
-                  @mouseenter="selectSlide(2)"
-                >
-                  <NuxtImg
-                    :src="slides[2]?.image"
-                    :alt="slides[2]?.title"
-                    width="1024"
-                    height="768"
-                    sizes="384px"
-                    format="avif,webp"
-                    quality="85"
-                    loading="lazy"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
-                  />
-
-                  <div class="absolute bottom-2.5 left-2.5 inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-neutral-950/90 text-white text-[11px] font-bold backdrop-blur-md border border-neutral-800 w-fit">
-                    <div class="flex size-5 items-center justify-center rounded-md bg-lime-500/20 text-lime-400">
-                      <UIcon :name="slides[2]?.icon" class="size-3.5" />
-                    </div>
-                    <span class="truncate">{{ slides[2]?.tagline }}</span>
-                  </div>
-                </NuxtLink>
+                <span class="text-[9px] font-black uppercase tracking-widest text-lime-400 block truncate">
+                  {{ item.category }}
+                </span>
+                <span class="text-xs font-bold text-white block truncate">
+                  {{ item.caption }}
+                </span>
               </div>
             </div>
+          </div>
 
-            <!-- Desktop Slide Switch Progress Dots -->
-            <div class="flex items-center justify-end gap-2 pt-4">
+          <div class="flex items-center justify-between pt-2 px-2 sm:px-0 w-full">
+            <div class="flex items-center gap-1.5 sm:gap-2">
+              <UButton
+                color="neutral"
+                variant="ghost"
+                icon="i-tabler-chevron-left"
+                size="xs"
+                class="rounded-md border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:border-lime-500 cursor-pointer p-1.5"
+                @click="prevSlide"
+              />
+              <UButton
+                color="neutral"
+                variant="ghost"
+                icon="i-tabler-chevron-right"
+                size="xs"
+                class="rounded-md border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:border-lime-500 cursor-pointer p-1.5"
+                @click="nextSlide"
+              />
+              <span class="text-xs text-neutral-500 dark:text-neutral-400 font-mono ml-1 sm:ml-2">
+                {{ activeIndex + 1 }} / {{ galleryList.length }}
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 sm:gap-1.5 overflow-hidden max-w-xs">
               <button
-                v-for="(_, idx) in slides"
+                v-for="(_, idx) in galleryList.slice(0, 10)"
                 :key="idx"
                 class="h-1.5 rounded-md transition-all duration-300 cursor-pointer"
-                :class="[activeIndex === idx ? 'w-8 bg-lime-400' : 'w-2 bg-white/50 hover:bg-white/80']"
-                :aria-label="`Switch to slide ${idx + 1}`"
+                :class="[activeIndex === idx ? 'w-5 sm:w-6 bg-lime-500' : 'w-1 sm:w-1.5 bg-neutral-300 dark:bg-neutral-800 hover:bg-neutral-400 dark:hover:bg-neutral-600']"
                 @click="selectSlide(idx)"
               />
             </div>
           </div>
         </div>
-      </UContainer>
-    </div>
-
-    <!-- Highlights Bar Cards -->
-    <div class="relative z-10 border-t border-b border-white/10 bg-neutral-950/80 backdrop-blur-md py-6">
-      <UContainer class="w-full">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <!-- Outdoor Zones -->
-          <NuxtLink
-            to="/facilities"
-            class="group p-4 rounded-md border border-white/10 bg-neutral-900/80 hover:border-lime-500 transition-all duration-300 shadow-xs flex items-start gap-4"
-          >
-            <div class="flex size-11 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-400 group-hover:bg-lime-500 group-hover:text-neutral-950 transition-colors">
-              <UIcon name="i-tabler-trees" class="size-6" />
-            </div>
-            <div>
-              <h3 class="text-sm font-black text-white uppercase tracking-wide group-hover:text-lime-400 transition-colors">
-                Recreation and shared experiences
-              </h3>
-              <p class="text-xs text-neutral-300 mt-1 leading-relaxed font-medium">
-                Lawn games, picnics, social activities and group recreation in a welcoming outdoor setting.
-              </p>
-            </div>
-          </NuxtLink>
-
-          <!-- Opening Hours -->
-          <NuxtLink
-            to="/pricing"
-            class="group p-4 rounded-md border border-white/10 bg-neutral-900/80 hover:border-lime-500 transition-all duration-300 shadow-xs flex items-start gap-4"
-          >
-            <div class="flex size-11 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-400 group-hover:bg-lime-500 group-hover:text-neutral-950 transition-colors">
-              <UIcon name="i-tabler-clock" class="size-6" />
-            </div>
-            <div>
-              <h3 class="text-sm font-black text-white uppercase tracking-wide group-hover:text-lime-400 transition-colors">
-                Plan before you visit
-              </h3>
-              <p class="text-xs text-neutral-300 mt-1 leading-relaxed font-medium">
-                Prior booking helps us confirm availability, activities and group arrangements.
-              </p>
-            </div>
-          </NuxtLink>
-
-          <!-- Running & Active Living -->
-          <NuxtLink
-            to="/events"
-            class="group p-4 rounded-md border border-white/10 bg-neutral-900/80 hover:border-lime-500 transition-all duration-300 shadow-xs flex items-start gap-4"
-          >
-            <div class="flex size-11 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-400 group-hover:bg-lime-500 group-hover:text-neutral-950 transition-colors">
-              <UIcon name="i-tabler-plant" class="size-6" />
-            </div>
-            <div>
-              <h3 class="text-sm font-black text-white uppercase tracking-wide group-hover:text-lime-400 transition-colors">
-                Running and active living
-              </h3>
-              <p class="text-xs text-neutral-300 mt-1 leading-relaxed font-medium">
-                Physical and virtual running, jogging and walking through Recreation Yard Runners.
-              </p>
-            </div>
-          </NuxtLink>
-        </div>
-      </UContainer>
+      </div>
     </div>
   </section>
 </template>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.8s ease-in-out;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>

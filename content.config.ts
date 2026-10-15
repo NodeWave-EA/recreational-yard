@@ -2,7 +2,7 @@ import { defineCollection, defineContentConfig, property, z } from '@nuxt/conten
 
 export default defineContentConfig({
   collections: {
-    // FACILITIES & ATTRACTIONS
+
     facilities: defineCollection({
       type: 'page',
       source: 'facilities/*.md',
@@ -109,7 +109,6 @@ export default defineContentConfig({
       }),
     }),
 
-    // PRICING, PASSES & MEMBERSHIPS
     pricing: defineCollection({
       type: 'page',
       source: 'pricing/*.md',
@@ -170,7 +169,6 @@ export default defineContentConfig({
       }),
     }),
 
-    // SHOP & EQUIPMENT RENTALS
     shop: defineCollection({
       type: 'page',
       source: 'shop/*.md',
@@ -220,7 +218,6 @@ export default defineContentConfig({
       }),
     }),
 
-    // EVENTS & TOURNAMENTS
     events: defineCollection({
       type: 'page',
       source: 'events/*.md',
@@ -304,7 +301,6 @@ export default defineContentConfig({
       }),
     }),
 
-    // PHOTO & VIDEO GALLERY
     gallery: defineCollection({
       type: 'page',
       source: 'gallery/*.md',
@@ -351,7 +347,6 @@ export default defineContentConfig({
       }),
     }),
 
-    // FREQUENTLY ASKED QUESTIONS
     faqs: defineCollection({
       type: 'page',
       source: 'faqs/*.md',
@@ -378,7 +373,6 @@ export default defineContentConfig({
       }),
     }),
 
-    // TESTIMONIALS & REVIEWS
     testimonials: defineCollection({
       type: 'page',
       source: 'testimonials/*.md',

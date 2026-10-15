@@ -44,9 +44,6 @@ export function cleanPath(pathStr: string): string {
   return cleaned
 }
 
-/**
- * Normalizes text to prevent concatenated words from AST sections/lists
- */
 export function sanitizeBodyText(text: string): string {
   if (!text)
     return ''
@@ -58,9 +55,6 @@ export function sanitizeBodyText(text: string): string {
     .trim()
 }
 
-/**
- * Extracts clean snippet context without squished formatting
- */
 export function getMatchingSnippet(fullText: string, query: string, maxLength = 140): string {
   if (!fullText || !query)
     return ''
@@ -96,7 +90,6 @@ function extractAround(text: string, index: number, matchLen: number, maxLength:
 }
 
 export function normalizeContentItem(item: Record<string, unknown>, collectionKey: string): NormalizedSearchResult {
-  // Title extraction supporting standard documents, FAQs (question), and Testimonials (author)
   let title = ''
   if (typeof item.question === 'string') {
     title = item.question
@@ -110,7 +103,6 @@ export function normalizeContentItem(item: Record<string, unknown>, collectionKe
     title = 'Untitled'
   }
 
-  // Description extraction supporting standard documents, FAQs (answer), and Testimonials (comment)
   let description = ''
   if (typeof item.answer === 'string') {
     description = item.answer
@@ -120,7 +112,6 @@ export function normalizeContentItem(item: Record<string, unknown>, collectionKe
     description = item.description
   }
 
-  // Canonical path routing extraction
   const rawPath = typeof item.path === 'string' && item.path
     ? item.path
     : typeof item._path === 'string' && item._path
@@ -129,7 +120,6 @@ export function normalizeContentItem(item: Record<string, unknown>, collectionKe
 
   let path = cleanPath(rawPath)
 
-  // Fallback to collection slug URL if rawPath is missing or generic
   if (!path || path === '/' || path === `/${collectionKey}`) {
     const slug = typeof item.slug === 'string'
       ? item.slug
@@ -146,7 +136,6 @@ export function normalizeContentItem(item: Record<string, unknown>, collectionKe
     }
   }
 
-  // Image extraction supporting cover images and testimonial avatars
   let image = ''
   if (typeof item.avatar === 'string') {
     image = item.avatar
@@ -160,7 +149,6 @@ export function normalizeContentItem(item: Record<string, unknown>, collectionKe
     image = item.image.src
   }
 
-  // Meta string context
   let meta = ''
   if (typeof item.rating === 'number') {
     meta = `${'★'.repeat(item.rating)} (${typeof item.role === 'string' ? item.role : 'Member Review'})`

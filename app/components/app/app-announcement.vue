@@ -22,7 +22,6 @@ onMounted(checkOverflow)
     class="relative border-b border-neutral-200/80 bg-neutral-100 text-xs font-medium text-neutral-800 transition-colors dark:border-neutral-800/80 dark:bg-neutral-900 dark:text-neutral-200 overflow-hidden w-full"
   >
     <UContainer class="flex items-center justify-between gap-3 py-1.5">
-      <!-- Scrolling Marquee or Static Text Container -->
       <div ref="containerRef" class="relative flex-1 overflow-hidden min-w-0">
         <div
           ref="textRef"
@@ -36,7 +35,6 @@ onMounted(checkOverflow)
         </div>
       </div>
 
-      <!-- CTA Button -->
       <NuxtLink
         :to="ANNOUNCEMENT_BAR.ctaLink"
         class="shrink-0 rounded-md bg-lime-500 px-2.5 py-0.5 text-[10px] sm:text-[11px] font-black uppercase text-neutral-950 shadow-xs transition-transform hover:scale-105 hover:bg-lime-400 focus-visible:outline-2 focus-visible:outline-lime-600 dark:bg-lime-400 dark:hover:bg-lime-300 whitespace-nowrap"

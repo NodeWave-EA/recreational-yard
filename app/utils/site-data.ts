@@ -18,9 +18,10 @@ export const ANNOUNCEMENT_BAR = {
 } as const
 
 export const HIGHLIGHTS = [
-  { text: 'Recreation Yard Kericho: Lawn & board games, picnics and outdoor experiences', icon: 'i-tabler-trees' },
-  { text: 'Recreation Yard Runners: Run, jog, walk — physical meet-ups & virtual community', icon: 'i-tabler-run' },
-  { text: 'Sports Merchandise: Running kits, school games uniforms, corporate sportswear & gear', icon: 'i-tabler-shirt-sport' },
+  { text: 'Safe • Clean • Well Maintained', icon: 'i-tabler-heart' },
+  { text: 'Family & Community Focused', icon: 'i-tabler-users' },
+  { text: 'Active Living & Recreation', icon: 'i-tabler-run' },
+  { text: 'Outdoor & Social Experiences', icon: 'i-tabler-trees' },
 ] as const
 
 export const LOCATION_DETAILS = {
@@ -43,10 +44,10 @@ export const LOCATION_DETAILS = {
 
 export const NAV_LINKS: NavigationMenuItem[] = [
   { label: 'Home', to: '/', icon: 'i-tabler-home' },
-  { label: 'Recreation', to: '/facilities', icon: 'i-tabler-trees' },
-  { label: 'Services', to: '/pricing', icon: 'i-tabler-briefcase' },
-  { label: 'Sportswear & Gear', to: '/shop', icon: 'i-tabler-shirt-sport' },
-  { label: 'Events & Club', to: '/events', icon: 'i-tabler-calendar-event' },
+  { label: 'Facilities', to: '/facilities', icon: 'i-tabler-trees' },
+  { label: 'Pricing', to: '/pricing', icon: 'i-tabler-briefcase' },
+  { label: 'Shop', to: '/shop', icon: 'i-tabler-shirt-sport' },
+  { label: 'Events', to: '/events', icon: 'i-tabler-calendar-event' },
   { label: 'Gallery', to: '/gallery', icon: 'i-tabler-photo' },
   { label: 'Contact', to: '/contact', icon: 'i-tabler-phone' },
 ]
@@ -60,10 +61,11 @@ export const FOOTER_LINKS: FooterCategory[] = [
   {
     title: 'Brands & Services',
     links: [
-      { label: 'Recreation Yard Kericho', to: '/facilities', icon: 'i-tabler-trees' },
-      { label: 'Recreation Yard Runners', to: '/events', icon: 'i-tabler-run' },
-      { label: 'Sports Kits & Sportswear', to: '/shop', icon: 'i-tabler-shirt-sport' },
-      { label: 'Group & Team Experiences', to: '/pricing', icon: 'i-tabler-users-group' },
+      { label: 'Facilities', to: '/facilities', icon: 'i-tabler-trees' },
+      { label: 'Events', to: '/events', icon: 'i-tabler-run' },
+      { label: 'Shop', to: '/shop', icon: 'i-tabler-shirt-sport' },
+      { label: 'Pricing', to: '/pricing', icon: 'i-tabler-users-group' },
+      { label: 'Search', to: '/search', icon: 'i-tabler-search' },
     ],
   },
   {
@@ -71,7 +73,7 @@ export const FOOTER_LINKS: FooterCategory[] = [
     links: [
       { label: 'Photo Gallery', to: '/gallery', icon: 'i-tabler-photo' },
       { label: 'Testimonials', to: '/testimonials', icon: 'i-tabler-message-circle' },
-      { label: 'FAQs & Policies', to: '/faqs', icon: 'i-tabler-help' },
+      { label: 'FAQs', to: '/faqs', icon: 'i-tabler-help' },
       { label: 'Bookings & Contact', to: '/contact', icon: 'i-tabler-phone' },
     ],
   },

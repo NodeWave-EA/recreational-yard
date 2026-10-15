@@ -11,16 +11,13 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // Sanitize phone number to 254XXXXXXXXX format
   const formattedPhone = phoneNumber.replace(/^0/, '254').replace(/^\+/, '')
 
-  // Safaricom Daraja API credentials from environment
   const consumerKey = process.env.MPESA_CONSUMER_KEY
   const _consumerSecret = process.env.MPESA_CONSUMER_SECRET
   const passkey = process.env.MPESA_PASSKEY
   const _shortcode = process.env.MPESA_SHORTCODE
 
-  // Demo fallback response if variables are not yet configured
   if (!consumerKey || !passkey) {
     return {
       status: 'PENDING_DEMO',
@@ -28,7 +25,6 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  // Production/Sandbox STK Push request to Safaricom Daraja API
   return {
     status: 'SUCCESS',
     message: 'STK Push sent to user handset',

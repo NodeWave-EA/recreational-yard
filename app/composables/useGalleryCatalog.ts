@@ -28,7 +28,6 @@ export async function useGalleryCatalog() {
   const selectedCategory = ref('all')
   const sortBy = ref('newest')
 
-  // Query gallery collections from content collection
   const { data: rawCollections, pending: isLoading } = await getCollection('gallery-collections', 'gallery', {
     sort: [{ key: 'order', order: 'ASC' }],
     enableLogging: false,
@@ -42,7 +41,6 @@ export async function useGalleryCatalog() {
     return col.coverImage.src || ''
   }
 
-  // Normalized collection list with paths
   const collections = computed<GalleryCollection[]>(() => {
     return (rawCollections.value || []).map((col: any) => ({
       ...col,
@@ -50,7 +48,6 @@ export async function useGalleryCatalog() {
     }))
   })
 
-  // Dynamic category options generated from available content
   const categoryOptions = computed(() => {
     const defaultOpt = { id: 'all', label: 'All Collections', icon: 'i-tabler-photo' }
     if (!rawCollections.value)
@@ -93,16 +90,13 @@ export async function useGalleryCatalog() {
     }
   })
 
-  // Filtered and sorted collections list
   const filteredCollections = computed(() => {
     let result = [...collections.value]
 
-    // Category Filter
     if (selectedCategory.value !== 'all') {
       result = result.filter(item => item.category === selectedCategory.value)
     }
 
-    // Search Query Filter
     if (searchQuery.value.trim()) {
       const q = searchQuery.value.toLowerCase().trim()
       result = result.filter(item =>
@@ -112,7 +106,6 @@ export async function useGalleryCatalog() {
       )
     }
 
-    // Sorting
     if (sortBy.value === 'newest') {
       result.sort((a, b) => (b.date || '').localeCompare(a.date || ''))
     } else if (sortBy.value === 'oldest') {

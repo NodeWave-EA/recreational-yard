@@ -2,7 +2,6 @@
 import { useAdvancedSearch } from '~/composables/useAdvancedSearch'
 import { LOCATION_DETAILS } from '~/utils/site-data'
 
-// Active View Mode State ('grid' | 'list')
 const viewMode = ref<'grid' | 'list'>('grid')
 
 const {
@@ -55,19 +54,18 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-16 transition-colors duration-300 w-full overflow-x-clip">
-    <!-- Page Header Banner -->
-    <div class="pt-6 sm:pt-10 pb-6 border-b border-neutral-200/80 dark:border-neutral-800/80">
-      <UContainer>
-        <div class="space-y-3 text-left sm:text-center">
+  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-12 sm:pb-16 transition-colors duration-300 w-full overflow-x-clip">
+    <div class="pt-4 sm:pt-10 pb-4 sm:pb-6 border-b border-neutral-200/80 dark:border-neutral-800/80">
+      <UContainer class="px-3 sm:px-6 lg:px-8">
+        <div class="space-y-2 sm:space-y-3 text-left sm:text-center">
           <div class="inline-flex">
-            <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-3 py-0.5 rounded-md">
+            <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-2.5 sm:px-3 py-0.5 rounded-md">
               <UIcon name="i-tabler-search" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
               <span>Search Catalog</span>
             </UBadge>
           </div>
 
-          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white leading-tight">
+          <h1 class="text-xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white leading-tight">
             Explore Recreation Yard
           </h1>
 
@@ -78,9 +76,8 @@ useSchemaOrg([{
       </UContainer>
     </div>
 
-    <!-- Sticky Search Bar & View Mode Toolbar -->
-    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
-      <UContainer>
+    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-2.5 sm:py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-none sm:shadow-xs transition-all">
+      <UContainer class="px-3 sm:px-6 lg:px-8">
         <div class="flex items-center gap-2 sm:gap-3 w-full min-w-0">
           <div class="flex-1 min-w-0">
             <UInput
@@ -95,7 +92,6 @@ useSchemaOrg([{
             />
           </div>
 
-          <!-- Mobile Sidebar Filter Trigger Button -->
           <UButton
             color="neutral"
             variant="outline"
@@ -110,7 +106,6 @@ useSchemaOrg([{
             </UBadge>
           </UButton>
 
-          <!-- View Mode Switcher (Grid vs List) -->
           <div class="flex items-center p-1 rounded-md bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0">
             <UButton
               size="xs"
@@ -135,10 +130,8 @@ useSchemaOrg([{
       </UContainer>
     </div>
 
-    <!-- Layout: Sidebar + Results Grid -->
-    <UContainer class="pt-8">
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-        <!-- Desktop Sidebar Filters -->
+    <UContainer class="pt-4 sm:pt-8 px-3 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8 items-start">
         <aside class="hidden lg:block lg:col-span-1 space-y-6 sticky top-[calc(var(--ui-header-height,4rem)+4.5rem)] h-fit p-4 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs">
           <div class="flex items-center justify-between pb-3 border-b border-neutral-200 dark:border-neutral-800">
             <div class="flex items-center gap-2">
@@ -159,7 +152,6 @@ useSchemaOrg([{
             </UButton>
           </div>
 
-          <!-- Category Select Dropdown -->
           <div class="space-y-2">
             <label class="text-[11px] font-black uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
               Category
@@ -188,7 +180,6 @@ useSchemaOrg([{
             </USelectMenu>
           </div>
 
-          <!-- Price Range Filter -->
           <div class="space-y-2 border-t border-neutral-200 dark:border-neutral-800 pt-4">
             <label class="text-[11px] font-black uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
               Price Range (KES)
@@ -213,7 +204,6 @@ useSchemaOrg([{
             </div>
           </div>
 
-          <!-- Availability Filter -->
           <div class="space-y-2 border-t border-neutral-200 dark:border-neutral-800 pt-4">
             <label class="text-[11px] font-black uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
               Availability
@@ -224,7 +214,6 @@ useSchemaOrg([{
             />
           </div>
 
-          <!-- Sort Filter Dropdown -->
           <div class="space-y-2 border-t border-neutral-200 dark:border-neutral-800 pt-4">
             <label class="text-[11px] font-black uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
               Sort Results
@@ -241,7 +230,6 @@ useSchemaOrg([{
             />
           </div>
 
-          <!-- Reset Button -->
           <div v-if="activeFilterCount > 0" class="pt-2">
             <UButton
               color="neutral"
@@ -256,9 +244,7 @@ useSchemaOrg([{
           </div>
         </aside>
 
-        <!-- Search Results View -->
         <main class="lg:col-span-3 space-y-6 min-w-0 w-full">
-          <!-- Active Filter Pills & Results Counter -->
           <div v-if="activeFilterCount > 0 || searchQuery" class="flex flex-wrap items-center justify-between gap-3 text-xs border-b border-neutral-200 dark:border-neutral-800 pb-3">
             <div class="flex flex-wrap items-center gap-2">
               <span class="font-bold text-neutral-400 mr-1">Active:</span>
@@ -299,14 +285,12 @@ useSchemaOrg([{
             </span>
           </div>
 
-          <!-- Search Results Groups -->
-          <div v-if="processedResults.length" class="space-y-8 min-w-0 w-full">
+          <div v-if="processedResults.length" class="space-y-6 sm:space-y-8 min-w-0 w-full">
             <div
               v-for="group in processedResults"
               :key="group.config.key"
-              class="space-y-3 min-w-0 w-full"
+              class="space-y-2.5 sm:space-y-3 min-w-0 w-full"
             >
-              <!-- Section Header -->
               <button
                 type="button"
                 class="w-full pb-2 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 transition-colors cursor-pointer"
@@ -314,7 +298,7 @@ useSchemaOrg([{
               >
                 <div class="flex items-center gap-2.5 min-w-0">
                   <UIcon :name="group.config.icon" class="size-5 text-lime-500 shrink-0" />
-                  <h2 class="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white truncate">
+                  <h2 class="text-xs sm:text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white truncate">
                     {{ group.config.label }}
                   </h2>
                   <UBadge color="primary" variant="soft" size="sm" class="rounded-md font-bold text-xs px-2 shrink-0">
@@ -329,18 +313,17 @@ useSchemaOrg([{
                 />
               </button>
 
-              <!-- 1. Grid View Option (Clickable Cards with 4-Side Hover Borders) -->
               <div
                 v-if="viewMode === 'grid' && openSections[group.config.key]"
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 pt-2 w-full"
               >
                 <NuxtLink
                   v-for="item in group.items"
                   :key="item.id"
                   :to="item.path"
-                  class="group flex flex-col justify-between p-4 rounded-md bg-white dark:bg-neutral-900/50 border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs hover:shadow-md min-w-0"
+                  class="group flex flex-col justify-between p-0 sm:p-4 rounded-none sm:rounded-md bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs hover:shadow-md w-full min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-4 sm:pb-0"
                 >
-                  <div class="space-y-3">
+                  <div class="space-y-2.5 sm:space-y-3">
                     <div class="relative aspect-16/10 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60">
                       <NuxtImg
                         v-if="item.image"
@@ -388,26 +371,25 @@ useSchemaOrg([{
                     </div>
                   </div>
 
-                  <div class="pt-3 mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between text-xs font-bold text-lime-600 dark:text-lime-400">
+                  <div class="pt-2.5 sm:pt-3 mt-3 sm:mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between text-xs font-bold text-lime-600 dark:text-lime-400">
                     <span>View Details</span>
                     <UIcon name="i-tabler-arrow-right" class="size-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </NuxtLink>
               </div>
 
-              <!-- 2. Flat List Row View Option (Clickable Cards) -->
               <div
                 v-else-if="viewMode === 'list' && openSections[group.config.key]"
-                class="space-y-3 pt-2 min-w-0 w-full"
+                class="space-y-3 sm:space-y-4 pt-2 w-full min-w-0"
               >
                 <NuxtLink
                   v-for="item in group.items"
                   :key="item.id"
                   :to="item.path"
-                  class="group block p-4 sm:p-5 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs hover:shadow-md min-w-0"
+                  class="group block p-0 sm:p-5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs hover:shadow-md w-full min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-4 sm:pb-0"
                 >
-                  <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="flex items-start gap-3.5 min-w-0 flex-1 w-full sm:w-auto">
+                  <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                    <div class="flex items-start gap-3 sm:gap-3.5 min-w-0 flex-1 w-full sm:w-auto">
                       <NuxtImg
                         v-if="item.image"
                         :src="item.image"
@@ -432,7 +414,7 @@ useSchemaOrg([{
                           <span v-if="item.meta" class="text-neutral-400 font-medium truncate">• {{ item.meta }}</span>
                         </div>
 
-                        <h3 class="text-base sm:text-lg font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors truncate">
+                        <h3 class="text-sm sm:text-lg font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors truncate">
                           {{ item.title }}
                         </h3>
 
@@ -440,7 +422,6 @@ useSchemaOrg([{
                           {{ item.description }}
                         </p>
 
-                        <!-- Body Snippet Match -->
                         <div v-if="item.snippet" class="text-[11px] text-lime-600 dark:text-lime-400 font-medium leading-relaxed mt-1 flex items-start gap-1 min-w-0">
                           <span class="font-bold text-[10px] uppercase text-lime-700 dark:text-lime-300 shrink-0">Match:</span>
                           <span class="line-clamp-2 min-w-0">{{ item.snippet }}</span>
@@ -460,13 +441,12 @@ useSchemaOrg([{
             </div>
           </div>
 
-          <!-- Empty State -->
-          <div v-else class="py-20 text-center space-y-4 max-w-md mx-auto">
-            <div class="flex size-16 items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
-              <UIcon name="i-tabler-search-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
+          <div v-else class="py-12 sm:py-20 text-center space-y-4 max-w-md mx-auto">
+            <div class="flex size-14 sm:size-16 items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+              <UIcon name="i-tabler-search-off" class="size-7 sm:size-8 text-neutral-400 dark:text-neutral-500" />
             </div>
             <div class="space-y-1">
-              <h3 class="text-lg font-bold text-neutral-950 dark:text-white">
+              <h3 class="text-base sm:text-lg font-bold text-neutral-950 dark:text-white">
                 No matches found
               </h3>
               <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
@@ -490,7 +470,6 @@ useSchemaOrg([{
       </div>
     </UContainer>
 
-    <!-- Mobile Slideover Drawer -->
     <USlideover
       v-model:open="isMobileFiltersOpen"
       title="Search Filters"
@@ -516,7 +495,6 @@ useSchemaOrg([{
               />
             </div>
 
-            <!-- Category -->
             <div class="space-y-2">
               <label class="text-xs font-black uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
                 Category
@@ -545,7 +523,6 @@ useSchemaOrg([{
               </USelectMenu>
             </div>
 
-            <!-- Price -->
             <div class="space-y-2 border-t border-neutral-200 dark:border-neutral-800 pt-4">
               <label class="text-xs font-black uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
                 Price Range (KES)
@@ -570,7 +547,6 @@ useSchemaOrg([{
               </div>
             </div>
 
-            <!-- Availability -->
             <div class="space-y-2 border-t border-neutral-200 dark:border-neutral-800 pt-4">
               <label class="text-xs font-black uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
                 Availability
@@ -581,7 +557,6 @@ useSchemaOrg([{
               />
             </div>
 
-            <!-- Sort -->
             <div class="space-y-2 border-t border-neutral-200 dark:border-neutral-800 pt-4">
               <label class="text-xs font-black uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
                 Sort By

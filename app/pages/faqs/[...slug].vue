@@ -24,9 +24,8 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="py-8 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
-    <UContainer v-if="faq" class="space-y-8">
-      <!-- Back Link -->
+  <div class="py-4 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
+    <UContainer v-if="faq" class="space-y-6 sm:space-y-8 px-3 sm:px-6 lg:px-8">
       <div>
         <NuxtLink
           to="/faqs"
@@ -37,8 +36,7 @@ useSeoMeta({
         </NuxtLink>
       </div>
 
-      <!-- FAQ Header Section -->
-      <div class="space-y-4 border-b border-neutral-200 dark:border-neutral-800 pb-6">
+      <div class="space-y-3 sm:space-y-4 border-b border-neutral-200 dark:border-neutral-800 pb-4 sm:pb-6">
         <div class="flex flex-wrap items-center gap-2">
           <UBadge color="primary" variant="soft" class="font-extrabold uppercase text-[10px] tracking-wider px-2.5 py-1 rounded-md">
             {{ faq.category }}
@@ -48,31 +46,29 @@ useSeoMeta({
           </UBadge>
         </div>
 
-        <h1 class="text-2xl sm:text-4xl font-black text-neutral-950 dark:text-white leading-tight">
+        <h1 class="text-xl sm:text-4xl font-black text-neutral-950 dark:text-white leading-tight">
           {{ faq.question }}
         </h1>
       </div>
 
-      <!-- Flat Answer Body -->
-      <div class="space-y-6">
-        <div class="p-5 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 pl-4 border-l-4 border-l-lime-500">
-          <p class="text-sm sm:text-base leading-relaxed text-neutral-800 dark:text-neutral-200 font-medium">
+      <div class="space-y-4 sm:space-y-6">
+        <div class="p-0 sm:p-5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs pl-3 sm:pl-4 border-l-4 border-l-lime-500">
+          <p class="text-xs sm:text-base leading-relaxed text-neutral-800 dark:text-neutral-200 font-medium">
             {{ faq.answer }}
           </p>
         </div>
 
-        <div v-if="faq.body" class="prose dark:prose-invert max-w-none text-xs sm:text-sm leading-relaxed pt-4">
+        <div v-if="faq.body" class="prose dark:prose-invert max-w-none text-xs sm:text-sm leading-relaxed pt-3 sm:pt-4">
           <ContentRenderer :value="faq" />
         </div>
       </div>
 
-      <!-- Bottom Assistance Links -->
-      <div class="pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
+      <div class="pt-6 sm:pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-3 sm:space-y-4">
         <h3 class="text-xs font-black uppercase tracking-wider text-neutral-400">
           Need Further Assistance?
         </h3>
 
-        <div class="flex flex-wrap items-center gap-3">
+        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
           <UButton
             to="/contact"
             color="primary"

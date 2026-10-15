@@ -3,7 +3,6 @@ import { useContentQuery } from '~/composables/useContentQuery'
 
 const { getCollection } = useContentQuery()
 
-// Query ONLY General FAQs for the Homepage
 const { data: generalFaqs } = await getCollection('home-general-faqs', 'faqs', {
   where: { category: 'General' },
   sort: [{ key: 'order', order: 'ASC' }],
@@ -22,24 +21,23 @@ function toggleItem(index: number) {
 </script>
 
 <template>
-  <section v-if="generalFaqs?.length" class="space-y-6 py-6">
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-5">
+  <section v-if="generalFaqs?.length" class="space-y-3 sm:space-y-6 py-2 sm:py-6 w-full">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-3 sm:pb-5 px-0">
       <div>
-        <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-xs mb-2 rounded-md">
+        <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] sm:text-xs mb-1.5 sm:mb-2 rounded-md">
           General Information
         </UBadge>
-        <h2 class="text-2xl sm:text-4xl font-black tracking-tight text-neutral-950 dark:text-white">
+        <h2 class="text-xl sm:text-4xl font-black tracking-tight text-neutral-950 dark:text-white">
           Frequently Asked Questions
         </h2>
       </div>
     </div>
 
-    <!-- Accordion Cards List -->
-    <div class="space-y-3">
+    <div class="space-y-3 sm:space-y-3 w-full">
       <div
         v-for="(faq, idx) in generalFaqs"
         :key="idx"
-        class="p-4 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs"
+        class="p-0 sm:p-4 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs w-full border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-3 sm:pb-0"
       >
         <button
           type="button"
@@ -48,7 +46,7 @@ function toggleItem(index: number) {
           class="w-full flex items-center justify-between text-left font-extrabold text-xs sm:text-sm text-neutral-950 dark:text-white group cursor-pointer"
           @click="toggleItem(idx)"
         >
-          <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-4">
+          <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-3 sm:pr-4">
             {{ faq.question }}
           </span>
           <UIcon

@@ -7,7 +7,6 @@ const route = useRoute()
 const { getByPath } = useContentQuery()
 const { cart, addToCart, updateQuantity, removeFromCart } = useCart()
 
-// Fetch single product
 const { data: product } = await getByPath(
   `product-${route.path}`,
   'shop',
@@ -23,7 +22,6 @@ if (!product.value) {
   })
 }
 
-// Compute active quantity of this product in cart
 const cartQuantity = computed(() => {
   const item = cart.value.find(i => i.product.id === product.value?.path)
   return item ? item.quantity : 0
@@ -99,9 +97,8 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="py-6 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
-    <UContainer v-if="product" class="space-y-8">
-      <!-- Back to Shop Navigation -->
+  <div class="py-4 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
+    <UContainer v-if="product" class="space-y-6 sm:space-y-8 px-3 sm:px-6 lg:px-8">
       <div>
         <NuxtLink
           to="/shop"
@@ -112,10 +109,8 @@ useSchemaOrg([{
         </NuxtLink>
       </div>
 
-      <!-- Main Product Header Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        <!-- Showcase Image Container -->
-        <div class="lg:col-span-6 relative rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
+        <div class="lg:col-span-6 relative rounded-none sm:rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900 border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs">
           <NuxtImg
             v-if="getProductImage()"
             :src="getProductImage()"
@@ -126,19 +121,18 @@ useSchemaOrg([{
             format="webp"
             quality="80"
             loading="eager"
-            class="w-full h-80 sm:h-105 object-cover"
+            class="w-full h-64 sm:h-105 object-cover"
           />
           <UBadge
             v-if="product.badge"
             color="primary"
-            class="absolute top-4 left-4 font-bold text-xs rounded-md"
+            class="absolute top-3 left-3 sm:top-4 sm:left-4 font-bold text-xs rounded-md"
           >
             {{ product.badge }}
           </UBadge>
         </div>
 
-        <!-- Details & Actions -->
-        <div class="lg:col-span-6 space-y-6 min-w-0">
+        <div class="lg:col-span-6 space-y-5 sm:space-y-6 min-w-0">
           <div>
             <UBadge color="neutral" variant="soft" class="text-[10px] uppercase font-bold tracking-wider mb-2 rounded-md">
               {{ product.category || 'Merchandise' }}
@@ -146,14 +140,13 @@ useSchemaOrg([{
             <h1 class="text-2xl sm:text-4xl font-black text-neutral-950 dark:text-white leading-tight">
               {{ product.title || product.name }}
             </h1>
-            <p class="mt-3 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
+            <p class="mt-2 sm:mt-3 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
               {{ product.description }}
             </p>
           </div>
 
-          <!-- Price Display -->
-          <div class="flex items-baseline gap-2 py-3 border-y border-neutral-200 dark:border-neutral-800">
-            <span class="text-2xl sm:text-3xl font-black text-neutral-950 dark:text-white">
+          <div class="flex items-baseline gap-2 py-2.5 sm:py-3 border-y border-neutral-200 dark:border-neutral-800">
+            <span class="text-xl sm:text-3xl font-black text-neutral-950 dark:text-white">
               {{ product.price ? `${product.currency || 'KES'} ${product.price.toLocaleString()}` : 'Quote on request' }}
             </span>
             <span v-if="product.price && product.inStock !== false" class="ml-auto text-xs font-bold text-lime-600 dark:text-lime-400 flex items-center gap-1">
@@ -161,12 +154,11 @@ useSchemaOrg([{
             </span>
           </div>
 
-          <!-- Feature Highlights -->
           <div v-if="product.details?.length" class="space-y-2">
             <h3 class="text-xs font-bold uppercase tracking-wider text-neutral-400">
               Product Highlights
             </h3>
-            <ul class="space-y-2 text-xs text-neutral-700 dark:text-neutral-300">
+            <ul class="space-y-1.5 sm:space-y-2 text-xs text-neutral-700 dark:text-neutral-300">
               <li v-for="(detail, idx) in product.details" :key="idx" class="flex items-center gap-2 font-medium">
                 <UIcon name="i-tabler-point" class="size-4 text-lime-500 shrink-0" />
                 <span>{{ detail }}</span>
@@ -174,12 +166,10 @@ useSchemaOrg([{
             </ul>
           </div>
 
-          <!-- Actions Container -->
-          <div class="pt-4 space-y-3">
-            <!-- Stepper -->
+          <div class="pt-3 sm:pt-4 space-y-2.5 sm:space-y-3">
             <div
               v-if="product.price && cartQuantity > 0"
-              class="flex items-center justify-between w-full py-2"
+              class="flex items-center justify-between w-full py-1.5 sm:py-2"
             >
               <span class="text-xs font-black uppercase text-lime-600 dark:text-lime-400 flex items-center gap-1.5">
                 <UIcon name="i-tabler-shopping-bag-check" class="size-4" />
@@ -209,7 +199,6 @@ useSchemaOrg([{
               </div>
             </div>
 
-            <!-- Add Button -->
             <UButton
               v-if="product.price"
               block
@@ -236,10 +225,9 @@ useSchemaOrg([{
         </div>
       </div>
 
-      <!-- Markdown Body Content -->
       <div
         v-if="product.body"
-        class="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800 prose dark:prose-invert max-w-none text-xs sm:text-sm leading-relaxed"
+        class="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-neutral-200 dark:border-neutral-800 prose dark:prose-invert max-w-none text-xs sm:text-sm leading-relaxed"
       >
         <ContentRenderer :value="product" />
       </div>

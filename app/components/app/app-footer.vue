@@ -5,7 +5,6 @@ import { FOOTER_LINKS, HIGHLIGHTS, LOCATION_DETAILS, SOCIAL_LINKS } from '~/util
 const route = useRoute()
 const [exploreLinks, communityLinks] = FOOTER_LINKS.map(category => category.links)
 
-// Active link route matching
 function isLinkActive(path: string) {
   if (path === '/') {
     return route.path === '/'
@@ -17,9 +16,7 @@ function isLinkActive(path: string) {
 <template>
   <footer id="contact" class="border-t border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white transition-colors duration-300 w-full">
     <UContainer class="py-12 sm:py-16">
-      <!-- Main Footer Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        <!-- Brand Column -->
         <div class="space-y-4 sm:col-span-2 lg:col-span-5 min-w-0">
           <NuxtLink to="/" class="inline-block focus:outline-none" aria-label="Home">
             <AppLogo class="h-9 sm:h-10 w-auto" />
@@ -29,7 +26,6 @@ function isLinkActive(path: string) {
             Recreation Yard Limited is a recreation, sports, wellness, events and sports merchandise business helping people move, play, connect and thrive in Kericho and beyond.
           </p>
 
-          <!-- Highlights -->
           <div class="space-y-2 pt-1">
             <div
               v-for="highlight in HIGHLIGHTS"
@@ -41,7 +37,6 @@ function isLinkActive(path: string) {
             </div>
           </div>
 
-          <!-- Social Links Pills -->
           <div class="pt-2">
             <span class="text-[10px] font-black uppercase tracking-wider text-neutral-400 block mb-2">Connect With Us</span>
             <div class="flex items-center gap-2">
@@ -60,7 +55,6 @@ function isLinkActive(path: string) {
           </div>
         </div>
 
-        <!-- Explore & Activities -->
         <div class="space-y-3.5 sm:col-span-1 lg:col-span-2 min-w-0">
           <h4 class="text-[11px] font-black uppercase tracking-wider text-neutral-400 border-b border-neutral-200 dark:border-neutral-800 pb-2">
             Explore
@@ -83,7 +77,6 @@ function isLinkActive(path: string) {
           </ul>
         </div>
 
-        <!-- Community & Resources -->
         <div class="space-y-3.5 sm:col-span-1 lg:col-span-2 min-w-0">
           <h4 class="text-[11px] font-black uppercase tracking-wider text-neutral-400 border-b border-neutral-200 dark:border-neutral-800 pb-2">
             Community
@@ -106,7 +99,6 @@ function isLinkActive(path: string) {
           </ul>
         </div>
 
-        <!-- Contact & Location Details -->
         <div class="space-y-3.5 sm:col-span-1 lg:col-span-3 min-w-0">
           <h4 class="text-[11px] font-black uppercase tracking-wider text-neutral-400 border-b border-neutral-200 dark:border-neutral-800 pb-2">
             Visit & Contact
@@ -159,7 +151,6 @@ function isLinkActive(path: string) {
         </div>
       </div>
 
-      <!-- Bottom Copyright Bar -->
       <div class="mt-12 pt-6 border-t border-neutral-200/80 dark:border-neutral-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-bold text-neutral-500 dark:text-neutral-400 text-center sm:text-left">
         <p>
           &copy; {{ new Date().getFullYear() }} {{ LOCATION_DETAILS.company }}. All rights reserved.

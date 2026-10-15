@@ -10,16 +10,12 @@ export function useTheme() {
     },
   })
 
-  /**
-   * Toggles theme mode with View Transitions API support.
-   * Falls back gracefully if browser doesn't support View Transitions or if reduced motion is requested.
-   */
   const toggleTheme = async (event?: MouseEvent) => {
-    // Check for Browser API support and motion settings
-    const isAppearanceTransition
-      // @ts-expect-error View Transitions API polyfill check
-      = document.startViewTransition
-        && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const startViewTransition = Reflect.get(document, 'startViewTransition') as
+      | ((callback: () => Promise<void>) => ViewTransition)
+      | undefined
+    const isAppearanceTransition = typeof startViewTransition === 'function'
+      && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (!isAppearanceTransition || !event) {
       isDark.value = !isDark.value
@@ -33,7 +29,7 @@ export function useTheme() {
       Math.max(y, window.innerHeight - y),
     )
 
-    const transition = document.startViewTransition(async () => {
+    const transition = startViewTransition(async () => {
       isDark.value = !isDark.value
       await nextTick()
     })

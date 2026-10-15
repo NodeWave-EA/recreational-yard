@@ -2,7 +2,7 @@
 @import '@nuxt/ui';
 @plugin "@tailwindcss/typography";
 
-@source "../../../content/**/*";
+@source "../../../content    *";
 
 @theme {
   --color-brand-navy-50: #f0f4fa;
@@ -10,7 +10,7 @@
   --color-brand-navy-200: #c1d2eb;
   --color-brand-navy-300: #97b4de;
   --color-brand-navy-400: #678fce;
-  --color-brand-navy-500: #0a255c; /* Core Brand Navy Background */
+  --color-brand-navy-500: #0a255c;
   --color-brand-navy-600: #385da4;
   --color-brand-navy-700: #2c4a85;
   --color-brand-navy-800: #253d6e;
@@ -22,7 +22,7 @@
   --color-brand-lime-200: #daf3a5;
   --color-brand-lime-300: #bdea70;
   --color-brand-lime-400: #9ecd3d;
-  --color-brand-lime-500: #97cd16; /* Core Brand Lime Accent/Buttons */
+  --color-brand-lime-500: #97cd16;
   --color-brand-lime-600: #74a30e;
   --color-brand-lime-700: #587c0f;
   --color-brand-lime-800: #476312;
@@ -34,7 +34,7 @@
   --color-navy-200: #c1d2eb;
   --color-navy-300: #97b4de;
   --color-navy-400: #678fce;
-  --color-navy-500: #0a255c; /* Core Navy Background */
+  --color-navy-500: #0a255c;
   --color-navy-600: #385da4;
   --color-navy-700: #2c4a85;
   --color-navy-800: #253d6e;
@@ -46,14 +46,13 @@
   --color-lime-200: #daf3a5;
   --color-lime-300: #bdea70;
   --color-lime-400: #9ecd3d;
-  --color-lime-500: #97cd16; /* Core Lime Accent/Buttons */
+  --color-lime-500: #97cd16;
   --color-lime-600: #74a30e;
   --color-lime-700: #587c0f;
   --color-lime-800: #476312;
   --color-lime-900: #3c5413;
   --color-lime-950: #1f2f05;
 
-  /* override default font */
   --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
   --font-display: 'Montserrat', system-ui, -apple-system, sans-serif;
 }
@@ -85,7 +84,6 @@
   --ui-text-muted: #94a3b8;
 }
 
-/* Global Theme View Transitions */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;

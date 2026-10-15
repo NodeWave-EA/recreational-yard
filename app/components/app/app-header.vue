@@ -8,7 +8,6 @@ const { itemCount, toggleCart } = useCart()
 const isMobileOpen = ref(false)
 const isSearchModalOpen = ref(false)
 
-// Register ⌘K / Ctrl+K keyboard shortcut
 defineShortcuts({
   meta_k: {
     handler: () => {
@@ -24,12 +23,10 @@ defineShortcuts({
 
     <header class="border-b border-neutral-200/80 bg-white/95 backdrop-blur-md transition-colors dark:border-neutral-800/80 dark:bg-neutral-950/95 w-full">
       <UContainer class="flex items-center justify-between py-2.5">
-        <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-2.5 shrink-0" aria-label="Home">
           <AppLogo class="h-7 sm:h-8 lg:h-9 w-auto" />
         </NuxtLink>
 
-        <!-- Desktop Navigation (1024px+) -->
         <nav class="hidden lg:flex items-center gap-0.5 xl:gap-1 text-[11px] xl:text-xs font-bold uppercase tracking-wider">
           <NuxtLink
             v-for="link in NAV_LINKS"
@@ -43,9 +40,7 @@ defineShortcuts({
           </NuxtLink>
         </nav>
 
-        <!-- Header Controls & Actions -->
         <div class="flex items-center gap-1.5 sm:gap-2.5">
-          <!-- Search Button -->
           <UButton
             color="neutral"
             variant="ghost"
@@ -59,10 +54,8 @@ defineShortcuts({
             </UKbd>
           </UButton>
 
-          <!-- Theme Mode Switcher -->
           <CommonThemeToggle />
 
-          <!-- Shopping Cart Drawer Button -->
           <UButton
             color="neutral"
             variant="ghost"
@@ -76,7 +69,6 @@ defineShortcuts({
             </UBadge>
           </UButton>
 
-          <!-- Book Visit Primary CTA -->
           <UButton
             to="/contact"
             size="md"
@@ -86,7 +78,6 @@ defineShortcuts({
             BOOK A VISIT
           </UButton>
 
-          <!-- Mobile Menu Toggle (< 1024px) -->
           <UButton
             color="neutral"
             variant="ghost"
@@ -100,7 +91,6 @@ defineShortcuts({
       </UContainer>
     </header>
 
-    <!-- Slideover Drawer for Mobile & Tablet Viewports -->
     <USlideover v-model:open="isMobileOpen" title="Navigation Menu">
       <template #content>
         <div class="p-4 sm:p-6 space-y-6 flex flex-col justify-between h-full bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">
@@ -153,7 +143,6 @@ defineShortcuts({
       </template>
     </USlideover>
 
-    <!-- Global Search Modal -->
     <CommonGlobalSearchModal v-model:open="isSearchModalOpen" />
   </div>
 </template>

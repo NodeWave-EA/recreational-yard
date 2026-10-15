@@ -1,14 +1,13 @@
 <template>
-  <section class="grid grid-cols-1 md:grid-cols-2 gap-6 py-8">
-    <!-- Community and partnership teaser card -->
-    <div class="p-6 sm:p-8 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs flex flex-col justify-between space-y-4">
-      <div class="space-y-3">
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 py-2 sm:py-8 w-full">
+    <div class="p-0 sm:p-8 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs flex flex-col justify-between space-y-3 sm:space-y-4 w-full">
+      <div class="space-y-2 sm:space-y-3">
         <UBadge color="neutral" variant="soft" class="font-bold text-[10px] uppercase tracking-wider rounded-md">
           <UIcon name="i-tabler-calendar-event" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
           Community & partnerships
         </UBadge>
 
-        <h3 class="text-2xl font-black text-neutral-950 dark:text-white">
+        <h3 class="text-xl sm:text-2xl font-black text-neutral-950 dark:text-white">
           Opportunities to participate
         </h3>
 
@@ -17,27 +16,26 @@
         </p>
       </div>
 
-      <div class="pt-2">
+      <div class="pt-1 sm:pt-2">
         <UButton
           to="/events"
           color="primary"
           icon="i-tabler-calendar-event"
-          class="font-black uppercase text-xs text-neutral-950 rounded-md px-6 py-3 cursor-pointer justify-center"
+          class="w-full sm:w-auto font-black uppercase text-xs text-neutral-950 rounded-md px-6 py-3 cursor-pointer justify-center"
         >
           Explore opportunities
         </UButton>
       </div>
     </div>
 
-    <!-- Sports merchandise teaser card -->
-    <div class="p-6 sm:p-8 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs flex flex-col justify-between space-y-4">
-      <div class="space-y-3">
+    <div class="p-0 sm:p-8 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs flex flex-col justify-between space-y-3 sm:space-y-4 w-full">
+      <div class="space-y-2 sm:space-y-3">
         <UBadge color="neutral" variant="soft" class="font-bold text-[10px] uppercase tracking-wider rounded-md">
           <UIcon name="i-tabler-shopping-bag" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
           Sports merchandise and kits
         </UBadge>
 
-        <h3 class="text-2xl font-black text-neutral-950 dark:text-white">
+        <h3 class="text-xl sm:text-2xl font-black text-neutral-950 dark:text-white">
           Running kits, uniforms and equipment
         </h3>
 
@@ -46,13 +44,13 @@
         </p>
       </div>
 
-      <div class="pt-2">
+      <div class="pt-1 sm:pt-2">
         <UButton
           to="/shop"
           color="neutral"
           variant="outline"
           icon="i-tabler-shopping-bag"
-          class="font-extrabold uppercase text-xs rounded-md px-6 py-3 cursor-pointer justify-center"
+          class="w-full sm:w-auto font-extrabold uppercase text-xs rounded-md px-6 py-3 cursor-pointer justify-center"
         >
           View sportswear services
         </UButton>

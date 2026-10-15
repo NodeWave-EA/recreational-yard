@@ -5,7 +5,6 @@ import { CONTACTS, LOCATION_DETAILS } from '~/utils/site-data'
 const route = useRoute()
 const { getByPath } = useContentQuery()
 
-// Fetch single pricing plan by path
 const { data: plan } = await getByPath(
   `pricing-plan-${route.path}`,
   'pricing',
@@ -21,7 +20,6 @@ if (!plan.value) {
   })
 }
 
-// Direct contact URL helper
 const contactCtaUrl = computed(() => {
   if (plan.value?.cta?.to)
     return plan.value.cta.to
@@ -58,9 +56,8 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="py-6 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
-    <UContainer v-if="plan" class="space-y-8">
-      <!-- Back Link -->
+  <div class="py-4 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
+    <UContainer v-if="plan" class="space-y-6 sm:space-y-8 px-3 sm:px-6 lg:px-8">
       <div>
         <NuxtLink
           to="/pricing"
@@ -71,15 +68,14 @@ useSchemaOrg([{
         </NuxtLink>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        <!-- Main Pass Info -->
-        <div class="lg:col-span-8 space-y-6 min-w-0">
-          <div class="space-y-3">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
+        <div class="lg:col-span-8 space-y-5 sm:space-y-6 min-w-0">
+          <div class="space-y-2 sm:space-y-3">
             <UBadge
               v-if="plan.badge"
               :color="plan.isPopular ? 'primary' : 'neutral'"
               variant="soft"
-              class="font-black text-[10px] uppercase tracking-wider px-3 py-1 rounded-md"
+              class="font-black text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-md"
             >
               {{ plan.badge }}
             </UBadge>
@@ -93,60 +89,57 @@ useSchemaOrg([{
             </p>
           </div>
 
-          <!-- Included Features List -->
-          <div class="pt-6 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
+          <div class="pt-5 sm:pt-6 border-t border-neutral-200 dark:border-neutral-800 space-y-3 sm:space-y-4">
             <h2 class="text-xs font-bold uppercase tracking-wider text-neutral-400">
               Pass Benefits & Features
             </h2>
 
-            <ul class="space-y-3 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+            <ul class="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
               <li
                 v-for="(feature, idx) in plan.features"
                 :key="idx"
-                class="flex items-start gap-3 font-medium"
+                class="flex items-start gap-2.5 sm:gap-3 font-medium"
               >
-                <UIcon name="i-tabler-circle-check-filled" class="size-5 shrink-0 text-lime-500 mt-0.5" />
+                <UIcon name="i-tabler-circle-check-filled" class="size-4 sm:size-5 shrink-0 text-lime-500 mt-0.5" />
                 <span class="leading-snug">{{ feature }}</span>
               </li>
 
               <li
                 v-for="(item, idx) in plan.notIncluded"
                 :key="`not-${idx}`"
-                class="flex items-start gap-3 text-neutral-400 dark:text-neutral-600 line-through font-medium"
+                class="flex items-start gap-2.5 sm:gap-3 text-neutral-400 dark:text-neutral-600 line-through font-medium"
               >
-                <UIcon name="i-tabler-circle-x" class="size-5 shrink-0 text-neutral-300 dark:text-neutral-700 mt-0.5" />
+                <UIcon name="i-tabler-circle-x" class="size-4 sm:size-5 shrink-0 text-neutral-300 dark:text-neutral-700 mt-0.5" />
                 <span class="leading-snug">{{ item }}</span>
               </li>
             </ul>
           </div>
 
-          <!-- Markdown Content Body -->
-          <div class="prose dark:prose-invert max-w-none text-xs leading-relaxed pt-6 border-t border-neutral-200 dark:border-neutral-800">
+          <div class="prose dark:prose-invert max-w-none text-xs leading-relaxed pt-5 sm:pt-6 border-t border-neutral-200 dark:border-neutral-800">
             <ContentRenderer :value="plan" />
           </div>
         </div>
 
-        <!-- Sticky Sidebar Action Details Card -->
-        <div class="lg:col-span-4 sticky top-[calc(var(--ui-header-height,4rem)+1.5rem)] space-y-6">
-          <div class="p-5 sm:p-6 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-6">
-            <div class="border-b border-neutral-200/80 dark:border-neutral-800/80 pb-4">
+        <div class="lg:col-span-4 lg:sticky lg:top-[calc(var(--ui-header-height,4rem)+1.5rem)] space-y-6 pt-4 lg:pt-0 border-t lg:border-t-0 border-neutral-200 dark:border-neutral-800">
+          <div class="p-0 sm:p-6 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs space-y-4 sm:space-y-6">
+            <div class="border-b border-neutral-200/80 dark:border-neutral-800/80 pb-3 sm:pb-4">
               <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">Pricing & Quotation</span>
-              <div v-if="plan.price" class="flex items-baseline gap-1.5 mt-2">
+              <div v-if="plan.price" class="flex items-baseline gap-1.5 mt-1.5 sm:mt-2">
                 <span class="text-xs font-bold text-neutral-500">{{ plan.currency || 'KES' }}</span>
-                <span class="text-3xl sm:text-4xl font-black tracking-tight text-neutral-950 dark:text-white">
+                <span class="text-2xl sm:text-4xl font-black tracking-tight text-neutral-950 dark:text-white">
                   {{ plan.price.toLocaleString() }}
                 </span>
                 <span v-if="plan.billingCycle" class="text-xs font-medium text-neutral-500">/ {{ plan.billingCycle }}</span>
               </div>
-              <div v-else class="mt-2">
-                <span class="text-2xl font-black tracking-tight text-neutral-950 dark:text-white">
+              <div v-else class="mt-1.5 sm:mt-2">
+                <span class="text-xl sm:text-2xl font-black tracking-tight text-neutral-950 dark:text-white">
                   Quote on Request
                 </span>
                 <span class="block text-xs text-neutral-500 mt-1 font-medium leading-relaxed">Pricing confirmed based on agreed requirements and specifications</span>
               </div>
             </div>
 
-            <div class="space-y-3 pt-1">
+            <div class="space-y-2.5 sm:space-y-3 pt-1">
               <UButton
                 :to="contactCtaUrl"
                 block
