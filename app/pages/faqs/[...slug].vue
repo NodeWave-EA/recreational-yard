@@ -24,8 +24,8 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="py-8 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full">
-    <UContainer v-if="faq" class="max-w-3xl space-y-8">
+  <div class="py-8 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
+    <UContainer v-if="faq" class="space-y-8">
       <!-- Back Link -->
       <div>
         <NuxtLink
@@ -40,10 +40,10 @@ useSeoMeta({
       <!-- FAQ Header Section -->
       <div class="space-y-4 border-b border-neutral-200 dark:border-neutral-800 pb-6">
         <div class="flex flex-wrap items-center gap-2">
-          <UBadge color="primary" variant="soft" class="font-extrabold uppercase text-[10px] tracking-wider px-2.5 py-1 rounded">
+          <UBadge color="primary" variant="soft" class="font-extrabold uppercase text-[10px] tracking-wider px-2.5 py-1 rounded-md">
             {{ faq.category }}
           </UBadge>
-          <UBadge v-if="faq.facility" color="neutral" variant="subtle" class="font-bold uppercase text-[10px] tracking-wider px-2.5 py-1 rounded">
+          <UBadge v-if="faq.facility" color="neutral" variant="subtle" class="font-bold uppercase text-[10px] tracking-wider px-2.5 py-1 rounded-md">
             {{ faq.facility }}
           </UBadge>
         </div>
@@ -55,8 +55,8 @@ useSeoMeta({
 
       <!-- Flat Answer Body -->
       <div class="space-y-6">
-        <div class="pl-4 border-l-4 border-lime-500">
-          <p class="text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-medium">
+        <div class="p-5 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 pl-4 border-l-4 border-l-lime-500">
+          <p class="text-sm sm:text-base leading-relaxed text-neutral-800 dark:text-neutral-200 font-medium">
             {{ faq.answer }}
           </p>
         </div>
@@ -78,7 +78,7 @@ useSeoMeta({
             color="primary"
             size="md"
             icon="i-tabler-mail"
-            class="font-black uppercase text-xs text-neutral-950 rounded-xl px-5 py-2.5"
+            class="font-black uppercase text-xs text-neutral-950 rounded-md px-5 py-2.5 cursor-pointer"
           >
             Send Inquiry
           </UButton>
@@ -89,7 +89,7 @@ useSeoMeta({
             color="neutral"
             variant="ghost"
             icon="i-tabler-brand-whatsapp"
-            class="font-bold text-xs rounded-xl py-2.5 text-emerald-600 dark:text-emerald-400"
+            class="font-bold text-xs rounded-md py-2.5 text-emerald-600 dark:text-emerald-400 cursor-pointer"
           >
             WhatsApp Support
           </UButton>

@@ -1,11 +1,17 @@
 ---
-title: "Outdoor Recreation Space"
-description: "A green environment for picnics, relaxation and shared experiences."
-category: "scenery"
-badge: "Recreation Yard Limited"
+title: "Active Living & Movement Zone"
+description: "Outdoor movement, active games, and wellness-oriented recreation in a clean, invigorating highland environment."
+category: "facilities"
+badge: "Active Living"
+coverImage: "/content/gallery/outdoor-fitness-zone/cover.jpg"
 featured: true
-order: 1
-photos: []
+order: 5
+photos:
+  - url: "/content/gallery/outdoor-fitness-zone/cover.jpg"
+    caption: "Active Movement and Lawn Game Facilities"
+    alt: "Outdoor activity lawn"
 ---
 
-A green environment for picnics, relaxation and shared experiences.
+## Active Living Space at Recreation Yard Kericho
+
+Our active living and outdoor movement spaces provide flexible open lawns where individuals, teams, and fitness enthusiasts can engage in bodyweight exercises, active games, warm-up drills, and wellness routines.

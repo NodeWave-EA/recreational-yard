@@ -1,34 +1,49 @@
 ---
-title: "Lawn Tennis"
-description: "Use the grass playing area for friendly lawn tennis and shared outdoor activity, subject to availability."
+title: "Lawn Tennis on Grass"
+description: "Enjoy friendly lawn tennis on our natural grass playing area at Recreation Yard Kericho, KOOMA."
 quote:
-  text: "Please contact us in advance to discuss availability, equipment and group needs."
+  text: "We create opportunities for people to move, play, connect, relax and thrive through recreation, sport and shared experiences."
   author: "Recreation Yard Limited"
 category: "Outdoor Sports"
 icon: "i-tabler-ball-tennis"
 features:
-  - "Welcoming outdoor environment"
-  - "Suitable for individuals and organised groups"
-  - "Advance planning available"
+  - "Natural grass playing area dedicated to friendly lawn tennis"
+  - "Tennis rackets and balls coordinated by advance arrangement"
+  - "Suitable for singles rallies, casual doubles, and recreational matches"
+  - "Ideal for corporate team building, friends, and active family leisure"
 rules:
-  - "Prior booking is required for group events and organised activities"
-  - "Follow venue safety and cleanliness rules"
-  - "Activity availability is confirmed before visiting"
-operatingHours: "Confirm availability when booking"
+  - "Prior booking is mandatory before visiting"
+  - "Appropriate athletic footwear recommended for natural grass courts"
+  - "All visitors must maintain venue cleanliness and follow safety rules"
+operatingHours: "Prior booking mandatory — please confirm date and time"
 ageGroup: "All Ages"
+capacity: "Singles and doubles match slots"
 bookingRequired: true
 featured: true
-order: 1
+order: 2
 badge: "Recreation Yard Kericho"
 cta:
-  label: "Ask about availability"
-  to: "/contact?type=facility-booking"
+  label: "Book Lawn Tennis Slot"
+  to: "/contact?type=facility-booking&facility=tennis-on-the-lawn"
 ---
 
-## Lawn Tennis
+## Lawn Tennis on Natural Grass
 
-Use the grass playing area for friendly lawn tennis and shared outdoor activity, subject to availability. We create opportunities for people to move, play, connect, relax and thrive through recreation and shared experiences.
+At **Recreation Yard Kericho**, located at KOOMA along the Kericho–Kisumu Highway, we provide a green outdoor lawn tennis playing area on natural grass. Playing tennis outdoors on grass offers a classic, active, and refreshing recreational experience that brings people together in a relaxed highland setting.
 
-### Plan your experience
+Whether you are enjoying a casual rally with a friend, organizing a friendly round-robin tournament for your sports group, or adding an active lawn game to your corporate team-building day, our lawn tennis area is set up for fun, fitness, and connection.
 
-Contact Recreation Yard Limited with your preferred date, expected attendance, intended activities and any special requirements. We will advise on suitability, availability and applicable arrangements.
+### Who It Is For
+
+- **Recreational Players & Friends:** Enjoy friendly sets and energetic rallies in a scenic outdoor setting.
+- **Families:** Introduce children and teens to lawn tennis in a welcoming, low-pressure atmosphere.
+- **Corporate Teams:** Incorporate tennis mini-tournaments and challenges into your team-building itinerary.
+- **Schools & Sports Clubs:** Arrange outdoor sports sessions and active play days for youth teams.
+
+### Equipment & Supply
+
+We coordinate tennis rackets and balls for use during your booked session. In addition, through our **School Games Kits & Corporate Sportswear** supply division, Recreation Yard Limited can supply lawn tennis rackets, accessories, and custom team uniforms for schools and sports clubs.
+
+### Booking & Confirmation
+
+Prior booking is strictly mandatory for all visits and activities at Recreation Yard Kericho. Please contact us in advance with your preferred date, expected number of players, and equipment needs so that we can confirm availability and reserve the lawn.

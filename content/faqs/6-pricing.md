@@ -1,6 +1,6 @@
 ---
-question: "How are prices and quotations determined?"
-answer: "Recreation access, group arrangements and merchandise pricing depend on the agreed requirements, availability and specifications. We communicate applicable prices and booking conditions clearly before confirmation."
+question: "How are your prices and quotations determined?"
+answer: "Our services are requirements-led. Recreation access, group packages, event venue reservations, and merchandise orders are quoted individually based on your group size, duration, preferred lawn activities, and product specifications (such as apparel materials, branding, and order quantities). We communicate transparent prices and booking conditions clearly before any agreement is confirmed."
 category: "Pricing & Passes"
 order: 6
 ---

@@ -1,6 +1,6 @@
 ---
-question: "Who can join Recreation Yard Runners?"
-answer: "The running club welcomes beginners, recreational joggers, fitness enthusiasts, experienced runners and people who prefer walking. Participation can be physical in Kericho or virtual from another location."
+question: "Who can join Recreation Yard Runners, and how does it work?"
+answer: "Everyone is welcome! Recreation Yard Runners embraces beginners taking their first steps into walking or jogging, recreational joggers, fitness enthusiasts, experienced marathoners, and individuals who prefer walking for exercise. We organize physical meet-ups in Kericho along scenic highland routes, virtual participation for runners and walkers anywhere in Kenya, agreed community distance challenges, and marathon preparation support."
 category: "Facilities & Sports"
 order: 3
 ---

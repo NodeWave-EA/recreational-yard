@@ -104,7 +104,7 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="py-8 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300">
+  <div class="py-6 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
     <UContainer v-if="event" class="space-y-8">
       <!-- Back Link -->
       <div>
@@ -120,9 +120,9 @@ useSchemaOrg([{
       <!-- Main Layout Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         <!-- Main Content Column -->
-        <div class="lg:col-span-8 space-y-8">
+        <div class="lg:col-span-8 space-y-8 min-w-0">
           <!-- Cover Banner -->
-          <div class="relative rounded-2xl overflow-hidden bg-neutral-200 dark:bg-neutral-900">
+          <div class="relative rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs">
             <NuxtImg
               v-if="getImageSrc(event)"
               :src="getImageSrc(event)"
@@ -163,7 +163,7 @@ useSchemaOrg([{
           <!-- Title & Summary Header -->
           <div class="space-y-3 border-b border-neutral-200 dark:border-neutral-800 pb-6">
             <div class="flex items-center gap-2">
-              <UBadge color="neutral" variant="soft" class="text-[10px] uppercase font-black tracking-wider px-3 py-1 rounded">
+              <UBadge color="neutral" variant="soft" class="text-[10px] uppercase font-black tracking-wider px-3 py-1 rounded-md">
                 {{ event.category }}
               </UBadge>
             </div>
@@ -172,7 +172,7 @@ useSchemaOrg([{
               {{ event.title }}
             </h1>
 
-            <p class="text-sm sm:text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
+            <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
               {{ event.description }}
             </p>
           </div>
@@ -198,7 +198,7 @@ useSchemaOrg([{
                     {{ item.details }}
                   </p>
                 </div>
-                <UBadge color="neutral" variant="subtle" class="shrink-0 font-bold text-[11px] sm:self-center self-start px-2.5 py-1 rounded">
+                <UBadge color="neutral" variant="subtle" class="shrink-0 font-bold text-[11px] sm:self-center self-start px-2.5 py-1 rounded-md">
                   {{ item.time }}
                 </UBadge>
               </div>
@@ -218,32 +218,32 @@ useSchemaOrg([{
               :key="tag"
               color="neutral"
               variant="outline"
-              class="text-[10px] font-semibold rounded px-2.5 py-1"
+              class="text-[10px] font-semibold rounded-md px-2.5 py-1"
             >
               #{{ tag }}
             </UBadge>
           </div>
         </div>
 
-        <!-- Sidebar Event Details -->
-        <div class="lg:col-span-4 sticky top-[calc(var(--ui-header-height,4rem)+1.5rem)] space-y-6 lg:border-l lg:border-neutral-200 lg:dark:border-neutral-800 lg:pl-8">
-          <div class="space-y-6">
+        <!-- Sidebar Event Details Card -->
+        <div class="lg:col-span-4 sticky top-[calc(var(--ui-header-height,4rem)+1.5rem)] space-y-6">
+          <div class="p-5 sm:p-6 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-6">
             <h2 class="text-xl font-black text-neutral-950 dark:text-white pb-3 border-b border-neutral-200 dark:border-neutral-800 flex items-center gap-2">
               <UIcon name="i-tabler-info-circle" class="size-5 text-lime-500 shrink-0" />
               <span>Event Details</span>
             </h2>
 
-            <ul class="space-y-5 text-xs">
+            <ul class="space-y-4 text-xs">
               <!-- Date -->
               <li class="flex items-start gap-3.5">
-                <div class="flex size-9 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400 mt-0.5">
+                <div class="flex size-9 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 mt-0.5">
                   <UIcon name="i-tabler-calendar" class="size-5" />
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="text-neutral-400 uppercase text-[10px] font-bold tracking-wider">
                     Date
                   </div>
-                  <div class="font-extrabold text-neutral-950 dark:text-white text-sm mt-0.5 wrap-break-word">
+                  <div class="font-extrabold text-neutral-950 dark:text-white text-sm mt-0.5 break-words">
                     {{ event.date }}
                   </div>
                 </div>
@@ -251,14 +251,14 @@ useSchemaOrg([{
 
               <!-- Time -->
               <li class="flex items-start gap-3.5">
-                <div class="flex size-9 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400 mt-0.5">
+                <div class="flex size-9 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 mt-0.5">
                   <UIcon name="i-tabler-clock" class="size-5" />
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="text-neutral-400 uppercase text-[10px] font-bold tracking-wider">
                     Time
                   </div>
-                  <div class="font-extrabold text-neutral-950 dark:text-white text-sm mt-0.5 wrap-break-word">
+                  <div class="font-extrabold text-neutral-950 dark:text-white text-sm mt-0.5 break-words">
                     {{ event.time }}
                   </div>
                 </div>
@@ -266,14 +266,14 @@ useSchemaOrg([{
 
               <!-- Location -->
               <li class="flex items-start gap-3.5">
-                <div class="flex size-9 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400 mt-0.5">
+                <div class="flex size-9 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 mt-0.5">
                   <UIcon name="i-tabler-map-pin" class="size-5" />
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="text-neutral-400 uppercase text-[10px] font-bold tracking-wider">
                     Location
                   </div>
-                  <div class="font-extrabold text-neutral-950 dark:text-white text-sm mt-0.5 wrap-break-word leading-snug">
+                  <div class="font-extrabold text-neutral-950 dark:text-white text-sm mt-0.5 break-words leading-snug">
                     {{ event.location }}
                   </div>
                 </div>
@@ -281,14 +281,14 @@ useSchemaOrg([{
 
               <!-- Entry Fee -->
               <li class="flex items-start gap-3.5">
-                <div class="flex size-9 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400 mt-0.5">
+                <div class="flex size-9 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 mt-0.5">
                   <UIcon name="i-tabler-ticket" class="size-5" />
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="text-neutral-400 uppercase text-[10px] font-bold tracking-wider">
                     Entry Fee
                   </div>
-                  <div class="font-black text-lime-600 dark:text-lime-400 text-base mt-0.5 wrap-break-word">
+                  <div class="font-black text-lime-600 dark:text-lime-400 text-base mt-0.5 break-words">
                     {{ event.entryFee }}
                   </div>
                 </div>
@@ -296,14 +296,14 @@ useSchemaOrg([{
 
               <!-- Capacity -->
               <li v-if="event.capacity" class="flex items-start gap-3.5">
-                <div class="flex size-9 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400 mt-0.5">
+                <div class="flex size-9 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 mt-0.5">
                   <UIcon name="i-tabler-users" class="size-5" />
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="text-neutral-400 uppercase text-[10px] font-bold tracking-wider">
                     Capacity
                   </div>
-                  <div class="font-extrabold text-neutral-950 dark:text-white text-sm mt-0.5 wrap-break-word">
+                  <div class="font-extrabold text-neutral-950 dark:text-white text-sm mt-0.5 break-words">
                     {{ event.capacity }}
                   </div>
                 </div>
@@ -311,14 +311,14 @@ useSchemaOrg([{
 
               <!-- Organizer Details -->
               <li v-if="event.organizer" class="flex items-start gap-3.5 pt-3 border-t border-neutral-200 dark:border-neutral-800">
-                <div class="flex size-9 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400 mt-0.5">
+                <div class="flex size-9 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 mt-0.5">
                   <UIcon name="i-tabler-building-community" class="size-5" />
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="text-neutral-400 uppercase text-[10px] font-bold tracking-wider">
                     Organizer
                   </div>
-                  <div class="font-extrabold text-neutral-950 dark:text-white text-sm mt-0.5 wrap-break-word">
+                  <div class="font-extrabold text-neutral-950 dark:text-white text-sm mt-0.5 break-words">
                     {{ event.organizer.name }}
                   </div>
                   <div v-if="event.organizer.phone" class="text-neutral-500 text-xs mt-0.5">
@@ -334,10 +334,10 @@ useSchemaOrg([{
                 :to="targetCtaUrl"
                 :target="event.registrationUrl ? '_blank' : undefined"
                 block
-                size="xl"
+                size="lg"
                 color="primary"
                 icon="i-tabler-circle-check"
-                class="font-black uppercase text-xs text-neutral-950 rounded-xl py-3.5 w-full justify-center cursor-pointer"
+                class="font-black uppercase text-xs text-neutral-950 rounded-md py-3.5 w-full justify-center cursor-pointer"
               >
                 {{ event.cta?.label || 'Register Now' }}
               </UButton>

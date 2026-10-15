@@ -43,32 +43,36 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-16 transition-colors duration-300">
-    <!-- Left-Aligned Mobile Hero Banner -->
-    <div class="pt-6 sm:pt-10 pb-2 sm:pb-4 text-left sm:text-center space-y-3 max-w-3xl mx-auto px-4">
-      <div class="inline-flex">
-        <UBadge
-          color="primary"
-          variant="soft"
-          class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-3.5 py-1 sm:py-0.5 rounded-full"
-        >
-          <UIcon name="i-tabler-photo" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
-          <span>Visual Collections</span>
-        </UBadge>
-      </div>
+  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-16 transition-colors duration-300 w-full overflow-x-clip">
+    <!-- Header Banner -->
+    <div class="pt-6 sm:pt-10 pb-6 border-b border-neutral-200/80 dark:border-neutral-800/80">
+      <UContainer>
+        <div class="space-y-3 text-left sm:text-center">
+          <div class="inline-flex">
+            <UBadge
+              color="primary"
+              variant="soft"
+              class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-3 py-0.5 rounded-md"
+            >
+              <UIcon name="i-tabler-photo" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
+              <span>Visual Collections</span>
+            </UBadge>
+          </div>
 
-      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white leading-tight">
-        Yard Photo Gallery
-      </h1>
+          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white leading-tight">
+            Yard Photo Gallery
+          </h1>
 
-      <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-2xl mx-0 sm:mx-auto">
-        A showcase of recreation, running, sports merchandise and shared experiences from Recreation Yard Limited.
-      </p>
+          <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            A showcase of recreation, running, sports merchandise and shared experiences from Recreation Yard Limited.
+          </p>
+        </div>
+      </UContainer>
     </div>
 
     <!-- Sticky Search, Filter & View Toggle Toolbar -->
-    <div class="sticky top-(--ui-header-height,4rem) z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3.5 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
-      <UContainer class="max-w-5xl">
+    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
+      <UContainer>
         <div class="flex flex-col md:flex-row items-center justify-between gap-3">
           <!-- Gallery Search Input -->
           <UInput
@@ -77,12 +81,12 @@ useSchemaOrg([{
             placeholder="Search galleries or topics..."
             size="md"
             color="primary"
-            class="w-full md:w-80 shadow-xs rounded-xl"
+            class="w-full md:w-80 rounded-md"
             clearable
           />
 
           <!-- Controls Group: Category, Sorting & View Mode Switcher -->
-          <div class="flex flex-wrap items-center gap-2.5 w-full md:w-auto justify-between md:justify-end">
+          <div class="flex flex-wrap items-center gap-2.5 w-full md:w-auto justify-between md:justify-end shrink-0">
             <!-- Category Dropdown -->
             <USelectMenu
               v-model="selectedCategory"
@@ -94,7 +98,7 @@ useSchemaOrg([{
               option-attribute="label"
               searchable
               placeholder="Filter Category..."
-              class="w-44 shrink-0"
+              class="w-44 shrink-0 rounded-md"
             >
               <template #leading>
                 <UIcon :name="selectedCategoryMeta.icon" class="size-4 text-lime-500 shrink-0" />
@@ -116,18 +120,18 @@ useSchemaOrg([{
               label-key="label"
               value-attribute="id"
               option-attribute="label"
-              class="w-40 shrink-0"
+              class="w-40 shrink-0 rounded-md"
             />
 
             <!-- View Mode Switcher (Grid vs List) -->
-            <div class="flex items-center p-1 rounded-xl bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0">
+            <div class="flex items-center p-1 rounded-md bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0">
               <UButton
                 size="xs"
                 :color="viewMode === 'grid' ? 'primary' : 'neutral'"
                 :variant="viewMode === 'grid' ? 'solid' : 'ghost'"
                 icon="i-tabler-layout-grid"
                 aria-label="Grid View"
-                class="rounded-lg font-bold"
+                class="rounded-md font-bold"
                 @click="viewMode = 'grid'"
               />
               <UButton
@@ -136,7 +140,7 @@ useSchemaOrg([{
                 :variant="viewMode === 'list' ? 'solid' : 'ghost'"
                 icon="i-tabler-list"
                 aria-label="List View"
-                class="rounded-lg font-bold"
+                class="rounded-md font-bold"
                 @click="viewMode = 'list'"
               />
             </div>
@@ -146,16 +150,16 @@ useSchemaOrg([{
     </div>
 
     <!-- Main Content Container -->
-    <UContainer class="max-w-5xl pt-6">
+    <UContainer class="pt-8">
       <!-- Active Filter Summary -->
       <div v-if="selectedCategory !== 'all' || searchQuery" class="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs border-b border-neutral-200 dark:border-neutral-800 pb-3">
         <div class="flex flex-wrap items-center gap-2">
           <span class="font-bold text-neutral-400">Active Filters:</span>
-          <UBadge v-if="searchQuery" color="primary" variant="soft" class="rounded-lg font-bold text-[11px] px-2 py-0.5 flex items-center gap-1">
+          <UBadge v-if="searchQuery" color="primary" variant="soft" class="rounded-md font-bold text-[11px] px-2 py-0.5 flex items-center gap-1">
             <span>Query: "{{ searchQuery }}"</span>
             <UIcon name="i-tabler-x" class="size-3.5 cursor-pointer" @click="searchQuery = ''" />
           </UBadge>
-          <UBadge v-if="selectedCategory !== 'all'" color="primary" variant="soft" class="rounded-lg font-bold text-[11px] px-2 py-0.5 flex items-center gap-1">
+          <UBadge v-if="selectedCategory !== 'all'" color="primary" variant="soft" class="rounded-md font-bold text-[11px] px-2 py-0.5 flex items-center gap-1">
             <span>Category: {{ selectedCategoryMeta.label }}</span>
             <UIcon name="i-tabler-x" class="size-3.5 cursor-pointer" @click="selectedCategory = 'all'" />
           </UBadge>
@@ -168,20 +172,20 @@ useSchemaOrg([{
         </span>
       </div>
 
-      <!-- Grid View Option -->
+      <!-- 1. Grid View Option (Clickable Cards with 4-Side Borders on Hover) -->
       <div
         v-if="viewMode === 'grid' && filteredCollections.length"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
       >
         <NuxtLink
           v-for="collection in filteredCollections"
           :key="collection.path"
           :to="collection.path"
-          class="group flex flex-col justify-between transition-all duration-300"
+          class="group flex flex-col justify-between p-4 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs hover:shadow-md min-w-0"
         >
           <div class="space-y-3">
             <!-- Thumbnail Image Cover -->
-            <div class="relative aspect-16/10 rounded-2xl overflow-hidden border border-neutral-200/60 dark:border-neutral-800/60 bg-neutral-100 dark:bg-neutral-900">
+            <div class="relative aspect-16/10 rounded-md overflow-hidden border border-neutral-200/60 dark:border-neutral-800/60 bg-neutral-100 dark:bg-neutral-900">
               <NuxtImg
                 v-if="getCoverImageSrc(collection)"
                 :src="getCoverImageSrc(collection)"
@@ -204,7 +208,7 @@ useSchemaOrg([{
                   v-if="collection.badge"
                   color="primary"
                   variant="soft"
-                  class="font-bold rounded-lg px-2 py-0.5 text-[10px] uppercase backdrop-blur-md"
+                  class="font-bold rounded-md px-2 py-0.5 text-[10px] uppercase backdrop-blur-md"
                 >
                   {{ collection.badge }}
                 </UBadge>
@@ -221,9 +225,9 @@ useSchemaOrg([{
             </div>
 
             <!-- Details -->
-            <div class="space-y-1.5">
+            <div class="space-y-1.5 min-w-0">
               <div class="flex flex-wrap items-center gap-2 text-[10px] font-bold">
-                <UBadge v-if="collection.category" color="neutral" variant="subtle" class="rounded px-1.5 py-0.5 uppercase text-[9px]">
+                <UBadge v-if="collection.category" color="neutral" variant="subtle" class="rounded-md px-1.5 py-0.5 uppercase text-[9px]">
                   {{ collection.category }}
                 </UBadge>
                 <span v-if="collection.date" class="text-neutral-500 flex items-center gap-1">
@@ -235,13 +239,13 @@ useSchemaOrg([{
                 {{ collection.title }}
               </h2>
 
-              <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+              <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed font-medium">
                 {{ collection.description }}
               </p>
             </div>
           </div>
 
-          <div class="pt-3 mt-3 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between">
+          <div class="pt-3 mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between">
             <span class="text-xs font-bold text-lime-600 dark:text-lime-400 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
               Explore Collection
             </span>
@@ -250,20 +254,21 @@ useSchemaOrg([{
         </NuxtLink>
       </div>
 
-      <!-- Flat List Row View Option -->
+      <!-- 2. Flat List Row View Option (Clickable Rows) -->
       <div
         v-else-if="viewMode === 'list' && filteredCollections.length"
-        class="divide-y divide-neutral-200/70 dark:divide-neutral-800/70"
+        class="space-y-4"
       >
-        <div
+        <NuxtLink
           v-for="collection in filteredCollections"
           :key="collection.path"
-          class="group py-5 transition-colors"
+          :to="collection.path"
+          class="group block p-4 sm:p-5 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs hover:shadow-md min-w-0"
         >
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
             <!-- Cover Thumbnail & Collection Info -->
-            <div class="flex items-start gap-4 min-w-0 flex-1">
-              <NuxtLink :to="collection.path" class="shrink-0 relative">
+            <div class="flex items-start gap-3.5 sm:gap-4 min-w-0 flex-1 w-full sm:w-auto">
+              <div class="shrink-0 relative">
                 <NuxtImg
                   v-if="getCoverImageSrc(collection)"
                   :src="getCoverImageSrc(collection)"
@@ -271,22 +276,22 @@ useSchemaOrg([{
                   format="webp"
                   quality="80"
                   loading="lazy"
-                  class="size-20 sm:size-24 rounded-xl object-cover border border-neutral-200 dark:border-neutral-800 group-hover:scale-105 transition-transform duration-300"
+                  class="size-16 sm:size-24 rounded-md object-cover border border-neutral-200 dark:border-neutral-800 group-hover:scale-105 transition-transform duration-300"
                 />
                 <div
                   v-else
-                  class="flex size-20 sm:size-24 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400 border border-neutral-200 dark:border-neutral-800"
+                  class="flex size-16 sm:size-24 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 border border-neutral-200 dark:border-neutral-800"
                 >
-                  <UIcon name="i-tabler-photo" class="size-8" />
+                  <UIcon name="i-tabler-photo" class="size-7 sm:size-8" />
                 </div>
-              </NuxtLink>
+              </div>
 
-              <div class="space-y-1.5 min-w-0 flex-1">
+              <div class="space-y-1 min-w-0 flex-1">
                 <div class="flex flex-wrap items-center gap-2 text-[10px]">
-                  <UBadge v-if="collection.category" color="neutral" variant="subtle" class="font-bold rounded px-1.5 py-0.5 text-[9px] uppercase">
+                  <UBadge v-if="collection.category" color="neutral" variant="subtle" class="font-bold rounded-md px-1.5 py-0.5 text-[9px] uppercase">
                     {{ collection.category }}
                   </UBadge>
-                  <UBadge v-if="collection.badge" color="primary" variant="soft" class="font-bold rounded px-1.5 py-0.5 text-[9px]">
+                  <UBadge v-if="collection.badge" color="primary" variant="soft" class="font-bold rounded-md px-1.5 py-0.5 text-[9px]">
                     {{ collection.badge }}
                   </UBadge>
                   <span v-if="collection.photos?.length" class="text-neutral-500 font-bold flex items-center gap-1">
@@ -298,37 +303,29 @@ useSchemaOrg([{
                 </div>
 
                 <h2 class="text-base sm:text-lg font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors truncate">
-                  <NuxtLink :to="collection.path">
-                    {{ collection.title }}
-                  </NuxtLink>
+                  {{ collection.title }}
                 </h2>
 
-                <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed max-w-2xl">
+                <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed font-medium">
                   {{ collection.description }}
                 </p>
               </div>
             </div>
 
             <!-- Action Button -->
-            <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2 sm:pt-0 shrink-0">
-              <UButton
-                :to="collection.path"
-                color="primary"
-                size="sm"
-                icon="i-tabler-arrow-right"
-                trailing
-                class="font-black uppercase text-xs text-neutral-950 rounded-xl px-4 py-2 w-full sm:w-auto justify-center"
-              >
-                View Collection
-              </UButton>
+            <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100 dark:border-neutral-800/60 shrink-0">
+              <span class="inline-flex items-center gap-1 font-black uppercase text-xs text-neutral-950 dark:text-white bg-lime-500 group-hover:bg-lime-400 px-3.5 py-2 rounded-md transition-colors">
+                <span>View Collection</span>
+                <UIcon name="i-tabler-arrow-right" class="size-4" />
+              </span>
             </div>
           </div>
-        </div>
+        </NuxtLink>
       </div>
 
       <!-- Filter Empty State -->
-      <div v-else-if="hasAnyCollection" class="py-20 text-center space-y-4 max-w-md mx-auto px-4">
-        <div class="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+      <div v-else-if="hasAnyCollection" class="py-20 text-center space-y-4 max-w-md mx-auto">
+        <div class="flex size-16 items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
           <UIcon name="i-tabler-filter-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
         </div>
 
@@ -347,7 +344,7 @@ useSchemaOrg([{
             color="neutral"
             variant="outline"
             icon="i-tabler-rotate-clockwise"
-            class="rounded-xl font-bold text-xs px-4 py-2 cursor-pointer"
+            class="rounded-md font-bold text-xs px-4 py-2 cursor-pointer"
             @click="resetFilters"
           >
             Reset All Filters
@@ -356,8 +353,8 @@ useSchemaOrg([{
       </div>
 
       <!-- Catalog Empty State -->
-      <div v-else class="py-20 text-center space-y-4 max-w-md mx-auto px-4">
-        <div class="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+      <div v-else class="py-20 text-center space-y-4 max-w-md mx-auto">
+        <div class="flex size-16 items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
           <UIcon name="i-tabler-photo-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
         </div>
 
@@ -376,7 +373,7 @@ useSchemaOrg([{
             size="sm"
             color="primary"
             icon="i-tabler-mail"
-            class="rounded-xl font-bold text-xs px-4 py-2 text-neutral-950 cursor-pointer"
+            class="rounded-md font-bold text-xs px-4 py-2 text-neutral-950 cursor-pointer"
           >
             Contact Us
           </UButton>
@@ -386,7 +383,7 @@ useSchemaOrg([{
             color="neutral"
             variant="outline"
             icon="i-tabler-home"
-            class="rounded-xl font-bold text-xs px-4 py-2 cursor-pointer"
+            class="rounded-md font-bold text-xs px-4 py-2 cursor-pointer"
           >
             Return Home
           </UButton>

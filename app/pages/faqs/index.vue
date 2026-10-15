@@ -2,10 +2,12 @@
 import { useContentQuery } from '~/composables/useContentQuery'
 import { LOCATION_DETAILS } from '~/utils/site-data'
 
-const { getCollection } = useContentQuery()
-
+// Active View Mode State ('grid' | 'list')
+const viewMode = ref<'grid' | 'list'>('grid')
 const searchQuery = ref('')
 const selectedCategory = ref('all')
+
+const { getCollection } = useContentQuery()
 
 const { data: faqs } = await getCollection('faqs-index', 'faqs', {
   sort: [{ key: 'order', order: 'ASC' }],
@@ -59,17 +61,6 @@ const groupedFaqs = computed(() => {
   return [...groups.entries()].map(([category, items]) => ({ category, items }))
 })
 
-// Open Accordion state
-const openFaqPaths = ref<Set<string>>(new Set())
-
-function toggleFaq(path: string) {
-  if (openFaqPaths.value.has(path)) {
-    openFaqPaths.value.delete(path)
-  } else {
-    openFaqPaths.value.add(path)
-  }
-}
-
 function resetFilters() {
   searchQuery.value = ''
   selectedCategory.value = 'all'
@@ -77,7 +68,7 @@ function resetFilters() {
 
 useSeoMeta({
   title: `Frequently Asked Questions | ${LOCATION_DETAILS.company}`,
-  description: 'Find answers about passes, facilities, bookings, events, and visiting Recreation Yard in Kericho.',
+  description: 'Find clear information about bookings, recreation, running club, sports kits, and visiting Recreation Yard in Kericho.',
 })
 </script>
 
@@ -85,13 +76,13 @@ useSeoMeta({
   <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-20 transition-colors duration-300 w-full overflow-x-clip">
     <!-- Hero Banner Header -->
     <div class="pt-8 sm:pt-12 pb-6 border-b border-neutral-200/80 dark:border-neutral-800/80">
-      <UContainer class="max-w-4xl">
+      <UContainer>
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div class="space-y-2.5 max-w-2xl">
+          <div class="space-y-2.5">
             <UBadge
               color="primary"
               variant="soft"
-              class="font-bold uppercase tracking-widest text-[10px] px-3 py-0.5 rounded-full"
+              class="font-bold uppercase tracking-widest text-[10px] px-3 py-0.5 rounded-md"
             >
               <UIcon name="i-tabler-help-circle" class="size-3.5 mr-1 text-lime-500 shrink-0" />
               <span>Help & Information</span>
@@ -113,9 +104,9 @@ useSeoMeta({
       </UContainer>
     </div>
 
-    <!-- Sticky Toolbar -->
-    <div class="sticky top-(--ui-header-height,4rem) z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-4 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
-      <UContainer class="max-w-4xl">
+    <!-- Sticky Toolbar Controls -->
+    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
+      <UContainer>
         <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
           <div class="w-full sm:flex-1 min-w-0">
             <UInput
@@ -124,27 +115,49 @@ useSeoMeta({
               placeholder="Search questions or keywords..."
               size="md"
               color="primary"
-              class="w-full rounded-xl"
+              class="w-full rounded-md"
               clearable
             />
           </div>
 
-          <div class="w-full sm:w-auto shrink-0">
+          <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto justify-between sm:justify-end shrink-0">
             <USelectMenu
               v-model="selectedCategory"
               :items="categoryOptions"
               value-key="id"
               label-key="label"
               placeholder="Select Category..."
-              class="w-full sm:w-48"
+              class="w-48 shrink-0 rounded-md"
             />
+
+            <!-- View Mode Switcher -->
+            <div class="flex items-center p-1 rounded-md bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0">
+              <UButton
+                size="xs"
+                :color="viewMode === 'grid' ? 'primary' : 'neutral'"
+                :variant="viewMode === 'grid' ? 'solid' : 'ghost'"
+                icon="i-tabler-layout-grid"
+                aria-label="Grid View"
+                class="rounded-md font-bold"
+                @click="viewMode = 'grid'"
+              />
+              <UButton
+                size="xs"
+                :color="viewMode === 'list' ? 'primary' : 'neutral'"
+                :variant="viewMode === 'list' ? 'solid' : 'ghost'"
+                icon="i-tabler-list"
+                aria-label="List View"
+                class="rounded-md font-bold"
+                @click="viewMode = 'list'"
+              />
+            </div>
           </div>
         </div>
       </UContainer>
     </div>
 
     <!-- Main FAQ List Container -->
-    <UContainer class="max-w-4xl pt-8">
+    <UContainer class="pt-8">
       <!-- Active Filter Pill Summary -->
       <div v-if="selectedCategory !== 'all' || searchQuery" class="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs border-b border-neutral-200 dark:border-neutral-800 pb-3">
         <div class="flex flex-wrap items-center gap-2">
@@ -163,8 +176,43 @@ useSeoMeta({
         </div>
       </div>
 
-      <!-- Flat Grouped List -->
-      <div v-if="groupedFaqs.length" class="space-y-12">
+      <!-- 1. Grid View Option (Clickable Cards with All-Side Borders on Hover) -->
+      <div
+        v-if="viewMode === 'grid' && filteredFaqs.length"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <NuxtLink
+          v-for="faq in filteredFaqs"
+          :key="faq.path"
+          :to="faq.path"
+          class="group flex flex-col justify-between p-4.5 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs hover:shadow-md min-w-0"
+        >
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <UBadge color="primary" variant="soft" class="font-bold text-[9px] uppercase px-2 py-0.5 rounded-md">
+                {{ faq.category || 'General' }}
+              </UBadge>
+              <UIcon name="i-tabler-help-circle" class="size-4 text-lime-500 shrink-0" />
+            </div>
+
+            <h3 class="text-base font-extrabold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors leading-snug break-words line-clamp-2">
+              {{ faq.question }}
+            </h3>
+
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-3 leading-relaxed font-medium">
+              {{ faq.answer }}
+            </p>
+          </div>
+
+          <div class="pt-3 mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between text-xs font-extrabold text-lime-600 dark:text-lime-400">
+            <span>View Dedicated FAQ Page</span>
+            <UIcon name="i-tabler-arrow-right" class="size-4 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </NuxtLink>
+      </div>
+
+      <!-- 2. List View Option (Grouped Flat Card Rows) -->
+      <div v-else-if="viewMode === 'list' && groupedFaqs.length" class="space-y-10">
         <section v-for="group in groupedFaqs" :key="group.category" class="space-y-4">
           <div class="flex items-center justify-between pb-2 border-b-2 border-neutral-200 dark:border-neutral-800">
             <h2 class="text-lg sm:text-xl font-black text-neutral-950 dark:text-white uppercase tracking-wider flex items-center gap-2">
@@ -176,43 +224,30 @@ useSeoMeta({
             </span>
           </div>
 
-          <div class="divide-y divide-neutral-200 dark:divide-neutral-800">
-            <div
+          <div class="space-y-3">
+            <NuxtLink
               v-for="faq in group.items"
               :key="faq.path"
-              class="py-4 space-y-2 transition-colors min-w-0"
+              :to="faq.path"
+              class="group block p-4 sm:p-5 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs hover:shadow-md min-w-0"
             >
-              <div class="flex items-start justify-between gap-4 cursor-pointer group" @click="toggleFaq(faq.path)">
-                <h3 class="text-base sm:text-lg font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors leading-snug wrap-break-word">
-                  {{ faq.question }}
-                </h3>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="space-y-1.5 min-w-0 flex-1">
+                  <h3 class="text-base sm:text-lg font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors leading-snug break-words">
+                    {{ faq.question }}
+                  </h3>
 
-                <div class="flex items-center gap-2 shrink-0 pt-0.5">
-                  <UIcon
-                    name="i-tabler-chevron-down"
-                    class="size-5 text-neutral-400 transition-transform duration-200 group-hover:text-lime-500"
-                    :class="{ 'rotate-180 text-lime-500': openFaqPaths.has(faq.path) }"
-                  />
+                  <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium line-clamp-2">
+                    {{ faq.answer }}
+                  </p>
+                </div>
+
+                <div class="flex items-center gap-1.5 text-xs font-black text-lime-600 dark:text-lime-400 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100 dark:border-neutral-800">
+                  <span>View Details</span>
+                  <UIcon name="i-tabler-arrow-right" class="size-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-
-              <!-- Inline Expanded Answer -->
-              <div v-show="openFaqPaths.has(faq.path)" class="pt-2 pl-1 space-y-3 min-w-0">
-                <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium wrap-break-word">
-                  {{ faq.answer }}
-                </p>
-
-                <div class="flex items-center gap-4 pt-1">
-                  <NuxtLink
-                    :to="faq.path"
-                    class="inline-flex items-center gap-1 text-xs font-extrabold text-lime-600 dark:text-lime-400 hover:underline"
-                  >
-                    <span>View Dedicated FAQ Page</span>
-                    <UIcon name="i-tabler-arrow-right" class="size-3.5" />
-                  </NuxtLink>
-                </div>
-              </div>
-            </div>
+            </NuxtLink>
           </div>
         </section>
       </div>
@@ -228,7 +263,7 @@ useSeoMeta({
             We couldn't find any FAQs matching your query "{{ searchQuery }}". Try adjusting your filters.
           </p>
         </div>
-        <UButton size="sm" color="neutral" variant="outline" icon="i-tabler-rotate-clockwise" class="rounded-xl font-bold text-xs" @click="resetFilters">
+        <UButton size="sm" color="neutral" variant="outline" icon="i-tabler-rotate-clockwise" class="rounded-md font-bold text-xs" @click="resetFilters">
           Reset Filters
         </UButton>
       </div>
@@ -249,7 +284,7 @@ useSeoMeta({
           color="primary"
           size="md"
           icon="i-tabler-mail"
-          class="font-black uppercase text-xs text-neutral-950 rounded-xl px-5 py-2.5 shrink-0"
+          class="font-black uppercase text-xs text-neutral-950 rounded-md px-5 py-2.5 shrink-0 cursor-pointer"
         >
           Contact Support
         </UButton>

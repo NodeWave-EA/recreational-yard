@@ -25,7 +25,7 @@ function toggleItem(index: number) {
   <section v-if="generalFaqs?.length" class="space-y-6 py-6">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-5">
       <div>
-        <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-xs mb-2">
+        <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-xs mb-2 rounded-md">
           General Information
         </UBadge>
         <h2 class="text-2xl sm:text-4xl font-black tracking-tight text-neutral-950 dark:text-white">
@@ -34,18 +34,18 @@ function toggleItem(index: number) {
       </div>
     </div>
 
-    <!-- Accordion List -->
-    <div class="divide-y divide-neutral-200/80 dark:divide-neutral-800/80">
+    <!-- Accordion Cards List -->
+    <div class="space-y-3">
       <div
         v-for="(faq, idx) in generalFaqs"
         :key="idx"
-        class="py-4 space-y-2"
+        class="p-4 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs"
       >
         <button
           type="button"
           :aria-expanded="openItems.includes(idx)"
           :aria-controls="`faq-answer-${idx}`"
-          class="w-full flex items-center justify-between text-left font-extrabold text-sm sm:text-base text-neutral-950 dark:text-white group cursor-pointer transition-colors"
+          class="w-full flex items-center justify-between text-left font-extrabold text-xs sm:text-sm text-neutral-950 dark:text-white group cursor-pointer"
           @click="toggleItem(idx)"
         >
           <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-4">
@@ -53,7 +53,7 @@ function toggleItem(index: number) {
           </span>
           <UIcon
             name="i-tabler-chevron-down"
-            class="size-5 text-neutral-400 transition-transform duration-200 shrink-0"
+            class="size-4 text-neutral-400 transition-transform duration-200 shrink-0"
             :class="{ 'rotate-180 text-lime-500': openItems.includes(idx) }"
           />
         </button>
@@ -69,7 +69,7 @@ function toggleItem(index: number) {
           <p
             v-show="openItems.includes(idx)"
             :id="`faq-answer-${idx}`"
-            class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed pr-6 pt-1 font-medium overflow-hidden"
+            class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed pr-2 pt-2 font-medium overflow-hidden"
           >
             {{ faq.answer }}
           </p>

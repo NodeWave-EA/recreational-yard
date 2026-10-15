@@ -1,6 +1,6 @@
 ---
-question: "Can we bring our own meals and refreshments?"
-answer: "Yes. Our picnic model allows guests to bring their own meals and permitted refreshments. Visitors must maintain cleanliness and follow venue rules concerning food, refreshments, cooking, decorations, amplified sound and events."
+question: "Can we bring our own meals and refreshments to the park?"
+answer: "Yes. We operate a bring-your-own-meals-and-refreshments picnic model that allows you to carry your own food and permitted refreshments for casual outings, family days, birthday picnics, or graduation celebrations. All visitors must maintain cleanliness, dispose of waste responsibly, and adhere to venue rules regarding safety, cooking, external suppliers, decorations, and amplified sound. Prior booking is mandatory."
 category: "General"
 order: 2
 ---

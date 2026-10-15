@@ -1,34 +1,52 @@
 ---
-title: "Family and Social Recreation"
-description: "A welcoming outdoor environment for families and groups to spend time together through recreation."
+title: "Birthday Parties & Celebrations Lawn"
+description: "Green open-air venue for children's and adults' birthday parties, graduations, and family milestone celebrations."
 quote:
-  text: "Activities and suitability depend on the venue arrangements confirmed for your visit."
+  text: "Event arrangements, decorations, seating, capacity, duration and charges are agreed upon in advance."
   author: "Recreation Yard Limited"
 category: "Kids & Family"
 icon: "i-tabler-users-group"
 features:
-  - "Welcoming outdoor environment"
-  - "Suitable for individuals and organised groups"
-  - "Advance planning available"
+  - "Spacious green lawn space for small-to-medium-sized social celebrations"
+  - "Welcoming setting for children's and adults' birthday parties and graduations"
+  - "Flexible bring-your-own food and permitted refreshments setup"
+  - "Incorporate lawn games such as badminton, cornhole, archery, and chess into your party"
 rules:
-  - "Prior booking is required for group events and organised activities"
-  - "Follow venue safety and cleanliness rules"
-  - "Activity availability is confirmed before visiting"
-operatingHours: "Confirm availability when booking"
+  - "Prior booking and confirmation strictly mandatory for all celebrations"
+  - "Event decorations, seating, capacity, and timing must be agreed in advance"
+  - "All visitors must maintain venue cleanliness and dispose of waste responsibly"
+  - "Observance of venue rules regarding music, cooking, and permitted refreshments"
+operatingHours: "Prior booking mandatory — scheduled event windows"
 ageGroup: "All Ages"
+capacity: "Small-to-medium celebration groups"
 bookingRequired: true
 featured: true
-order: 1
-badge: "Recreation Yard Kericho"
+order: 7
+badge: "Celebrations & Parties"
 cta:
-  label: "Ask about availability"
-  to: "/contact?type=facility-booking"
+  label: "Plan a Celebration"
+  to: "/contact?type=celebrations"
 ---
 
-## Family and Social Recreation
+## Birthday Parties & Graduation Celebrations
 
-A welcoming outdoor environment for families and groups to spend time together through recreation. We create opportunities for people to move, play, connect, relax and thrive through recreation and shared experiences.
+At **Recreation Yard Kericho**, located at KOOMA along the Kericho–Kisumu Highway, we provide a vibrant, open-air green venue for small-to-medium-sized social celebrations and milestone events. Surrounded by Kericho's lush highland atmosphere, our venue offers an uplifting change of scenery from traditional indoor party halls.
 
-### Plan your experience
+Whether you are celebrating a child's milestone birthday, marking an adult birthday with close friends, celebrating an academic graduation, or bringing the extended family together for an annual reunion, Recreation Yard offers the space, flexibility, and recreational activities to make your event unforgettable.
 
-Contact Recreation Yard Limited with your preferred date, expected attendance, intended activities and any special requirements. We will advise on suitability, availability and applicable arrangements.
+### Celebrations We Host
+
+- **Children's & Adults' Birthday Parties:** Fun, energetic outdoor parties with lawn games and open space for all guests.
+- **Graduation Celebrations:** Celebrate academic milestones with family and friends in a relaxed picnic atmosphere.
+- **Family Reunions & Friends' Get-Togethers:** Ample room for multi-generational fellowship and shared outdoor meals.
+- **Small Group & Community Socials:** Casual, joyful gatherings centered on connection, sports, and fresh air.
+
+### The Recreation Yard Advantage
+
+1. **Active Fun for Guests:** Unlike standard venue spaces, guests can participate in lawn tennis, badminton, cornhole, supervised archery, or outdoor chess.
+2. **Bring Your Own Food:** Organize your own home-cooked dishes, snacks, graduation cakes, and permitted refreshments.
+3. **Flexible Layouts:** Arrange seating, setup gazebos, or style designated photo zones within agreed venue arrangements.
+
+### Prior Booking & Planning Requirements
+
+To preserve quality and ensure comfort for every guest, **prior booking and confirmation are mandatory**. Please reach out well in advance with your proposed date, expected number of guests, preferred duration, seating requirements, and any special decoration requests so we can provide a detailed quotation and confirm venue availability.

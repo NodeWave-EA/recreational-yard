@@ -1,120 +1,168 @@
 <script setup lang="ts">
 const values = [
-  'Wellness',
-  'Inclusivity',
-  'Community',
-  'Safety',
-  'Integrity',
-  'Quality',
-  'Affordability',
-  'Sustainability',
+  { name: 'Wellness', desc: 'Encouraging physical activity and healthy lifestyle choices.' },
+  { name: 'Inclusivity', desc: 'Welcoming people with different interests, ages and fitness levels.' },
+  { name: 'Community', desc: 'Bringing people together through sport and shared recreation.' },
+  { name: 'Safety', desc: 'Promoting responsible participation and safe use of our facilities.' },
+  { name: 'Integrity', desc: 'Valuing professionalism, transparency, trust and honest communication.' },
+  { name: 'Quality', desc: 'Striving to provide dependable products and positive customer experiences.' },
+  { name: 'Affordability', desc: 'Offering flexible recreational, group and purchasing options.' },
+  { name: 'Sustainability', desc: 'Encouraging responsible use and care of our recreational environment.' },
+]
+
+const missions = [
+  'Provide welcoming recreational spaces and green grounds for all visitors.',
+  'Encourage running, walking, lawn games and active lifestyles across Kenya.',
+  'Supply dependable sports apparel, team uniforms and sporting equipment.',
+  'Create opportunities for families, friends, schools and organizations to connect.',
+  'Build a sustainable business supporting community participation.',
 ]
 
 const audiences = [
   'Individuals',
   'Families',
   'Schools',
-  'Companies',
-  'Running clubs',
-  'Sports clubs',
-  'Event organisers',
-  'Community groups',
+  'Corporate Organizations',
+  'Running Clubs',
+  'Marathon Participants',
+  'Sports Clubs & Teams',
+  'Event Organizers',
+  'Community Groups',
 ]
 
 const reasons = [
-  'Recreation and sports merchandise under one business',
-  'Flexible physical and virtual participation',
-  'A welcoming green setting for games and gatherings',
-  'Coordinated kits based on requirements and budget',
+  'Recreation and sports merchandise under one trusted business',
+  'A green outdoor recreational setting for games, picnics and celebrations',
+  'Activities for different interests: badminton, tennis, chess, cornhole, archery and running',
+  'Physical meet-ups in Kericho and virtual participation anywhere',
+  'Flexible picnic experiences: bring your own meals and permitted refreshments',
+  'Coordinated sports kits: apparel and equipment customized to specifications and budgets',
+  'Tailored group and corporate experiences for team building and meetings',
+  'Advance planning: prior booking confirms availability and transparent conditions',
 ]
 </script>
 
 <template>
-  <section class="space-y-12 sm:space-y-16">
-    <div class="max-w-3xl space-y-3">
-      <UBadge color="primary" variant="soft" class="font-bold text-[10px] sm:text-xs uppercase tracking-widest">
-        <UIcon name="i-tabler-building-community" class="size-3.5 mr-1.5 text-lime-500" />
-        About Recreation Yard Limited
+  <section class="space-y-12 sm:space-y-16 text-neutral-900 dark:text-white transition-colors duration-300 w-full">
+    <!-- Header -->
+    <div class="space-y-3 pb-8 border-b border-neutral-200 dark:border-neutral-800">
+      <UBadge color="primary" variant="soft" class="font-bold text-[10px] sm:text-xs uppercase tracking-widest px-3 py-0.5 rounded-md">
+        <UIcon name="i-tabler-building-community" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
+        <span>Who We Are • Recreation Yard Limited</span>
       </UBadge>
-      <h2 class="text-2xl sm:text-4xl font-black tracking-tight text-neutral-950 dark:text-white">
-        A space for recreation, active living and shared experiences.
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white leading-tight">
+        Your space for recreation, active living, sports and shared experiences.
       </h2>
-      <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-        We bring together outdoor recreation, running and walking, sports merchandise, and group experiences so individuals, families, schools, companies, clubs and communities can move, play, connect, relax and thrive.
+      <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
+        We are a recreation, sports, wellness, events and sports merchandise business committed to making active living and outdoor experiences more accessible and enjoyable. Operating two distinct brands — <strong class="text-neutral-950 dark:text-white font-bold">Recreation Yard Kericho</strong> and <strong class="text-neutral-950 dark:text-white font-bold">Recreation Yard Runners</strong> — we serve individuals, families, schools, corporate organizations, sports clubs, event organizers and community groups.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div class="lg:col-span-2 rounded-3xl bg-neutral-950 text-white p-6 sm:p-8 space-y-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div class="space-y-2">
-            <p class="text-[10px] font-black uppercase tracking-widest text-lime-400">
-              Our vision
-            </p>
-            <p class="text-sm leading-relaxed text-neutral-200">
+    <!-- Vision, Mission & Motto Section -->
+    <div class="space-y-8 pb-12 border-b border-neutral-200 dark:border-neutral-800">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Left Column: Vision & Motto -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="p-5 sm:p-6 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-2">
+            <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400 block">
+              Our Vision
+            </span>
+            <p class="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
               To become a recognized destination for outdoor recreation, running, sports merchandise and memorable social experiences in Kenya.
             </p>
           </div>
-          <div class="space-y-2">
-            <p class="text-[10px] font-black uppercase tracking-widest text-lime-400">
-              Our mission
+
+          <div class="p-5 sm:p-6 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-2">
+            <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400 block">
+              Brand Motto
+            </span>
+            <p class="text-2xl sm:text-3xl font-black tracking-tight text-neutral-950 dark:text-white">
+              MOVE. PLAY. CONNECT. THRIVE.
             </p>
-            <p class="text-sm leading-relaxed text-neutral-200">
-              To provide welcoming recreational spaces, encourage active lifestyles, supply dependable sports products and create opportunities for people to connect.
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 font-semibold">
+              Kericho, Kenya
             </p>
           </div>
         </div>
-        <div class="border-t border-white/15 pt-5">
-          <p class="text-[10px] font-black uppercase tracking-widest text-lime-400 mb-3">
-            Our promise
-          </p>
-          <p class="text-xl sm:text-2xl font-black tracking-tight">
-            MOVE. PLAY. CONNECT. THRIVE.
-          </p>
-        </div>
-      </div>
 
-      <div class="rounded-3xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-8 space-y-4">
-        <p class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400">
-          Our values
-        </p>
-        <div class="grid grid-cols-2 gap-x-4 gap-y-3">
-          <span v-for="value in values" :key="value" class="flex items-center gap-2 text-xs font-bold text-neutral-700 dark:text-neutral-300">
-            <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0" />
-            {{ value }}
+        <!-- Right Column: Mission Points Card -->
+        <div class="lg:col-span-7 p-5 sm:p-6 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-3">
+          <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400 block">
+            Our Mission
           </span>
+          <ul class="space-y-3 text-xs sm:text-sm leading-relaxed text-neutral-700 dark:text-neutral-300 font-medium">
+            <li v-for="(m, i) in missions" :key="i" class="flex items-start gap-2.5">
+              <UIcon name="i-tabler-check" class="size-4 text-lime-500 shrink-0 mt-0.5" />
+              <span>{{ m }}</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="space-y-5 rounded-3xl bg-lime-500/10 p-6 sm:p-8">
-        <div>
-          <p class="text-[10px] font-black uppercase tracking-widest text-lime-700 dark:text-lime-400">
-            Who we serve
+    <!-- Core Values Section -->
+    <div class="space-y-6 pb-12 border-b border-neutral-200 dark:border-neutral-800">
+      <div class="flex items-center justify-between">
+        <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400">
+          Our Core Values
+        </span>
+        <span class="text-xs font-bold text-neutral-400">8 Pillars of Excellence</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div
+          v-for="val in values"
+          :key="val.name"
+          class="p-4 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-1 min-w-0"
+        >
+          <div class="flex items-center gap-2 text-sm font-extrabold text-neutral-950 dark:text-white">
+            <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0" />
+            <span>{{ val.name }}</span>
+          </div>
+          <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium pl-6">
+            {{ val.desc }}
           </p>
-          <h3 class="mt-2 text-2xl font-black text-neutral-950 dark:text-white">
+        </div>
+      </div>
+    </div>
+
+    <!-- Who We Serve & Why Choose Us Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 border-b border-neutral-200 dark:border-neutral-800 items-start">
+      <!-- Who We Serve Card -->
+      <div class="lg:col-span-5 p-6 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-4">
+        <div>
+          <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400 block">
+            Who We Serve
+          </span>
+          <h3 class="mt-1 text-xl sm:text-2xl font-black text-neutral-950 dark:text-white">
             Built for different journeys.
           </h3>
         </div>
-        <div class="flex flex-wrap gap-2">
-          <UBadge v-for="audience in audiences" :key="audience" color="neutral" variant="soft" class="rounded-full px-3 py-1 text-xs font-bold">
+        <div class="flex flex-wrap gap-2 pt-1">
+          <UBadge
+            v-for="audience in audiences"
+            :key="audience"
+            color="neutral"
+            variant="subtle"
+            class="rounded-md px-3 py-1 text-xs font-bold uppercase tracking-wider"
+          >
             {{ audience }}
           </UBadge>
         </div>
       </div>
 
-      <div class="space-y-5 rounded-3xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-8">
+      <!-- Why Choose Us Card -->
+      <div class="lg:col-span-7 p-6 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-4">
         <div>
-          <p class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400">
-            Why choose us
-          </p>
-          <h3 class="mt-2 text-2xl font-black text-neutral-950 dark:text-white">
+          <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400 block">
+            Why Choose Us
+          </span>
+          <h3 class="mt-1 text-xl sm:text-2xl font-black text-neutral-950 dark:text-white">
             Complementary services, one trusted partner.
           </h3>
         </div>
-        <ul class="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-          <li v-for="reason in reasons" :key="reason" class="flex items-start gap-2">
+        <ul class="space-y-2.5 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 font-medium">
+          <li v-for="reason in reasons" :key="reason" class="flex items-start gap-2.5">
             <UIcon name="i-tabler-arrow-up-right" class="size-4 text-lime-500 shrink-0 mt-0.5" />
             <span>{{ reason }}</span>
           </li>
@@ -122,31 +170,41 @@ const reasons = [
       </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div class="space-y-4">
-        <p class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400">
-          Our commitment
-        </p>
-        <h3 class="text-2xl sm:text-3xl font-black text-neutral-950 dark:text-white">
+    <!-- Our Commitment & Partnerships Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <div class="p-6 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-3">
+        <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400 block">
+          Our Commitment
+        </span>
+        <h3 class="text-xl sm:text-2xl font-black text-neutral-950 dark:text-white">
           Growing healthier, more connected communities.
         </h3>
-        <p class="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+        <p class="text-xs sm:text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 font-medium">
           We encourage regular movement, responsible participation, positive social interaction and dependable support for schools, clubs and organisations. We welcome people who want to begin, participate, improve or simply enjoy the journey.
         </p>
       </div>
-      <div class="space-y-4 rounded-3xl bg-neutral-100 dark:bg-neutral-900 p-6 sm:p-8">
-        <p class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400">
+
+      <div class="p-6 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-4">
+        <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400 block">
           Partnerships
-        </p>
-        <h3 class="text-2xl font-black text-neutral-950 dark:text-white">
+        </span>
+        <h3 class="text-xl sm:text-2xl font-black text-neutral-950 dark:text-white">
           Let’s create more opportunities to participate.
         </h3>
-        <p class="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+        <p class="text-xs sm:text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 font-medium">
           We welcome collaboration with schools, corporate organisations, running clubs, marathon organisers, sporting suppliers, wellness organisations, community groups and event planners.
         </p>
-        <UButton to="/contact?type=group-booking" color="primary" icon="i-tabler-arrow-right" trailing class="font-black uppercase text-xs text-neutral-950 rounded-xl px-5 py-3">
-          Discuss a partnership
-        </UButton>
+        <div class="pt-2">
+          <UButton
+            to="/contact?type=group-booking"
+            color="primary"
+            icon="i-tabler-arrow-right"
+            trailing
+            class="font-black uppercase text-xs text-neutral-950 rounded-md px-5 py-3 cursor-pointer justify-center"
+          >
+            Discuss a partnership
+          </UButton>
+        </div>
       </div>
     </div>
   </section>

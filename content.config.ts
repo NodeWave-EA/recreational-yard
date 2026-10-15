@@ -192,7 +192,7 @@ export default defineContentConfig({
         category: property(z.string().default('General'))
           .editor({
             input: 'select',
-            options: ['Archery Gear', 'Safety Apparel', 'Snacks & Drinks', 'Lawn Games', 'Souvenirs'],
+            options: ['Running Apparel', 'School & Corporate Sportswear', 'Sporting Equipment', 'Lawn Games', 'General'],
           })
           .describe('Shop product category'),
 

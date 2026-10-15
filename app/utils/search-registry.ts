@@ -8,13 +8,13 @@ export interface SearchCollectionMeta {
 }
 
 export const SEARCH_COLLECTION_CONFIGS: SearchCollectionMeta[] = [
-  { key: 'facilities', label: 'Facilities', icon: 'i-tabler-trees', defaultBadge: 'Facility' },
+  { key: 'facilities', label: 'Recreation & Lawn Games', icon: 'i-tabler-trees', defaultBadge: 'Recreation' },
   { key: 'pricing', label: 'Services & Quotations', icon: 'i-tabler-briefcase', defaultBadge: 'Service' },
-  { key: 'shop', label: 'Sports Merchandise', icon: 'i-tabler-shirt-sport', defaultBadge: 'Sportswear' },
-  { key: 'events', label: 'Community & Group Experiences', icon: 'i-tabler-calendar-event', defaultBadge: 'Opportunity' },
-  { key: 'gallery', label: 'Gallery', icon: 'i-tabler-photo', defaultBadge: 'Gallery' },
-  { key: 'faqs', label: 'FAQs & Help', icon: 'i-tabler-help-circle', defaultBadge: 'FAQ' },
-  { key: 'testimonials', label: 'Testimonials', icon: 'i-tabler-message-heart', defaultBadge: 'Review' },
+  { key: 'shop', label: 'Sports Merchandise & Kits', icon: 'i-tabler-shirt-sport', defaultBadge: 'Sportswear' },
+  { key: 'events', label: 'Running Club & Group Experiences', icon: 'i-tabler-run', defaultBadge: 'Experience' },
+  { key: 'gallery', label: 'Photo Gallery', icon: 'i-tabler-photo', defaultBadge: 'Gallery' },
+  { key: 'faqs', label: 'FAQs & Policies', icon: 'i-tabler-help-circle', defaultBadge: 'FAQ' },
+  { key: 'testimonials', label: 'Reviews & Feedback', icon: 'i-tabler-message-heart', defaultBadge: 'Feedback' },
 ]
 
 export interface NormalizedSearchResult {

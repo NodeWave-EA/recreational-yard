@@ -25,10 +25,10 @@ const {
 const hasAnyEvent = computed(() => (events.value?.length || 0) > 0)
 
 useSeoMeta({
-  title: `Events & Tournaments | ${LOCATION_DETAILS.company}`,
-  description: 'Upcoming sports tournaments, family weekend festivals, and community marathons in Kericho.',
-  ogTitle: `Events & Tournaments | ${LOCATION_DETAILS.company}`,
-  ogDescription: 'Upcoming sports tournaments, family weekend festivals, and community marathons in Kericho.',
+  title: `Events & Activities | ${LOCATION_DETAILS.company}`,
+  description: 'Explore Recreation Yard Runners activities, group experiences, community challenges and active living opportunities in Kericho.',
+  ogTitle: `Events & Activities | ${LOCATION_DETAILS.company}`,
+  ogDescription: 'Explore Recreation Yard Runners activities, group experiences, community challenges and active living opportunities in Kericho.',
   ogImage: `${useRuntimeConfig().public.siteUrl}/logo.png`,
   ogUrl: `${useRuntimeConfig().public.siteUrl}/events`,
 })
@@ -46,16 +46,16 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-20 transition-colors duration-300">
+  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-20 transition-colors duration-300 w-full overflow-x-clip">
     <!-- Hero Header Banner -->
     <div class="pt-8 sm:pt-12 pb-6 border-b border-neutral-200/80 dark:border-neutral-800/80">
       <UContainer>
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div class="space-y-2.5 max-w-3xl">
+          <div class="space-y-2.5">
             <UBadge
               color="primary"
               variant="soft"
-              class="font-bold uppercase tracking-widest text-[10px] px-3 py-0.5 rounded-full"
+              class="font-bold uppercase tracking-widest text-[10px] px-3 py-0.5 rounded-md"
             >
               <UIcon name="i-tabler-calendar-event" class="size-3.5 mr-1 text-lime-500 shrink-0" />
               <span>Community & Sports</span>
@@ -78,7 +78,7 @@ useSchemaOrg([{
     </div>
 
     <!-- Sticky Controls Toolbar -->
-    <div class="sticky top-(--ui-header-height,4rem) z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-4 border-b border-neutral-200/80 dark:border-neutral-800/80">
+    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-xs transition-all">
       <UContainer>
         <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
           <!-- Search Input -->
@@ -89,20 +89,20 @@ useSchemaOrg([{
               placeholder="Search events, tags, or locations..."
               size="md"
               color="primary"
-              class="w-full rounded-xl"
+              class="w-full rounded-md"
               clearable
             />
           </div>
 
           <!-- Filter Dropdowns & View Switcher -->
-          <div class="flex flex-wrap items-center gap-2.5 w-full md:w-auto justify-start md:justify-end">
+          <div class="flex flex-wrap items-center gap-2.5 w-full md:w-auto justify-between md:justify-end shrink-0">
             <USelectMenu
               v-model="selectedCategory"
               :items="categoryOptions"
               value-key="id"
               label-key="label"
               placeholder="Category..."
-              class="w-full sm:w-44 shrink-0"
+              class="w-36 sm:w-44 shrink-0 rounded-md"
             >
               <template #leading>
                 <UIcon :name="selectedCategoryMeta?.icon" class="size-4 text-lime-500 shrink-0" />
@@ -115,7 +115,7 @@ useSchemaOrg([{
               value-key="id"
               label-key="label"
               placeholder="Status..."
-              class="w-full sm:w-36 shrink-0"
+              class="w-32 sm:w-36 shrink-0 rounded-md"
             />
 
             <USelectMenu
@@ -123,18 +123,18 @@ useSchemaOrg([{
               :items="sortOptions"
               value-key="id"
               label-key="label"
-              class="w-full sm:w-44 shrink-0"
+              class="w-36 sm:w-40 shrink-0 rounded-md"
             />
 
             <!-- Grid vs List View Toggle -->
-            <div class="flex items-center p-1 rounded-xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0 ml-auto md:ml-0">
+            <div class="flex items-center p-1 rounded-md bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0">
               <UButton
                 size="xs"
                 :color="viewMode === 'grid' ? 'primary' : 'neutral'"
                 :variant="viewMode === 'grid' ? 'solid' : 'ghost'"
                 icon="i-tabler-layout-grid"
                 aria-label="Grid View"
-                class="rounded-lg font-bold"
+                class="rounded-md font-bold"
                 @click="viewMode = 'grid'"
               />
               <UButton
@@ -143,7 +143,7 @@ useSchemaOrg([{
                 :variant="viewMode === 'list' ? 'solid' : 'ghost'"
                 icon="i-tabler-list"
                 aria-label="List View"
-                class="rounded-lg font-bold"
+                class="rounded-md font-bold"
                 @click="viewMode = 'list'"
               />
             </div>
@@ -152,9 +152,9 @@ useSchemaOrg([{
       </UContainer>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main Content Container -->
     <UContainer class="pt-8">
-      <!-- Active Filter -->
+      <!-- Active Filter Pill Bar -->
       <div v-if="selectedCategory !== 'all' || selectedStatus !== 'all' || searchQuery" class="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs border-b border-neutral-200 dark:border-neutral-800 pb-3">
         <div class="flex flex-wrap items-center gap-2">
           <span class="font-bold text-neutral-400">Active Filters:</span>
@@ -177,20 +177,20 @@ useSchemaOrg([{
         </div>
       </div>
 
-      <!-- Grid View Option -->
+      <!-- 1. Grid View Option (Clickable Cards with 4-Side Hover Borders) -->
       <div
         v-if="viewMode === 'grid' && filteredEvents.length"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
       >
         <NuxtLink
           v-for="event in filteredEvents"
           :key="event.id || event.path"
           :to="event.path"
-          class="group flex flex-col justify-between transition-all duration-300"
+          class="group flex flex-col justify-between p-4 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs hover:shadow-md min-w-0"
         >
-          <div class="space-y-3.5">
+          <div class="space-y-3">
             <!-- Thumbnail Image -->
-            <div class="relative aspect-16/10 rounded-2xl overflow-hidden bg-neutral-200 dark:bg-neutral-900">
+            <div class="relative aspect-16/10 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60">
               <NuxtImg
                 v-if="getImageSrc(event)"
                 :src="getImageSrc(event)"
@@ -201,7 +201,7 @@ useSchemaOrg([{
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div v-else class="flex size-full items-center justify-center bg-lime-500/10 text-lime-600 dark:text-lime-400">
-                <UIcon name="i-tabler-calendar-event" class="size-12" />
+                <UIcon name="i-tabler-calendar-event" class="size-10" />
               </div>
 
               <!-- Top Left: Ribbon Badge -->
@@ -209,7 +209,7 @@ useSchemaOrg([{
                 v-if="event.badge"
                 color="primary"
                 variant="solid"
-                class="absolute top-2.5 left-2.5 font-black text-[9px] uppercase px-2 py-0.5 rounded text-neutral-950"
+                class="absolute top-2.5 left-2.5 font-black text-[9px] uppercase px-2 py-0.5 rounded-md text-neutral-950"
               >
                 {{ event.badge }}
               </UBadge>
@@ -218,7 +218,7 @@ useSchemaOrg([{
               <UBadge
                 :color="getStatusBadge(event.status).color"
                 :variant="getStatusBadge(event.status).variant"
-                class="absolute top-2.5 right-2.5 font-bold text-[9px] px-2 py-0.5 rounded flex items-center gap-1 backdrop-blur-md"
+                class="absolute top-2.5 right-2.5 font-bold text-[9px] px-2 py-0.5 rounded-md flex items-center gap-1 backdrop-blur-md"
               >
                 <UIcon :name="getStatusBadge(event.status).icon" class="size-3" />
                 <span>{{ getStatusBadge(event.status).label }}</span>
@@ -226,9 +226,9 @@ useSchemaOrg([{
             </div>
 
             <!-- Details -->
-            <div class="space-y-2">
+            <div class="space-y-2 min-w-0">
               <div class="flex flex-wrap items-center gap-2 text-[11px] font-bold">
-                <UBadge v-if="event.category" color="neutral" variant="subtle" class="rounded px-2 py-0.5 uppercase text-[9px]">
+                <UBadge v-if="event.category" color="neutral" variant="subtle" class="rounded-md px-2 py-0.5 uppercase text-[9px]">
                   {{ event.category }}
                 </UBadge>
 
@@ -238,23 +238,23 @@ useSchemaOrg([{
                 </span>
               </div>
 
-              <h2 class="text-xl font-black text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors line-clamp-2 leading-snug">
+              <h2 class="text-base sm:text-lg font-black text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors line-clamp-1 leading-snug">
                 {{ event.title }}
               </h2>
 
-              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+              <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed font-medium">
                 {{ event.description }}
               </p>
 
               <div v-if="event.location" class="flex items-center gap-1.5 text-xs text-neutral-500 dark:text-neutral-400 pt-1 font-medium">
-                <UIcon name="i-tabler-map-pin" class="size-4 text-lime-500 shrink-0" />
+                <UIcon name="i-tabler-map-pin" class="size-3.5 text-lime-500 shrink-0" />
                 <span class="truncate">{{ event.location }}</span>
               </div>
             </div>
           </div>
 
           <!-- Bottom Footer -->
-          <div class="pt-3 mt-4 border-t border-neutral-200/80 dark:border-neutral-800/80 flex items-center justify-between gap-2">
+          <div class="pt-3 mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between gap-2">
             <div>
               <span class="text-[9px] font-bold uppercase tracking-wider text-neutral-400 block">Entry Fee</span>
               <span class="text-sm font-extrabold text-lime-600 dark:text-lime-400">
@@ -270,20 +270,21 @@ useSchemaOrg([{
         </NuxtLink>
       </div>
 
-      <!-- Flat List Row View Option -->
+      <!-- 2. Flat List Row View Option (Clickable Cards) -->
       <div
         v-else-if="viewMode === 'list' && filteredEvents.length"
-        class="divide-y divide-neutral-200 dark:divide-neutral-800"
+        class="space-y-4"
       >
-        <article
+        <NuxtLink
           v-for="event in filteredEvents"
           :key="event.id || event.path"
-          class="py-6 first:pt-0 group transition-all"
+          :to="event.path"
+          class="group block p-4 sm:p-5 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs hover:shadow-md min-w-0"
         >
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            <!-- Thumbnail Image -->
-            <div class="md:col-span-3 lg:col-span-3 xl:col-span-2 shrink-0">
-              <NuxtLink :to="event.path" class="block relative aspect-16/10 rounded-xl overflow-hidden bg-neutral-200 dark:bg-neutral-900">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+            <!-- Thumbnail Image & Info -->
+            <div class="flex items-start gap-3.5 sm:gap-4 min-w-0 flex-1 w-full sm:w-auto">
+              <div class="shrink-0 relative">
                 <NuxtImg
                   v-if="getImageSrc(event)"
                   :src="getImageSrc(event)"
@@ -291,94 +292,86 @@ useSchemaOrg([{
                   format="webp"
                   quality="85"
                   loading="lazy"
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  class="size-16 sm:size-24 rounded-md object-cover border border-neutral-200 dark:border-neutral-800 group-hover:scale-105 transition-transform duration-300"
                 />
-                <div v-else class="flex size-full items-center justify-center bg-lime-500/10 text-lime-600 dark:text-lime-400">
-                  <UIcon name="i-tabler-calendar-event" class="size-10" />
+                <div v-else class="flex size-16 sm:size-24 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 border border-neutral-200 dark:border-neutral-800">
+                  <UIcon name="i-tabler-calendar-event" class="size-7 sm:size-8" />
                 </div>
 
                 <UBadge
                   v-if="event.badge"
                   color="primary"
                   variant="solid"
-                  class="absolute top-2 left-2 font-black text-[9px] uppercase px-2 py-0.5 rounded text-neutral-950"
+                  class="absolute top-1 left-1 font-black text-[8px] uppercase px-1.5 py-0.5 rounded-md text-neutral-950"
                 >
                   {{ event.badge }}
                 </UBadge>
-              </NuxtLink>
-            </div>
-
-            <!-- Content Details -->
-            <div class="md:col-span-6 lg:col-span-6 xl:col-span-7 space-y-2 min-w-0">
-              <div class="flex flex-wrap items-center gap-2 text-[11px] font-bold">
-                <UBadge v-if="event.category" color="neutral" variant="subtle" class="rounded px-2 py-0.5 uppercase text-[9px]">
-                  {{ event.category }}
-                </UBadge>
-
-                <UBadge
-                  :color="getStatusBadge(event.status).color"
-                  :variant="getStatusBadge(event.status).variant"
-                  class="rounded px-2 py-0.5 text-[9px] flex items-center gap-1"
-                >
-                  <UIcon :name="getStatusBadge(event.status).icon" class="size-3" />
-                  <span>{{ getStatusBadge(event.status).label }}</span>
-                </UBadge>
-
-                <span v-if="event.date" class="text-neutral-500 dark:text-neutral-400 flex items-center gap-1">
-                  <UIcon name="i-tabler-calendar" class="size-3.5 text-lime-500 shrink-0" />
-                  <span>{{ event.date }}</span>
-                </span>
               </div>
 
-              <h2 class="text-xl sm:text-2xl font-black text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors leading-snug">
-                <NuxtLink :to="event.path">
+              <!-- Content Details -->
+              <div class="space-y-1 min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-2 text-[10px] font-bold">
+                  <UBadge v-if="event.category" color="neutral" variant="subtle" class="rounded-md px-1.5 py-0.5 uppercase text-[9px]">
+                    {{ event.category }}
+                  </UBadge>
+
+                  <UBadge
+                    :color="getStatusBadge(event.status).color"
+                    :variant="getStatusBadge(event.status).variant"
+                    class="rounded-md px-1.5 py-0.5 text-[9px] flex items-center gap-1"
+                  >
+                    <UIcon :name="getStatusBadge(event.status).icon" class="size-3" />
+                    <span>{{ getStatusBadge(event.status).label }}</span>
+                  </UBadge>
+
+                  <span v-if="event.date" class="text-neutral-500 dark:text-neutral-400 flex items-center gap-1">
+                    <UIcon name="i-tabler-calendar" class="size-3 text-lime-500 shrink-0" />
+                    <span>{{ event.date }}</span>
+                  </span>
+                </div>
+
+                <h2 class="text-base sm:text-lg font-black text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors truncate">
                   {{ event.title }}
-                </NuxtLink>
-              </h2>
+                </h2>
 
-              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
-                {{ event.description }}
-              </p>
+                <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed font-medium">
+                  {{ event.description }}
+                </p>
 
-              <div class="flex flex-wrap items-center gap-4 text-xs text-neutral-500 dark:text-neutral-400 pt-1 font-medium">
-                <div v-if="event.location" class="flex items-center gap-1.5 min-w-0">
-                  <UIcon name="i-tabler-map-pin" class="size-4 text-lime-500 shrink-0" />
-                  <span class="truncate">{{ event.location }}</span>
-                </div>
-                <div v-if="event.time" class="flex items-center gap-1.5">
-                  <UIcon name="i-tabler-clock" class="size-4 text-lime-500 shrink-0" />
-                  <span>{{ event.time }}</span>
+                <div class="flex flex-wrap items-center gap-4 text-xs text-neutral-500 dark:text-neutral-400 pt-0.5 font-medium">
+                  <div v-if="event.location" class="flex items-center gap-1 min-w-0">
+                    <UIcon name="i-tabler-map-pin" class="size-3.5 text-lime-500 shrink-0" />
+                    <span class="truncate">{{ event.location }}</span>
+                  </div>
+                  <div v-if="event.time" class="flex items-center gap-1">
+                    <UIcon name="i-tabler-clock" class="size-3.5 text-lime-500 shrink-0" />
+                    <span>{{ event.time }}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Price & CTA Column -->
-            <div class="md:col-span-3 lg:col-span-3 xl:col-span-3 flex md:flex-col justify-between md:justify-center md:items-end gap-3 pt-3 md:pt-0 border-t md:border-t-0 border-neutral-200 dark:border-neutral-800">
-              <div class="text-left md:text-right">
+            <!-- Price & Action Button Column -->
+            <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100 dark:border-neutral-800/60 shrink-0">
+              <div class="text-left sm:text-right">
                 <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">Entry Fee</span>
-                <span class="text-base sm:text-lg font-black text-lime-600 dark:text-lime-400">
+                <span class="text-sm sm:text-base font-black text-lime-600 dark:text-lime-400">
                   {{ event.entryFee || 'Free Entry' }}
                 </span>
               </div>
 
-              <UButton
-                :to="event.path"
-                color="primary"
-                size="md"
-                icon="i-tabler-arrow-right"
-                trailing
-                class="font-black uppercase text-xs text-neutral-950 rounded-xl px-5 py-2.5 shrink-0"
-              >
-                {{ event.cta?.label || 'Event Details' }}
-              </UButton>
+              <span class="inline-flex items-center gap-1 font-black uppercase text-xs text-neutral-950 dark:text-white bg-lime-500 group-hover:bg-lime-400 px-3.5 py-2 rounded-md transition-colors">
+                <span>{{ event.cta?.label || 'View Details' }}</span>
+                <UIcon name="i-tabler-arrow-right" class="size-4" />
+              </span>
             </div>
           </div>
-        </article>
+        </NuxtLink>
       </div>
 
       <!-- Filter Empty State -->
-      <div v-else-if="hasAnyEvent" class="py-20 text-center space-y-4 max-w-md mx-auto px-4">
-        <div class="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+      <div v-else-if="hasAnyEvent" class="py-20 text-center space-y-4 max-w-md mx-auto">
+        <div class="flex size-16 items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
           <UIcon name="i-tabler-filter-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
         </div>
 
@@ -397,7 +390,7 @@ useSchemaOrg([{
             color="neutral"
             variant="outline"
             icon="i-tabler-rotate-clockwise"
-            class="rounded-xl font-bold text-xs px-4 py-2 cursor-pointer"
+            class="rounded-md font-bold text-xs px-4 py-2 cursor-pointer"
             @click="resetFilters"
           >
             Reset All Filters
@@ -406,8 +399,8 @@ useSchemaOrg([{
       </div>
 
       <!-- Catalog Empty State -->
-      <div v-else class="py-20 text-center space-y-4 max-w-md mx-auto px-4">
-        <div class="flex size-16 items-center justify-center rounded-2xl bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+      <div v-else class="py-20 text-center space-y-4 max-w-md mx-auto">
+        <div class="flex size-16 items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
           <UIcon name="i-tabler-calendar-off" class="size-8 text-neutral-400 dark:text-neutral-500" />
         </div>
 
@@ -426,7 +419,7 @@ useSchemaOrg([{
             size="sm"
             color="primary"
             icon="i-tabler-mail"
-            class="rounded-xl font-bold text-xs px-4 py-2 text-neutral-950 cursor-pointer"
+            class="rounded-md font-bold text-xs px-4 py-2 text-neutral-950 cursor-pointer"
           >
             Contact Us
           </UButton>
@@ -436,7 +429,7 @@ useSchemaOrg([{
             color="neutral"
             variant="outline"
             icon="i-tabler-home"
-            class="rounded-xl font-bold text-xs px-4 py-2 cursor-pointer"
+            class="rounded-md font-bold text-xs px-4 py-2 cursor-pointer"
           >
             Return Home
           </UButton>

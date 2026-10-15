@@ -236,6 +236,7 @@ export default defineNuxtConfig({
 
   sitemap: {
     enabled: true,
+    zeroRuntime: true,
     autoI18n: true,
     discoverImages: true,
     discoverVideos: true,

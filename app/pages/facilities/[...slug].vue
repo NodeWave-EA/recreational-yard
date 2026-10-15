@@ -7,6 +7,9 @@ const { getByPath, getCollection } = useContentQuery()
 
 const facilitySlug = computed(() => route.path.split('/').pop() || '')
 
+// Active View Mode State for Testimonials ('grid' | 'list')
+const testimonialViewMode = ref<'grid' | 'list'>('grid')
+
 // Fetch single facility document
 const { data: facility } = await getByPath(
   `facility-${route.path}`,
@@ -112,8 +115,8 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="py-8 sm:py-14 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300">
-    <UContainer v-if="facility" class="max-w-7xl space-y-10">
+  <div class="py-6 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
+    <UContainer v-if="facility" class="space-y-8">
       <!-- Back Link -->
       <NuxtLink
         to="/facilities"
@@ -123,20 +126,20 @@ useSchemaOrg([{
         <span>Back to All Facilities</span>
       </NuxtLink>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         <!-- Main Content -->
-        <div class="lg:col-span-8 space-y-8">
+        <div class="lg:col-span-8 space-y-8 min-w-0">
           <!-- Cover Banner -->
-          <div class="relative rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60">
+          <div class="relative rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs">
             <NuxtImg
               v-if="coverImgSrc"
               :src="coverImgSrc"
               :alt="facility.title"
               format="webp"
               quality="85"
-              class="w-full h-72 sm:h-100 object-cover"
+              class="w-full h-64 sm:h-96 object-cover"
             />
-            <div v-else class="flex h-72 sm:h-100 w-full items-center justify-center text-neutral-400">
+            <div v-else class="flex h-64 sm:h-96 w-full items-center justify-center text-neutral-400">
               <UIcon :name="facility.icon || 'i-tabler-trees'" class="size-16" />
             </div>
 
@@ -151,11 +154,11 @@ useSchemaOrg([{
           </div>
 
           <!-- Title Header & Summary -->
-          <div class="space-y-3">
+          <div class="space-y-2">
             <h1 class="text-2xl sm:text-4xl font-black text-neutral-950 dark:text-white leading-tight">
               {{ facility.title }}
             </h1>
-            <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
               {{ facility.description }}
             </p>
           </div>
@@ -163,7 +166,7 @@ useSchemaOrg([{
           <!-- Quote -->
           <div
             v-if="facility.quote?.text"
-            class="py-1 pl-4 border-l-2 border-lime-500 space-y-1"
+            class="py-2 px-4 rounded-md border-l-4 border-l-lime-500 border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 space-y-1"
           >
             <p class="text-xs sm:text-sm font-medium italic text-neutral-800 dark:text-neutral-200 leading-relaxed">
               "{{ facility.quote.text }}"
@@ -179,7 +182,7 @@ useSchemaOrg([{
               <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500" />
               Equipment & Features Included
             </h3>
-            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-neutral-700 dark:text-neutral-300">
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-neutral-700 dark:text-neutral-300">
               <li v-for="(feat, idx) in facility.features" :key="idx" class="flex items-center gap-2 font-medium">
                 <UIcon name="i-tabler-check" class="size-3.5 text-lime-500 shrink-0" />
                 <span>{{ feat }}</span>
@@ -201,100 +204,179 @@ useSchemaOrg([{
             </ul>
           </div>
 
-          <!-- Photo Gallery Link Banner -->
-          <div class="pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-              <UIcon name="i-tabler-photo" class="size-5 text-lime-500 shrink-0" />
-              <div class="space-y-0.5">
-                <h4 class="text-xs font-bold text-neutral-950 dark:text-white">
-                  Facility Photo Album
-                </h4>
-                <p class="text-[11px] text-neutral-500 dark:text-neutral-400">
-                  Explore full photo gallery collections for this specific facility.
-                </p>
+          <!-- Photo Gallery Clickable Card Banner -->
+          <NuxtLink
+            :to="`/gallery/${facility.stem.split('/').pop()}`"
+            class="group block p-4 sm:p-5 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs"
+          >
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="flex size-10 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400">
+                  <UIcon name="i-tabler-photo" class="size-5" />
+                </div>
+                <div class="space-y-0.5 min-w-0">
+                  <h4 class="text-sm font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
+                    Facility Photo Album
+                  </h4>
+                  <p class="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-1">
+                    Explore full photo gallery collections for this specific facility.
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <UButton
-              :to="`/gallery/${facility.stem.split('/').pop()}`"
-              size="sm"
-              color="primary"
-              variant="link"
-              icon="i-tabler-arrow-right"
-              trailing
-              class="font-bold text-xs p-0 text-lime-600 dark:text-lime-400 hover:underline shrink-0"
-            >
-              View Gallery
-            </UButton>
-          </div>
+              <span class="inline-flex items-center gap-1 font-bold text-xs text-lime-600 dark:text-lime-400 group-hover:translate-x-1 transition-transform shrink-0">
+                <span>View Gallery</span>
+                <UIcon name="i-tabler-arrow-right" class="size-4" />
+              </span>
+            </div>
+          </NuxtLink>
 
           <!-- Markdown Content Body -->
           <div class="prose dark:prose-invert max-w-none text-xs leading-relaxed pt-6 border-t border-neutral-200 dark:border-neutral-800">
             <ContentRenderer :value="facility" />
           </div>
 
-          <!-- Visitor Testimonials -->
+          <!-- Visitor Testimonials with Grid/List View Options -->
           <div v-if="activeTestimonials.length" class="pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-4">
               <div>
-                <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] mb-1">
+                <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] mb-1 rounded-md">
                   Visitor Reviews
                 </UBadge>
                 <h3 class="text-xl font-black text-neutral-950 dark:text-white">
                   What Guests Say About {{ facility.title }}
                 </h3>
               </div>
-              <p class="text-xs text-neutral-500 dark:text-neutral-400 max-w-xs leading-relaxed">
-                Authentic feedback from visitors who booked this venue.
-              </p>
+
+              <!-- View Mode Switcher -->
+              <div class="flex items-center p-1 rounded-md bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0">
+                <UButton
+                  size="xs"
+                  :color="testimonialViewMode === 'grid' ? 'primary' : 'neutral'"
+                  :variant="testimonialViewMode === 'grid' ? 'solid' : 'ghost'"
+                  icon="i-tabler-layout-grid"
+                  aria-label="Grid View"
+                  class="rounded-md font-bold"
+                  @click="testimonialViewMode = 'grid'"
+                />
+                <UButton
+                  size="xs"
+                  :color="testimonialViewMode === 'list' ? 'primary' : 'neutral'"
+                  :variant="testimonialViewMode === 'list' ? 'solid' : 'ghost'"
+                  icon="i-tabler-list"
+                  aria-label="List View"
+                  class="rounded-md font-bold"
+                  @click="testimonialViewMode = 'list'"
+                />
+              </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-neutral-200 dark:divide-neutral-800">
-              <div
+            <!-- 1. Testimonial Grid View -->
+            <div v-if="testimonialViewMode === 'grid'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <NuxtLink
                 v-for="(item, idx) in activeTestimonials"
                 :key="idx"
-                class="space-y-3 pt-4 md:pt-0"
-                :class="{ 'md:pl-8': idx > 0 }"
+                :to="item.path || '/testimonials'"
+                class="group block p-4 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 space-y-3 min-w-0"
               >
-                <div class="flex items-center gap-1 text-lime-500">
-                  <UIcon
-                    v-for="star in (item.rating || 5)"
-                    :key="star"
-                    name="i-tabler-star-filled"
-                    class="size-3.5"
-                  />
+                <div class="flex items-center justify-between gap-2">
+                  <div class="flex items-center gap-1 text-lime-500">
+                    <UIcon
+                      v-for="star in (item.rating || 5)"
+                      :key="star"
+                      name="i-tabler-star-filled"
+                      class="size-3.5"
+                    />
+                  </div>
+                  <UBadge v-if="item.category" color="neutral" variant="subtle" class="text-[9px] uppercase font-bold px-1.5 py-0.5 rounded-md">
+                    {{ item.category }}
+                  </UBadge>
                 </div>
 
-                <p class="text-xs font-medium text-neutral-800 dark:text-neutral-200 leading-relaxed italic">
+                <p class="text-xs font-medium text-neutral-800 dark:text-neutral-200 leading-relaxed italic line-clamp-3 group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
                   "{{ item.comment }}"
                 </p>
 
-                <div class="flex items-center gap-2.5 pt-1">
+                <div class="flex items-center gap-2.5 pt-2 border-t border-neutral-100 dark:border-neutral-800">
                   <NuxtImg
                     v-if="item.avatar"
                     :src="item.avatar"
                     :alt="item.author"
                     format="webp"
                     quality="80"
-                    class="size-8 rounded-full object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
+                    class="size-8 rounded-md object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
                   />
                   <div
                     v-else
-                    class="flex size-8 shrink-0 items-center justify-center rounded-full bg-lime-500/10 text-lime-600 dark:text-lime-400 font-bold text-xs"
+                    class="flex size-8 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 font-bold text-xs"
                   >
                     {{ item.author.charAt(0) }}
                   </div>
 
-                  <div class="space-y-0.5">
-                    <h4 class="text-xs font-bold text-neutral-950 dark:text-white">
+                  <div class="space-y-0.5 min-w-0 flex-1">
+                    <h4 class="text-xs font-bold text-neutral-950 dark:text-white truncate">
                       {{ item.author }}
                     </h4>
-                    <p class="text-[10px] text-neutral-500 dark:text-neutral-400 font-medium">
+                    <p class="text-[10px] text-neutral-500 dark:text-neutral-400 font-medium truncate">
                       {{ item.role }}
                     </p>
                   </div>
                 </div>
-              </div>
+              </NuxtLink>
+            </div>
+
+            <!-- 2. Testimonial List View -->
+            <div v-else-if="testimonialViewMode === 'list'" class="space-y-3">
+              <NuxtLink
+                v-for="(item, idx) in activeTestimonials"
+                :key="idx"
+                :to="item.path || '/testimonials'"
+                class="group block p-4 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 min-w-0"
+              >
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div class="space-y-1.5 min-w-0 flex-1">
+                    <div class="flex items-center gap-2">
+                      <div class="flex items-center gap-1 text-lime-500">
+                        <UIcon
+                          v-for="star in (item.rating || 5)"
+                          :key="star"
+                          name="i-tabler-star-filled"
+                          class="size-3.5"
+                        />
+                      </div>
+                      <UBadge v-if="item.category" color="neutral" variant="subtle" class="text-[9px] uppercase font-bold px-1.5 py-0.5 rounded-md">
+                        {{ item.category }}
+                      </UBadge>
+                    </div>
+
+                    <p class="text-xs font-medium text-neutral-800 dark:text-neutral-200 leading-relaxed italic group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
+                      "{{ item.comment }}"
+                    </p>
+                  </div>
+
+                  <div class="flex items-center gap-2.5 pt-2 sm:pt-0 shrink-0 border-t sm:border-t-0 border-neutral-100 dark:border-neutral-800">
+                    <NuxtImg
+                      v-if="item.avatar"
+                      :src="item.avatar"
+                      :alt="item.author"
+                      format="webp"
+                      quality="80"
+                      class="size-8 rounded-md object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
+                    />
+                    <div
+                      v-else
+                      class="flex size-8 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 font-bold text-xs"
+                    >
+                      {{ item.author.charAt(0) }}
+                    </div>
+
+                    <div class="text-xs">
+                      <span class="font-bold text-neutral-950 dark:text-white">{{ item.author }}</span>
+                      <span v-if="item.role" class="text-neutral-400 ml-1.5">• {{ item.role }}</span>
+                    </div>
+                  </div>
+                </div>
+              </NuxtLink>
             </div>
           </div>
 
@@ -302,7 +384,7 @@ useSchemaOrg([{
           <div v-if="activeFaqs.length" class="pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
             <div class="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-3">
               <div>
-                <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] mb-1">
+                <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] mb-1 rounded-md">
                   Court & Venue FAQ
                 </UBadge>
                 <h3 class="text-xl font-black text-neutral-950 dark:text-white">
@@ -311,15 +393,15 @@ useSchemaOrg([{
               </div>
             </div>
 
-            <div class="divide-y divide-neutral-200/80 dark:divide-neutral-800/80">
+            <div class="space-y-3">
               <div
                 v-for="(faq, idx) in activeFaqs"
                 :key="idx"
-                class="py-3.5 space-y-1.5"
+                class="rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 p-4"
               >
                 <button
                   type="button"
-                  class="w-full flex items-center justify-between text-left font-extrabold text-xs sm:text-sm text-neutral-950 dark:text-white group cursor-pointer transition-colors"
+                  class="w-full flex items-center justify-between text-left font-extrabold text-xs sm:text-sm text-neutral-950 dark:text-white group cursor-pointer"
                   @click="toggleFaqItem(idx)"
                 >
                   <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-4">
@@ -342,7 +424,7 @@ useSchemaOrg([{
                 >
                   <p
                     v-show="openFaqItems.includes(idx)"
-                    class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed pr-6 pt-1 font-medium overflow-hidden"
+                    class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed pr-2 pt-2 font-medium overflow-hidden"
                   >
                     {{ faq.answer }}
                   </p>
@@ -352,9 +434,9 @@ useSchemaOrg([{
           </div>
         </div>
 
-        <!-- Sticky Reservation Details -->
+        <!-- Sticky Reservation Sidebar -->
         <div class="lg:col-span-4 sticky top-[calc(var(--ui-header-height,4rem)+1.5rem)] space-y-6">
-          <div class="space-y-6 pb-6 border-b border-neutral-200 dark:border-neutral-800">
+          <div class="p-5 sm:p-6 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-6">
             <div v-if="facility.pricing">
               <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">Booking Rate</span>
               <div class="text-2xl font-black text-neutral-950 dark:text-white mt-1">
@@ -388,7 +470,7 @@ useSchemaOrg([{
                 size="lg"
                 color="primary"
                 icon="i-tabler-calendar-event"
-                class="font-black uppercase text-xs text-neutral-950 rounded-xl py-3.5 cursor-pointer justify-center"
+                class="font-black uppercase text-xs text-neutral-950 rounded-md py-3.5 cursor-pointer justify-center"
               >
                 Reserve Slot
               </UButton>
@@ -399,7 +481,7 @@ useSchemaOrg([{
                 color="neutral"
                 variant="ghost"
                 icon="i-tabler-brand-whatsapp"
-                class="font-bold text-xs rounded-xl py-2.5 text-emerald-600 dark:text-emerald-400 cursor-pointer justify-center"
+                class="font-bold text-xs rounded-md py-2.5 text-emerald-600 dark:text-emerald-400 cursor-pointer justify-center"
               >
                 Chat on WhatsApp
               </UButton>
