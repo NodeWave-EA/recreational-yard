@@ -87,8 +87,10 @@ onUnmounted(() => {
               variant="soft"
               class="font-bold text-[10px] sm:text-xs uppercase tracking-widest px-2.5 py-1 rounded-md border border-lime-500/40"
             >
-              <UIcon name="i-tabler-photo-sensors" class="size-3.5 sm:size-4 mr-1.5 text-lime-600 dark:text-lime-400 shrink-0" />
-              <span class="truncate">DYNAMIC RECREATION GALLERY</span>
+              <UIcon name="i-tabler-run" class="size-3.5 sm:size-4 mr-1.5 text-lime-600 dark:text-lime-400 shrink-0" />
+              <span class="truncate">
+                MOVE. PLAY. CONNECT. THRIVE.
+              </span>
             </UBadge>
           </div>
 
