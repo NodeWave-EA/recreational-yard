@@ -6,13 +6,6 @@ badge: "Picnic Grounds"
 coverImage: "/content/gallery/picnic-bbq-area/cover.jpeg"
 featured: true
 order: 6
-photos:
-  - url: "/content/gallery/picnic-bbq-area/cover.jpeg"
-    caption: "Picnic Lawns and Relaxation Spaces at KOOMA"
-    alt: "Green lawn picnic area"
-  - url: "/content/gallery/tea-garden-stroll/gallery-2.jpg"
-    caption: "Shaded Relaxation Corners"
-    alt: "Garden trees and lawn"
 ---
 
 ## Picnic & Outdoor Leisure at Recreation Yard Kericho

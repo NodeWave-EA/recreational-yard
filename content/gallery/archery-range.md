@@ -6,10 +6,6 @@ badge: "Supervised Archery"
 coverImage: "/content/gallery/archery-range/cover.jpg"
 featured: true
 order: 1
-photos:
-  - url: "/content/gallery/archery-range/cover.jpg"
-    caption: "Supervised Target Archery Range at Recreation Yard Kericho"
-    alt: "Archery targets and equipment on green lawn"
 ---
 
 ## Supervised Archery at Recreation Yard Kericho

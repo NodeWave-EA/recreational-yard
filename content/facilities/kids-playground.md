@@ -1,6 +1,9 @@
 ---
 title: "Birthday Parties & Celebrations Lawn"
 description: "Green open-air venue for children's and adults' birthday parties, graduations, and family milestone celebrations."
+coverImage:
+  src: "/content/gallery/kids-playground/cover.jpeg"
+  alt: "Children playing in a green lawn"
 quote:
   text: "Event arrangements, decorations, seating, capacity, duration and charges are agreed upon in advance."
   author: "Recreation Yard Limited"

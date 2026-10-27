@@ -1,6 +1,9 @@
 ---
 title: "Running, Jogging & Walking Trails"
 description: "Highland outdoor routes and community running meet-ups powered by Recreation Yard Runners in Kericho and virtually."
+coverImage:
+  src: "/content/gallery/walking-jogging-trail/cover.webp"
+  alt: "Outdoor running and walking path"
 quote:
   text: "RUN. JOG. WALK. ENJOY THE JOURNEY. We believe that every step counts."
   author: "Recreation Yard Runners"

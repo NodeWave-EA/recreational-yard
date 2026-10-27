@@ -6,13 +6,6 @@ badge: "Lawn Games"
 coverImage: "/content/gallery/badminton/cover.jpeg"
 featured: true
 order: 2
-photos:
-  - url: "/content/gallery/badminton/cover.jpeg"
-    caption: "Badminton Court Setup on Natural Grass"
-    alt: "Outdoor badminton net and grass playing area"
-  - url: "/content/gallery/badminton/gallery-1.jpeg"
-    caption: "Recreational Rallies in Fresh Highland Air"
-    alt: "Badminton players in a recreational match"
 ---
 
 ## Lawn Badminton at Recreation Yard Kericho

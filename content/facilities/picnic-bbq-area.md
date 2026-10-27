@@ -1,6 +1,9 @@
 ---
 title: "Picnic & Outdoor Leisure Grounds"
 description: "Relax on scenic green lawns with our bring-your-own-refreshments picnic model at Recreation Yard Kericho."
+coverImage:
+  src: "/content/gallery/picnic-bbq-area/cover.jpeg"
+  alt: "Scenic green lawns for picnic and outdoor leisure"
 quote:
   text: "All visitors must maintain cleanliness, dispose of waste responsibly, and respect fellow visitors."
   author: "Recreation Yard Limited"

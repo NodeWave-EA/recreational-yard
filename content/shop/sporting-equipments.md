@@ -2,6 +2,9 @@
 title: "Sporting Equipment & Game Accessories"
 name: "Sporting Equipment & Game Accessories"
 description: "Footballs and sports balls, badminton rackets, lawn tennis gear, cornhole game sets, and recreational accessories."
+image:
+  src: "/content/gallery/sporting-equipments/cover.jpeg"
+  alt: "Sporting equipment and game accessories"
 itemType: "merchandise"
 category: "Sporting Equipment"
 price: 0

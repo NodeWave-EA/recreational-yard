@@ -1,6 +1,9 @@
 ---
 title: "Supervised Archery"
 description: "Experience target archery in a controlled, supervised outdoor setting with dedicated safety controls at Recreation Yard Kericho."
+coverImage:
+  src: "/content/gallery/archery-range/cover.jpg"
+  alt: "Supervised archery range with target stands and bows"
 quote:
   text: "Archery sessions are arranged according to availability and agreed safety requirements."
   author: "Recreation Yard Limited"

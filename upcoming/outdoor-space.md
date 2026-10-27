@@ -6,16 +6,6 @@ badge: "Venue Overview"
 coverImage: "/content/gallery/highland-tea-estate-views/cover.jpg"
 featured: true
 order: 14
-photos:
-  - url: "/content/gallery/highland-tea-estate-views/cover.jpg"
-    caption: "Green Outdoor Environment at KOOMA"
-    alt: "Recreation Yard Kericho open lawn"
-  - url: "/content/gallery/picnic-bbq-area/cover.jpeg"
-    caption: "Open Lawn Spaces for Recreation and Picnics"
-    alt: "Picnic lawns"
-  - url: "/content/gallery/tea-garden-stroll/gallery-2.jpg"
-    caption: "Tranquil Garden Setting for Gatherings"
-    alt: "Garden trees and lawn"
 ---
 
 ## Welcome to Recreation Yard Kericho

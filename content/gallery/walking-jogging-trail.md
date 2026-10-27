@@ -6,10 +6,6 @@ badge: "Highland Trails"
 coverImage: "/content/gallery/walking-jogging-trail/cover.webp"
 featured: true
 order: 7
-photos:
-  - url: "/content/gallery/walking-jogging-trail/cover.webp"
-    caption: "Highland Walking and Jogging Trail Route"
-    alt: "Outdoor running and walking path"
 ---
 
 ## Running, Jogging & Walking Trails

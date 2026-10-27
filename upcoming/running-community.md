@@ -6,16 +6,6 @@ badge: "Recreation Yard Runners"
 coverImage: "/content/gallery/walking-jogging-trail/cover.webp"
 featured: true
 order: 8
-photos:
-  - url: "/content/gallery/walking-jogging-trail/cover.webp"
-    caption: "Highland Running and Walking Trails in Kericho"
-    alt: "Morning runners on trails"
-  - url: "/content/events/kericho-tea-marathon.jpeg"
-    caption: "Community Running Club and Milestone Pacing"
-    alt: "Runners community group"
-  - url: "/content/events/stanchart-marathon-2026.jpeg"
-    caption: "Marathon Preparation and Group Endurance Training"
-    alt: "Marathon participants"
 ---
 
 ## Recreation Yard Runners: Move. Play. Connect. Thrive.

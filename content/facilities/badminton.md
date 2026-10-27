@@ -1,6 +1,9 @@
 ---
 title: "Badminton"
 description: "Enjoy recreational and friendly badminton on our lawn playing area at Recreation Yard Kericho."
+coverImage:
+  src: "/content/gallery/badminton/cover.jpeg"
+  alt: "Outdoor badminton setup on grass"
 quote:
   text: "We create opportunities for people to move, play, connect, relax and thrive through recreation, sport and shared experiences."
   author: "Recreation Yard Limited"

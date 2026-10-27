@@ -6,10 +6,6 @@ badge: "Active Living"
 coverImage: "/content/gallery/outdoor-fitness-zone/cover.jpg"
 featured: true
 order: 5
-photos:
-  - url: "/content/gallery/outdoor-fitness-zone/cover.jpg"
-    caption: "Active Movement and Lawn Game Facilities"
-    alt: "Outdoor activity lawn"
 ---
 
 ## Active Living Space at Recreation Yard Kericho

@@ -1,6 +1,9 @@
 ---
 title: "Cornhole & Active Lawn Games"
 description: "Friendly cornhole toss challenges and active lawn recreation for all ages at Recreation Yard Kericho."
+coverImage:
+  src: "/content/gallery/outdoor-fitness-zone/cover.jpg"
+  alt: "People playing cornhole on a green lawn"
 quote:
   text: "MOVE. PLAY. CONNECT. THRIVE. Active recreation brings teams and families together."
   author: "Recreation Yard Limited"

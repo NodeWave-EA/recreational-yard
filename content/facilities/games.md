@@ -1,6 +1,9 @@
 ---
 title: "Outdoor Chess, Darts & Social Gatherings"
 description: "Outdoor chess, safe darts games, and shaded green spaces for informal meetings, networking, and social get-togethers."
+coverImage:
+  src: "/content/gallery/games/cover.jpeg"
+  alt: "Outdoor chess and darts area with green lawns"
 quote:
   text: "All meetings and group visits require prior booking and confirmation."
   author: "Recreation Yard Limited"

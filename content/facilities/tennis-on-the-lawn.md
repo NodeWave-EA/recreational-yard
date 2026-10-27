@@ -1,6 +1,9 @@
 ---
 title: "Lawn Tennis on Grass"
 description: "Enjoy friendly lawn tennis on our natural grass playing area at Recreation Yard Kericho, KOOMA."
+coverImage:
+  src: "/content/gallery/tennis-on-the-lawn/cover.jpeg"
+  alt: "Grass Court Tennis Area at Recreation Yard Kericho"
 quote:
   text: "We create opportunities for people to move, play, connect, relax and thrive through recreation, sport and shared experiences."
   author: "Recreation Yard Limited"

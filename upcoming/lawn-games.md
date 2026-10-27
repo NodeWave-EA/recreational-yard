@@ -6,16 +6,6 @@ badge: "Lawn Games"
 coverImage: "/content/gallery/outdoor-fitness-zone/cover.jpg"
 featured: true
 order: 4
-photos:
-  - url: "/content/gallery/outdoor-fitness-zone/cover.jpg"
-    caption: "Cornhole and Active Lawn Gaming on the Greens"
-    alt: "Cornhole boards and toss bags on grass"
-  - url: "/content/gallery/badminton/cover.jpeg"
-    caption: "Badminton Lawn Area"
-    alt: "Outdoor badminton setup"
-  - url: "/content/gallery/tennis-on-the-lawn/cover.jpeg"
-    caption: "Natural Grass Lawn Sports"
-    alt: "Grass court games"
 ---
 
 ## Cornhole & Active Lawn Games
