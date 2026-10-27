@@ -160,6 +160,18 @@ function isLinkActive(path: string) {
           <UIcon name="i-tabler-heart" class="size-3.5 text-lime-500 shrink-0" />
           <span class="uppercase tracking-wider text-[10px]">Move. Play. Connect. Thrive.</span>
         </div>
+
+        <!-- Nuxt Content Studio CMS Login -->
+        <NuxtLink
+          to="/editor"
+          external
+          class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-neutral-400 hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
+        >
+          <UIcon name="i-tabler-edit" class="size-3.5 shrink-0" />
+          <span>
+            Nuxt Studio
+          </span>
+        </NuxtLink>
       </div>
     </UContainer>
   </footer>
