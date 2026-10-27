@@ -1,3 +1,4 @@
+import { computed, nextTick } from 'vue'
 import { useColorMode } from '#imports'
 
 export function useTheme() {
@@ -11,11 +12,10 @@ export function useTheme() {
   })
 
   const toggleTheme = async (event?: MouseEvent) => {
-    const startViewTransition = Reflect.get(document, 'startViewTransition') as
-      | ((callback: () => Promise<void>) => ViewTransition)
-      | undefined
-    const isAppearanceTransition = typeof startViewTransition === 'function'
-      && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isAppearanceTransition
+      = typeof document !== 'undefined'
+        && 'startViewTransition' in document
+        && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (!isAppearanceTransition || !event) {
       isDark.value = !isDark.value
@@ -29,29 +29,27 @@ export function useTheme() {
       Math.max(y, window.innerHeight - y),
     )
 
-    const transition = startViewTransition(async () => {
+    // Call document.startViewTransition directly on the document instance
+    const transition = document.startViewTransition(async () => {
       isDark.value = !isDark.value
       await nextTick()
     })
 
-    transition.ready.then(() => {
-      const clipPath = [
-        `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`,
-      ]
-      document.documentElement.animate(
-        {
-          clipPath: isDark.value ? clipPath : [...clipPath].reverse(),
-        },
-        {
-          duration: 400,
-          easing: 'ease-in-out',
-          pseudoElement: isDark.value
-            ? '::view-transition-new(root)'
-            : '::view-transition-old(root)',
-        },
-      )
-    })
+    await transition.ready
+
+    document.documentElement.animate(
+      {
+        clipPath: [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${endRadius}px at ${x}px ${y}px)`,
+        ],
+      },
+      {
+        duration: 400,
+        easing: 'ease-in-out',
+        pseudoElement: '::view-transition-new(root)',
+      },
+    )
   }
 
   return {
