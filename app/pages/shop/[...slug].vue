@@ -225,6 +225,32 @@ useSchemaOrg([{
         </div>
       </div>
 
+      <NuxtLink
+        :to="`/gallery/${product.stem.split('/').pop()}`"
+        class="group block p-0 sm:p-5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs"
+      >
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="flex size-9 sm:size-10 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400">
+              <UIcon name="i-tabler-photo" class="size-5" />
+            </div>
+            <div class="space-y-0.5 min-w-0">
+              <h4 class="text-sm font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
+                Product Photo Gallery
+              </h4>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-1">
+                Explore full photo gallery collections for this specific product.
+              </p>
+            </div>
+          </div>
+
+          <span class="inline-flex items-center gap-1 font-bold text-xs text-lime-600 dark:text-lime-400 group-hover:translate-x-1 transition-transform shrink-0">
+            <span>View Gallery</span>
+            <UIcon name="i-tabler-arrow-right" class="size-4" />
+          </span>
+        </div>
+      </NuxtLink>
+
       <div
         v-if="product.body"
         class="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-neutral-200 dark:border-neutral-800 prose dark:prose-invert max-w-none text-xs sm:text-sm leading-relaxed"
