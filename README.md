@@ -20,7 +20,7 @@ The site showcases:
 - Vue 3 + TypeScript
 - Tailwind CSS
 - Nuxt UI
-- @nuxt/content for content-driven pages
+- @nuxt/content and @nuxt/studio for content-driven pages
 - Nodemailer for inquiry email delivery
 - Cloudflare Turnstile for CAPTCHA verification
 
