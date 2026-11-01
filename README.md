@@ -1,4 +1,8 @@
-# Recreation Yard Limited
+<div align="center">
+  <img src="./logo.png" alt="LOGO" />
+</div>
+
+---
 
 This is the Nuxt website for RECREATION YARD LIMITED, a recreation, sports, wellness, events and sports merchandise business based at Kooma, along the Kericho–Kisumu Highway in Kericho, Kenya. The brand brings together Recreation Yard Kericho and Recreation Yard Runners under the promise: Move. Play. Connect. Thrive.
 
