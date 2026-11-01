@@ -37,14 +37,13 @@ export function useGalleryLayout() {
     }
   })
 
-  // Dynamic aspect ratio variations to create natural vertical staggering
   const aspectRhythms = [
-    'aspect-3/4', // Editorial portrait
-    'aspect-16/10', // Classic landscape
-    'aspect-square', // Vignette square
-    'aspect-4/5', // Tall social portrait
-    'aspect-16/9', // Wide action landscape
-    'aspect-2/3', // Full vertical portrait
+    'aspect-3/4',
+    'aspect-16/10',
+    'aspect-square',
+    'aspect-4/5',
+    'aspect-16/9',
+    'aspect-2/3',
   ]
 
   function getPhotoAspectClass(index: number, photo?: GalleryLayoutPhoto) {

@@ -1,28 +1,63 @@
+import { computed, nextTick } from 'vue'
 import { useColorMode } from '#imports'
+
+export type ThemePreference = 'light' | 'dark' | 'system'
 
 export function useTheme() {
   const colorMode = useColorMode()
 
-  const isDark = computed({
-    get: () => colorMode.value === 'dark',
-    set: (val: boolean) => {
-      colorMode.preference = val ? 'dark' : 'light'
+  // Manage colorMode.preference ('light' | 'dark' | 'system')
+  const preference = computed<ThemePreference>({
+    get: () => (colorMode.preference as ThemePreference) || 'system',
+    set: (val: ThemePreference) => {
+      colorMode.preference = val
     },
   })
 
-  /**
-   * Toggles theme mode with View Transitions API support.
-   * Falls back gracefully if browser doesn't support View Transitions or if reduced motion is requested.
-   */
+  const isDark = computed(() => colorMode.value === 'dark')
+
+  // Dynamic icon based on active preference
+  const icon = computed(() => {
+    switch (preference.value) {
+      case 'light':
+        return 'i-tabler-sun'
+      case 'dark':
+        return 'i-tabler-moon'
+      case 'system':
+      default:
+        return 'i-tabler-device-desktop'
+    }
+  })
+
+  // Dynamic ARIA label based on active preference
+  const ariaLabel = computed(() => {
+    switch (preference.value) {
+      case 'light':
+        return 'Theme: Light. Switch to dark mode'
+      case 'dark':
+        return 'Theme: Dark. Switch to system mode'
+      case 'system':
+      default:
+        return 'Theme: System. Switch to light mode'
+    }
+  })
+
   const toggleTheme = async (event?: MouseEvent) => {
-    // Check for Browser API support and motion settings
+    // Cycle: light -> dark -> system -> light
+    const nextPreference: ThemePreference
+      = preference.value === 'light'
+        ? 'dark'
+        : preference.value === 'dark'
+          ? 'system'
+          : 'light'
+
     const isAppearanceTransition
-      // @ts-expect-error View Transitions API polyfill check
-      = document.startViewTransition
+      = typeof document !== 'undefined'
+        && 'startViewTransition' in document
         && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (!isAppearanceTransition || !event) {
-      isDark.value = !isDark.value
+      preference.value = nextPreference
       return
     }
 
@@ -34,33 +69,33 @@ export function useTheme() {
     )
 
     const transition = document.startViewTransition(async () => {
-      isDark.value = !isDark.value
+      preference.value = nextPreference
       await nextTick()
     })
 
-    transition.ready.then(() => {
-      const clipPath = [
-        `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`,
-      ]
-      document.documentElement.animate(
-        {
-          clipPath: isDark.value ? clipPath : [...clipPath].reverse(),
-        },
-        {
-          duration: 400,
-          easing: 'ease-in-out',
-          pseudoElement: isDark.value
-            ? '::view-transition-new(root)'
-            : '::view-transition-old(root)',
-        },
-      )
-    })
+    await transition.ready
+
+    document.documentElement.animate(
+      {
+        clipPath: [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${endRadius}px at ${x}px ${y}px)`,
+        ],
+      },
+      {
+        duration: 400,
+        easing: 'ease-in-out',
+        pseudoElement: '::view-transition-new(root)',
+      },
+    )
   }
 
   return {
     colorMode,
+    preference,
     isDark,
+    icon,
+    ariaLabel,
     toggleTheme,
   }
 }

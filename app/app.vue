@@ -27,13 +27,11 @@ useSchemaOrg([
     logo: logoUrl,
     telephone: LOCATION_DETAILS.phone,
     email: LOCATION_DETAILS.email,
-    sameAs: Object.values(LOCATION_DETAILS.socials),
     address: {
       streetAddress: LOCATION_DETAILS.address,
       addressLocality: 'Kericho',
       addressCountry: 'KE',
     },
-    openingHours: ['Mo-Su 07:30-18:00'],
   }),
 ])
 </script>

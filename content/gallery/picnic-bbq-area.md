@@ -1,16 +1,13 @@
 ---
-title: "Picnic & BBQ Area"
-description: "Warm outdoor moments, grill feasts, and lawn relaxation at our dedicated picnic spots."
-category: "events"
-badge: "Family Outings"
-date: "SEP 2026"
-coverImage:
-  src: "/content/gallery/picnic-bbq-area/cover.jpeg"
-  alt: "Picnic and BBQ Area"
-featured: false
-order: 5
+title: "Picnic & Open Lawn Leisure"
+description: "Scenic green lawns for leisure, picnics, and open-air relaxation with our bring-your-own-refreshments model at Recreation Yard Kericho."
+category: "scenery"
+badge: "Picnic Grounds"
+coverImage: "/content/gallery/picnic-bbq-area/cover.jpeg"
+featured: true
+order: 6
 ---
 
-## Community & Feasts
+## Picnic & Outdoor Leisure at Recreation Yard Kericho
 
-Savor grilled meals and outdoor dining under the shade of mature trees with fully equipped barbecue units.
+Our bring-your-own-refreshments picnic model gives guests total flexibility to pack favorite meals, snacks, and permitted drinks for a relaxing day outdoors. We ask all guests to respect the environment, maintain cleanliness, and reserve slots prior to arrival.

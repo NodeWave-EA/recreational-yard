@@ -1,4 +1,3 @@
-// server/api/contact.post.ts
 import { createError, defineEventHandler, getRequestHeader, getRequestIP, readBody } from 'h3'
 import nodemailer from 'nodemailer'
 import { useRuntimeConfig } from '#imports'
@@ -11,10 +10,9 @@ interface ContactPayload {
   subject?: string
   message: string
   turnstileToken?: string
-  websiteUrl?: string // Hidden honeypot field
+  websiteUrl?: string
 }
 
-// In-memory IP rate limiter (3 submissions per 15 minutes)
 const rateLimitMap = new Map<string, number[]>()
 const RATE_WINDOW = 15 * 60 * 1000
 const MAX_REQUESTS = 3
@@ -23,12 +21,10 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const body = await readBody<ContactPayload>(event)
 
-  // Honeypot Trap (Drops automated spam bots instantly)
   if (body.websiteUrl) {
     return { success: true, message: 'Message sent successfully.' }
   }
 
-  // IP Rate Limiter
   const clientIp = getRequestHeader(event, 'x-forwarded-for') || getRequestIP(event) || '127.0.0.1'
   const now = Date.now()
   const timestamps = (rateLimitMap.get(clientIp) || []).filter(t => now - t < RATE_WINDOW)
@@ -41,7 +37,6 @@ export default defineEventHandler(async (event) => {
   }
   rateLimitMap.set(clientIp, [...timestamps, now])
 
-  // Official Turnstile Token Verification
   if (!body.turnstileToken) {
     throw createError({
       statusCode: 400,
@@ -57,7 +52,6 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // Field Validation
   if (!body.name || !body.email || !body.message) {
     throw createError({
       statusCode: 400,
@@ -73,7 +67,6 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // SMTP Email Dispatch
   if (config.smtpHost && config.smtpUser && config.smtpPass) {
     const transporter = nodemailer.createTransport({
       host: config.smtpHost,
@@ -103,7 +96,7 @@ export default defineEventHandler(async (event) => {
         <p style="white-space: pre-wrap; background-color: #f3f4f6; padding: 16px; border-radius: 8px; font-size: 13px; color: #1f2937;">${body.message}</p>
 
         <hr style="border: 0; border-top: 1px solid #e5e7eb; margin: 24px 0;" />
-        <p style="font-size: 11px; color: #9ca3af; text-align: center;">Sent from Recreation Yard Kericho Website • IP: ${clientIp}</p>
+        <p style="font-size: 11px; color: #9ca3af; text-align: center;">Sent from Recreation Yard Limited Website • IP: ${clientIp}</p>
       </div>
     `
 

@@ -1,16 +1,13 @@
 ---
-title: "Kids Playground"
-description: "Joyful highlights from our safe, colorful, and enclosed play space for children."
-category: "events"
-badge: "Family Fun"
-date: "AUG 2026"
-coverImage:
-  src: "/content/gallery/kids-playground/cover.jpeg"
-  alt: "Children Playground"
-featured: false
-order: 6
+title: "Birthday Parties & Graduation Celebrations"
+description: "Joyful outdoor milestone celebrations, birthday parties for children and adults, and graduation gatherings in an open green setting."
+category: "events-and-parties"
+badge: "Celebrations"
+coverImage: "/content/gallery/kids-playground/cover.jpeg"
+featured: true
+order: 10
 ---
 
-## Safe Playground Spaces
+## Birthday Parties & Graduation Celebrations
 
-A vibrant environment built specifically for young visitors to explore, climb, and play safely under parental supervision.
+Recreation Yard Kericho provides a picturesque, open-air green setting for small-to-medium-sized celebrations. Bring your own meals, graduation cakes, and refreshments while guests enjoy lawn games and scenic highland views. Prior booking is mandatory.

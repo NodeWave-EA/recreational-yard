@@ -22,7 +22,6 @@ export function useAdvancedSearch() {
   const router = useRouter()
   const { getCollection, getSearchSections } = useContentQuery()
 
-  // Reactive state synced with URL query parameters
   const searchQuery = ref<string>(typeof route.query.q === 'string' ? route.query.q : '')
   const selectedCollection = ref<string>(typeof route.query.type === 'string' ? route.query.type : 'all')
   const sortBy = ref<'relevance' | 'price-asc' | 'price-desc' | 'title-asc' | 'title-desc'>(
@@ -37,7 +36,6 @@ export function useAdvancedSearch() {
   const collectionData = ref<Record<string, ExtendedSearchResult[]>>({})
   const isLoading = ref(true)
 
-  // Fuse.js configuration for fuzzy search across title, description, badges, and body content
   const fuseOptions: IFuseOptions<ExtendedSearchResult> = {
     keys: [
       { name: 'title', weight: 0.35 },
@@ -51,7 +49,6 @@ export function useAdvancedSearch() {
     minMatchCharLength: 2,
   }
 
-  // Nuxt UI Compatible Options
   const categoryOptions = computed(() => [
     { id: 'all', label: 'All Categories', icon: 'i-tabler-layout-grid' },
     ...SEARCH_COLLECTION_CONFIGS.map(c => ({
@@ -77,7 +74,6 @@ export function useAdvancedSearch() {
     }
   })
 
-  // Sync state changes to URL query string
   watch(
     [searchQuery, selectedCollection, sortBy, minPrice, maxPrice, inStockOnly],
     () => {
@@ -109,7 +105,6 @@ export function useAdvancedSearch() {
     { deep: true },
   )
 
-  // Fetch all registered collections
   async function fetchFullTextCatalog() {
     isLoading.value = true
     try {
@@ -160,7 +155,6 @@ export function useAdvancedSearch() {
 
       results.forEach((res) => {
         map[res.key] = res.items
-        // Default sections to collapsed initially
         openSections.value[res.key] = false
       })
 
@@ -170,7 +164,6 @@ export function useAdvancedSearch() {
     }
   }
 
-  // Fuse.js powered search and filtering logic
   const processedResults = computed(() => {
     const q = searchQuery.value.trim()
     const minP = Number.parseFloat(minPrice.value) || 0

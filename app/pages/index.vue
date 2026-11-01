@@ -4,8 +4,8 @@ import { LOCATION_DETAILS } from '~/utils/site-data'
 const siteUrl = useRuntimeConfig().public.siteUrl
 
 useSeoMeta({
-  title: `Recreation Yard Limited  Kericho`,
-  description: LOCATION_DETAILS.tagline,
+  title: `${LOCATION_DETAILS.company} | Outdoor Recreation, Sports & Shared Experiences Kericho`,
+  description: 'Recreation Yard Limited connects outdoor recreation, running, sports merchandise, and group experiences at Kooma along the Kericho–Kisumu Highway.',
   ogTitle: LOCATION_DETAILS.company,
   ogDescription: LOCATION_DETAILS.tagline,
   ogImage: `${siteUrl}/logo.png`,
@@ -24,33 +24,19 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="space-y-16 sm:space-y-24 pb-16">
-    <!-- Hero Section -->
+  <UContainer class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white space-y-12 sm:space-y-16 pb-16 transition-colors duration-300 w-full overflow-x-clip">
     <HomeHero />
 
-    <!-- Facilities Teaser -->
-    <UContainer>
-      <HomeFacilitiesTeaser />
-    </UContainer>
+    <HomeFacilitiesTeaser />
 
-    <!-- Experience Grid -->
-    <UContainer>
-      <HomeExperienceGrid />
-    </UContainer>
+    <HomeCompanyProfile />
 
-    <!-- Testimonials Section -->
-    <UContainer>
-      <HomeTestimonials />
-    </UContainer>
+    <HomeExperienceGrid />
 
-    <!-- FAQ Accordion Section -->
-    <UContainer>
-      <HomeFaq />
-    </UContainer>
+    <HomeTestimonials />
 
-    <!-- Call to Action -->
-    <UContainer>
-      <HomeCtaBanner />
-    </UContainer>
-  </div>
+    <HomeFaq />
+
+    <HomeCtaBanner />
+  </UContainer>
 </template>

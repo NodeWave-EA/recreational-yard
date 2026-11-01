@@ -1,9 +1,9 @@
 ---
-author: "Dr. Sarah Cherono"
-role: "Monthly Pass Member"
+author: "Geoffrey Koech"
+role: "School Sports Coordinator"
 category: "Pricing & Passes"
-comment: "The monthly pass is incredible value for anyone playing tennis or using the jogging trails regularly. The guest pass perks make it easy to bring family along on weekends."
+comment: "Recreation Yard Limited coordinated our complete school games kit uniforms and sporting equipment. From specifying durable, breathable fabrics and school crest embroidery to timely delivery within our exact budget, their service was transparent, professional, and reliable."
 rating: 5
-avatar: "https://robohash.org/dr-sarah-cherono"
 featured: true
+order: 1
 ---

@@ -1,16 +1,13 @@
 ---
-title: Badminton Courts
-badge: Action Shots
-category: sports
-coverImage:
-  src: /content/gallery/badminton/cover.jpeg
-  alt: Outdoor Badminton Court
-date: OCT 2026
-description: High-resolution visual collection capturing energetic rallies and evening action on our non-slip outdoor badminton courts.
+title: "Lawn Badminton Action"
+description: "Friendly outdoor badminton rallies, singles, and doubles matches on the dedicated natural grass playing area at KOOMA."
+category: "lawn-games"
+badge: "Lawn Games"
+coverImage: "/content/gallery/badminton/cover.jpeg"
 featured: true
-order: 1
+order: 2
 ---
 
-## High Energy Outdoor Badminton
+## Lawn Badminton at Recreation Yard Kericho
 
-A curated lookbook capturing fast-paced rallies and casual afternoon matches across our non-slip outdoor courts. All equipment shown is available for on-site rental.
+Badminton is one of our most popular lawn sports at Recreation Yard Kericho. Played outdoors on natural grass, it provides high-energy recreational fun for individuals, family outings, and corporate team building. Rackets and shuttlecocks are coordinated for booked visits.

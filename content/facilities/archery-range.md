@@ -1,46 +1,56 @@
 ---
-title: "Archery Range"
-description: "Safe shooting range with archery targets, bows, arrows, and certified instructors."
-quote:
-  text: "The state-of-the-art safety nets and certified instructors make this the ideal training ground for archers of all skill levels."
-  author: "Head Archery Coach"
-category: "Target Sports"
-icon: "i-tabler-target"
+title: "Supervised Archery"
+description: "Experience target archery in a controlled, supervised outdoor setting with dedicated safety controls at Recreation Yard Kericho."
 coverImage:
   src: "/content/gallery/archery-range/cover.jpg"
-  alt: "Highland Archery Range"
+  alt: "Supervised archery range with target stands and bows"
+quote:
+  text: "Archery sessions are arranged according to availability and agreed safety requirements."
+  author: "Recreation Yard Limited"
+category: "Target Sports"
+icon: "i-tabler-target"
 features:
-  - "6 individual shooting lanes (10m to 30m)"
-  - "Recurve bows, arm guards, and arrows"
-  - "Safety briefing before every session"
-  - "High-density straw target backstops"
+  - "Target archery range arranged in a serene, open-air green setting"
+  - "Bows, target stands, and arrows provided for pre-booked sessions"
+  - "Safety briefing and instructor supervision during all shooting sessions"
+  - "Popular activity for corporate team building and small-group challenges"
 rules:
-  - "Flat, closed-toe shoes required on shooting lines"
-  - "Do not cross the shooting line until all archers finish"
-  - "Children under 12 must be supervised by an adult"
-capacity: "12 Archers per session"
-operatingHours: "7:30 AM – 6:00 PM"
-ageGroup: "All Ages"
-pricing:
-  rate: "KES 1,500"
-  unit: "per 45 mins"
-  note: "Includes instructor guidance & gear"
+  - "Archery is strictly subject to appropriate supervision and safety controls"
+  - "Prior booking is mandatory — unconfirmed or walk-in shooting is not permitted"
+  - "Participants must follow safety briefings and shoot only when cleared by staff"
+  - "Closed-toe shoes and comfortable athletic clothing recommended"
+operatingHours: "Prior booking mandatory — scheduled supervision slots"
+ageGroup: "Teens & Adults (13+)"
+capacity: "Supervised squad rotations"
+bookingRequired: true
 featured: true
 order: 3
-badge: "Instructors On-Site"
+badge: "Supervised Activity"
 cta:
   label: "Book Archery Session"
-  to: "/contact?facility=archery-range"
+  to: "/contact?type=facility-booking&facility=archery-range"
 ---
 
-## Precision & Focus
+## Supervised Archery Activities
 
-Test your accuracy at our sheltered target archery range. Certified instructors guide beginners through safety fundamentals before practice rounds.
+At **Recreation Yard Kericho**, archery is offered as a selected recreational and target activity subject to appropriate supervision and safety controls. Located at KOOMA along the Kericho–Kisumu Highway, our open green grounds provide a disciplined yet fun environment to learn target archery, practice focus, and enjoy friendly competition.
 
-:u-alert{icon="i-tabler-shield-check" color="neutral" variant="subtle" title="Safety First" description="All sessions include range safety briefings and protective arm gear."}
+Archery at Recreation Yard is ideal for beginners eager to draw a bow for the first time, friends seeking a memorable outdoor test of skill, and corporate groups looking to build focus and team spirit during team-building retreats.
 
-### Range Guidelines
+### Safe, Supervised Target Experience
 
-- Closed-toe shoes required
-- Minimum age requirement: 10 years
-- Group challenges available for corporate events
+Safety is one of our fundamental core values at Recreation Yard Limited. Archery sessions are carefully managed:
+
+- **Safety Oversight:** Every session is conducted under instructor guidance and strict safety rules.
+- **Range Equipment:** Recurve bows, arrows, arm guards, and target stands are coordinated for scheduled bookings.
+- **Group Challenges:** Scored target rounds, bullseye shootouts, and team relay challenges tailored for team-building events.
+
+### Who It Is For
+
+- **Teens & Adults:** Accessible introduction to archery in a supportive, relaxed green space.
+- **Corporate Team Building:** Fosters concentration, steady nerves, mutual encouragement, and friendly team contests.
+- **Celebrations & Group Outings:** A memorable centerpiece activity for birthday picnics and graduation outings.
+
+### Booking & Safety Policy
+
+Because archery requires dedicated supervision and safety setup, **prior booking is mandatory**. Contact us with your preferred date, group size, and event schedule so we can advise on availability, safety guidelines, and applicable arrangements.

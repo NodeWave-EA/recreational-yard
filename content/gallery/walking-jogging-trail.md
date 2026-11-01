@@ -1,16 +1,13 @@
 ---
-title: "Walking & Jogging Trail"
-description: "Scenic vistas along the 1.5km crushed-gravel trail looping through Kericho tea plantations."
+title: "Highland Walking & Jogging Paths"
+description: "Scenic paths and open trails for runners, recreational joggers, and walkers surrounded by Kericho's fresh highland scenery."
 category: "scenery"
-badge: "1.5km Loop"
-date: "OCT 2026"
-coverImage:
-  src: "/content/gallery/walking-jogging-trail/cover.webp"
-  alt: "Tea Garden Trail"
+badge: "Highland Trails"
+coverImage: "/content/gallery/walking-jogging-trail/cover.webp"
 featured: true
-order: 4
+order: 7
 ---
 
-## Refreshing Trail Views
+## Running, Jogging & Walking Trails
 
-Follow the path through rolling hills and tea rows. Designed for runners, walkers, and nature enthusiasts seeking fresh highland air.
+Kericho's cool altitude and lush countryside offer an exhilarating environment for endurance running, moderate jogging, and brisk walking. Connect with nature and energize your body on our walking and jogging routes.

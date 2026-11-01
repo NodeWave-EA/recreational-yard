@@ -9,13 +9,11 @@ export async function useEventsCatalog() {
   const selectedStatus = ref('all')
   const sortBy = ref('date-asc')
 
-  // Query events catalog
   const { data: events, pending: isLoading } = await getCollection('events-catalog', 'events', {
     sort: [{ key: 'order', order: 'ASC' }],
     enableLogging: false,
   })
 
-  // Cover image URL extractor
   function getImageSrc(item: EventsCollectionItem): string {
     if (typeof item.coverImage === 'string')
       return item.coverImage
@@ -24,7 +22,6 @@ export async function useEventsCatalog() {
     return ''
   }
 
-  // Status badge style helper
   function getStatusBadge(status?: string) {
     switch (status) {
       case 'registration_open':
@@ -44,7 +41,6 @@ export async function useEventsCatalog() {
     }
   }
 
-  // Extract unique category options from events for filter dropdown
   const categoryOptions = computed(() => {
     const defaultOpt = { id: 'all', label: 'All Categories', icon: 'i-tabler-layout-grid' }
     if (!events.value)
@@ -67,7 +63,6 @@ export async function useEventsCatalog() {
     return [defaultOpt, ...catOpts]
   })
 
-  // Status options for filter dropdown
   const statusOptions = [
     { id: 'all', label: 'All Statuses' },
     { id: 'registration_open', label: 'Registration Open' },
@@ -76,7 +71,6 @@ export async function useEventsCatalog() {
     { id: 'completed', label: 'Completed' },
   ]
 
-  // Sorting options
   const sortOptions = [
     { id: 'date-asc', label: 'Date: Soonest First' },
     { id: 'date-desc', label: 'Date: Latest First' },
@@ -93,24 +87,20 @@ export async function useEventsCatalog() {
     }
   })
 
-  // Filtered and sorted events list
   const filteredEvents = computed<EventsCollectionItem[]>(() => {
     if (!events.value)
       return []
 
     let list = [...events.value]
 
-    // Category Filter
     if (selectedCategory.value !== 'all') {
       list = list.filter(e => e.category === selectedCategory.value)
     }
 
-    // Status Filter
     if (selectedStatus.value !== 'all') {
       list = list.filter(e => e.status === selectedStatus.value)
     }
 
-    // Search Query Filter
     if (searchQuery.value.trim()) {
       const q = searchQuery.value.toLowerCase().trim()
       list = list.filter((e) => {
@@ -131,7 +121,6 @@ export async function useEventsCatalog() {
       })
     }
 
-    // Sorting
     if (sortBy.value === 'date-asc') {
       list.sort((a, b) => {
         const timeA = a.startDate ? new Date(a.startDate).getTime() : Number.MAX_SAFE_INTEGER

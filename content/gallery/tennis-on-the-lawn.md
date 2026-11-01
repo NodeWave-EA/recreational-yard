@@ -1,16 +1,13 @@
 ---
-title: "Tennis on the Lawn"
-description: "Vibrant snapshots of natural grass tennis matches set against the sweeping tea estate landscape of Kericho."
-category: "sports"
-badge: "Grass Courts"
-date: "OCT 2026"
-coverImage:
-  src: "/content/gallery/tennis-on-the-lawn/cover.jpeg"
-  alt: "Lawn Tennis Court"
+title: "Lawn Tennis on Grass"
+description: "Recreational lawn tennis on our natural grass playing surface at KOOMA along the Kericho–Kisumu Highway."
+category: "lawn-games"
+badge: "Lawn Tennis"
+coverImage: "/content/gallery/tennis-on-the-lawn/cover.jpeg"
 featured: true
-order: 2
+order: 3
 ---
 
-## Lawn Tennis Elegance
+## Lawn Tennis on Natural Grass
 
-Immerse yourself in traditional lawn tennis amidst the cool highland breeze. Our grass courts offer optimal footing and pristine scenic views.
+Experience lawn tennis in a classic, active outdoor setting at Recreation Yard Kericho. Our grass playing area is suited for friendly singles and doubles rallies, casual games with friends, and active group team challenges. Prior booking is mandatory.

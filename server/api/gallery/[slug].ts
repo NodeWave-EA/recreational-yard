@@ -14,12 +14,10 @@ export default defineEventHandler(async (event) => {
   let coverImage: string | null = null
   const seenFileNames = new Set<string>()
 
-  // Query Nitro Server Asset Storage (For Vercel Deployment)
   try {
     const storage = useStorage('assets:gallery')
     const keys = await storage.getKeys()
 
-    // Match keys starting with the slug folder (e.g. "badminton:cover.jpeg" or "badminton/cover.jpeg")
     const matchingKeys = keys.filter((k) => {
       const normalized = k.replace(/\\/g, '/').replace(/:/g, '/')
       return normalized.startsWith(`${slug}/`)
@@ -51,10 +49,8 @@ export default defineEventHandler(async (event) => {
       }
     }
   } catch {
-    // Storage query skipped if empty
   }
 
-  // Filesystem Fallback (For Local Dev Server)
   if (images.length === 0) {
     const possiblePaths = [
       path.join(process.cwd(), 'public', 'content', 'gallery', slug),
@@ -94,7 +90,6 @@ export default defineEventHandler(async (event) => {
           }
         })
       } catch {
-        // Fallback complete
       }
     }
   }

@@ -9,13 +9,11 @@ export async function useShopCatalog() {
   const sortBy = ref('default')
   const inStockOnly = ref(false)
 
-  // Fetch shop product catalog
   const { data: products, pending: isLoading } = await getCollection('shop-catalog', 'shop', {
     sort: [{ key: 'order', order: 'ASC' }],
     enableLogging: false,
   })
 
-  // Normalize product properties
   const getTitle = (item: any) => item?.title || item?.name || 'Untitled Product'
 
   const getImageSrc = (item: any) => {
@@ -26,7 +24,6 @@ export async function useShopCatalog() {
     return ''
   }
 
-  // Extract dynamic category options for Nuxt UI SelectMenu
   const categoryOptions = computed(() => {
     const defaultOpt = { id: 'all', label: 'All Categories', icon: 'i-tabler-layout-grid' }
     if (!products.value)
@@ -61,24 +58,20 @@ export async function useShopCatalog() {
     }
   })
 
-  // Reactive product filtering & sorting
   const filteredProducts = computed(() => {
     if (!products.value)
       return []
 
     let list = [...products.value]
 
-    // Category Filter
     if (selectedCategory.value !== 'all') {
       list = list.filter(p => p.category === selectedCategory.value)
     }
 
-    // Stock Filter
     if (inStockOnly.value) {
       list = list.filter(p => p.inStock !== false)
     }
 
-    // Search Query Filter
     if (searchQuery.value.trim()) {
       const q = searchQuery.value.toLowerCase().trim()
       list = list.filter((p) => {
@@ -89,7 +82,6 @@ export async function useShopCatalog() {
       })
     }
 
-    // Sorting
     if (sortBy.value === 'price-low') {
       list.sort((a, b) => (a.price || 0) - (b.price || 0))
     } else if (sortBy.value === 'price-high') {

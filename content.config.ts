@@ -2,7 +2,7 @@ import { defineCollection, defineContentConfig, property, z } from '@nuxt/conten
 
 export default defineContentConfig({
   collections: {
-    // FACILITIES & ATTRACTIONS
+
     facilities: defineCollection({
       type: 'page',
       source: 'facilities/*.md',
@@ -51,7 +51,7 @@ export default defineContentConfig({
 
         operatingHours: z
           .string()
-          .default('7:30 AM – 6:00 PM')
+          .default('Confirm availability when booking')
           .describe('Opening hours specific to this facility'),
 
         ageGroup: property(z.string().default('All Ages'))
@@ -109,7 +109,6 @@ export default defineContentConfig({
       }),
     }),
 
-    // PRICING, PASSES & MEMBERSHIPS
     pricing: defineCollection({
       type: 'page',
       source: 'pricing/*.md',
@@ -126,7 +125,7 @@ export default defineContentConfig({
         category: property(z.string().default('Day Passes'))
           .editor({
             input: 'select',
-            options: ['Day Passes', 'Memberships', 'Facility Hire', 'Group & School Packages'],
+            options: ['Group & School Packages', 'Facility Hire'],
           })
           .describe('Category tab on the pricing page'),
 
@@ -170,7 +169,6 @@ export default defineContentConfig({
       }),
     }),
 
-    // SHOP & EQUIPMENT RENTALS
     shop: defineCollection({
       type: 'page',
       source: 'shop/*.md',
@@ -192,7 +190,7 @@ export default defineContentConfig({
         category: property(z.string().default('General'))
           .editor({
             input: 'select',
-            options: ['Archery Gear', 'Safety Apparel', 'Snacks & Drinks', 'Lawn Games', 'Souvenirs'],
+            options: ['Running Apparel', 'School & Corporate Sportswear', 'Sporting Equipment', 'Lawn Games', 'General'],
           })
           .describe('Shop product category'),
 
@@ -220,7 +218,6 @@ export default defineContentConfig({
       }),
     }),
 
-    // EVENTS & TOURNAMENTS
     events: defineCollection({
       type: 'page',
       source: 'events/*.md',
@@ -304,7 +301,6 @@ export default defineContentConfig({
       }),
     }),
 
-    // PHOTO & VIDEO GALLERY
     gallery: defineCollection({
       type: 'page',
       source: 'gallery/*.md',
@@ -351,7 +347,6 @@ export default defineContentConfig({
       }),
     }),
 
-    // FREQUENTLY ASKED QUESTIONS
     faqs: defineCollection({
       type: 'page',
       source: 'faqs/*.md',
@@ -378,7 +373,6 @@ export default defineContentConfig({
       }),
     }),
 
-    // TESTIMONIALS & REVIEWS
     testimonials: defineCollection({
       type: 'page',
       source: 'testimonials/*.md',

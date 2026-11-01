@@ -1,16 +1,13 @@
 ---
-title: Archery Range
-badge: Precision
-category: sports
-coverImage:
-  src: /content/gallery/archery-range/cover.jpg
-  alt: Target Archery Range
-date: SEP 2026
-description: Target focus and archer form highlights from our sheltered outdoor target archery lanes.
-featured: false
-order: 3
+title: "Supervised Archery Range"
+description: "Target archery sessions, instructor oversight, and friendly target competitions in a controlled outdoor setting at Recreation Yard Kericho."
+category: "archery"
+badge: "Supervised Archery"
+coverImage: "/content/gallery/archery-range/cover.jpg"
+featured: true
+order: 1
 ---
 
-## Precision in the Highlands
+## Supervised Archery at Recreation Yard Kericho
 
-A look inside our target archery facility where patience, discipline, and aim come together in a safe environment.
+Archery at Recreation Yard Kericho is offered as a selected target activity subject to appropriate supervision and safety controls. Our open-air highland range provides structured target shooting, safety instruction, and team-building bullseye challenges. Prior booking is mandatory for all archery sessions.

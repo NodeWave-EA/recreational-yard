@@ -24,13 +24,11 @@ export async function useFacilitiesCatalog() {
   const selectedCategory = ref('all')
   const sortBy = ref('default')
 
-  // Fetch facilities catalog
   const { data: facilities, pending: isLoading } = await getCollection('facilities-list', 'facilities', {
     sort: [{ key: 'order', order: 'ASC' }],
     enableLogging: false,
   })
 
-  // Helper for image extraction
   function getImageSrc(facility: FacilityItem): string {
     if (typeof facility?.coverImage === 'string')
       return facility.coverImage
@@ -39,7 +37,6 @@ export async function useFacilitiesCatalog() {
     return ''
   }
 
-  // Dynamic category options for Nuxt UI SelectMenu
   const categoryOptions = computed(() => {
     const defaultOpt = { id: 'all', label: 'All Grounds & Venues', icon: 'i-tabler-layout-grid' }
     if (!facilities.value)
@@ -76,19 +73,16 @@ export async function useFacilitiesCatalog() {
     }
   })
 
-  // Filtered and sorted facilities
   const filteredFacilities = computed<FacilityItem[]>(() => {
     if (!facilities.value)
       return []
 
     let list = [...facilities.value]
 
-    // Category / Badge Filter
     if (selectedCategory.value !== 'all') {
       list = list.filter(f => (f.badge || f.category) === selectedCategory.value)
     }
 
-    // Search Query Filter
     if (searchQuery.value.trim()) {
       const q = searchQuery.value.toLowerCase().trim()
       list = list.filter((f) => {
@@ -99,7 +93,6 @@ export async function useFacilitiesCatalog() {
       })
     }
 
-    // Sorting
     if (sortBy.value === 'title-asc') {
       list.sort((a, b) => (a.title || '').localeCompare(b.title || ''))
     } else if (sortBy.value === 'title-desc') {

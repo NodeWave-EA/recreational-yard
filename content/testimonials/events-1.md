@@ -1,9 +1,9 @@
 ---
-author: "Amina Hassan"
-role: "Corporate Event Host"
+author: "David Ochieng"
+role: "Corporate Team-Building Lead"
 category: "Events & Groups"
-comment: "We hosted our annual corporate retreat at the Tea Garden Pavilion. From the grass volleyball tournament to the private BBQ lawn setup, the team handled everything seamlessly."
+comment: "Hosting our annual team-building retreat at Recreation Yard Kericho was an outstanding experience. The combination of lawn tennis on grass, cornhole challenges, and supervised archery brought out tremendous energy and camaraderie among our staff. Advance planning and clear coordination made the entire day seamless."
 rating: 5
-avatar: "https://robohash.org/amina-hassan"
 featured: true
+order: 1
 ---

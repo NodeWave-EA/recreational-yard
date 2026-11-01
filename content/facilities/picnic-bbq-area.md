@@ -1,37 +1,57 @@
 ---
-title: "Picnic & BBQ Area"
-description: "Shaded outdoor seating spots, wooden tables, and dedicated grill stations."
-category: "Social & Family"
-icon: "i-tabler-grill"
+title: "Picnic & Outdoor Leisure Grounds"
+description: "Relax on scenic green lawns with our bring-your-own-refreshments picnic model at Recreation Yard Kericho."
 coverImage:
   src: "/content/gallery/picnic-bbq-area/cover.jpeg"
-  alt: "Picnic and BBQ Area"
+  alt: "Scenic green lawns for picnic and outdoor leisure"
+quote:
+  text: "All visitors must maintain cleanliness, dispose of waste responsibly, and respect fellow visitors."
+  author: "Recreation Yard Limited"
+category: "Relaxation & Picnics"
+icon: "i-tabler-picnic-table"
 features:
-  - "Dedicated BBQ grill stations"
-  - "Shaded wooden picnic tables"
-  - "Trash disposal & wash stations"
-  - "Lawn space for group gatherings"
-capacity: "Groups up to 20 per spot"
-pricing:
-  rate: "KES 2,000"
-  unit: "half day"
-  note: "Grill station & charcoal access"
-featured: false
-order: 5
-badge: "Shaded Spots"
+  - "Scenic green lawns for leisure, picnics, and open-air relaxation"
+  - "Bring-your-own meals and permitted refreshments policy"
+  - "Ample space for family outings, friends' meet-ups, and community gatherings"
+  - "Combine relaxation with selected lawn games like badminton, cornhole, and chess"
+rules:
+  - "Prior booking is strictly mandatory before travelling to the venue"
+  - "Bring-your-own-meals model; all waste must be gathered and disposed of responsibly"
+  - "Respect fellow visitors and observe venue rules regarding refreshments and music"
+  - "Grounds must remain clean and undamaged"
+operatingHours: "Prior booking mandatory — please confirm date and arrival time"
+ageGroup: "All Ages"
+capacity: "Family and group picnic areas"
+bookingRequired: true
+featured: true
+order: 4
+badge: "Bring Your Own Picnic"
 cta:
-  label: "Reserve BBQ Spot"
-  to: "/contact?facility=picnic-bbq-area"
+  label: "Reserve Picnic Grounds"
+  to: "/contact?type=facility-booking&facility=picnic-bbq-area"
 ---
 
-## Outdoor Family Feasts
+## Picnic & Outdoor Leisure
 
-Gather friends and family for open-air lunches on the lawn. Each picnic station includes grill setups, shaded seating, and clean utilities.
+At **Recreation Yard Kericho**, located at KOOMA along the Kericho–Kisumu Highway, we offer a dedicated picnic-style recreational experience that allows you to enjoy our green outdoor environment on your own terms. Surrounded by the fresh air and lush scenery of Kericho, our grounds provide the ideal setting to unwind, recharge, and connect with loved ones.
 
-:u-alert{icon="i-tabler-flame" color="neutral" variant="subtle" title="Grill Service" description="Charcoal and basic grilling utensils are provided upon check-in."}
+### Our Bring-Your-Own-Refreshments Model
 
-### Station Perks
+We operate a flexible, customer-centered **bring-your-own-meals-and-refreshments** picnic model:
 
-- Dedicated charcoal grill unit
-- Seating for up to 10 guests per table
-- Easy access to playground and restrooms
+- **Pack Your Favorites:** Bring your own picnic basket, meals, snacks, and permitted refreshments.
+- **Leisure & Play Combined:** Pair your meal with lawn games such as badminton, lawn tennis, cornhole, or chess.
+- **Relaxed Atmosphere:** Spread out blankets or arrange camp chairs on open green lawns.
+
+### Suitable Occasions
+
+- **Family Picnics:** Quality time together outdoors for all generations, from young children to grandparents.
+- **Friends' Meet-ups:** Catch up in an unhurried, peaceful open-air setting away from urban bustle.
+- **Birthday Picnics & Graduations:** Celebrate life milestones in a natural, vibrant atmosphere.
+- **Community & Social Gatherings:** Informal fellowship, church group outings, and club meet-ups.
+
+### Cleanliness & Booking Policy
+
+We take pride in maintaining clean, pristine grounds for everyone. All visitors are required to dispose of waste responsibly and respect the recreational environment.
+
+**Prior booking is strictly mandatory.** Please contact us before travelling to KOOMA to confirm date availability, group size, applicable charges, and permitted arrangements.

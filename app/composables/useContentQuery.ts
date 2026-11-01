@@ -282,9 +282,6 @@ export function useContentQuery() {
     })
   }
 
-  /**
-   * queryCollectionSearchSections wrapper with eager resolution for full-text body indexing
-   */
   const getSearchSections = async <K extends keyof PageCollections>(
     asyncKey: string,
     collectionName: K,

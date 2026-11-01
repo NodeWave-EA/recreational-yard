@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 const siteUrl = process.env.NUXT_PUBLIC_SITE_URL
   || (process.env.NODE_ENV === 'production' ? 'https://recreational-yard.vercel.app' : 'http://localhost:3000')
 
@@ -24,7 +23,7 @@ export default defineNuxtConfig({
         { name: 'mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
         { name: 'apple-mobile-web-app-title', content: 'RYK' },
-        { name: 'application-name', content: 'Recreational Yard' },
+        { name: 'application-name', content: 'Recreation Yard Limited' },
       ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/favicon-96x96.png', sizes: '96x96' },
@@ -52,8 +51,8 @@ export default defineNuxtConfig({
 
   site: {
     url: siteUrl,
-    name: 'Recreation Yard',
-    description: 'Kericho\'s premier outdoor recreation destination for sports, family activities, events, and relaxation.',
+    name: 'Recreation Yard Limited',
+    description: 'Your space for recreation, active living, sports and shared experiences.',
     defaultLocale: 'en',
   },
 
@@ -69,16 +68,15 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    // Server-only private keys
+
     smtpHost: process.env.NUXT_SMTP_HOST || 'smtp.gmail.com',
     smtpPort: process.env.NUXT_SMTP_PORT || '587',
     smtpUser: process.env.NUXT_SMTP_USER || '',
     smtpPass: process.env.NUXT_SMTP_PASS || '',
-    smtpFrom: process.env.NUXT_SMTP_FROM || 'info@moderatelimited.co.ke',
-    contactRecipient: process.env.NUXT_CONTACT_RECIPIENT || 'info@moderatelimited.co.ke',
+    smtpFrom: process.env.NUXT_SMTP_FROM || 'relax@recreationyard.com',
+    contactRecipient: process.env.NUXT_CONTACT_RECIPIENT || 'relax@recreationyard.com',
     turnstileSecretKey: process.env.NUXT_TURNSTILE_SECRET_KEY || '',
 
-    // Client-accessible public keys
     public: {
       turnstileSiteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY || '',
       siteUrl,
@@ -103,8 +101,7 @@ export default defineNuxtConfig({
     '/testimonials/**': { prerender: true },
     '/contact': { prerender: true },
 
-    // Interactive / Private Routes (Client-side rendering)
-    '/search': { ssr: false },
+    '/search': { ssr: false, robots: false },
     '/editor/**': { ssr: true },
     '/__nuxt_studio/**': { ssr: true },
   },
@@ -184,9 +181,9 @@ export default defineNuxtConfig({
   prerender: {
     crawlLinks: true,
     ignore: [
-      '/**?*', // Ignores standard page query parameters
-      '/_vercel/image/**', // Prevents the Vercel image compilation crash
-      '/_vercel/image', // Catches base Vercel image routing variations
+      '/**?*',
+      '/_vercel/image/**',
+      '/_vercel/image',
     ],
   },
 
@@ -236,6 +233,7 @@ export default defineNuxtConfig({
 
   sitemap: {
     enabled: true,
+    zeroRuntime: true,
     autoI18n: true,
     discoverImages: true,
     discoverVideos: true,
@@ -252,6 +250,7 @@ export default defineNuxtConfig({
   },
 
   studio: {
+    dev: false,
     route: '/editor',
     git: {
       commit: {
