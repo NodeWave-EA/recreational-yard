@@ -107,8 +107,8 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="py-4 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
-    <UContainer v-if="facility" class="space-y-6 sm:space-y-8 px-3 sm:px-6 lg:px-8">
+  <div class="py-4 sm:py-10 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
+    <UContainer v-if="facility" class="space-y-6 px-3 sm:px-6 lg:px-8">
       <NuxtLink
         to="/facilities"
         class="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-500 hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
@@ -117,9 +117,9 @@ useSchemaOrg([{
         <span>Back to All Facilities</span>
       </NuxtLink>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
         <div class="lg:col-span-8 space-y-6 sm:space-y-8 min-w-0">
-          <div class="relative rounded-none sm:rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900 border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs">
+          <div class="relative rounded-xs overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-transparent">
             <NuxtImg
               v-if="coverImgSrc"
               :src="coverImgSrc"
@@ -136,7 +136,7 @@ useSchemaOrg([{
               v-if="facility.badge"
               color="primary"
               variant="soft"
-              class="absolute top-3 left-3 sm:top-4 sm:left-4 font-bold text-xs rounded-md uppercase backdrop-blur-md"
+              class="absolute top-3 left-3 font-bold text-xs rounded-xs uppercase backdrop-blur-md"
             >
               {{ facility.badge }}
             </UBadge>
@@ -153,7 +153,7 @@ useSchemaOrg([{
 
           <div
             v-if="facility.quote?.text"
-            class="py-2 px-3 sm:px-4 rounded-none sm:rounded-md border-l-4 border-l-lime-500 border-y-0 sm:border-y border-r-0 sm:border-r border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 space-y-1"
+            class="pl-4 py-1.5 border-l-2 border-lime-500 space-y-1"
           >
             <p class="text-xs sm:text-sm font-medium italic text-neutral-800 dark:text-neutral-200 leading-relaxed">
               "{{ facility.quote.text }}"
@@ -163,26 +163,34 @@ useSchemaOrg([{
             </p>
           </div>
 
-          <div v-if="facility.features?.length" class="pt-5 sm:pt-6 border-t border-neutral-200 dark:border-neutral-800 space-y-3">
+          <div v-if="facility.features?.length" class="space-y-3 pt-4 border-t border-neutral-200 dark:border-neutral-800">
             <h3 class="text-xs font-black uppercase tracking-wider text-neutral-400 flex items-center gap-2">
               <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500" />
               Equipment & Features Included
             </h3>
-            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 text-xs text-neutral-700 dark:text-neutral-300">
-              <li v-for="(feat, idx) in facility.features" :key="idx" class="flex items-center gap-2 font-medium">
+            <div class="grid grid-cols-1 sm:grid-cols-2 border border-neutral-200 dark:border-neutral-800 rounded-xs overflow-hidden divide-y sm:divide-y-0 divide-x-0 sm:divide-x divide-neutral-200 dark:divide-neutral-800">
+              <div
+                v-for="(feat, idx) in facility.features"
+                :key="idx"
+                class="p-3 text-xs text-neutral-700 dark:text-neutral-300 font-medium flex items-center gap-2 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors"
+              >
                 <UIcon name="i-tabler-check" class="size-3.5 text-lime-500 shrink-0" />
                 <span>{{ feat }}</span>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
 
-          <div v-if="facility.rules?.length" class="pt-5 sm:pt-6 border-t border-neutral-200 dark:border-neutral-800 space-y-3">
+          <div v-if="facility.rules?.length" class="space-y-3 pt-4 border-t border-neutral-200 dark:border-neutral-800">
             <h3 class="text-xs font-black uppercase tracking-wider text-neutral-400 flex items-center gap-2">
               <UIcon name="i-tabler-shield-check" class="size-4 text-lime-500" />
               Dress Code & Safety Rules
             </h3>
-            <ul class="space-y-2 text-xs text-neutral-700 dark:text-neutral-300">
-              <li v-for="(rule, idx) in facility.rules" :key="idx" class="flex items-start gap-2 font-medium">
+            <ul class="border border-neutral-200 dark:border-neutral-800 rounded-xs overflow-hidden divide-y divide-neutral-200 dark:divide-neutral-800">
+              <li
+                v-for="(rule, idx) in facility.rules"
+                :key="idx"
+                class="p-3 text-xs text-neutral-700 dark:text-neutral-300 font-medium flex items-start gap-2 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors"
+              >
                 <UIcon name="i-tabler-alert-circle" class="size-4 text-amber-500 shrink-0 mt-0.5" />
                 <span>{{ rule }}</span>
               </li>
@@ -191,38 +199,36 @@ useSchemaOrg([{
 
           <NuxtLink
             :to="`/gallery/${facility.stem.split('/').pop()}`"
-            class="group block p-0 sm:p-5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs"
+            class="group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-xs border border-neutral-200 dark:border-neutral-800 bg-transparent hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200"
           >
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
-              <div class="flex items-center gap-3 min-w-0">
-                <div class="flex size-9 sm:size-10 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400">
-                  <UIcon name="i-tabler-photo" class="size-5" />
-                </div>
-                <div class="space-y-0.5 min-w-0">
-                  <h4 class="text-sm font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
-                    Facility Photo Album
-                  </h4>
-                  <p class="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-1">
-                    Explore full photo gallery collections for this specific facility.
-                  </p>
-                </div>
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="flex size-9 shrink-0 items-center justify-center rounded-xs bg-lime-500/10 text-lime-600 dark:text-lime-400 border border-neutral-200/50 dark:border-neutral-800/50">
+                <UIcon name="i-tabler-photo" class="size-5" />
               </div>
-
-              <span class="inline-flex items-center gap-1 font-bold text-xs text-lime-600 dark:text-lime-400 group-hover:translate-x-1 transition-transform shrink-0">
-                <span>View Gallery</span>
-                <UIcon name="i-tabler-arrow-right" class="size-4" />
-              </span>
+              <div class="space-y-0.5 min-w-0">
+                <h4 class="text-sm font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
+                  Facility Photo Album
+                </h4>
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-1">
+                  Explore full photo gallery collections for this specific facility.
+                </p>
+              </div>
             </div>
+
+            <span class="inline-flex items-center gap-1 font-bold text-xs text-lime-600 dark:text-lime-400 group-hover:translate-x-1 transition-transform shrink-0">
+              <span>View Gallery</span>
+              <UIcon name="i-tabler-arrow-right" class="size-4" />
+            </span>
           </NuxtLink>
 
-          <div class="prose dark:prose-invert max-w-none text-xs leading-relaxed pt-5 sm:pt-6 border-t border-neutral-200 dark:border-neutral-800">
+          <div class="prose dark:prose-invert max-w-none text-xs leading-relaxed pt-4 border-t border-neutral-200 dark:border-neutral-800">
             <ContentRenderer :value="facility" />
           </div>
 
-          <div v-if="activeTestimonials.length" class="pt-6 sm:pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4 sm:space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-3 sm:pb-4">
+          <div v-if="activeTestimonials.length" class="space-y-4 pt-4 border-t border-neutral-200 dark:border-neutral-800">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-200 dark:border-neutral-800 pb-3">
               <div>
-                <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] mb-1 rounded-md">
+                <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] mb-1 rounded-xs">
                   Visitor Reviews
                 </UBadge>
                 <h3 class="text-lg sm:text-xl font-black text-neutral-950 dark:text-white">
@@ -230,14 +236,14 @@ useSchemaOrg([{
                 </h3>
               </div>
 
-              <div class="flex items-center p-1 rounded-md bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0 self-start sm:self-auto">
+              <div class="flex items-center p-1 rounded-xs bg-transparent border border-neutral-200 dark:border-neutral-800 shrink-0 self-start sm:self-auto">
                 <UButton
                   size="xs"
                   :color="testimonialViewMode === 'grid' ? 'primary' : 'neutral'"
                   :variant="testimonialViewMode === 'grid' ? 'solid' : 'ghost'"
                   icon="i-tabler-layout-grid"
                   aria-label="Grid View"
-                  class="rounded-md font-bold"
+                  class="rounded-xs font-bold cursor-pointer"
                   @click="testimonialViewMode = 'grid'"
                 />
                 <UButton
@@ -246,18 +252,21 @@ useSchemaOrg([{
                   :variant="testimonialViewMode === 'list' ? 'solid' : 'ghost'"
                   icon="i-tabler-list"
                   aria-label="List View"
-                  class="rounded-md font-bold"
+                  class="rounded-xs font-bold cursor-pointer"
                   @click="testimonialViewMode = 'list'"
                 />
               </div>
             </div>
 
-            <div v-if="testimonialViewMode === 'grid'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div
+              v-if="testimonialViewMode === 'grid'"
+              class="border border-neutral-200 dark:border-neutral-800 rounded-xs overflow-hidden bg-transparent grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 divide-x-0 sm:divide-x divide-neutral-200 dark:divide-neutral-800"
+            >
               <NuxtLink
                 v-for="(item, idx) in activeTestimonials"
                 :key="idx"
                 :to="item.path || '/testimonials'"
-                class="group block p-0 sm:p-4 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 space-y-2.5 sm:space-y-3 min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-3 sm:pb-0"
+                class="group block p-4 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200 space-y-3 min-w-0"
               >
                 <div class="flex items-center justify-between gap-2">
                   <div class="flex items-center gap-1 text-lime-500">
@@ -268,7 +277,7 @@ useSchemaOrg([{
                       class="size-3.5"
                     />
                   </div>
-                  <UBadge v-if="item.category" color="neutral" variant="subtle" class="text-[9px] uppercase font-bold px-1.5 py-0.5 rounded-md">
+                  <UBadge v-if="item.category" color="neutral" variant="subtle" class="text-[9px] uppercase font-bold px-1.5 py-0.5 rounded-xs border border-neutral-200/60 dark:border-neutral-800/60">
                     {{ item.category }}
                   </UBadge>
                 </div>
@@ -277,18 +286,18 @@ useSchemaOrg([{
                   "{{ item.comment }}"
                 </p>
 
-                <div class="flex items-center gap-2.5 pt-2 border-t border-neutral-100 dark:border-neutral-800">
+                <div class="flex items-center gap-2.5 pt-3 border-t border-neutral-200/60 dark:border-neutral-800/60">
                   <NuxtImg
                     v-if="item.avatar"
                     :src="item.avatar"
                     :alt="item.author"
                     format="webp"
                     quality="80"
-                    class="size-8 rounded-md object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
+                    class="size-8 rounded-xs object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
                   />
                   <div
                     v-else
-                    class="flex size-8 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 font-bold text-xs"
+                    class="flex size-8 shrink-0 items-center justify-center rounded-xs bg-lime-500/10 text-lime-600 dark:text-lime-400 font-bold text-xs border border-neutral-200/50 dark:border-neutral-800/50"
                   >
                     {{ item.author.charAt(0) }}
                   </div>
@@ -305,12 +314,15 @@ useSchemaOrg([{
               </NuxtLink>
             </div>
 
-            <div v-else-if="testimonialViewMode === 'list'" class="space-y-3">
+            <div
+              v-else-if="testimonialViewMode === 'list'"
+              class="border border-neutral-200 dark:border-neutral-800 rounded-xs overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800"
+            >
               <NuxtLink
                 v-for="(item, idx) in activeTestimonials"
                 :key="idx"
                 :to="item.path || '/testimonials'"
-                class="group block p-0 sm:p-4 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-3 sm:pb-0"
+                class="group block p-4 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200 min-w-0"
               >
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
                   <div class="space-y-1.5 min-w-0 flex-1">
@@ -323,7 +335,7 @@ useSchemaOrg([{
                           class="size-3.5"
                         />
                       </div>
-                      <UBadge v-if="item.category" color="neutral" variant="subtle" class="text-[9px] uppercase font-bold px-1.5 py-0.5 rounded-md">
+                      <UBadge v-if="item.category" color="neutral" variant="subtle" class="text-[9px] uppercase font-bold px-1.5 py-0.5 rounded-xs border border-neutral-200/60 dark:border-neutral-800/60">
                         {{ item.category }}
                       </UBadge>
                     </div>
@@ -333,18 +345,18 @@ useSchemaOrg([{
                     </p>
                   </div>
 
-                  <div class="flex items-center gap-2.5 pt-2 sm:pt-0 shrink-0 border-t sm:border-t-0 border-neutral-100 dark:border-neutral-800">
+                  <div class="flex items-center gap-2.5 pt-2 sm:pt-0 shrink-0">
                     <NuxtImg
                       v-if="item.avatar"
                       :src="item.avatar"
                       :alt="item.author"
                       format="webp"
                       quality="80"
-                      class="size-8 rounded-md object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
+                      class="size-8 rounded-xs object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
                     />
                     <div
                       v-else
-                      class="flex size-8 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 font-bold text-xs"
+                      class="flex size-8 shrink-0 items-center justify-center rounded-xs bg-lime-500/10 text-lime-600 dark:text-lime-400 font-bold text-xs border border-neutral-200/50 dark:border-neutral-800/50"
                     >
                       {{ item.author.charAt(0) }}
                     </div>
@@ -359,30 +371,28 @@ useSchemaOrg([{
             </div>
           </div>
 
-          <div v-if="activeFaqs.length" class="pt-6 sm:pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
-            <div class="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-3">
-              <div>
-                <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] mb-1 rounded-md">
-                  Court & Venue FAQ
-                </UBadge>
-                <h3 class="text-lg sm:text-xl font-black text-neutral-950 dark:text-white">
-                  Frequently Asked Questions
-                </h3>
-              </div>
+          <div v-if="activeFaqs.length" class="space-y-4 pt-4 border-t border-neutral-200 dark:border-neutral-800">
+            <div class="border-b border-neutral-200 dark:border-neutral-800 pb-3">
+              <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] mb-1 rounded-xs">
+                Court & Venue FAQ
+              </UBadge>
+              <h3 class="text-lg sm:text-xl font-black text-neutral-950 dark:text-white">
+                Frequently Asked Questions
+              </h3>
             </div>
 
-            <div class="space-y-3">
+            <div class="border border-neutral-200 dark:border-neutral-800 rounded-xs overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800">
               <div
                 v-for="(faq, idx) in activeFaqs"
                 :key="idx"
-                class="rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 p-0 sm:p-4 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-3 sm:pb-0"
+                class="p-4 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors duration-200"
               >
                 <button
                   type="button"
                   class="w-full flex items-center justify-between text-left font-extrabold text-xs sm:text-sm text-neutral-950 dark:text-white group cursor-pointer"
                   @click="toggleFaqItem(idx)"
                 >
-                  <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-3 sm:pr-4">
+                  <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-4">
                     {{ faq.question }}
                   </span>
                   <UIcon
@@ -402,7 +412,7 @@ useSchemaOrg([{
                 >
                   <p
                     v-show="openFaqItems.includes(idx)"
-                    class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed pr-2 pt-2 font-medium overflow-hidden"
+                    class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed pr-2 pt-3 font-medium overflow-hidden"
                   >
                     {{ faq.answer }}
                   </p>
@@ -412,11 +422,11 @@ useSchemaOrg([{
           </div>
         </div>
 
-        <div class="lg:col-span-4 lg:sticky lg:top-[calc(var(--ui-header-height,4rem)+1.5rem)] space-y-6 pt-4 lg:pt-0 border-t lg:border-t-0 border-neutral-200 dark:border-neutral-800">
-          <div class="p-0 sm:p-6 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs space-y-4 sm:space-y-6">
+        <div class="lg:col-span-4 lg:sticky lg:top-[calc(var(--ui-header-height,4rem)+1.5rem)] pt-4 lg:pt-0">
+          <div class="p-5 sm:p-6 rounded-xs border border-neutral-200 dark:border-neutral-800 bg-transparent hover:bg-neutral-100/20 dark:hover:bg-neutral-800/10 transition-colors duration-200 space-y-5">
             <div v-if="facility.pricing">
               <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">Booking Rate</span>
-              <div class="text-xl sm:text-2xl font-black text-neutral-950 dark:text-white mt-0.5 sm:mt-1">
+              <div class="text-xl sm:text-2xl font-black text-neutral-950 dark:text-white mt-1">
                 {{ facility.pricing.rate }}
                 <span v-if="facility.pricing.unit" class="text-xs font-medium text-neutral-400">/ {{ facility.pricing.unit }}</span>
               </div>
@@ -425,29 +435,29 @@ useSchemaOrg([{
               </p>
             </div>
 
-            <ul class="space-y-2.5 sm:space-y-3 text-xs divide-y divide-neutral-200/60 dark:divide-neutral-800/60">
-              <li v-if="facility.capacity" class="flex items-center justify-between pt-2.5 sm:pt-3 first:pt-0">
+            <ul class="space-y-3 text-xs divide-y divide-neutral-200/60 dark:divide-neutral-800/60">
+              <li v-if="facility.capacity" class="flex items-center justify-between pt-3 first:pt-0">
                 <span class="text-neutral-400 font-medium">Guest Capacity</span>
                 <span class="font-bold text-neutral-950 dark:text-white">{{ facility.capacity }}</span>
               </li>
-              <li v-if="facility.operatingHours" class="flex items-center justify-between pt-2.5 sm:pt-3">
+              <li v-if="facility.operatingHours" class="flex items-center justify-between pt-3">
                 <span class="text-neutral-400 font-medium">Operating Hours</span>
                 <span class="font-bold text-neutral-950 dark:text-white">{{ facility.operatingHours }}</span>
               </li>
-              <li v-if="facility.ageGroup" class="flex items-center justify-between pt-2.5 sm:pt-3">
+              <li v-if="facility.ageGroup" class="flex items-center justify-between pt-3">
                 <span class="text-neutral-400 font-medium">Target Age</span>
                 <span class="font-bold text-neutral-950 dark:text-white">{{ facility.ageGroup }}</span>
               </li>
             </ul>
 
-            <div class="space-y-2.5 sm:space-y-3 pt-2">
+            <div class="space-y-3 pt-2">
               <UButton
                 :to="`/contact?facility=${route.path.split('/').pop()}`"
                 block
                 size="lg"
                 color="primary"
                 icon="i-tabler-calendar-event"
-                class="font-black uppercase text-xs text-neutral-950 rounded-md py-3.5 cursor-pointer justify-center"
+                class="font-black uppercase text-xs text-neutral-950 rounded-xs py-3.5 cursor-pointer justify-center"
               >
                 Reserve Slot
               </UButton>
@@ -458,7 +468,7 @@ useSchemaOrg([{
                 color="neutral"
                 variant="ghost"
                 icon="i-tabler-brand-whatsapp"
-                class="font-bold text-xs rounded-md py-2.5 text-emerald-600 dark:text-emerald-400 cursor-pointer justify-center"
+                class="font-bold text-xs rounded-xs py-2.5 text-emerald-600 dark:text-emerald-400 cursor-pointer justify-center border border-neutral-200/60 dark:border-neutral-800/60"
               >
                 Chat on WhatsApp
               </UButton>

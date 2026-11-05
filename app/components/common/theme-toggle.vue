@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const { icon, ariaLabel, preference, toggleTheme } = useTheme()
 
-// Descriptive text for the tooltip based on the current state
 const tooltipText = computed(() => {
   switch (preference.value) {
     case 'light':
@@ -14,8 +13,6 @@ const tooltipText = computed(() => {
   }
 })
 
-// Register keyboard shortcut: Shift + T
-// `usingInput: false` prevents accidental triggering when typing in forms
 defineShortcuts({
   shift_t: {
     usingInput: false,

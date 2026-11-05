@@ -55,11 +55,11 @@ useSchemaOrg([{
 
 <template>
   <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-12 sm:pb-16 transition-colors duration-300 w-full overflow-x-clip">
-    <div class="pt-4 sm:pt-10 pb-4 sm:pb-6 border-b border-neutral-200/80 dark:border-neutral-800/80">
+    <div class="pt-4 sm:pt-10 pb-4 sm:pb-6 border-b border-neutral-200 dark:border-neutral-800">
       <UContainer class="px-3 sm:px-6 lg:px-8">
         <div class="space-y-2 sm:space-y-3 text-left sm:text-center">
           <div class="inline-flex">
-            <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-2.5 sm:px-3 py-0.5 rounded-md">
+            <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-2.5 sm:px-3 py-0.5 rounded-xs">
               <UIcon name="i-tabler-search" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
               <span>Search Catalog</span>
             </UBadge>
@@ -69,14 +69,14 @@ useSchemaOrg([{
             Explore Recreation Yard
           </h1>
 
-          <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-4xl mx-auto font-medium">
             Search facilities, lawn games, sports merchandise, and community activities. Use the filters below to narrow your search results.
           </p>
         </div>
       </UContainer>
     </div>
 
-    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-2.5 sm:py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-none sm:shadow-xs transition-all">
+    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/90 dark:bg-neutral-950/90 backdrop-blur-md py-2.5 sm:py-3 border-b border-neutral-200 dark:border-neutral-800 transition-all">
       <UContainer class="px-3 sm:px-6 lg:px-8">
         <div class="flex items-center gap-2 sm:gap-3 w-full min-w-0">
           <div class="flex-1 min-w-0">
@@ -86,7 +86,7 @@ useSchemaOrg([{
               placeholder="Type keywords to search catalog..."
               size="md"
               color="primary"
-              class="w-full rounded-md"
+              class="w-full rounded-xs"
               clearable
               autofocus
             />
@@ -97,23 +97,23 @@ useSchemaOrg([{
             variant="outline"
             icon="i-tabler-adjustments-horizontal"
             size="md"
-            class="lg:hidden rounded-md font-bold text-xs shrink-0 uppercase cursor-pointer"
+            class="lg:hidden rounded-xs font-bold text-xs shrink-0 uppercase cursor-pointer"
             @click="isMobileFiltersOpen = true"
           >
             <span class="hidden sm:inline">Filters</span>
-            <UBadge v-if="activeFilterCount > 0" color="primary" size="sm" class="ml-0.5 sm:ml-1 rounded-md font-black text-[10px]">
+            <UBadge v-if="activeFilterCount > 0" color="primary" size="sm" class="ml-0.5 sm:ml-1 rounded-xs font-black font-mono text-[10px]">
               {{ activeFilterCount }}
             </UBadge>
           </UButton>
 
-          <div class="flex items-center p-1 rounded-md bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0">
+          <div class="flex items-center p-1 rounded-xs bg-transparent border border-neutral-200 dark:border-neutral-800 shrink-0">
             <UButton
               size="xs"
               :color="viewMode === 'grid' ? 'primary' : 'neutral'"
               :variant="viewMode === 'grid' ? 'solid' : 'ghost'"
               icon="i-tabler-layout-grid"
               aria-label="Grid View"
-              class="rounded-md font-bold cursor-pointer"
+              class="rounded-xs font-bold cursor-pointer"
               @click="viewMode = 'grid'"
             />
             <UButton
@@ -122,7 +122,7 @@ useSchemaOrg([{
               :variant="viewMode === 'list' ? 'solid' : 'ghost'"
               icon="i-tabler-list"
               aria-label="List View"
-              class="rounded-md font-bold cursor-pointer"
+              class="rounded-xs font-bold cursor-pointer"
               @click="viewMode = 'list'"
             />
           </div>
@@ -132,11 +132,11 @@ useSchemaOrg([{
 
     <UContainer class="pt-4 sm:pt-8 px-3 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8 items-start">
-        <aside class="hidden lg:block lg:col-span-1 space-y-6 sticky top-[calc(var(--ui-header-height,4rem)+4.5rem)] h-fit p-4 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs">
+        <aside class="hidden lg:block lg:col-span-1 space-y-5 sticky top-[calc(var(--ui-header-height,4rem)+4.5rem)] h-fit p-5 rounded-sm border border-neutral-200 dark:border-neutral-800 bg-transparent hover:bg-neutral-100/20 dark:hover:bg-neutral-800/10 transition-colors duration-200">
           <div class="flex items-center justify-between pb-3 border-b border-neutral-200 dark:border-neutral-800">
             <div class="flex items-center gap-2">
               <UIcon name="i-tabler-adjustments-horizontal" class="size-4 text-lime-500" />
-              <h3 class="font-black text-xs uppercase tracking-wider text-neutral-900 dark:text-white">
+              <h3 class="font-black text-xs uppercase tracking-wider text-neutral-950 dark:text-white">
                 Filters
               </h3>
             </div>
@@ -166,7 +166,7 @@ useSchemaOrg([{
               option-attribute="label"
               searchable
               placeholder="Select Category..."
-              class="w-full rounded-md"
+              class="w-full rounded-xs"
             >
               <template #leading>
                 <UIcon :name="selectedCategoryMeta.icon" class="size-4 text-lime-500 shrink-0" />
@@ -191,7 +191,7 @@ useSchemaOrg([{
                 placeholder="Min"
                 size="xs"
                 color="neutral"
-                class="rounded-md"
+                class="rounded-xs"
               />
               <UInput
                 v-model="maxPrice"
@@ -199,7 +199,7 @@ useSchemaOrg([{
                 placeholder="Max"
                 size="xs"
                 color="neutral"
-                class="rounded-md"
+                class="rounded-xs"
               />
             </div>
           </div>
@@ -226,7 +226,7 @@ useSchemaOrg([{
               label-key="label"
               value-attribute="id"
               option-attribute="label"
-              class="w-full rounded-md"
+              class="w-full rounded-xs"
             />
           </div>
 
@@ -236,7 +236,7 @@ useSchemaOrg([{
               variant="soft"
               block
               size="xs"
-              class="font-bold rounded-md text-[11px] cursor-pointer"
+              class="font-bold rounded-xs text-[11px] cursor-pointer"
               @click="resetFilters"
             >
               Clear All Filters
@@ -249,22 +249,22 @@ useSchemaOrg([{
             <div class="flex flex-wrap items-center gap-2">
               <span class="font-bold text-neutral-400 mr-1">Active:</span>
 
-              <UBadge v-if="searchQuery" color="primary" variant="soft" class="rounded-md font-bold text-[11px] py-0.5 px-2 flex items-center gap-1.5">
+              <UBadge v-if="searchQuery" color="primary" variant="soft" class="rounded-xs font-bold text-[11px] py-0.5 px-2 flex items-center gap-1.5">
                 <span>Query: "{{ searchQuery }}"</span>
                 <UIcon name="i-tabler-x" class="size-3.5 cursor-pointer" @click="searchQuery = ''" />
               </UBadge>
 
-              <UBadge v-if="selectedCollection !== 'all'" color="primary" variant="soft" class="rounded-md font-bold text-[11px] py-0.5 px-2 flex items-center gap-1.5">
+              <UBadge v-if="selectedCollection !== 'all'" color="primary" variant="soft" class="rounded-xs font-bold text-[11px] py-0.5 px-2 flex items-center gap-1.5">
                 <span>Category: {{ selectedCategoryMeta.label }}</span>
                 <UIcon name="i-tabler-x" class="size-3.5 cursor-pointer" @click="selectedCollection = 'all'" />
               </UBadge>
 
-              <UBadge v-if="minPrice || maxPrice" color="primary" variant="soft" class="rounded-md font-bold text-[11px] py-0.5 px-2 flex items-center gap-1.5">
+              <UBadge v-if="minPrice || maxPrice" color="primary" variant="soft" class="rounded-xs font-bold text-[11px] py-0.5 px-2 flex items-center gap-1.5">
                 <span>KES {{ minPrice || '0' }} - {{ maxPrice || '∞' }}</span>
                 <UIcon name="i-tabler-x" class="size-3.5 cursor-pointer" @click="minPrice = ''; maxPrice = ''" />
               </UBadge>
 
-              <UBadge v-if="inStockOnly" color="primary" variant="soft" class="rounded-md font-bold text-[11px] py-0.5 px-2 flex items-center gap-1.5">
+              <UBadge v-if="inStockOnly" color="primary" variant="soft" class="rounded-xs font-bold text-[11px] py-0.5 px-2 flex items-center gap-1.5">
                 <span>Available Only</span>
                 <UIcon name="i-tabler-x" class="size-3.5 cursor-pointer" @click="inStockOnly = false" />
               </UBadge>
@@ -281,7 +281,7 @@ useSchemaOrg([{
             </div>
 
             <span class="font-bold text-neutral-500">
-              Found {{ grandTotalCount }} {{ grandTotalCount === 1 ? 'match' : 'matches' }}
+              Found <span class="text-lime-600 dark:text-lime-400 font-extrabold font-mono text-xs">{{ grandTotalCount }}</span> {{ grandTotalCount === 1 ? 'match' : 'matches' }}
             </span>
           </div>
 
@@ -289,7 +289,7 @@ useSchemaOrg([{
             <div
               v-for="group in processedResults"
               :key="group.config.key"
-              class="space-y-2.5 sm:space-y-3 min-w-0 w-full"
+              class="space-y-3 min-w-0 w-full"
             >
               <button
                 type="button"
@@ -301,7 +301,7 @@ useSchemaOrg([{
                   <h2 class="text-xs sm:text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white truncate">
                     {{ group.config.label }}
                   </h2>
-                  <UBadge color="primary" variant="soft" size="sm" class="rounded-md font-bold text-xs px-2 shrink-0">
+                  <UBadge color="primary" variant="soft" size="sm" class="rounded-xs font-bold font-mono text-xs px-2 shrink-0">
                     {{ group.items.length }}
                   </UBadge>
                 </div>
@@ -309,22 +309,22 @@ useSchemaOrg([{
                 <UIcon
                   name="i-tabler-chevron-down"
                   class="size-4 text-neutral-400 transition-transform duration-200 shrink-0"
-                  :class="{ 'rotate-180': openSections[group.config.key] }"
+                  :class="{ 'rotate-180 text-lime-500': openSections[group.config.key] }"
                 />
               </button>
 
               <div
                 v-if="viewMode === 'grid' && openSections[group.config.key]"
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 pt-2 w-full"
+                class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 lg:divide-x divide-neutral-200 dark:divide-neutral-800 w-full"
               >
                 <NuxtLink
                   v-for="item in group.items"
                   :key="item.id"
                   :to="item.path"
-                  class="group flex flex-col justify-between p-0 sm:p-4 rounded-none sm:rounded-md bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs hover:shadow-md w-full min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-4 sm:pb-0"
+                  class="group flex flex-col justify-between p-5 sm:p-6 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200 min-w-0 border-b last:border-b-0"
                 >
-                  <div class="space-y-2.5 sm:space-y-3">
-                    <div class="relative aspect-16/10 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800/60">
+                  <div class="space-y-3">
+                    <div class="relative aspect-16/10 rounded-xs overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800/80">
                       <NuxtImg
                         v-if="item.image"
                         :src="item.image"
@@ -345,18 +345,18 @@ useSchemaOrg([{
                         v-if="item.badge"
                         color="neutral"
                         variant="subtle"
-                        class="absolute top-2 left-2 font-bold rounded-md px-1.5 py-0.5 text-[9px] uppercase backdrop-blur-md"
+                        class="absolute top-2 left-2 font-bold rounded-xs px-1.5 py-0.5 text-[9px] uppercase backdrop-blur-md border border-neutral-200/60 dark:border-neutral-800/60"
                       >
                         {{ item.badge }}
                       </UBadge>
                     </div>
 
-                    <div class="space-y-1 min-w-0">
-                      <span v-if="item.meta" class="text-[10px] text-neutral-400 font-bold block">
+                    <div class="space-y-1.5 min-w-0">
+                      <span v-if="item.meta" class="text-[10px] text-neutral-400 font-bold block uppercase tracking-wider">
                         {{ item.meta }}
                       </span>
 
-                      <h3 class="text-base font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors line-clamp-1">
+                      <h3 class="text-base font-black text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors line-clamp-1 leading-snug">
                         {{ item.title }}
                       </h3>
 
@@ -365,13 +365,13 @@ useSchemaOrg([{
                       </p>
 
                       <div v-if="item.snippet" class="text-[11px] text-lime-600 dark:text-lime-400 font-medium leading-relaxed mt-1 flex items-start gap-1">
-                        <span class="font-bold text-[10px] uppercase text-lime-700 dark:text-lime-300 shrink-0">Match:</span>
+                        <span class="font-black text-[10px] uppercase text-lime-700 dark:text-lime-300 shrink-0">Match:</span>
                         <span class="line-clamp-2">{{ item.snippet }}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div class="pt-2.5 sm:pt-3 mt-3 sm:mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between text-xs font-bold text-lime-600 dark:text-lime-400">
+                  <div class="pt-3 mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between text-xs font-bold text-lime-600 dark:text-lime-400">
                     <span>View Details</span>
                     <UIcon name="i-tabler-arrow-right" class="size-4 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -380,16 +380,16 @@ useSchemaOrg([{
 
               <div
                 v-else-if="viewMode === 'list' && openSections[group.config.key]"
-                class="space-y-3 sm:space-y-4 pt-2 w-full min-w-0"
+                class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800 w-full"
               >
                 <NuxtLink
                   v-for="item in group.items"
                   :key="item.id"
                   :to="item.path"
-                  class="group block p-0 sm:p-5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs hover:shadow-md w-full min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-4 sm:pb-0"
+                  class="group block p-4 sm:p-5 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200 w-full min-w-0"
                 >
                   <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
-                    <div class="flex items-start gap-3 sm:gap-3.5 min-w-0 flex-1 w-full sm:w-auto">
+                    <div class="flex items-start gap-3 sm:gap-4 min-w-0 flex-1 w-full sm:w-auto">
                       <NuxtImg
                         v-if="item.image"
                         :src="item.image"
@@ -397,18 +397,18 @@ useSchemaOrg([{
                         format="webp"
                         quality="80"
                         loading="lazy"
-                        class="size-14 sm:size-16 shrink-0 rounded-md object-cover border border-neutral-200 dark:border-neutral-800 group-hover:scale-105 transition-transform duration-300"
+                        class="size-14 sm:size-18 shrink-0 rounded-xs object-cover border border-neutral-200 dark:border-neutral-800 group-hover:scale-105 transition-transform duration-300"
                       />
                       <div
                         v-else
-                        class="flex size-14 sm:size-16 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 border border-neutral-200 dark:border-neutral-800"
+                        class="flex size-14 sm:size-18 shrink-0 items-center justify-center rounded-xs bg-lime-500/10 text-lime-600 dark:text-lime-400 border border-neutral-200 dark:border-neutral-800"
                       >
                         <UIcon :name="item.icon" class="size-6 sm:size-7" />
                       </div>
 
                       <div class="space-y-1 min-w-0 flex-1">
                         <div class="flex flex-wrap items-center gap-2 text-[10px]">
-                          <UBadge v-if="item.badge" color="neutral" variant="subtle" class="font-bold rounded-md px-1.5 py-0.5 text-[9px] uppercase shrink-0">
+                          <UBadge v-if="item.badge" color="neutral" variant="subtle" class="font-bold rounded-xs px-1.5 py-0.5 text-[9px] uppercase border border-neutral-200/60 dark:border-neutral-800/60 shrink-0">
                             {{ item.badge }}
                           </UBadge>
                           <span v-if="item.meta" class="text-neutral-400 font-medium truncate">• {{ item.meta }}</span>
@@ -423,14 +423,14 @@ useSchemaOrg([{
                         </p>
 
                         <div v-if="item.snippet" class="text-[11px] text-lime-600 dark:text-lime-400 font-medium leading-relaxed mt-1 flex items-start gap-1 min-w-0">
-                          <span class="font-bold text-[10px] uppercase text-lime-700 dark:text-lime-300 shrink-0">Match:</span>
+                          <span class="font-black text-[10px] uppercase text-lime-700 dark:text-lime-300 shrink-0">Match:</span>
                           <span class="line-clamp-2 min-w-0">{{ item.snippet }}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100 dark:border-neutral-800/60 shrink-0">
-                      <span class="inline-flex items-center gap-1 font-black uppercase text-xs text-neutral-950 dark:text-white bg-lime-500 group-hover:bg-lime-400 px-3.5 py-2 rounded-md transition-colors">
+                    <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto pt-2 sm:pt-0 shrink-0">
+                      <span class="inline-flex items-center gap-1 font-black uppercase text-xs text-neutral-950 bg-lime-500 group-hover:bg-lime-400 px-3.5 py-2 rounded-xs transition-colors">
                         <span>View Details</span>
                         <UIcon name="i-tabler-arrow-right" class="size-4" />
                       </span>
@@ -442,7 +442,7 @@ useSchemaOrg([{
           </div>
 
           <div v-else class="py-12 sm:py-20 text-center space-y-4 max-w-md mx-auto">
-            <div class="flex size-14 sm:size-16 items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+            <div class="flex size-14 sm:size-16 items-center justify-center rounded-xs bg-transparent border border-neutral-200 dark:border-neutral-800 mx-auto">
               <UIcon name="i-tabler-search-off" class="size-7 sm:size-8 text-neutral-400 dark:text-neutral-500" />
             </div>
             <div class="space-y-1">
@@ -459,7 +459,7 @@ useSchemaOrg([{
                 color="neutral"
                 variant="outline"
                 icon="i-tabler-rotate-clockwise"
-                class="rounded-md font-bold text-xs px-4 py-2 cursor-pointer"
+                class="rounded-xs font-bold text-xs px-4 py-2 cursor-pointer"
                 @click="resetFilters"
               >
                 Clear Search Filters
@@ -481,7 +481,7 @@ useSchemaOrg([{
             <div class="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-4">
               <div class="flex items-center gap-2">
                 <UIcon name="i-tabler-adjustments-horizontal" class="size-5 text-lime-500" />
-                <h3 class="font-extrabold text-base text-neutral-950 dark:text-white">
+                <h3 class="font-black uppercase tracking-wider text-base text-neutral-950 dark:text-white">
                   Filter Catalog
                 </h3>
               </div>
@@ -490,7 +490,7 @@ useSchemaOrg([{
                 variant="ghost"
                 icon="i-tabler-x"
                 aria-label="Close filters"
-                class="rounded-md cursor-pointer"
+                class="rounded-xs cursor-pointer"
                 @click="isMobileFiltersOpen = false"
               />
             </div>
@@ -509,7 +509,7 @@ useSchemaOrg([{
                 option-attribute="label"
                 searchable
                 placeholder="Select Category..."
-                class="w-full rounded-md"
+                class="w-full rounded-xs"
               >
                 <template #leading>
                   <UIcon :name="selectedCategoryMeta.icon" class="size-4 text-lime-500 shrink-0" />
@@ -534,7 +534,7 @@ useSchemaOrg([{
                   placeholder="Min KES"
                   size="sm"
                   color="neutral"
-                  class="rounded-md"
+                  class="rounded-xs"
                 />
                 <UInput
                   v-model="maxPrice"
@@ -542,7 +542,7 @@ useSchemaOrg([{
                   placeholder="Max KES"
                   size="sm"
                   color="neutral"
-                  class="rounded-md"
+                  class="rounded-xs"
                 />
               </div>
             </div>
@@ -569,7 +569,7 @@ useSchemaOrg([{
                 label-key="label"
                 value-attribute="id"
                 option-attribute="label"
-                class="w-full rounded-md"
+                class="w-full rounded-xs"
               />
             </div>
           </div>
@@ -579,7 +579,7 @@ useSchemaOrg([{
               color="primary"
               block
               size="lg"
-              class="font-black uppercase text-xs rounded-md text-neutral-950 cursor-pointer justify-center"
+              class="font-black uppercase text-xs rounded-xs text-neutral-950 cursor-pointer justify-center"
               @click="isMobileFiltersOpen = false"
             >
               Apply Filters ({{ grandTotalCount }} matches)
@@ -590,7 +590,7 @@ useSchemaOrg([{
               variant="outline"
               block
               size="md"
-              class="font-bold text-xs rounded-md cursor-pointer justify-center"
+              class="font-bold text-xs rounded-xs cursor-pointer justify-center"
               @click="resetFilters()"
             >
               Reset Filters

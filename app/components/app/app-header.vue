@@ -21,8 +21,8 @@ defineShortcuts({
   <div class="sticky top-0 z-50 w-full">
     <AppAnnouncement />
 
-    <header class="border-b border-neutral-200/80 bg-white/95 backdrop-blur-md transition-colors dark:border-neutral-800/80 dark:bg-neutral-950/95 w-full">
-      <UContainer class="flex items-center justify-between py-2.5">
+    <header class="border-b border-neutral-200 dark:border-neutral-800 bg-neutral-50/90 dark:bg-neutral-950/90 backdrop-blur-md transition-colors w-full">
+      <UContainer class="flex items-center justify-between py-2.5 px-3 sm:px-6 lg:px-8">
         <NuxtLink to="/" class="flex items-center gap-2.5 shrink-0" aria-label="Home">
           <AppLogo class="h-7 sm:h-8 lg:h-9 w-auto" />
         </NuxtLink>
@@ -32,7 +32,7 @@ defineShortcuts({
             v-for="link in NAV_LINKS"
             :key="link.label"
             :to="link.to"
-            class="inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-md hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
+            class="inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 rounded-xs hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
             active-class="text-lime-600 dark:text-lime-400 font-black"
           >
             <UIcon :name="link.icon" class="hidden xl:inline-block size-4 text-lime-500 shrink-0" />
@@ -45,11 +45,11 @@ defineShortcuts({
             color="neutral"
             variant="ghost"
             aria-label="Open Search"
-            class="relative min-h-10 min-w-10 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 justify-center cursor-pointer text-neutral-700 dark:text-neutral-200 hover:text-lime-600"
+            class="relative size-9 sm:size-10 rounded-xs border border-neutral-200 dark:border-neutral-800 hover:border-lime-500 dark:hover:border-lime-500 transition-colors justify-center cursor-pointer text-neutral-700 dark:text-neutral-200 hover:text-lime-600 dark:hover:text-lime-400"
             @click="isSearchModalOpen = true"
           >
             <UIcon name="i-tabler-search" class="size-5" />
-            <UKbd class="hidden xl:inline-block px-1.5 py-0.5 text-[9px] font-mono rounded-md bg-neutral-100 dark:bg-neutral-800 border">
+            <UKbd class="hidden xl:inline-block px-1.5 py-0.5 text-[9px] font-mono rounded-xs bg-transparent border border-neutral-200 dark:border-neutral-800">
               ⌘K
             </UKbd>
           </UButton>
@@ -60,11 +60,11 @@ defineShortcuts({
             color="neutral"
             variant="ghost"
             aria-label="Open shopping bag"
-            class="relative min-h-10 min-w-10 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 justify-center cursor-pointer text-neutral-700 dark:text-neutral-200 hover:text-lime-600"
+            class="relative size-9 sm:size-10 rounded-xs border border-neutral-200 dark:border-neutral-800 hover:border-lime-500 dark:hover:border-lime-500 transition-colors justify-center cursor-pointer text-neutral-700 dark:text-neutral-200 hover:text-lime-600 dark:hover:text-lime-400"
             @click="toggleCart"
           >
             <UIcon name="i-tabler-shopping-bag" class="size-5" />
-            <UBadge v-if="itemCount > 0" color="primary" variant="solid" class="absolute -top-1 -right-1 flex size-4 items-center justify-center rounded-md p-0 text-[9px] font-black">
+            <UBadge v-if="itemCount > 0" color="primary" variant="solid" class="absolute -top-1 -right-1 flex size-4 items-center justify-center rounded-xs p-0 text-[9px] font-black font-mono text-neutral-950">
               {{ itemCount }}
             </UBadge>
           </UButton>
@@ -73,7 +73,7 @@ defineShortcuts({
             to="/contact"
             size="md"
             color="primary"
-            class="hidden sm:inline-flex rounded-md px-3.5 py-2 text-xs font-black uppercase text-neutral-950 cursor-pointer justify-center"
+            class="hidden sm:inline-flex rounded-xs px-3.5 py-2 text-xs font-black uppercase text-neutral-950 cursor-pointer justify-center"
           >
             BOOK A VISIT
           </UButton>
@@ -81,7 +81,7 @@ defineShortcuts({
           <UButton
             color="neutral"
             variant="ghost"
-            class="lg:hidden rounded-md border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 min-h-10 min-w-10 justify-center cursor-pointer"
+            class="lg:hidden rounded-xs border border-neutral-200 dark:border-neutral-800 hover:border-lime-500 dark:hover:border-lime-500 transition-colors size-9 sm:size-10 justify-center cursor-pointer"
             aria-label="Toggle Navigation Menu"
             @click="isMobileOpen = !isMobileOpen"
           >
@@ -93,7 +93,7 @@ defineShortcuts({
 
     <USlideover v-model:open="isMobileOpen" title="Navigation Menu">
       <template #content>
-        <div class="p-4 sm:p-6 space-y-6 flex flex-col justify-between h-full bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white">
+        <div class="p-4 sm:p-6 space-y-6 flex flex-col justify-between h-full bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white">
           <div class="space-y-6">
             <div class="flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 pb-4">
               <AppLogo class="h-8 w-auto" />
@@ -102,7 +102,7 @@ defineShortcuts({
                 variant="ghost"
                 icon="i-tabler-x"
                 aria-label="Close navigation menu"
-                class="rounded-md cursor-pointer"
+                class="rounded-xs cursor-pointer"
                 @click="isMobileOpen = false"
               />
             </div>
@@ -112,7 +112,7 @@ defineShortcuts({
                 v-for="link in NAV_LINKS"
                 :key="link.label"
                 :to="link.to"
-                class="flex items-center gap-3 px-3.5 py-3 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs cursor-pointer"
+                class="flex items-center gap-3 px-3.5 py-3 rounded-xs border border-neutral-200 dark:border-neutral-800 bg-transparent hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors cursor-pointer"
                 active-class="border-lime-500 dark:border-lime-500 text-lime-600 dark:text-lime-400 font-black"
                 @click="isMobileOpen = false"
               >
@@ -128,7 +128,7 @@ defineShortcuts({
               block
               size="lg"
               color="primary"
-              class="font-black uppercase text-xs text-neutral-950 rounded-md py-3.5 justify-center cursor-pointer"
+              class="font-black uppercase text-xs text-neutral-950 rounded-xs py-3.5 justify-center cursor-pointer"
               @click="isMobileOpen = false"
             >
               BOOK A VISIT

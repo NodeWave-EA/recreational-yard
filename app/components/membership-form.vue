@@ -55,9 +55,9 @@ function resetForm() {
 </script>
 
 <template>
-  <div class="p-6 sm:p-8 rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-xs space-y-6">
+  <div class="p-5 sm:p-8 rounded-sm border border-neutral-200 dark:border-neutral-800 bg-transparent hover:bg-neutral-100/20 dark:hover:bg-neutral-800/10 transition-colors duration-200 space-y-5 sm:space-y-6">
     <div v-if="isSubmitted" class="space-y-4 text-center py-6">
-      <div class="flex size-12 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 mx-auto">
+      <div class="flex size-12 items-center justify-center rounded-xs bg-lime-500/10 text-lime-600 dark:text-lime-400 border border-neutral-200/50 dark:border-neutral-800/50 mx-auto">
         <UIcon name="i-tabler-circle-check" class="size-7" />
       </div>
 
@@ -75,7 +75,7 @@ function resetForm() {
           color="neutral"
           variant="outline"
           icon="i-tabler-arrow-left"
-          class="font-extrabold text-xs uppercase rounded-md px-5 py-2.5 cursor-pointer"
+          class="font-extrabold text-xs uppercase rounded-xs px-5 py-2.5 cursor-pointer"
           @click="resetForm"
         >
           Submit Another Application
@@ -85,7 +85,7 @@ function resetForm() {
 
     <template v-else>
       <div>
-        <UBadge color="primary" variant="soft" class="font-bold text-[10px] uppercase tracking-wider mb-2 rounded-md">
+        <UBadge color="primary" variant="soft" class="font-bold text-[10px] uppercase tracking-wider mb-2 rounded-xs">
           Membership Signup
         </UBadge>
         <h2 class="text-2xl font-black text-neutral-950 dark:text-white">
@@ -108,7 +108,7 @@ function resetForm() {
               placeholder="e.g. Jane Kiprop"
               size="md"
               color="neutral"
-              class="w-full rounded-md"
+              class="w-full rounded-xs"
               required
             />
           </div>
@@ -123,7 +123,7 @@ function resetForm() {
               placeholder="+254 7XX XXX XXX"
               size="md"
               color="neutral"
-              class="w-full rounded-md"
+              class="w-full rounded-xs"
               required
             />
           </div>
@@ -140,7 +140,7 @@ function resetForm() {
             placeholder="e.g. name@domain.com"
             size="md"
             color="neutral"
-            class="w-full rounded-md"
+            class="w-full rounded-xs"
             required
           />
         </div>
@@ -156,7 +156,7 @@ function resetForm() {
               :options="tierOptions"
               size="md"
               color="neutral"
-              class="w-full rounded-md"
+              class="w-full rounded-xs"
             />
           </div>
 
@@ -170,7 +170,7 @@ function resetForm() {
               :options="interestOptions"
               size="md"
               color="neutral"
-              class="w-full rounded-md"
+              class="w-full rounded-xs"
             />
           </div>
         </div>
@@ -185,7 +185,7 @@ function resetForm() {
             :rows="4"
             autoresize
             color="neutral"
-            class="w-full min-h-27.5 rounded-md"
+            class="w-full min-h-27.5 rounded-xs"
           />
         </div>
 
@@ -196,7 +196,7 @@ function resetForm() {
           color="primary"
           icon="i-tabler-send"
           :loading="isSubmitting"
-          class="font-black uppercase text-xs text-neutral-950 rounded-md py-3.5 cursor-pointer justify-center"
+          class="font-black uppercase text-xs text-neutral-950 rounded-xs py-3.5 cursor-pointer justify-center"
         >
           Submit Membership Application
         </UButton>

@@ -34,47 +34,47 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-12 sm:pb-20 transition-colors duration-300 w-full overflow-x-clip">
-    <div class="pt-4 sm:pt-12 pb-4 sm:pb-6 border-b border-neutral-200/80 dark:border-neutral-800/80">
+  <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-12 sm:pb-16 transition-colors duration-300 w-full overflow-x-clip">
+    <div class="pt-4 sm:pt-10 pb-4 sm:pb-6 border-b border-neutral-200 dark:border-neutral-800">
       <UContainer class="px-3 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4">
-          <div class="space-y-2 sm:space-y-2.5">
+        <div class="space-y-2 sm:space-y-3 text-left sm:text-center">
+          <div class="inline-flex">
             <UBadge
               color="primary"
               variant="soft"
-              class="font-bold uppercase tracking-widest text-[10px] px-2.5 sm:px-3 py-0.5 rounded-md"
+              class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-2.5 sm:px-3 py-0.5 rounded-xs"
             >
-              <UIcon name="i-tabler-quote" class="size-3.5 mr-1 text-lime-500 shrink-0" />
+              <UIcon name="i-tabler-quote" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
               <span>Community Voices</span>
             </UBadge>
-
-            <h1 class="text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight text-neutral-950 dark:text-white leading-tight">
-              What Our Visitors Say
-            </h1>
-
-            <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              Real experiences and authentic feedback from runners, corporate teams, school coordinators, and family visitors at Recreation Yard.
-            </p>
           </div>
+
+          <h1 class="text-xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neutral-950 dark:text-white leading-tight">
+            What Our Visitors Say
+          </h1>
+
+          <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-4xl mx-auto font-medium">
+            Real experiences and authentic feedback from runners, corporate teams, school coordinators, and family visitors at Recreation Yard.
+          </p>
         </div>
       </UContainer>
     </div>
 
-    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-2.5 sm:py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-none sm:shadow-xs transition-all">
+    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/90 dark:bg-neutral-950/90 backdrop-blur-md py-2.5 sm:py-3 border-b border-neutral-200 dark:border-neutral-800 transition-all">
       <UContainer class="px-3 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between gap-3 sm:gap-4">
           <span class="text-xs font-bold text-neutral-500 dark:text-neutral-400">
-            Published Feedback: <span class="text-lime-600 dark:text-lime-400 font-extrabold text-sm">{{ testimonials?.length || 0 }}</span>
+            Published Feedback: <span class="text-lime-600 dark:text-lime-400 font-extrabold font-mono text-sm">{{ testimonials?.length || 0 }}</span>
           </span>
 
-          <div class="flex items-center p-1 rounded-md bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0">
+          <div class="flex items-center p-1 rounded-xs bg-transparent border border-neutral-200 dark:border-neutral-800 shrink-0">
             <UButton
               size="xs"
               :color="viewMode === 'grid' ? 'primary' : 'neutral'"
               :variant="viewMode === 'grid' ? 'solid' : 'ghost'"
               icon="i-tabler-layout-grid"
               aria-label="Grid View"
-              class="rounded-md font-bold"
+              class="rounded-xs font-bold cursor-pointer"
               @click="viewMode = 'grid'"
             />
             <UButton
@@ -83,7 +83,7 @@ useSchemaOrg([{
               :variant="viewMode === 'list' ? 'solid' : 'ghost'"
               icon="i-tabler-list"
               aria-label="List View"
-              class="rounded-md font-bold"
+              class="rounded-xs font-bold cursor-pointer"
               @click="viewMode = 'list'"
             />
           </div>
@@ -94,15 +94,15 @@ useSchemaOrg([{
     <UContainer class="pt-4 sm:pt-8 px-3 sm:px-6 lg:px-8">
       <div
         v-if="viewMode === 'grid' && hasAnyTestimonial"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full"
+        class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 lg:divide-x divide-neutral-200 dark:divide-neutral-800 w-full"
       >
         <NuxtLink
           v-for="testimonial in testimonials"
           :key="testimonial.path"
           :to="testimonial.path"
-          class="group flex flex-col justify-between p-0 sm:p-5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs hover:shadow-md w-full min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-4 sm:pb-0"
+          class="group flex flex-col justify-between p-5 sm:p-6 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200 min-w-0 border-b last:border-b-0"
         >
-          <div class="space-y-2.5 sm:space-y-3">
+          <div class="space-y-3">
             <div class="flex items-center justify-between gap-2">
               <div class="flex items-center gap-1 text-lime-500">
                 <UIcon
@@ -113,7 +113,7 @@ useSchemaOrg([{
                 />
               </div>
 
-              <UBadge v-if="testimonial.category" color="neutral" variant="subtle" class="text-[9px] uppercase font-bold px-2 py-0.5 rounded-md">
+              <UBadge v-if="testimonial.category" color="neutral" variant="subtle" class="text-[9px] uppercase font-bold px-2 py-0.5 rounded-xs border border-neutral-200/60 dark:border-neutral-800/60">
                 {{ testimonial.category }}
               </UBadge>
             </div>
@@ -123,7 +123,7 @@ useSchemaOrg([{
             </blockquote>
           </div>
 
-          <div class="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between gap-3">
+          <div class="mt-4 pt-3 border-t border-neutral-200/60 dark:border-neutral-800/60 flex items-center justify-between gap-3">
             <div class="flex items-center gap-3 min-w-0">
               <NuxtImg
                 v-if="testimonial.avatar"
@@ -131,9 +131,9 @@ useSchemaOrg([{
                 :alt="testimonial.author"
                 width="40"
                 height="40"
-                class="size-9 rounded-md object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
+                class="size-9 rounded-xs object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
               />
-              <div v-else class="flex size-9 shrink-0 items-center justify-center rounded-md bg-lime-500/10 font-bold text-lime-600 dark:text-lime-400 text-xs">
+              <div v-else class="flex size-9 shrink-0 items-center justify-center rounded-xs bg-lime-500/10 font-black text-lime-600 dark:text-lime-400 text-xs border border-neutral-200/50 dark:border-neutral-800/50">
                 {{ testimonial.author.charAt(0) }}
               </div>
 
@@ -154,13 +154,13 @@ useSchemaOrg([{
 
       <div
         v-else-if="viewMode === 'list' && hasAnyTestimonial"
-        class="space-y-3 sm:space-y-4 w-full"
+        class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800 w-full"
       >
         <NuxtLink
           v-for="testimonial in testimonials"
           :key="testimonial.path"
           :to="testimonial.path"
-          class="group block p-0 sm:p-5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs hover:shadow-md w-full min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-4 sm:pb-0"
+          class="group block p-4 sm:p-5 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200 w-full min-w-0"
         >
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 min-w-0">
             <div class="space-y-2 min-w-0 flex-1">
@@ -173,7 +173,7 @@ useSchemaOrg([{
                     class="size-3.5"
                   />
                 </div>
-                <UBadge v-if="testimonial.category" color="neutral" variant="subtle" class="text-[9px] uppercase font-bold px-2 py-0.5 rounded-md">
+                <UBadge v-if="testimonial.category" color="neutral" variant="subtle" class="text-[9px] uppercase font-bold px-2 py-0.5 rounded-xs border border-neutral-200/60 dark:border-neutral-800/60">
                   {{ testimonial.category }}
                 </UBadge>
               </div>
@@ -189,9 +189,9 @@ useSchemaOrg([{
                   :alt="testimonial.author"
                   width="32"
                   height="32"
-                  class="size-8 rounded-md object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
+                  class="size-8 rounded-xs object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
                 />
-                <div v-else class="flex size-8 shrink-0 items-center justify-center rounded-md bg-lime-500/10 font-bold text-lime-600 dark:text-lime-400 text-xs">
+                <div v-else class="flex size-8 shrink-0 items-center justify-center rounded-xs bg-lime-500/10 font-bold text-lime-600 dark:text-lime-400 text-xs border border-neutral-200/50 dark:border-neutral-800/50">
                   {{ testimonial.author.charAt(0) }}
                 </div>
                 <div class="text-xs truncate">
@@ -201,7 +201,7 @@ useSchemaOrg([{
               </div>
             </div>
 
-            <span class="inline-flex items-center gap-1 text-xs font-bold text-lime-600 dark:text-lime-400 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100 dark:border-neutral-800">
+            <span class="inline-flex items-center gap-1 text-xs font-bold text-lime-600 dark:text-lime-400 shrink-0 pt-2 sm:pt-0">
               <span>Read Review</span>
               <UIcon name="i-tabler-arrow-right" class="size-4 group-hover:translate-x-1 transition-transform" />
             </span>
@@ -210,7 +210,7 @@ useSchemaOrg([{
       </div>
 
       <div v-else class="py-12 sm:py-20 text-center space-y-4 max-w-md mx-auto">
-        <div class="flex size-14 sm:size-16 items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+        <div class="flex size-14 sm:size-16 items-center justify-center rounded-xs bg-transparent border border-neutral-200 dark:border-neutral-800 mx-auto">
           <UIcon name="i-tabler-message-off" class="size-7 sm:size-8 text-neutral-400 dark:text-neutral-500" />
         </div>
         <div class="space-y-1">
@@ -227,7 +227,7 @@ useSchemaOrg([{
             size="sm"
             color="primary"
             icon="i-tabler-mail"
-            class="rounded-md font-bold text-xs px-4 py-2 text-neutral-950 cursor-pointer"
+            class="rounded-xs font-bold text-xs px-4 py-2 text-neutral-950 cursor-pointer"
           >
             Contact Us
           </UButton>
@@ -237,7 +237,7 @@ useSchemaOrg([{
             color="neutral"
             variant="outline"
             icon="i-tabler-home"
-            class="rounded-md font-bold text-xs px-4 py-2 cursor-pointer"
+            class="rounded-xs font-bold text-xs px-4 py-2 cursor-pointer"
           >
             Return Home
           </UButton>

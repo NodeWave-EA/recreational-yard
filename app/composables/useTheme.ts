@@ -6,7 +6,6 @@ export type ThemePreference = 'light' | 'dark' | 'system'
 export function useTheme() {
   const colorMode = useColorMode()
 
-  // Manage colorMode.preference ('light' | 'dark' | 'system')
   const preference = computed<ThemePreference>({
     get: () => (colorMode.preference as ThemePreference) || 'system',
     set: (val: ThemePreference) => {
@@ -16,7 +15,6 @@ export function useTheme() {
 
   const isDark = computed(() => colorMode.value === 'dark')
 
-  // Dynamic icon based on active preference
   const icon = computed(() => {
     switch (preference.value) {
       case 'light':
@@ -29,7 +27,6 @@ export function useTheme() {
     }
   })
 
-  // Dynamic ARIA label based on active preference
   const ariaLabel = computed(() => {
     switch (preference.value) {
       case 'light':
@@ -43,7 +40,6 @@ export function useTheme() {
   })
 
   const toggleTheme = async (event?: MouseEvent) => {
-    // Cycle: light -> dark -> system -> light
     const nextPreference: ThemePreference
       = preference.value === 'light'
         ? 'dark'

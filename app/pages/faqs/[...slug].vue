@@ -24,73 +24,78 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="py-4 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
-    <UContainer v-if="faq" class="space-y-6 sm:space-y-8 px-3 sm:px-6 lg:px-8">
+  <div class="py-6 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
+    <UContainer v-if="faq" class="max-w-3xl space-y-6 sm:space-y-8 px-4 sm:px-6">
       <div>
         <NuxtLink
           to="/faqs"
-          class="inline-flex items-center gap-2 text-xs font-bold text-neutral-500 hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
+          class="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-500 hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
         >
           <UIcon name="i-tabler-arrow-left" class="size-4" />
           <span>Back to All FAQs</span>
         </NuxtLink>
       </div>
 
-      <div class="space-y-3 sm:space-y-4 border-b border-neutral-200 dark:border-neutral-800 pb-4 sm:pb-6">
+      <header class="space-y-3 pb-6 border-b border-neutral-200 dark:border-neutral-800">
         <div class="flex flex-wrap items-center gap-2">
-          <UBadge color="primary" variant="soft" class="font-extrabold uppercase text-[10px] tracking-wider px-2.5 py-1 rounded-md">
+          <UBadge color="primary" variant="soft" class="font-bold uppercase text-[10px] tracking-wider px-2.5 py-0.5 rounded-xs">
             {{ faq.category }}
           </UBadge>
-          <UBadge v-if="faq.facility" color="neutral" variant="subtle" class="font-bold uppercase text-[10px] tracking-wider px-2.5 py-1 rounded-md">
+          <UBadge v-if="faq.facility" color="neutral" variant="subtle" class="font-bold uppercase text-[10px] tracking-wider px-2.5 py-0.5 rounded-xs border border-neutral-200/60 dark:border-neutral-800/60">
             {{ faq.facility }}
           </UBadge>
         </div>
 
-        <h1 class="text-xl sm:text-4xl font-black text-neutral-950 dark:text-white leading-tight">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-neutral-950 dark:text-white leading-tight tracking-tight">
           {{ faq.question }}
         </h1>
-      </div>
+      </header>
 
-      <div class="space-y-4 sm:space-y-6">
-        <div class="p-0 sm:p-5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs pl-3 sm:pl-4 border-l-4 border-l-lime-500">
-          <p class="text-xs sm:text-base leading-relaxed text-neutral-800 dark:text-neutral-200 font-medium">
+      <article class="space-y-6">
+        <div class="pl-4 border-l-2 border-lime-500 py-1">
+          <p class="text-sm sm:text-base lg:text-lg leading-relaxed text-neutral-800 dark:text-neutral-200 font-medium">
             {{ faq.answer }}
           </p>
         </div>
 
-        <div v-if="faq.body" class="prose dark:prose-invert max-w-none text-xs sm:text-sm leading-relaxed pt-3 sm:pt-4">
+        <div v-if="faq.body" class="prose dark:prose-invert max-w-none text-xs sm:text-sm leading-relaxed pt-2">
           <ContentRenderer :value="faq" />
         </div>
-      </div>
+      </article>
 
-      <div class="pt-6 sm:pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-3 sm:space-y-4">
-        <h3 class="text-xs font-black uppercase tracking-wider text-neutral-400">
-          Need Further Assistance?
-        </h3>
+      <footer class="pt-6 sm:pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4">
+        <div class="space-y-1">
+          <h2 class="text-xs font-black uppercase tracking-wider text-neutral-400">
+            Need Further Assistance?
+          </h2>
+          <p class="text-xs text-neutral-600 dark:text-neutral-400 font-medium">
+            Have additional questions or specific requirements for your visit? Contact our team.
+          </p>
+        </div>
 
-        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+        <div class="flex flex-wrap items-center gap-3 pt-1">
           <UButton
             to="/contact"
             color="primary"
             size="md"
             icon="i-tabler-mail"
-            class="font-black uppercase text-xs text-neutral-950 rounded-md px-5 py-2.5 cursor-pointer"
+            class="font-black uppercase text-xs text-neutral-950 rounded-xs px-5 py-2.5 cursor-pointer justify-center"
           >
             Send Inquiry
           </UButton>
 
           <UButton
-            :to="`https://wa.me/${CONTACTS.whatsapp}?text=Hello! I have a question regarding: ${faq.question}`"
+            :to="`https://wa.me/${CONTACTS.whatsapp}?text=Hello! I have a question regarding: ${encodeURIComponent(faq.question)}`"
             target="_blank"
             color="neutral"
-            variant="ghost"
+            variant="outline"
             icon="i-tabler-brand-whatsapp"
-            class="font-bold text-xs rounded-md py-2.5 text-emerald-600 dark:text-emerald-400 cursor-pointer"
+            class="font-bold text-xs rounded-xs py-2.5 text-emerald-600 dark:text-emerald-400 border border-neutral-200/80 dark:border-neutral-800 cursor-pointer justify-center"
           >
             WhatsApp Support
           </UButton>
         </div>
-      </div>
+      </footer>
     </UContainer>
   </div>
 </template>

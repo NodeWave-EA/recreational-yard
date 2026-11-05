@@ -14,8 +14,8 @@ function isLinkActive(path: string) {
 </script>
 
 <template>
-  <footer id="contact" class="border-t border-neutral-200/80 dark:border-neutral-800/80 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white transition-colors duration-300 w-full">
-    <UContainer class="py-12 sm:py-16">
+  <footer id="contact" class="border-t border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white transition-colors duration-300 w-full">
+    <UContainer class="py-12 sm:py-16 px-3 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         <div class="space-y-4 sm:col-span-2 lg:col-span-5 min-w-0">
           <NuxtLink to="/" class="inline-block focus:outline-none" aria-label="Home">
@@ -47,7 +47,7 @@ function isLinkActive(path: string) {
                 target="_blank"
                 rel="noopener noreferrer"
                 :aria-label="item.label"
-                class="flex size-9 items-center justify-center rounded-md border border-neutral-200/80 dark:border-neutral-800/80 bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:border-lime-500 hover:bg-lime-500 hover:text-neutral-950 dark:hover:border-lime-500 dark:hover:bg-lime-500 dark:hover:text-neutral-950 transition-all duration-300"
+                class="flex size-9 items-center justify-center rounded-xs border border-neutral-200 dark:border-neutral-800 bg-transparent text-neutral-600 dark:text-neutral-400 hover:border-lime-500 hover:bg-lime-500 hover:text-neutral-950 transition-colors duration-200"
               >
                 <UIcon :name="item.icon" class="size-4.5" />
               </NuxtLink>
@@ -70,7 +70,7 @@ function isLinkActive(path: string) {
                     : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white font-medium',
                 ]"
               >
-                <span v-if="isLinkActive(link.to as string)" class="size-1.5 rounded-full bg-lime-500 shrink-0" />
+                <span v-if="isLinkActive(link.to as string)" class="size-1.5 rounded-xs bg-lime-500 shrink-0" />
                 <span>{{ link.label }}</span>
               </NuxtLink>
             </li>
@@ -92,7 +92,7 @@ function isLinkActive(path: string) {
                     : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white font-medium',
                 ]"
               >
-                <span v-if="isLinkActive(link.to as string)" class="size-1.5 rounded-full bg-lime-500 shrink-0" />
+                <span v-if="isLinkActive(link.to as string)" class="size-1.5 rounded-xs bg-lime-500 shrink-0" />
                 <span>{{ link.label }}</span>
               </NuxtLink>
             </li>
@@ -114,7 +114,7 @@ function isLinkActive(path: string) {
               <UIcon name="i-tabler-phone" class="size-4 text-lime-500 shrink-0" />
               <NuxtLink
                 :href="`tel:${LOCATION_DETAILS.phone}`"
-                class="hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
+                class="hover:text-lime-600 dark:hover:text-lime-400 transition-colors font-mono"
               >
                 {{ LOCATION_DETAILS.phone }}
               </NuxtLink>
@@ -143,7 +143,7 @@ function isLinkActive(path: string) {
               size="sm"
               color="primary"
               icon="i-tabler-location"
-              class="font-black uppercase text-xs text-neutral-950 rounded-md px-4 py-2.5 cursor-pointer justify-center"
+              class="font-black uppercase text-xs text-neutral-950 rounded-xs px-4 py-2.5 cursor-pointer justify-center"
             >
               Get Directions
             </UButton>
@@ -151,17 +151,16 @@ function isLinkActive(path: string) {
         </div>
       </div>
 
-      <div class="mt-12 pt-6 border-t border-neutral-200/80 dark:border-neutral-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-bold text-neutral-500 dark:text-neutral-400 text-center sm:text-left">
-        <p>
+      <div class="mt-12 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-bold text-neutral-500 dark:text-neutral-400 text-center sm:text-left">
+        <p class="font-mono text-xs">
           &copy; {{ new Date().getFullYear() }} {{ LOCATION_DETAILS.company }}. All rights reserved.
         </p>
 
         <div class="flex items-center gap-2 text-lime-600 dark:text-lime-400">
           <UIcon name="i-tabler-heart" class="size-3.5 text-lime-500 shrink-0" />
-          <span class="uppercase tracking-wider text-[10px]">Move. Play. Connect. Thrive.</span>
+          <span class="uppercase tracking-wider text-[10px] font-black">Move. Play. Connect. Thrive.</span>
         </div>
 
-        <!-- Nuxt Content Studio CMS Login -->
         <NuxtLink
           to="/editor"
           external

@@ -55,14 +55,14 @@ useSchemaOrg([{
 
 <template>
   <div class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-12 sm:pb-16 transition-colors duration-300 w-full overflow-x-clip">
-    <div class="pt-4 sm:pt-10 pb-4 sm:pb-6 border-b border-neutral-200/80 dark:border-neutral-800/80">
+    <div class="pt-4 sm:pt-10 pb-4 sm:pb-6 border-b border-neutral-200 dark:border-neutral-800">
       <UContainer class="px-3 sm:px-6 lg:px-8">
         <div class="space-y-2 sm:space-y-3 text-left sm:text-center">
           <div class="inline-flex">
             <UBadge
               color="primary"
               variant="soft"
-              class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-2.5 sm:px-3 py-0.5 rounded-md"
+              class="font-bold uppercase tracking-widest text-[10px] sm:text-[11px] px-2.5 sm:px-3 py-0.5 rounded-xs"
             >
               <UIcon name="i-tabler-ticket" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
               <span>Services & quotations</span>
@@ -73,28 +73,28 @@ useSchemaOrg([{
             Services built around your needs
           </h1>
 
-          <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          <p class="text-xs sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-4xl mx-auto font-medium">
             We coordinate outdoor recreation, group experiences, sports kits, uniforms and selected equipment. Requirements, availability and pricing are confirmed before an arrangement is finalised.
           </p>
         </div>
       </UContainer>
     </div>
 
-    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md py-2.5 sm:py-3 border-b border-neutral-200/80 dark:border-neutral-800/80 shadow-none sm:shadow-xs transition-all">
+    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/90 dark:bg-neutral-950/90 backdrop-blur-md py-2.5 sm:py-3 border-b border-neutral-200 dark:border-neutral-800 transition-all">
       <UContainer class="px-3 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between gap-3 sm:gap-4">
           <span class="text-xs font-bold text-neutral-500 dark:text-neutral-400">
-            Available Options: <span class="text-lime-600 dark:text-lime-400 font-extrabold text-sm">{{ pricingPlans?.length || 0 }}</span>
+            Available Options: <span class="text-lime-600 dark:text-lime-400 font-extrabold font-mono text-sm">{{ pricingPlans?.length || 0 }}</span>
           </span>
 
-          <div class="flex items-center p-1 rounded-md bg-neutral-200/60 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shrink-0">
+          <div class="flex items-center p-1 rounded-xs bg-transparent border border-neutral-200 dark:border-neutral-800 shrink-0">
             <UButton
               size="xs"
               :color="viewMode === 'grid' ? 'primary' : 'neutral'"
               :variant="viewMode === 'grid' ? 'solid' : 'ghost'"
               icon="i-tabler-layout-grid"
               aria-label="Grid View"
-              class="rounded-md font-bold"
+              class="rounded-xs font-bold cursor-pointer"
               @click="viewMode = 'grid'"
             />
             <UButton
@@ -103,7 +103,7 @@ useSchemaOrg([{
               :variant="viewMode === 'list' ? 'solid' : 'ghost'"
               icon="i-tabler-list"
               aria-label="List View"
-              class="rounded-md font-bold"
+              class="rounded-xs font-bold cursor-pointer"
               @click="viewMode = 'list'"
             />
           </div>
@@ -114,22 +114,22 @@ useSchemaOrg([{
     <UContainer class="pt-4 sm:pt-8 px-3 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
       <div
         v-if="viewMode === 'grid' && hasAnyPlan"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full"
+        class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 lg:divide-x divide-neutral-200 dark:divide-neutral-800 w-full"
       >
         <NuxtLink
           v-for="plan in pricingPlans"
           :key="plan.id || plan.path"
           :to="plan.path"
-          class="group flex flex-col justify-between p-0 sm:p-5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs hover:shadow-md w-full min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-4 sm:pb-0"
+          class="group flex flex-col justify-between p-5 sm:p-6 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200 w-full min-w-0 border-b last:border-b-0"
         >
           <div>
             <div class="flex items-center justify-between gap-2 mb-3 sm:mb-4">
               <div
-                class="flex size-9 sm:size-11 items-center justify-center rounded-md transition-colors"
+                class="flex size-9 sm:size-10 items-center justify-center rounded-xs border border-neutral-200/60 dark:border-neutral-800/60 transition-colors"
                 :class="[
                   plan.isPopular
-                    ? 'bg-lime-500/15 text-lime-600 dark:text-lime-400'
-                    : 'bg-neutral-100 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400',
+                    ? 'bg-lime-500/15 text-lime-600 dark:text-lime-400 border-lime-500/30'
+                    : 'bg-transparent text-neutral-500 dark:text-neutral-400',
                 ]"
               >
                 <UIcon :name="plan.isPopular ? 'i-tabler-crown' : 'i-tabler-ticket'" class="size-4 sm:size-5" />
@@ -139,7 +139,7 @@ useSchemaOrg([{
                 v-if="plan.badge"
                 :color="plan.isPopular ? 'primary' : 'neutral'"
                 variant="soft"
-                class="font-bold rounded-md px-2 sm:px-2.5 py-0.5 text-[10px] uppercase"
+                class="font-bold rounded-xs px-2 sm:px-2.5 py-0.5 text-[10px] uppercase"
               >
                 {{ plan.badge }}
               </UBadge>
@@ -171,9 +171,9 @@ useSchemaOrg([{
             </div>
           </div>
 
-          <div class="pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60">
+          <div class="pt-3 sm:pt-4 mt-4 border-t border-neutral-200/60 dark:border-neutral-800/60">
             <span
-              class="inline-flex w-full items-center justify-center gap-1.5 font-black uppercase text-xs rounded-md py-2.5 transition-colors"
+              class="inline-flex w-full items-center justify-center gap-1.5 font-black uppercase text-xs rounded-xs py-2.5 transition-colors"
               :class="[
                 plan.isPopular
                   ? 'bg-lime-500 text-neutral-950 group-hover:bg-lime-400'
@@ -189,25 +189,25 @@ useSchemaOrg([{
 
       <div
         v-else-if="viewMode === 'list' && hasAnyPlan"
-        class="space-y-3 sm:space-y-4 w-full"
+        class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800 w-full"
       >
         <NuxtLink
           v-for="plan in pricingPlans"
           :key="plan.id || plan.path"
           :to="plan.path"
-          class="group block p-0 sm:p-5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs hover:shadow-md w-full min-w-0 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-4 sm:pb-0"
+          class="group block p-5 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200 w-full min-w-0"
         >
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-6">
-            <div class="flex items-start gap-3 sm:gap-4 min-w-0 flex-1 w-full sm:w-auto">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+            <div class="flex items-start gap-4 min-w-0 flex-1 w-full sm:w-auto">
               <div
-                class="flex size-12 sm:size-16 shrink-0 items-center justify-center rounded-md transition-colors"
+                class="flex size-12 sm:size-14 shrink-0 items-center justify-center rounded-xs border border-neutral-200/60 dark:border-neutral-800/60 transition-colors"
                 :class="[
                   plan.isPopular
-                    ? 'bg-lime-500/15 text-lime-600 dark:text-lime-400'
-                    : 'bg-neutral-100 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400',
+                    ? 'bg-lime-500/15 text-lime-600 dark:text-lime-400 border-lime-500/30'
+                    : 'bg-transparent text-neutral-500 dark:text-neutral-400',
                 ]"
               >
-                <UIcon :name="plan.isPopular ? 'i-tabler-crown' : 'i-tabler-ticket'" class="size-6 sm:size-7" />
+                <UIcon :name="plan.isPopular ? 'i-tabler-crown' : 'i-tabler-ticket'" class="size-6" />
               </div>
 
               <div class="space-y-1 min-w-0 flex-1">
@@ -216,7 +216,7 @@ useSchemaOrg([{
                     v-if="plan.badge"
                     :color="plan.isPopular ? 'primary' : 'neutral'"
                     variant="soft"
-                    class="font-bold rounded-md px-1.5 py-0.5 text-[9px] uppercase"
+                    class="font-bold rounded-xs px-1.5 py-0.5 text-[9px] uppercase"
                   >
                     {{ plan.badge }}
                   </UBadge>
@@ -233,7 +233,7 @@ useSchemaOrg([{
               </div>
             </div>
 
-            <div class="flex items-center justify-between sm:justify-end gap-3 sm:gap-5 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-neutral-100 dark:border-neutral-800/60 shrink-0">
+            <div class="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2 sm:pt-0 shrink-0">
               <div class="text-left sm:text-right">
                 <span v-if="plan.price" class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">{{ plan.currency || 'KES' }}</span>
                 <div class="flex items-baseline gap-1">
@@ -245,7 +245,7 @@ useSchemaOrg([{
               </div>
 
               <span
-                class="inline-flex items-center gap-1 font-black uppercase text-xs px-3.5 py-2 rounded-md transition-colors"
+                class="inline-flex items-center gap-1 font-black uppercase text-xs px-3.5 py-2 rounded-xs transition-colors"
                 :class="[
                   plan.isPopular
                     ? 'bg-lime-500 text-neutral-950 group-hover:bg-lime-400'
@@ -258,8 +258,8 @@ useSchemaOrg([{
             </div>
           </div>
 
-          <div v-if="plan.features?.length" class="mt-2.5 sm:mt-3 pt-2.5 sm:pt-3 border-t border-neutral-200/60 dark:border-neutral-800/60 w-full">
-            <div class="flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-1 sm:gap-y-1.5 text-xs text-neutral-600 dark:text-neutral-300">
+          <div v-if="plan.features?.length" class="mt-3 pt-3 border-t border-neutral-200/60 dark:border-neutral-800/60 w-full">
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-neutral-600 dark:text-neutral-300">
               <div v-for="(feat, idx) in plan.features" :key="idx" class="inline-flex items-center gap-1.5">
                 <UIcon name="i-tabler-circle-check-filled" class="size-3.5 text-lime-500 shrink-0" />
                 <span class="font-medium text-[11px] sm:text-xs">{{ feat }}</span>
@@ -270,7 +270,7 @@ useSchemaOrg([{
       </div>
 
       <div v-else class="py-12 sm:py-20 text-center space-y-4 max-w-md mx-auto">
-        <div class="flex size-14 sm:size-16 items-center justify-center rounded-md bg-neutral-100 dark:bg-neutral-900 mx-auto border border-neutral-200/60 dark:border-neutral-800/60">
+        <div class="flex size-14 sm:size-16 items-center justify-center rounded-xs bg-transparent border border-neutral-200 dark:border-neutral-800 mx-auto">
           <UIcon name="i-tabler-ticket-off" class="size-7 sm:size-8 text-neutral-400 dark:text-neutral-500" />
         </div>
 
@@ -289,7 +289,7 @@ useSchemaOrg([{
             size="sm"
             color="primary"
             icon="i-tabler-mail"
-            class="rounded-md font-bold text-xs px-4 py-2 text-neutral-950 cursor-pointer"
+            class="rounded-xs font-bold text-xs px-4 py-2 text-neutral-950 cursor-pointer"
           >
             Contact Us
           </UButton>
@@ -299,59 +299,61 @@ useSchemaOrg([{
             color="neutral"
             variant="outline"
             icon="i-tabler-home"
-            class="rounded-md font-bold text-xs px-4 py-2 cursor-pointer"
+            class="rounded-xs font-bold text-xs px-4 py-2 cursor-pointer"
           >
             Return Home
           </UButton>
         </div>
       </div>
 
-      <div v-if="pricingTestimonials?.length" class="pt-6 sm:pt-8 border-t border-neutral-200 dark:border-neutral-800 space-y-4 sm:space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-3 sm:pb-4">
+      <div v-if="pricingTestimonials?.length" class="space-y-4 pt-4 border-t border-neutral-200 dark:border-neutral-800">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-neutral-200 dark:border-neutral-800 pb-3">
           <div>
-            <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] mb-1 rounded-md">
+            <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] mb-1 rounded-xs">
               Pass Member Reviews
             </UBadge>
             <h2 class="text-xl sm:text-2xl font-black text-neutral-950 dark:text-white">
               Why Members Love Their Passes
             </h2>
           </div>
-          <p class="text-xs text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed">
+          <p class="text-xs text-neutral-500 dark:text-neutral-400 max-w-md leading-relaxed font-medium">
             Hear from monthly and annual pass holders about ground access, guest discounts, and value.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 w-full">
+        <div class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-neutral-200 dark:divide-neutral-800 w-full">
           <div
             v-for="(item, idx) in pricingTestimonials"
             :key="idx"
-            class="p-0 sm:p-4 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs space-y-2.5 sm:space-y-3 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-3 sm:pb-0"
+            class="p-5 flex flex-col justify-between space-y-3 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200"
           >
-            <div class="flex items-center gap-1 text-lime-500">
-              <UIcon
-                v-for="star in (item.rating || 5)"
-                :key="star"
-                name="i-tabler-star-filled"
-                class="size-3.5"
-              />
+            <div class="space-y-2">
+              <div class="flex items-center gap-1 text-lime-500">
+                <UIcon
+                  v-for="star in (item.rating || 5)"
+                  :key="star"
+                  name="i-tabler-star-filled"
+                  class="size-3.5"
+                />
+              </div>
+
+              <p class="text-xs font-medium text-neutral-800 dark:text-neutral-200 leading-relaxed italic">
+                "{{ item.comment }}"
+              </p>
             </div>
 
-            <p class="text-xs font-medium text-neutral-800 dark:text-neutral-200 leading-relaxed italic">
-              "{{ item.comment }}"
-            </p>
-
-            <div class="flex items-center gap-2.5 pt-2 border-t border-neutral-100 dark:border-neutral-800">
+            <div class="flex items-center gap-2.5 pt-3 border-t border-neutral-200/60 dark:border-neutral-800/60">
               <NuxtImg
                 v-if="item.avatar"
                 :src="item.avatar"
                 :alt="item.author"
                 format="webp"
                 quality="80"
-                class="size-8 rounded-md object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
+                class="size-8 rounded-xs object-cover border border-neutral-200 dark:border-neutral-800 shrink-0"
               />
               <div
                 v-else
-                class="flex size-8 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400 font-bold text-xs"
+                class="flex size-8 shrink-0 items-center justify-center rounded-xs bg-lime-500/10 text-lime-600 dark:text-lime-400 font-bold text-xs border border-neutral-200/50 dark:border-neutral-800/50"
               >
                 {{ item.author.charAt(0) }}
               </div>
@@ -369,10 +371,10 @@ useSchemaOrg([{
         </div>
       </div>
 
-      <div class="p-0 sm:p-8 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs w-full">
+      <div class="p-6 sm:p-8 rounded-sm border border-neutral-200 dark:border-neutral-800 bg-transparent hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors duration-200 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-center">
           <div class="lg:col-span-8 space-y-2 sm:space-y-2.5">
-            <UBadge color="primary" variant="soft" class="font-bold text-[10px] uppercase tracking-wider rounded-md">
+            <UBadge color="primary" variant="soft" class="font-bold text-[10px] uppercase tracking-wider rounded-xs">
               <UIcon name="i-tabler-users" class="size-3.5 mr-1 text-lime-500 shrink-0" />
               Group & Corporate Bookings
             </UBadge>
@@ -389,7 +391,7 @@ useSchemaOrg([{
               size="md"
               color="primary"
               icon="i-tabler-users"
-              class="w-full sm:w-auto font-black uppercase text-xs text-neutral-950 rounded-md px-6 py-3 justify-center cursor-pointer"
+              class="w-full sm:w-auto font-black uppercase text-xs text-neutral-950 rounded-xs px-6 py-3 justify-center cursor-pointer"
             >
               Request a Quote
             </UButton>
@@ -397,9 +399,9 @@ useSchemaOrg([{
         </div>
       </div>
 
-      <div v-if="pricingFaqs?.length" class="space-y-3 sm:space-y-4 pt-2">
+      <div v-if="pricingFaqs?.length" class="space-y-4 pt-2">
         <div class="border-b border-neutral-200 dark:border-neutral-800 pb-3">
-          <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] mb-1 rounded-md">
+          <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] mb-1 rounded-xs">
             Pass & Billing Guidance
           </UBadge>
           <h2 class="text-lg sm:text-xl font-black text-neutral-950 dark:text-white">
@@ -407,18 +409,18 @@ useSchemaOrg([{
           </h2>
         </div>
 
-        <div class="space-y-3">
+        <div class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800 w-full">
           <div
             v-for="(faq, idx) in pricingFaqs"
             :key="idx"
-            class="rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 p-0 sm:p-4 border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-3 sm:pb-0"
+            class="p-4 sm:p-5 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors duration-200 w-full"
           >
             <button
               type="button"
               class="w-full flex items-center justify-between text-left font-extrabold text-xs sm:text-sm text-neutral-950 dark:text-white group cursor-pointer"
               @click="toggleFaqItem(idx)"
             >
-              <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-3 sm:pr-4">
+              <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-4">
                 {{ faq.question }}
               </span>
               <UIcon
@@ -438,7 +440,7 @@ useSchemaOrg([{
             >
               <p
                 v-show="openFaqItems.includes(idx)"
-                class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed pr-2 pt-2 font-medium overflow-hidden"
+                class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed pr-2 pt-3 font-medium overflow-hidden"
               >
                 {{ faq.answer }}
               </p>

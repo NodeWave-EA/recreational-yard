@@ -66,7 +66,6 @@
   --custom-header-base-height: 4rem;
   --ui-header-height: calc(var(--custom-banner-height) + var(--custom-header-base-height));
 
-  /* Standard Scrollbar Properties */
   scrollbar-width: thin;
   scrollbar-color: rgba(148, 163, 184, 0.4) transparent;
 }
@@ -104,7 +103,6 @@ body {
   font-weight: 400;
 }
 
-/* Global WebKit Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

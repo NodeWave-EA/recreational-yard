@@ -48,7 +48,7 @@ export default withNuxt(
   {
     files: ['**/*.vue'],
     rules: {
-      'link-checker/valid-route': 'off',
+      'link-checker/valid-route': 'warn',
       'vue/component-name-in-template-casing': [
         'error',
         'PascalCase',

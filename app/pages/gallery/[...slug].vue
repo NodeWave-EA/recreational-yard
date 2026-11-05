@@ -150,7 +150,7 @@ useSchemaOrg([{
 
 <template>
   <div v-if="collection" class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white pb-12 sm:pb-24 transition-colors duration-300 w-full overflow-x-clip">
-    <div class="relative w-full bg-neutral-900 overflow-hidden">
+    <div class="relative w-full bg-neutral-950 overflow-hidden border-b border-neutral-200 dark:border-neutral-800">
       <div class="absolute inset-0 opacity-40 overflow-hidden bg-black">
         <Transition
           enter-active-class="transition-opacity duration-1000 ease-in-out"
@@ -171,16 +171,16 @@ useSchemaOrg([{
         </Transition>
       </div>
 
-      <UContainer class="relative z-10 py-8 sm:py-16 md:py-20 px-3 sm:px-6 lg:px-8 text-center space-y-2 sm:space-y-3">
+      <UContainer class="relative z-10 py-10 sm:py-16 md:py-20 px-3 sm:px-6 lg:px-8 text-center space-y-3">
         <NuxtLink
           to="/gallery"
-          class="inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-bold text-white/80 hover:text-white transition-colors uppercase tracking-widest mb-1 drop-shadow-md"
+          class="inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-bold text-white/80 hover:text-lime-400 transition-colors uppercase tracking-widest mb-1 drop-shadow-md"
         >
           <UIcon name="i-tabler-arrow-left" class="size-3.5 sm:size-4" />
           <span>Back to All Collections</span>
         </NuxtLink>
 
-        <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif italic text-white drop-shadow-lg tracking-tight leading-tight">
+        <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white drop-shadow-lg tracking-tight leading-tight">
           {{ collection.title }}
         </h1>
 
@@ -190,18 +190,18 @@ useSchemaOrg([{
       </UContainer>
     </div>
 
-    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/95 dark:bg-neutral-950/95 backdrop-blur-md border-b border-neutral-200/80 dark:border-neutral-800/80 py-2 sm:py-3 shadow-none sm:shadow-xs">
+    <div class="sticky top-[var(--ui-header-height,4rem)] z-30 bg-neutral-50/90 dark:bg-neutral-950/90 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 py-2.5 sm:py-3 transition-all">
       <UContainer class="flex justify-center items-center px-3 sm:px-6 lg:px-8">
-        <div class="flex items-center gap-6 sm:gap-8 font-sans font-bold text-xs sm:text-sm tracking-widest">
-          <span class="text-xs font-bold text-neutral-400 uppercase tracking-wider hidden sm:inline">Grid Density:</span>
+        <div class="flex items-center gap-4 sm:gap-6 font-mono font-bold text-xs sm:text-sm tracking-widest">
+          <span class="text-xs font-bold font-sans text-neutral-400 uppercase tracking-wider hidden sm:inline">Grid Density:</span>
           <button
             v-for="size in (['S', 'M', 'L'] as const)"
             :key="size"
-            class="p-1.5 sm:p-2 transition-all cursor-pointer relative touch-manipulation min-w-7 text-center rounded-md"
+            class="px-3 py-1 transition-all cursor-pointer relative touch-manipulation text-center rounded-xs border border-neutral-200 dark:border-neutral-800"
             :class="[
               density === size
-                ? 'text-lime-600 dark:text-lime-400 underline underline-offset-4 decoration-2 font-black'
-                : 'text-neutral-400 hover:text-neutral-950 dark:hover:text-white font-medium',
+                ? 'bg-lime-500 text-neutral-950 border-lime-500 font-black'
+                : 'text-neutral-400 hover:text-neutral-950 dark:hover:text-white font-medium bg-transparent',
             ]"
             @click="density = size"
           >
@@ -220,7 +220,7 @@ useSchemaOrg([{
             masonryItemClasses,
             getPhotoAspectClass(idx, photo),
           ]"
-          class="group relative overflow-hidden cursor-pointer bg-transparent sm:bg-neutral-100 sm:dark:bg-neutral-900 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs"
+          class="group relative overflow-hidden cursor-pointer bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-xs transition-colors duration-200"
           @click="openPhoto(idx)"
         >
           <NuxtImg
@@ -229,12 +229,12 @@ useSchemaOrg([{
             format="webp"
             quality="85"
             loading="lazy"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out rounded-md sm:rounded-none"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
           />
 
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-3 sm:p-4 flex flex-col justify-between">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-3 sm:p-4 flex flex-col justify-between">
             <div class="flex justify-end">
-              <div class="flex size-8 items-center justify-center rounded-md bg-black/60 text-white backdrop-blur-md border border-white/20 transition-all shadow-md">
+              <div class="flex size-8 items-center justify-center rounded-xs bg-neutral-950/80 text-white backdrop-blur-md border border-white/20 shadow-md">
                 <UIcon name="i-tabler-arrows-maximize" class="size-4 text-lime-400" />
               </div>
             </div>
@@ -251,19 +251,19 @@ useSchemaOrg([{
       :open="activePhotoIndex !== null"
       :ui="{
         content: 'sm:max-w-7xl w-[98vw] sm:w-[95vw] max-w-[98vw] p-0 border-0 bg-transparent shadow-none ring-0',
-        overlay: 'bg-black/85 backdrop-blur-xl',
+        overlay: 'bg-black/90 backdrop-blur-xl',
       }"
       @update:open="closePhoto"
     >
       <template #content>
         <div v-if="activePhoto" class="relative flex flex-col justify-between w-full h-[92dvh] py-3 sm:py-4 select-none overflow-hidden">
           <div class="flex items-center justify-between px-3 sm:px-8 z-30 shrink-0">
-            <span class="font-mono text-[11px] sm:text-xs font-bold text-white/90 bg-black/60 backdrop-blur-md px-3 py-1 rounded-md border border-white/10 shadow-lg">
+            <span class="font-mono text-[11px] sm:text-xs font-bold text-white/90 bg-neutral-950/80 backdrop-blur-md px-3 py-1 rounded-xs border border-white/10">
               {{ activePhotoIndex! + 1 }} / {{ allPhotos.length }}
             </span>
 
             <button
-              class="flex size-9 sm:size-11 items-center justify-center rounded-md bg-black/60 hover:bg-neutral-800 text-white/90 hover:text-white backdrop-blur-md border border-white/10 transition-all cursor-pointer shadow-lg active:scale-95"
+              class="flex size-9 sm:size-10 items-center justify-center rounded-xs bg-neutral-950/80 hover:bg-neutral-800 text-white/90 hover:text-white backdrop-blur-md border border-white/10 transition-all cursor-pointer active:scale-95"
               aria-label="Close preview"
               @click="closePhoto"
             >
@@ -277,23 +277,23 @@ useSchemaOrg([{
               :alt="activePhoto.caption || 'Photo'"
               format="webp"
               quality="95"
-              class="max-w-full max-h-full w-auto h-auto object-contain rounded-md shadow-2xl transition-all duration-300"
+              class="max-w-full max-h-full w-auto h-auto object-contain rounded-xs shadow-2xl transition-all duration-300"
             />
 
             <button
-              class="absolute left-1.5 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex size-9 sm:size-12 items-center justify-center rounded-md bg-black/60 hover:bg-lime-500 hover:text-neutral-950 text-white backdrop-blur-md border border-white/10 shadow-xl transition-all cursor-pointer active:scale-90"
+              class="absolute left-1.5 sm:left-6 top-1/2 -translate-y-1/2 z-20 flex size-9 sm:size-11 items-center justify-center rounded-xs bg-neutral-950/80 hover:bg-lime-500 hover:text-neutral-950 text-white backdrop-blur-md border border-white/10 shadow-xl transition-all cursor-pointer active:scale-90"
               aria-label="Previous photo"
               @click.stop="prevPhoto"
             >
-              <UIcon name="i-tabler-chevron-left" class="size-5 sm:size-7" />
+              <UIcon name="i-tabler-chevron-left" class="size-5 sm:size-6" />
             </button>
 
             <button
-              class="absolute right-1.5 sm:right-6 top-1/2 -translate-y-1/2 z-20 flex size-9 sm:size-12 items-center justify-center rounded-md bg-black/60 hover:bg-lime-500 hover:text-neutral-950 text-white backdrop-blur-md border border-white/10 shadow-xl transition-all cursor-pointer active:scale-90"
+              class="absolute right-1.5 sm:right-6 top-1/2 -translate-y-1/2 z-20 flex size-9 sm:size-11 items-center justify-center rounded-xs bg-neutral-950/80 hover:bg-lime-500 hover:text-neutral-950 text-white backdrop-blur-md border border-white/10 shadow-xl transition-all cursor-pointer active:scale-90"
               aria-label="Next photo"
               @click.stop="nextPhoto"
             >
-              <UIcon name="i-tabler-chevron-right" class="size-5 sm:size-7" />
+              <UIcon name="i-tabler-chevron-right" class="size-5 sm:size-6" />
             </button>
           </div>
 
@@ -304,15 +304,15 @@ useSchemaOrg([{
 
             <div
               ref="filmstripContainerRef"
-              class="flex items-center gap-2 sm:gap-2.5 overflow-x-auto max-w-full px-3 py-1.5 scroll-smooth scrollbar-none rounded-md bg-black/40 backdrop-blur-md border border-white/10 touch-pan-x"
+              class="flex items-center gap-2 sm:gap-2.5 overflow-x-auto max-w-full px-3 py-1.5 scroll-smooth scrollbar-none rounded-xs bg-neutral-950/60 backdrop-blur-md border border-white/10 touch-pan-x"
             >
               <button
                 v-for="(p, pIdx) in allPhotos"
                 :key="pIdx"
-                class="relative h-10 w-14 sm:h-13 sm:w-18 shrink-0 overflow-hidden rounded-md border-2 transition-all duration-300 cursor-pointer active:scale-95"
+                class="relative h-10 w-14 sm:h-12 sm:w-16 shrink-0 overflow-hidden rounded-xs border transition-all duration-200 cursor-pointer active:scale-95"
                 :class="[
                   pIdx === activePhotoIndex
-                    ? 'border-lime-400 scale-105 shadow-xl ring-2 ring-lime-400/50 opacity-100 z-10'
+                    ? 'border-lime-400 scale-105 opacity-100 z-10'
                     : 'border-transparent opacity-40 hover:opacity-80',
                 ]"
                 @click="openPhoto(pIdx)"

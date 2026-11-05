@@ -97,8 +97,8 @@ useSchemaOrg([{
 </script>
 
 <template>
-  <div class="py-4 sm:py-12 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
-    <UContainer v-if="product" class="space-y-6 sm:space-y-8 px-3 sm:px-6 lg:px-8">
+  <div class="py-4 sm:py-10 bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white min-h-screen transition-colors duration-300 w-full overflow-x-clip">
+    <UContainer v-if="product" class="space-y-6 px-3 sm:px-6 lg:px-8">
       <div>
         <NuxtLink
           to="/shop"
@@ -109,8 +109,8 @@ useSchemaOrg([{
         </NuxtLink>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
-        <div class="lg:col-span-6 relative rounded-none sm:rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900 border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <div class="lg:col-span-6 relative rounded-xs overflow-hidden bg-transparent border border-neutral-200 dark:border-neutral-800">
           <NuxtImg
             v-if="getProductImage()"
             :src="getProductImage()"
@@ -126,26 +126,26 @@ useSchemaOrg([{
           <UBadge
             v-if="product.badge"
             color="primary"
-            class="absolute top-3 left-3 sm:top-4 sm:left-4 font-bold text-xs rounded-md"
+            class="absolute top-3 left-3 font-bold text-xs rounded-xs uppercase backdrop-blur-md"
           >
             {{ product.badge }}
           </UBadge>
         </div>
 
-        <div class="lg:col-span-6 space-y-5 sm:space-y-6 min-w-0">
+        <div class="lg:col-span-6 space-y-5 min-w-0">
           <div>
-            <UBadge color="neutral" variant="soft" class="text-[10px] uppercase font-bold tracking-wider mb-2 rounded-md">
+            <UBadge color="neutral" variant="soft" class="text-[10px] uppercase font-bold tracking-wider mb-2 rounded-xs border border-neutral-200/60 dark:border-neutral-800/60">
               {{ product.category || 'Merchandise' }}
             </UBadge>
             <h1 class="text-2xl sm:text-4xl font-black text-neutral-950 dark:text-white leading-tight">
               {{ product.title || product.name }}
             </h1>
-            <p class="mt-2 sm:mt-3 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
+            <p class="mt-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium">
               {{ product.description }}
             </p>
           </div>
 
-          <div class="flex items-baseline gap-2 py-2.5 sm:py-3 border-y border-neutral-200 dark:border-neutral-800">
+          <div class="flex items-baseline gap-2 py-3 border-y border-neutral-200 dark:border-neutral-800">
             <span class="text-xl sm:text-3xl font-black text-neutral-950 dark:text-white">
               {{ product.price ? `${product.currency || 'KES'} ${product.price.toLocaleString()}` : 'Quote on request' }}
             </span>
@@ -154,38 +154,42 @@ useSchemaOrg([{
             </span>
           </div>
 
-          <div v-if="product.details?.length" class="space-y-2">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-neutral-400">
+          <div v-if="product.details?.length" class="space-y-3 pt-1">
+            <h3 class="text-xs font-black uppercase tracking-wider text-neutral-400">
               Product Highlights
             </h3>
-            <ul class="space-y-1.5 sm:space-y-2 text-xs text-neutral-700 dark:text-neutral-300">
-              <li v-for="(detail, idx) in product.details" :key="idx" class="flex items-center gap-2 font-medium">
+            <ul class="border border-neutral-200 dark:border-neutral-800 rounded-xs overflow-hidden divide-y divide-neutral-200 dark:divide-neutral-800">
+              <li
+                v-for="(detail, idx) in product.details"
+                :key="idx"
+                class="p-3 text-xs text-neutral-700 dark:text-neutral-300 font-medium flex items-center gap-2 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors"
+              >
                 <UIcon name="i-tabler-point" class="size-4 text-lime-500 shrink-0" />
                 <span>{{ detail }}</span>
               </li>
             </ul>
           </div>
 
-          <div class="pt-3 sm:pt-4 space-y-2.5 sm:space-y-3">
+          <div class="pt-2 space-y-3">
             <div
               v-if="product.price && cartQuantity > 0"
-              class="flex items-center justify-between w-full py-1.5 sm:py-2"
+              class="flex items-center justify-between w-full py-1.5"
             >
               <span class="text-xs font-black uppercase text-lime-600 dark:text-lime-400 flex items-center gap-1.5">
                 <UIcon name="i-tabler-shopping-bag-check" class="size-4" />
                 In Shopping Bag
               </span>
 
-              <div class="flex items-center border border-neutral-200 dark:border-neutral-800 rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900">
+              <div class="flex items-center border border-neutral-200 dark:border-neutral-800 rounded-xs overflow-hidden bg-transparent">
                 <UButton
                   icon="i-tabler-minus"
                   color="neutral"
                   variant="ghost"
                   size="xs"
-                  class="px-3 py-2 cursor-pointer"
+                  class="px-3 py-2 cursor-pointer rounded-none"
                   @click="decreaseQuantity"
                 />
-                <span class="px-4 text-sm font-black text-neutral-950 dark:text-white">
+                <span class="px-4 text-sm font-black font-mono text-neutral-950 dark:text-white">
                   {{ cartQuantity }}
                 </span>
                 <UButton
@@ -193,7 +197,7 @@ useSchemaOrg([{
                   color="neutral"
                   variant="ghost"
                   size="xs"
-                  class="px-3 py-2 cursor-pointer"
+                  class="px-3 py-2 cursor-pointer rounded-none"
                   @click="increaseQuantity"
                 />
               </div>
@@ -205,7 +209,7 @@ useSchemaOrg([{
               size="lg"
               color="primary"
               icon="i-tabler-shopping-bag-plus"
-              class="font-black uppercase text-xs text-neutral-950 rounded-md py-3.5 cursor-pointer justify-center"
+              class="font-black uppercase text-xs text-neutral-950 rounded-xs py-3.5 cursor-pointer justify-center"
               @click="handleAddToCart"
             >
               Add to Shopping Bag
@@ -217,7 +221,7 @@ useSchemaOrg([{
               size="lg"
               color="primary"
               icon="i-tabler-message"
-              class="font-black uppercase text-xs text-neutral-950 rounded-md py-3.5 cursor-pointer justify-center"
+              class="font-black uppercase text-xs text-neutral-950 rounded-xs py-3.5 cursor-pointer justify-center"
             >
               Request details & quotation
             </UButton>
@@ -227,33 +231,31 @@ useSchemaOrg([{
 
       <NuxtLink
         :to="`/gallery/${product.stem.split('/').pop()}`"
-        class="group block p-0 sm:p-5 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs"
+        class="group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-xs border border-neutral-200 dark:border-neutral-800 bg-transparent hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200"
       >
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
-          <div class="flex items-center gap-3 min-w-0">
-            <div class="flex size-9 sm:size-10 shrink-0 items-center justify-center rounded-md bg-lime-500/10 text-lime-600 dark:text-lime-400">
-              <UIcon name="i-tabler-photo" class="size-5" />
-            </div>
-            <div class="space-y-0.5 min-w-0">
-              <h4 class="text-sm font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
-                Product Photo Gallery
-              </h4>
-              <p class="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-1">
-                Explore full photo gallery collections for this specific product.
-              </p>
-            </div>
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="flex size-9 shrink-0 items-center justify-center rounded-xs bg-lime-500/10 text-lime-600 dark:text-lime-400 border border-neutral-200/50 dark:border-neutral-800/50">
+            <UIcon name="i-tabler-photo" class="size-5" />
           </div>
-
-          <span class="inline-flex items-center gap-1 font-bold text-xs text-lime-600 dark:text-lime-400 group-hover:translate-x-1 transition-transform shrink-0">
-            <span>View Gallery</span>
-            <UIcon name="i-tabler-arrow-right" class="size-4" />
-          </span>
+          <div class="space-y-0.5 min-w-0">
+            <h4 class="text-sm font-bold text-neutral-950 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
+              Product Photo Gallery
+            </h4>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-1">
+              Explore full photo gallery collections for this specific product.
+            </p>
+          </div>
         </div>
+
+        <span class="inline-flex items-center gap-1 font-bold text-xs text-lime-600 dark:text-lime-400 group-hover:translate-x-1 transition-transform shrink-0">
+          <span>View Gallery</span>
+          <UIcon name="i-tabler-arrow-right" class="size-4" />
+        </span>
       </NuxtLink>
 
       <div
         v-if="product.body"
-        class="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-neutral-200 dark:border-neutral-800 prose dark:prose-invert max-w-none text-xs sm:text-sm leading-relaxed"
+        class="pt-6 border-t border-neutral-200 dark:border-neutral-800 prose dark:prose-invert max-w-none text-xs sm:text-sm leading-relaxed"
       >
         <ContentRenderer :value="product" />
       </div>

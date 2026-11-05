@@ -24,7 +24,7 @@ function toggleItem(index: number) {
   <section v-if="generalFaqs?.length" class="space-y-3 sm:space-y-6 py-2 sm:py-6 w-full">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-3 sm:pb-5 px-0">
       <div>
-        <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] sm:text-xs mb-1.5 sm:mb-2 rounded-md">
+        <UBadge color="primary" variant="soft" class="font-bold uppercase tracking-widest text-[10px] sm:text-xs mb-1.5 sm:mb-2 rounded-xs">
           General Information
         </UBadge>
         <h2 class="text-xl sm:text-4xl font-black tracking-tight text-neutral-950 dark:text-white">
@@ -33,11 +33,11 @@ function toggleItem(index: number) {
       </div>
     </div>
 
-    <div class="space-y-3 sm:space-y-3 w-full">
+    <div class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800 w-full">
       <div
         v-for="(faq, idx) in generalFaqs"
         :key="idx"
-        class="p-0 sm:p-4 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs w-full border-b border-neutral-200/60 dark:border-neutral-800/60 sm:border-b-0 pb-3 sm:pb-0"
+        class="p-4 sm:p-5 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors duration-200 w-full"
       >
         <button
           type="button"
@@ -46,7 +46,7 @@ function toggleItem(index: number) {
           class="w-full flex items-center justify-between text-left font-extrabold text-xs sm:text-sm text-neutral-950 dark:text-white group cursor-pointer"
           @click="toggleItem(idx)"
         >
-          <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-3 sm:pr-4">
+          <span class="group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors pr-4">
             {{ faq.question }}
           </span>
           <UIcon
@@ -67,7 +67,7 @@ function toggleItem(index: number) {
           <p
             v-show="openItems.includes(idx)"
             :id="`faq-answer-${idx}`"
-            class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed pr-2 pt-2 font-medium overflow-hidden"
+            class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed pr-2 pt-3 font-medium overflow-hidden"
           >
             {{ faq.answer }}
           </p>

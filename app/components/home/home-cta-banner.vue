@@ -1,9 +1,9 @@
 <template>
   <section class="py-2 sm:py-8 w-full">
-    <div class="p-0 sm:p-8 rounded-none sm:rounded-md border-0 sm:border border-neutral-200/80 dark:border-neutral-800/80 bg-transparent sm:bg-white sm:dark:bg-neutral-900/50 hover:border-lime-500 dark:hover:border-lime-500 transition-all duration-300 shadow-none sm:shadow-xs w-full">
+    <div class="p-6 sm:p-8 rounded-sm border border-neutral-200 dark:border-neutral-800 bg-transparent hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors duration-300 w-full">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center w-full">
         <div class="lg:col-span-7 space-y-2 sm:space-y-3 min-w-0">
-          <UBadge color="primary" variant="soft" class="font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-md">
+          <UBadge color="primary" variant="soft" class="font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xs">
             <UIcon name="i-tabler-ticket" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
             <span>Move. Play. Connect. Thrive.</span>
           </UBadge>
@@ -23,7 +23,7 @@
             size="lg"
             color="primary"
             icon="i-tabler-ticket"
-            class="w-full xl:w-auto font-black uppercase text-xs text-neutral-950 rounded-md px-5 py-3 cursor-pointer justify-center shadow-xs"
+            class="w-full xl:w-auto font-black uppercase text-xs text-neutral-950 rounded-xs px-5 py-3 cursor-pointer justify-center shadow-xs"
           >
             Discuss requirements
           </UButton>
@@ -34,7 +34,7 @@
             color="neutral"
             variant="outline"
             icon="i-tabler-headset"
-            class="w-full xl:w-auto font-extrabold uppercase text-xs rounded-md px-5 py-3 cursor-pointer justify-center"
+            class="w-full xl:w-auto font-extrabold uppercase text-xs rounded-xs px-5 py-3 cursor-pointer justify-center"
           >
             Contact Us
           </UButton>
