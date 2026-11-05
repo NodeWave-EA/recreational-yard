@@ -10,7 +10,9 @@ startDate: '2026-01-01'
 location: Virtual / Anywhere (Recreation Yard Kericho)
 entryFee: Free
 capacity: Unlimited (All Levels Welcome)
-coverImage: /content/events/virtual-sunday-run.jpg
+coverImage:
+  src: /content/events/virtual-sunday-run-jog-walk.jpg
+  alt: Virtual Sunday Run, Jog & Walk
 tags:
   - WeRunSundays
   - RecreationYardRunners
@@ -52,13 +54,13 @@ schedule:
 
 ### Facility & Community Features
 
-* **Fitness & Running:** Open to all ages, fitness levels, and distance preferences.
-* **Community Wellness:** Regular social interaction, motivation, and active living tips.
-* **Recreation Yard Amenities:** Connect with us for badminton, tennis (Da Sclup Lawn), archery, lawn games, and venue hosting.
+- **Fitness & Running:** Open to all ages, fitness levels, and distance preferences.
+- **Community Wellness:** Regular social interaction, motivation, and active living tips.
+- **Recreation Yard Amenities:** Connect with us for badminton, tennis (Da Sclup Lawn), archery, lawn games, and venue hosting.
 
 ---
 
-> **For Inquiries & Direct Bookings:**  
-> **Phone / WhatsApp:** [0792 035 035](tel:+254792035035)  
-> **Email:** [relax@recreationyard.com](mailto:relax@recreationyard.com)  
+> **For Inquiries & Direct Bookings:**
+> **Phone / WhatsApp:** [0792 035 035](tel:+254792035035)
+> **Email:** [relax@recreationyard.com](mailto:relax@recreationyard.com)
 > **Website:** [www.recreationyard.com](https://www.recreationyard.com)
