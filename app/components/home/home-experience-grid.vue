@@ -1,7 +1,7 @@
 <template>
-  <section class="w-full py-4 sm:py-8">
-    <div class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200 dark:divide-neutral-800">
-      <div class="p-6 sm:p-8 flex flex-col justify-between space-y-6 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200">
+  <section class="w-full py-2 sm:py-6">
+    <div class="-mx-3 sm:mx-0 border-y sm:border border-neutral-200 dark:border-neutral-800 rounded-none sm:rounded-sm overflow-hidden bg-transparent grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200 dark:divide-neutral-800 w-auto">
+      <div class="p-5 sm:p-8 flex flex-col justify-between space-y-6 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200">
         <div class="space-y-4">
           <div class="flex items-center justify-between">
             <UBadge color="neutral" variant="soft" class="font-bold text-[10px] uppercase tracking-widest rounded-xs px-2.5 py-1">
@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <div class="p-6 sm:p-8 flex flex-col justify-between space-y-6 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200">
+      <div class="p-5 sm:p-8 flex flex-col justify-between space-y-6 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors duration-200">
         <div class="space-y-4">
           <div class="flex items-center justify-between">
             <UBadge color="neutral" variant="soft" class="font-bold text-[10px] uppercase tracking-widest rounded-xs px-2.5 py-1">

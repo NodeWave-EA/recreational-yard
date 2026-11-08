@@ -33,7 +33,7 @@ function toggleItem(index: number) {
       </div>
     </div>
 
-    <div class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800 w-full">
+    <div class="-mx-3 sm:mx-0 border-y sm:border border-neutral-200 dark:border-neutral-800 rounded-none sm:rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800 w-auto">
       <div
         v-for="(faq, idx) in generalFaqs"
         :key="idx"

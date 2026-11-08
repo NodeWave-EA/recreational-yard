@@ -60,7 +60,7 @@ const { data: generalTestimonials } = await getCollection('home-general-testimon
 
     <div
       v-if="viewMode === 'grid'"
-      class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-neutral-200 dark:divide-neutral-800 w-full"
+      class="-mx-3 sm:mx-0 border-y sm:border border-neutral-200 dark:border-neutral-800 rounded-none sm:rounded-sm overflow-hidden bg-transparent grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-neutral-200 dark:divide-neutral-800 w-auto"
     >
       <NuxtLink
         v-for="item in generalTestimonials"
@@ -117,7 +117,7 @@ const { data: generalTestimonials } = await getCollection('home-general-testimon
 
     <div
       v-else-if="viewMode === 'list'"
-      class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800 w-full"
+      class="-mx-3 sm:mx-0 border-y sm:border border-neutral-200 dark:border-neutral-800 rounded-none sm:rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800 w-auto"
     >
       <NuxtLink
         v-for="item in generalTestimonials"

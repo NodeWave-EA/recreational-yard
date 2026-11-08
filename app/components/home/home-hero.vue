@@ -80,7 +80,7 @@ onUnmounted(() => {
   <section class="relative min-h-[calc(100vh-var(--ui-header-height,4rem))] lg:h-[calc(100vh-var(--ui-header-height,4rem))] w-full flex flex-col justify-between bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-white overflow-hidden transition-colors duration-300">
     <div class="relative z-10 flex-1 flex items-center py-2 sm:py-8 lg:py-4 w-full">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 items-center w-full">
-        <div class="lg:col-span-5 space-y-3 lg:space-y-4 text-left px-3 sm:px-0">
+        <div class="lg:col-span-5 space-y-3 lg:space-y-4 text-left px-0 sm:px-0">
           <div class="inline-flex max-w-full">
             <UBadge
               color="primary"
@@ -168,7 +168,7 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <div class="flex items-center justify-between pt-2 px-2 sm:px-0 w-full">
+          <div class="flex items-center justify-between pt-2 px-0 w-full">
             <div class="flex items-center gap-1.5 sm:gap-2">
               <UButton
                 color="neutral"

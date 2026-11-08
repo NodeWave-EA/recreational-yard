@@ -68,7 +68,7 @@ function getImageSrc(item: any) {
 
     <div
       v-if="viewMode === 'grid' && featuredFacilities?.length"
-      class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-neutral-200 dark:divide-neutral-800 w-full"
+      class="-mx-3 sm:mx-0 border-y sm:border border-neutral-200 dark:border-neutral-800 rounded-none sm:rounded-sm overflow-hidden bg-transparent grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-neutral-200 dark:divide-neutral-800 w-auto"
     >
       <NuxtLink
         v-for="facility in featuredFacilities"
@@ -133,7 +133,7 @@ function getImageSrc(item: any) {
 
     <div
       v-else-if="viewMode === 'list' && featuredFacilities?.length"
-      class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800 w-full"
+      class="-mx-3 sm:mx-0 border-y sm:border border-neutral-200 dark:border-neutral-800 rounded-none sm:rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800 w-auto"
     >
       <NuxtLink
         v-for="facility in featuredFacilities"

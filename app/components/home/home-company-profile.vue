@@ -44,8 +44,8 @@ const reasons = [
 
 <template>
   <section class="w-full text-neutral-900 dark:text-white">
-    <div class="border border-neutral-200 dark:border-neutral-800 rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800">
-      <div class="p-6 sm:p-10 space-y-4 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
+    <div class="-mx-4 sm:mx-0 border-y sm:border border-neutral-200 dark:border-neutral-800 rounded-none sm:rounded-sm overflow-hidden bg-transparent divide-y divide-neutral-200 dark:divide-neutral-800 w-auto">
+      <div class="p-5 sm:p-10 space-y-4 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
         <UBadge color="primary" variant="soft" class="font-bold text-[10px] sm:text-xs uppercase tracking-widest px-3 py-1 rounded-xs">
           <UIcon name="i-tabler-building-community" class="size-3.5 mr-1.5 text-lime-500 shrink-0" />
           <span>Who We Are • Recreation Yard Limited</span>
@@ -59,7 +59,7 @@ const reasons = [
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-neutral-200 dark:divide-neutral-800">
-        <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
+        <div class="lg:col-span-5 p-5 sm:p-8 flex flex-col justify-between space-y-6 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
           <div class="space-y-2">
             <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400">
               Our Vision
@@ -82,7 +82,7 @@ const reasons = [
           </div>
         </div>
 
-        <div class="lg:col-span-7 p-6 sm:p-8 space-y-4 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
+        <div class="lg:col-span-7 p-5 sm:p-8 space-y-4 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
           <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400 block">
             Our Mission
           </span>
@@ -95,47 +95,58 @@ const reasons = [
         </div>
       </div>
 
-      <div class="p-6 sm:p-8 space-y-6 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
-        <div class="flex items-center justify-between">
-          <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400">
-            Our Core Values
-          </span>
-          <span class="text-xs font-mono font-bold text-neutral-400">8 Pillars</span>
-        </div>
+      <div class="px-5 py-4 sm:px-8 flex items-center justify-between bg-neutral-100/30 dark:bg-neutral-900/30 border-b border-neutral-200 dark:border-neutral-800">
+        <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400">
+          Our Core Values
+        </span>
+        <span class="text-xs font-mono font-bold text-neutral-400">8 Pillars</span>
+      </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-neutral-200 dark:border-neutral-800 rounded-xs overflow-hidden divide-y sm:divide-y-0 divide-x-0 sm:divide-x divide-neutral-200 dark:divide-neutral-800">
-          <div
-            v-for="val in values"
-            :key="val.name"
-            class="p-4 space-y-1.5 hover:bg-neutral-100/50 dark:hover:bg-neutral-800/40 transition-colors border-b last:border-b-0"
-          >
-            <div class="flex items-center gap-2 text-xs sm:text-sm font-extrabold text-neutral-950 dark:text-white">
-              <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0" />
-              <span>{{ val.name }}</span>
-            </div>
-            <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium pl-6">
-              {{ val.desc }}
-            </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full">
+        <div
+          v-for="(val, idx) in values"
+          :key="val.name"
+          class="p-5 space-y-1.5 hover:bg-neutral-100/40 dark:hover:bg-neutral-800/30 transition-colors border-neutral-200 dark:border-neutral-800"
+          :class="[
+            idx < values.length - 1 ? 'border-b' : 'border-b-0',
+            idx < 6 ? 'sm:border-b' : 'sm:border-b-0',
+            idx < 4 ? 'lg:border-b' : 'lg:border-b-0',
+            (idx + 1) % 2 !== 0 ? 'sm:border-r' : 'sm:border-r-0',
+            (idx + 1) % 4 !== 0 ? 'lg:border-r' : 'lg:border-r-0',
+          ]"
+        >
+          <div class="flex items-center gap-2 text-xs sm:text-sm font-extrabold text-neutral-950 dark:text-white">
+            <UIcon name="i-tabler-circle-check-filled" class="size-4 text-lime-500 shrink-0" />
+            <span>{{ val.name }}</span>
           </div>
+          <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed font-medium pl-6">
+            {{ val.desc }}
+          </p>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-neutral-200 dark:divide-neutral-800">
-        <div class="lg:col-span-5 p-6 sm:p-8 space-y-5 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
-          <div>
+        <div class="lg:col-span-5 flex flex-col justify-between hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
+          <div class="p-5 sm:p-8 space-y-2">
             <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400 block">
               Who We Serve
             </span>
-            <h3 class="mt-1 text-lg sm:text-2xl font-black text-neutral-950 dark:text-white tracking-tight">
+            <h3 class="text-lg sm:text-2xl font-black text-neutral-950 dark:text-white tracking-tight">
               Built for different journeys.
             </h3>
           </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-3 border border-neutral-200 dark:border-neutral-800 rounded-xs overflow-hidden divide-x divide-y divide-neutral-200 dark:divide-neutral-800">
+          <div class="grid grid-cols-2 sm:grid-cols-3 border-t border-neutral-200 dark:border-neutral-800 w-full mt-auto">
             <div
-              v-for="audience in audiences"
+              v-for="(audience, idx) in audiences"
               :key="audience"
-              class="p-3 text-center flex items-center justify-center hover:bg-neutral-100/60 dark:hover:bg-neutral-800/50 transition-colors cursor-default"
+              class="p-3.5 text-center flex items-center justify-center hover:bg-neutral-100/60 dark:hover:bg-neutral-800/50 transition-colors border-neutral-200 dark:border-neutral-800 cursor-default"
+              :class="[
+                idx < audiences.length - 1 ? 'border-b' : 'border-b-0',
+                idx < 6 ? 'sm:border-b' : 'sm:border-b-0',
+                (idx + 1) % 2 !== 0 ? 'max-sm:border-r' : '',
+                (idx + 1) % 3 !== 0 ? 'sm:border-r' : 'sm:border-r-0',
+              ]"
             >
               <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-neutral-800 dark:text-neutral-200">
                 {{ audience }}
@@ -144,7 +155,7 @@ const reasons = [
           </div>
         </div>
 
-        <div class="lg:col-span-7 p-6 sm:p-8 space-y-4 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
+        <div class="lg:col-span-7 p-5 sm:p-8 space-y-4 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
           <div>
             <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400 block">
               Why Choose Us
@@ -163,7 +174,7 @@ const reasons = [
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-neutral-200 dark:divide-neutral-800">
-        <div class="p-6 sm:p-8 space-y-3 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
+        <div class="p-5 sm:p-8 space-y-3 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
           <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400 block">
             Our Commitment
           </span>
@@ -175,7 +186,7 @@ const reasons = [
           </p>
         </div>
 
-        <div class="p-6 sm:p-8 flex flex-col justify-between space-y-4 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
+        <div class="p-5 sm:p-8 flex flex-col justify-between space-y-4 hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors">
           <div class="space-y-3">
             <span class="text-[10px] font-black uppercase tracking-widest text-lime-600 dark:text-lime-400 block">
               Partnerships

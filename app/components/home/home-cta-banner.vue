@@ -1,6 +1,6 @@
 <template>
-  <section class="py-2 sm:py-8 w-full">
-    <div class="p-6 sm:p-8 rounded-sm border border-neutral-200 dark:border-neutral-800 bg-transparent hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors duration-300 w-full">
+  <section class="py-2 sm:py-6 w-full">
+    <div class="-mx-3 sm:mx-0 p-5 sm:p-8 rounded-none sm:rounded-sm border-y sm:border border-neutral-200 dark:border-neutral-800 bg-transparent hover:bg-neutral-100/30 dark:hover:bg-neutral-800/20 transition-colors duration-300 w-auto">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center w-full">
         <div class="lg:col-span-7 space-y-2 sm:space-y-3 min-w-0">
           <UBadge color="primary" variant="soft" class="font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xs">
