@@ -37,7 +37,7 @@ export const LOCATION_DETAILS = {
   email: 'relax@recreationyard.com',
   website: 'www.recreationyard.com',
   hours: 'Prior booking mandatory — please confirm date and time with our team',
-  googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Kooma%2C%20Kericho%2C%20Kenya',
+  googleMapsUrl: 'https://maps.app.goo.gl/GQPnPdHRT1QMXiBY9',
   embedLink: '',
   socials: {},
 } as const
